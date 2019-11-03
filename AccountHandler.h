@@ -5,6 +5,7 @@
 #include "AddUserMenu.h"
 #include "UserCredentials.h"
 #include "EditUserMenu.h"
+#include "ItemSelection.h"
 
 using namespace std;
 

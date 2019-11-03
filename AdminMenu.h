@@ -2,19 +2,13 @@
 #define ADMINMENU_H
 
 
-#include "ConsoleMenu.h"
-#include "LoginMenu.h"
-#include "ShowUserMenu.h"
-#include "EditUserMenu.h"
+#include "UserManagementMenu.h"
 
 namespace AdminMenuAction
 {
 	enum
 	{
-		SHOW_USERS = 1,
-		ADD_USER,
-		DELETE_USER,
-		EDIT_USER,
+		USER_MANAGEMENT = 1,
 		BACK
 	};
 }

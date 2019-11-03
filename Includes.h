@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <typeinfo>
 
 
 #endif //INCLUDES_H

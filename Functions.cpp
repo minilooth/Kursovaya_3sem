@@ -81,7 +81,7 @@ string makeCenteredString(const string& inputString, unsigned width)
 		centeredString += " ";
 	}
 
-	if (inputString.length() % 2 != 0)
+	if (width % 2 != 0)
 	{
 		centeredString += " ";
 	}

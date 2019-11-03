@@ -3,8 +3,10 @@
 
 
 #include "Includes.h"
+#include "AccountHandler.h"
 
 using namespace std;
+
 
 class UserCredentials
 {
@@ -22,6 +24,8 @@ public:
     string getUsername();
     string getPassword();
     bool getAdminAccess();
+
+	friend ostream& operator<<(ostream& out, const UserCredentials& userCredentials);
 
     ~UserCredentials();
 };

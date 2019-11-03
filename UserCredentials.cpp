@@ -1,4 +1,4 @@
-#include "UserCredentials.h"
+#include "AccountHandler.h"
 
 UserCredentials::UserCredentials() = default;
 
@@ -37,6 +37,15 @@ string UserCredentials::getPassword()
 bool UserCredentials::getAdminAccess()
 {
     return adminAccess_;
+}
+
+ostream& operator<<(ostream& out, const UserCredentials& userCredentials)
+{
+	out << "| " << setw(AccountHandler::calculateUsernameMaxLength() < 9 ? 8 : AccountHandler::calculateUsernameMaxLength()) << left << userCredentials.username_
+		<< " | " << setw(AccountHandler::calculatePasswordMaxLength() < 9 ? 8 : AccountHandler::calculatePasswordMaxLength()) << left << makeMaskedString(userCredentials.password_)
+		<< " | " << setw(12) << left << (userCredentials.adminAccess_ ? "Yes" : "No") << " |";
+
+	return out;
 }
 
 UserCredentials::~UserCredentials() = default;

@@ -1,16 +1,16 @@
 #include "AdminMenu.h"
 
-unsigned AdminMenu::choice_ = AdminMenuAction::SHOW_USERS;
+unsigned AdminMenu::choice_ = AdminMenuAction::USER_MANAGEMENT;
 
 AdminMenu::AdminMenu()
 {
     title_ = "Admin main menu:";
-    items_ = { "Show users.", "Add user.", "Delete user.", "Edit user.", "Back." };
+    items_ = { "User management.", "Back." };
 }
 
 void AdminMenu::resetChoice()
 {
-    choice_ = AdminMenuAction::SHOW_USERS;
+    choice_ = AdminMenuAction::USER_MANAGEMENT;
 }
 
 ConsoleMenu* AdminMenu::getNextMenu()
@@ -19,22 +19,9 @@ ConsoleMenu* AdminMenu::getNextMenu()
 
     switch (selectMode())
     {
-		case AdminMenuAction::SHOW_USERS :
-            newMenu = new ShowUserMenu();
+		case AdminMenuAction::USER_MANAGEMENT :
+            newMenu = new UserManagementMenu();
             break;
-		case AdminMenuAction::ADD_USER :
-			AccountHandler::addUser();
-			newMenu = this;
-            break;
-		case AdminMenuAction::DELETE_USER :
-			AccountHandler::deleteUser();
-			newMenu = this;
-			break;
-		case AdminMenuAction::EDIT_USER :
-			AccountHandler::editUser();
-			newMenu = this;
-			AccountHandler::resetUserToEdit();
-			break;
 		case AdminMenuAction::BACK :
             this->resetChoice();
             newMenu = new LoginMenu();
@@ -61,10 +48,10 @@ unsigned AdminMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-                choice_ < AdminMenuAction::ADD_USER ? choice_ = items_.size() : choice_--;
+                choice_ < AdminMenuAction::BACK ? choice_ = items_.size() : choice_--;
                 break;
             case VK_DOWN:
-                choice_ > items_.size() - 1 ? choice_ = AdminMenuAction::SHOW_USERS : choice_++;
+                choice_ > items_.size() - 1 ? choice_ = AdminMenuAction::USER_MANAGEMENT : choice_++;
                 break;
             case VK_RETURN:
                 return choice_;

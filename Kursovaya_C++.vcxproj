@@ -29,6 +29,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShowUserMenu.cpp" />
     <ClCompile Include="UserCredentials.cpp" />
+    <ClCompile Include="UserManagementMenu.cpp" />
     <ClCompile Include="UserMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,9 +40,11 @@
     <ClInclude Include="EditUserMenu.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Includes.h" />
+    <ClInclude Include="ItemSelection.h" />
     <ClInclude Include="LoginMenu.h" />
     <ClInclude Include="ShowUserMenu.h" />
     <ClInclude Include="UserCredentials.h" />
+    <ClInclude Include="UserManagementMenu.h" />
     <ClInclude Include="UserMenu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

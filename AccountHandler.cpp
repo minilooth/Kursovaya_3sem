@@ -503,36 +503,49 @@ bool AccountHandler::auth()
 
 void AccountHandler::showUsers()
 {
-	drawSolidLine((calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) + (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22);
-	cout << "| " << makeCenteredString("Username", calculateUsernameMaxLength()) << " | " << makeCenteredString("Password", calculatePasswordMaxLength()) << " | Admin access |" << endl;
-	drawSolidLine((calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) + (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22);
+	unsigned solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
+							   (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
+
+	drawSolidLine(solidLineLength);
+
+	cout <<  "| " << makeCenteredString("Username", calculateUsernameMaxLength()) 
+		 << " | " << makeCenteredString("Password", calculatePasswordMaxLength()) 
+		 << " | " << "Admin access" << " |" << endl;
+
+	drawSolidLine(solidLineLength);
 
     for (unsigned i = 0; i < users_.size(); i++)
     {
-        cout << "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << users_.at(i).getUsername()
-			 << " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left << (AccountHandler::showPasswordStatus_ ? users_.at(i).getPassword() : makeMaskedString(users_.at(i).getPassword()))
+        cout <<  "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << users_.at(i).getUsername()
+			 << " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left 
+					  << (AccountHandler::showPasswordStatus_ ? users_.at(i).getPassword() : makeMaskedString(users_.at(i).getPassword()))
 			 << " | " << setw(12) << left << (users_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
 			 << endl;
     }
 
-	drawSolidLine((calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) + (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22);
+	drawSolidLine(solidLineLength);
 }
 
 void AccountHandler::showEditUser()
 {
-	drawSolidLine((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
-				  (userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length()) + 22);
-	cout << "| " << makeCenteredString("Username", userToEdit_->getUsername().length()) << " | " << makeCenteredString("Password", userToEdit_->getPassword().length()) << " | Admin access |" << endl;
-	drawSolidLine((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
-				  (userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length()) + 22);
+	unsigned solidLineLength = (userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
+							   (userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length()) + 22;
 
-	cout << "| " << setw((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length())) << left << userToEdit_->getUsername()
-		<< " | " << setw((userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length())) << left << makeMaskedString(userToEdit_->getPassword())
-		<< " | " << setw(12) << left << (userToEdit_->getAdminAccess() ? "Yes" : "No") << " |"
-		<< endl;
+	drawSolidLine(solidLineLength);
 
-	drawSolidLine((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
-		(userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length()) + 22);
+	cout <<  "| " << makeCenteredString("Username", userToEdit_->getUsername().length()) 
+		 << " | " << makeCenteredString("Password", userToEdit_->getPassword().length()) 
+		 << " | " << "Admin access" 
+		 << " |"  << endl;
+
+	drawSolidLine(solidLineLength);
+
+	cout <<  "| " << setw((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length())) << left << userToEdit_->getUsername()
+		 << " | " << setw((userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length())) << left << makeMaskedString(userToEdit_->getPassword())
+		 << " | " << setw(12) << left << (userToEdit_->getAdminAccess() ? "Yes" : "No") 
+		 << " |"  << endl;
+
+	drawSolidLine(solidLineLength);
 }
 
 void AccountHandler::addUser()
@@ -627,57 +640,38 @@ void AccountHandler::deleteUser()
 
 	system("cls");
 
+	ItemSelection<UserCredentials> itemSelection("Choose user to delete: ", users_);
+
+	unsigned index = itemSelection.selectMode();
+
+	if (index == 0)
+	{
+		return;
+	}
+	else
+	{
+		index -= 1;
+	}
+
+	users_.erase(users_.begin() + index);
+
+	ofstream writeFile(R"(users.txt)", ios::trunc);
+	if (writeFile.is_open())
+	{
+		for (unsigned i = 0; i < users_.size(); i++)
+		{
+			writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+		}
+	}
+	writeFile.close();
+
+	system("cls");
+
 	showUsers();
 
-	try
-	{
-		cout << endl << "Username: ";
-		limitedInput(username, usernameLengthInputLimit);
-
-		if (findUser(username))
-		{
-			if (users_.at(getUser(username)).getAdminAccess() == true && countAdmins() < 2)
-			{
-				throw exception("Unable to delete last admin!");
-			}
-			else
-			{
-				users_.erase(users_.begin() + getUser(username));
-			}
-		}
-		else
-		{
-			throw exception("User not found!");
-		}
-
-		ofstream writeFile(R"(users.txt)", ios::trunc);
-		if (writeFile.is_open())
-		{
-			for (unsigned i = 0; i < users_.size(); i++)
-			{
-				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
-			}
-		}
-		writeFile.close();
-
-		system("cls");
-
-		showUsers();
-
-		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "User succesfully deleted!" << endl << endl;
-		setTextColor(Color::LIGHT_CYAN);;
-	}
-	catch (exception & ex)
-	{
-		system("cls");
-
-		showUsers();
-
-		setTextColor(Color::RED);
-		cout << endl << ex.what() << endl << endl;
-		setTextColor(Color::LIGHT_CYAN);
-	}
+	setTextColor(Color::LIGHT_GREEN);
+	cout << endl << "User succesfully deleted!" << endl << endl;
+	setTextColor(Color::LIGHT_CYAN);;
 
 	system("pause");
 }
@@ -686,31 +680,22 @@ void AccountHandler::editUser()
 {
 	string username;
 
+	ItemSelection<UserCredentials> itemSelection("Shoose user to edit: ", users_);
+
 	system("cls");
 
-	showUsers();
-	cout << endl;
+	unsigned index = itemSelection.selectMode();
 
-	try
+	if (index == 0)
 	{
-		cout << "Username: ";
-		limitedInput(username, usernameLengthInputLimit);
-
-		if (findUser(username))
-		{
-			userToEdit_ = getUserCredentials(username);
-		}
-		else
-		{
-			throw exception("User not found!");
-		}
-	}
-	catch (exception & ex)
-	{
-		cout << ex.what() << endl;
-
 		return;
 	}
+	else
+	{
+		index -= 1;
+	}
+
+	userToEdit_ = getUserCredentials(index);
 
 	ConsoleMenu* menu = new EditUserMenu();
 

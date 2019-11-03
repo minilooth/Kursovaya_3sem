@@ -21,7 +21,7 @@ ConsoleMenu* ShowUserMenu::getNextMenu()
 	case ShowUserMenuAction::BACK :
 		this->resetChoice();
 		AccountHandler::resetShowPasswordStatus();
-		newMenu = new AdminMenu();
+		newMenu = new UserManagementMenu();
 		break;
 	default:
 		break;
