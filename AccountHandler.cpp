@@ -213,7 +213,7 @@ void AccountHandler::resetShowPasswordStatus()
 
 void AccountHandler::invertShowPasswordStatus()
 {
-	AccountHandler::showPasswordStatus_ = !AccountHandler::showPasswordStatus_;
+	showPasswordStatus_ = !showPasswordStatus_;
 }
 
 void AccountHandler::resetUserToEdit()
@@ -236,17 +236,17 @@ void AccountHandler::inputNewUsername()
 
 		if (findUser(username))
 		{
-			throw exception("User is already exists!");
+			throw new exception("User is already exists!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw exception("Username should be at least three characters long!");
+			throw new exception("Username should be at least three characters long!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Username should only consists of letters and digits!");
+			throw new exception("Username should only consists of letters and digits!");
 		}
 
 		userToEdit_->setUsername(username);
@@ -297,12 +297,12 @@ void AccountHandler::inputNewPassword()
 
 		if (password.length() < 3)
 		{
-			throw exception("Password should be at least three characters long!");
+			throw new exception("Password should be at least three characters long!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Password should only consists of letters and digits!");
+			throw new exception("Password should only consists of letters and digits!");
 		}
 
 		userToEdit_->setPassword(password);
@@ -348,7 +348,7 @@ void AccountHandler::changeAdminAccess()
 	{
 		if (userToEdit_->getAdminAccess() == true && countAdmins() < 2)
 		{
-			throw exception("Unable to change admin access of last admin!");
+			throw new exception("Unable to change admin access of last admin!");
 		}
 
 		userToEdit_->setAdminAccess(!(userToEdit_->getAdminAccess()));
@@ -370,7 +370,7 @@ void AccountHandler::changeAdminAccess()
 		cout << endl << "Admin access succesfully changed!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
-	catch (exception & ex)
+	catch (exception& ex)
 	{
 		system("cls");
 		showEditUser();
@@ -410,7 +410,7 @@ bool AccountHandler::auth()
 		}
 		else
 		{
-			throw exception("User not found!");
+			throw new exception("User not found!");
 		}
 	}
 	catch (exception &ex)
@@ -434,7 +434,7 @@ bool AccountHandler::auth()
 			if (password.length() == 0)
 			{
 				passwordAttempts++;
-				throw exception(passwordAttempts > 4 ? "Enter at least one character!\nPassword attemps exceeded!" : "Enter at least one character!");
+				throw new exception(passwordAttempts > 4 ? "Enter at least one character!\nPassword attemps exceeded!" : "Enter at least one character!");
 			}
 
 			if (receivedUserCredentials->getPassword() == password && passwordAttempts < 5)
@@ -444,10 +444,10 @@ bool AccountHandler::auth()
 			else
 			{
 				passwordAttempts++;
-				throw exception(passwordAttempts > 4 ? "Wrong password!\nPassword attempts exceeded!" : "Wrong password!");
+				throw new exception(passwordAttempts > 4 ? "Wrong password!\nPassword attempts exceeded!" : "Wrong password!");
 			}
 		}
-		catch (exception &ex)
+		catch (exception& ex)
 		{
 			setTextColor(Color::RED);
 			cout << endl << ex.what() << endl << endl;
@@ -526,6 +526,31 @@ void AccountHandler::showUsers()
 	drawSolidLine(solidLineLength);
 }
 
+void AccountHandler::showUsers(unsigned from, unsigned to)
+{
+	unsigned solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
+		(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
+
+	drawSolidLine(solidLineLength);
+
+	cout << "| " << makeCenteredString("Username", calculateUsernameMaxLength())
+		<< " | " << makeCenteredString("Password", calculatePasswordMaxLength())
+		<< " | " << "Admin access" << " |" << endl;
+
+	drawSolidLine(solidLineLength);
+
+	for (unsigned i = from; i < to && i < users_.size(); i++)
+	{
+		cout << "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << users_.at(i).getUsername()
+			<< " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left
+			<< (AccountHandler::showPasswordStatus_ ? users_.at(i).getPassword() : makeMaskedString(users_.at(i).getPassword()))
+			<< " | " << setw(12) << left << (users_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
+			<< endl;
+	}
+
+	drawSolidLine(solidLineLength);
+}
+
 void AccountHandler::showEditUser()
 {
 	unsigned solidLineLength = (userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
@@ -565,17 +590,17 @@ void AccountHandler::addUser()
 
 		if (findUser(username))
 		{
-			throw exception("User is already exists!");
+			throw new exception("User is already exists!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw exception("Username should be at least three characters long!");
+			throw new exception("Username should be at least three characters long!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Username should only consists of letters and digits!");
+			throw new exception("Username should only consists of letters and digits!");
 		}
 
 		cout << "Password: ";
@@ -583,12 +608,12 @@ void AccountHandler::addUser()
 
 		if (password.length() < 3)
 		{
-			throw exception("Password should be at least three characters long!");
+			throw new exception("Password should be at least three characters long!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Password should only consists of letters and digits!");
+			throw new exception("Password should only consists of letters and digits!");
 		}
 
 		menu->resetChoice();
@@ -622,7 +647,7 @@ void AccountHandler::addUser()
 		cout << endl << endl << "User succesfully added!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
-	catch (exception & ex)
+	catch (exception& ex)
 	{
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl << "User not added!" << endl << endl;
@@ -640,9 +665,9 @@ void AccountHandler::deleteUser()
 
 	system("cls");
 
-	ItemSelection<UserCredentials> itemSelection("Choose user to delete: ", users_);
+	ItemSelection<UserCredentials>* itemSelection = new ItemSelection<UserCredentials>("Choose user to delete: ", users_);
 
-	unsigned index = itemSelection.selectMode();
+	unsigned index = itemSelection->selectMode();
 
 	if (index == 0)
 	{
@@ -653,38 +678,55 @@ void AccountHandler::deleteUser()
 		index -= 1;
 	}
 
-	users_.erase(users_.begin() + index);
-
-	ofstream writeFile(R"(users.txt)", ios::trunc);
-	if (writeFile.is_open())
+	try
 	{
-		for (unsigned i = 0; i < users_.size(); i++)
+		if (getUserCredentials(index)->getAdminAccess() == true && countAdmins() == 1)
 		{
-			writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+			throw new exception("Unable to delete last admin!");
 		}
+
+		users_.erase(users_.begin() + index);
+
+		ofstream writeFile(R"(users.txt)", ios::trunc);
+		if (writeFile.is_open())
+		{
+			for (unsigned i = 0; i < users_.size(); i++)
+			{
+				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+			}
+		}
+		writeFile.close();
+
+
+		system("cls");
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << "User succesfully deleted!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
 	}
-	writeFile.close();
+	catch(exception& ex)
+	{
+		system("cls");
 
-	system("cls");
-
-	showUsers();
-
-	setTextColor(Color::LIGHT_GREEN);
-	cout << endl << "User succesfully deleted!" << endl << endl;
-	setTextColor(Color::LIGHT_CYAN);;
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
 
 	system("pause");
+
+	delete itemSelection;
 }
 
 void AccountHandler::editUser()
 {
 	string username;
 
-	ItemSelection<UserCredentials> itemSelection("Shoose user to edit: ", users_);
+	ItemSelection<UserCredentials>* itemSelection = new ItemSelection<UserCredentials>("Shoose user to edit: ", users_);
 
 	system("cls");
 
-	unsigned index = itemSelection.selectMode();
+	unsigned index = itemSelection->selectMode();
 
 	if (index == 0)
 	{

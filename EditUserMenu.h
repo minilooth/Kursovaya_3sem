@@ -21,9 +21,9 @@ class EditUserMenu : virtual public ConsoleMenu
 private:
 	ConsoleMenu* getNextMenu();
 	static unsigned choice_;
-	UserCredentials* userToEdit_;
 public:
 	EditUserMenu();
+	EditUserMenu(string& title, vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

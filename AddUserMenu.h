@@ -18,6 +18,7 @@ class AddUserMenu : public virtual  ConsoleMenu
 	static unsigned choice_;
 public:
 	AddUserMenu();
+	AddUserMenu(string& title, vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

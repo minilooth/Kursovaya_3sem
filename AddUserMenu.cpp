@@ -8,6 +8,12 @@ AddUserMenu::AddUserMenu()
 	items_ = { "Yes", "No" };
 }
 
+AddUserMenu::AddUserMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void AddUserMenu::resetChoice()
 {
 	AddUserMenu::choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS;
@@ -25,6 +31,7 @@ unsigned AddUserMenu::selectMode()
 	while (true)
 	{
 		showTitle();
+
 		showItems();
 
 		VP_GetCh(key);
@@ -32,10 +39,24 @@ unsigned AddUserMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_RIGHT:
-			choice_ < AddUserMenuChoice::DONT_GIVE_ADMIN_ACCESS ? choice_ = items_.size() : choice_--;
+			if (choice_ < AddUserMenuChoice::DONT_GIVE_ADMIN_ACCESS)
+			{
+				choice_ = items_.size();
+			}
+			else
+			{
+				choice_--;
+			}
 			break;
 		case VK_LEFT:
-			choice_ > items_.size() - 1 ? choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS : choice_++;
+			if (choice_ > items_.size() - 1)
+			{
+				choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS;
+			}
+			else
+			{
+				choice_++;
+			}
 			break;
 		case VK_RETURN:
 			return choice_;
@@ -43,7 +64,7 @@ unsigned AddUserMenu::selectMode()
 			break;
 		}
 
-		cout << "\x1b[2K\r";
+		clearLine();
 	}
 }
 
@@ -59,9 +80,13 @@ void AddUserMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << "  ";
+			setTextColor(Color::LIGHT_CYAN);
 		}
-		choice_ == i + 1 ? cout << "->" << items_.at(i) << " " : cout << "  " << items_.at(i) << " ";
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << "  ";
+		}
 	}
 }
 

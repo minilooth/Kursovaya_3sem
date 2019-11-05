@@ -8,6 +8,12 @@ UserManagementMenu::UserManagementMenu()
 	items_ = { "Show users.", "Add user.", "Delete user.", "Edit user.", "Back." };
 }
 
+UserManagementMenu::UserManagementMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void UserManagementMenu::resetChoice()
 {
 	choice_ = UserManagementMenuAction::SHOW_USERS;
@@ -54,6 +60,7 @@ unsigned UserManagementMenu::selectMode()
 		system("cls");
 
 		showTitle();
+
 		showItems();
 
 		VP_GetCh(key);
@@ -61,10 +68,24 @@ unsigned UserManagementMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			choice_ < UserManagementMenuAction::ADD_USER ? choice_ = items_.size() : choice_--;
+			if (choice_ < UserManagementMenuAction::ADD_USER)
+			{
+				choice_ = items_.size();
+			}
+			else
+			{
+				choice_--;
+			}
 			break;
 		case VK_DOWN:
-			choice_ > items_.size() - 1 ? choice_ = UserManagementMenuAction::SHOW_USERS : choice_++;
+			if (choice_ > items_.size() - 1)
+			{
+				choice_ = UserManagementMenuAction::SHOW_USERS;
+			}
+			else
+			{
+				choice_++;
+			}
 			break;
 		case VK_RETURN:
 			return choice_;
@@ -86,9 +107,13 @@ void UserManagementMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
 		}
-		choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
 	}
 }
 

@@ -50,6 +50,7 @@ public:
 	// Functional
 	static bool auth();
     static void showUsers();
+	static void showUsers(unsigned from, unsigned to);
 	static void showEditUser();
     static void addUser();
 	static void deleteUser();

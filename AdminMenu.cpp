@@ -8,6 +8,12 @@ AdminMenu::AdminMenu()
     items_ = { "User management.", "Back." };
 }
 
+AdminMenu::AdminMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void AdminMenu::resetChoice()
 {
     choice_ = AdminMenuAction::USER_MANAGEMENT;
@@ -48,10 +54,24 @@ unsigned AdminMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-                choice_ < AdminMenuAction::BACK ? choice_ = items_.size() : choice_--;
+				if (choice_ < AdminMenuAction::BACK)
+				{
+					choice_ = items_.size();
+				}
+				else
+				{
+					choice_--;
+				}
                 break;
             case VK_DOWN:
-                choice_ > items_.size() - 1 ? choice_ = AdminMenuAction::USER_MANAGEMENT : choice_++;
+				if (choice_ > items_.size() - 1)
+				{
+					choice_ = AdminMenuAction::USER_MANAGEMENT;
+				}
+				else
+				{
+					choice_++;
+				}
                 break;
             case VK_RETURN:
                 return choice_;
@@ -73,9 +93,13 @@ void AdminMenu::showItems()
         if (choice_ == i + 1)
         {
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
         }
-        choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
     }
 }
 

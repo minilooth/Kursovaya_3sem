@@ -26,6 +26,7 @@ private:
 	static unsigned choice_;
 public:
 	UserManagementMenu();
+	UserManagementMenu(string& title, vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

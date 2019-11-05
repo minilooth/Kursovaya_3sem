@@ -20,6 +20,7 @@ private:
     static unsigned choice_;
 public:
     AdminMenu();
+	AdminMenu(string& title, vector<string>& items);
     unsigned selectMode();
     void resetChoice();
 	void showTitle();

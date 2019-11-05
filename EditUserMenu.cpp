@@ -8,6 +8,12 @@ EditUserMenu::EditUserMenu()
 	items_ = { "Change username.", "Change password.", "Change admin access.", "Back." };
 }
 
+EditUserMenu::EditUserMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void EditUserMenu::resetChoice()
 {
 	choice_ = EditUserMenuAction::CHANGE_USERNAME;
@@ -49,7 +55,9 @@ unsigned EditUserMenu::selectMode()
 		system("cls");
 
 		AccountHandler::showEditUser();
+
 		cout << endl;
+
 		showItems();
 
 		VP_GetCh(key);
@@ -57,10 +65,24 @@ unsigned EditUserMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			choice_ < EditUserMenuAction::CHANGE_PASSWORD ? choice_ = items_.size() : choice_--;
+			if (choice_ < EditUserMenuAction::CHANGE_PASSWORD)
+			{
+				choice_ = items_.size();
+			}
+			else
+			{
+				choice_--;
+			}
 			break;
 		case VK_DOWN:
-			choice_ > items_.size() - 1 ? choice_ = EditUserMenuAction::CHANGE_USERNAME : choice_++;
+			if (choice_ > items_.size() - 1)
+			{
+				choice_ = EditUserMenuAction::CHANGE_USERNAME;
+			}
+			else
+			{
+				choice_++;
+			}
 			break;
 		case VK_RETURN:
 			return choice_;
@@ -82,9 +104,13 @@ void EditUserMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
 		}
-		choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
 	}
 }
 

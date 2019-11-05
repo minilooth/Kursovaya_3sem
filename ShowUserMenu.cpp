@@ -1,11 +1,34 @@
 #include "ShowUserMenu.h"
 
 unsigned ShowUserMenu::choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD;
+unsigned ShowUserMenu::currentPage_ = 1;
+unsigned ShowUserMenu::maxPages_ = 1;
 
 ShowUserMenu::ShowUserMenu()
 {
 	title_ = "";
 	items_ = { AccountHandler::getShowPasswordStatus() ? "Hide password." : "Show password." , "Back." };
+	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+
+	maxPages_ = AccountHandler::countAccounts() / 10;
+
+	if (AccountHandler::countAccounts() % 10 != 0)
+	{
+		maxPages_++;
+	}
+}
+
+ShowUserMenu::ShowUserMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+
+	maxPages_ = AccountHandler::countAccounts() / 10;
+
+	if (AccountHandler::countAccounts() % 10 != 0)
+	{
+		maxPages_++;
+	}
 }
 
 ConsoleMenu* ShowUserMenu::getNextMenu()
@@ -21,6 +44,9 @@ ConsoleMenu* ShowUserMenu::getNextMenu()
 	case ShowUserMenuAction::BACK :
 		this->resetChoice();
 		AccountHandler::resetShowPasswordStatus();
+		resetChoice();
+		resetCurrentPage();
+		resetMaxPages();
 		newMenu = new UserManagementMenu();
 		break;
 	default:
@@ -28,6 +54,40 @@ ConsoleMenu* ShowUserMenu::getNextMenu()
 	}
 
 	return newMenu;
+}
+
+void ShowUserMenu::nextPage()
+{
+	if (currentPage_ < maxPages_)
+	{
+		currentPage_++;
+	}
+	else
+	{
+		return;
+	}
+}
+
+void ShowUserMenu::previousPage()
+{
+	if (currentPage_ > 1)
+	{
+		currentPage_--;
+	}
+	else
+	{
+		return;
+	}
+}
+
+void ShowUserMenu::resetCurrentPage()
+{
+	currentPage_ = 1;
+}
+
+void ShowUserMenu::resetMaxPages()
+{
+	maxPages_ = 1;
 }
 
 unsigned ShowUserMenu::selectMode()
@@ -38,30 +98,66 @@ unsigned ShowUserMenu::selectMode()
 	{
 		system("cls");
 
-		AccountHandler::showUsers();
+		showCurrentPageNumber();
+
+		AccountHandler::showUsers((10 * (currentPage_ - 1)), (10 * currentPage_));
 
 		cout << endl;
 
-		ShowUserMenu::showItems();
+		showItems();
+
+		cout << endl;
+
+		showTooltip();
 
 		VP_GetCh(key);
 
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			choice_ < ShowUserMenuAction::BACK ? choice_ = items_.size() : choice_--;
+			if (choice_ < ShowUserMenuAction::BACK)
+			{
+				choice_ = items_.size();
+			}
+			else
+			{
+				choice_--;
+			}
 			break;
 		case VK_DOWN:
-			choice_ > items_.size() - 1 ? choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD : choice_++;
+			if (choice_ > items_.size() - 1)
+			{
+				choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD;
+			}
+			else
+			{
+				choice_++;
+			}
+			break;
+		case VK_RIGHT :
+			nextPage();
+			break;
+		case VK_LEFT :
+			previousPage();
 			break;
 		case VK_RETURN:
 			return choice_;
 		case VK_ESCAPE:
-			return choice_;
+			return ShowUserMenuAction::BACK;
 		default:
 			break;
 		}
 	}
+}
+
+void ShowUserMenu::showCurrentPageNumber()
+{
+	cout << "Page " << currentPage_ << " of " << maxPages_ << endl;
+}
+
+void ShowUserMenu::showTooltip()
+{
+	cout << tooltip_ << endl;
 }
 
 void ShowUserMenu::showTitle()
@@ -76,9 +172,13 @@ void ShowUserMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
 		}
-		choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
 	}
 }
 

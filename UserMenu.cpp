@@ -8,6 +8,12 @@ UserMenu::UserMenu()
     items_ = { "User do smth...", "User do smth...", "Back" };
 }
 
+UserMenu::UserMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void UserMenu::resetChoice()
 {
     choice_ = UserMenuAction::NOTHING1;
@@ -44,19 +50,33 @@ unsigned UserMenu::selectMode()
     {
         system("cls");
 
-		UserMenu::showTitle();
+		showTitle();
 
-        UserMenu::showItems();
+        showItems();
 
 		VP_GetCh(key);
 
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-                choice_ < UserMenuAction::NOTHING1 ? choice_ = items_.size() : choice_--;
+				if (choice_ < UserMenuAction::NOTHING1)
+				{
+					choice_ = items_.size();
+				}
+				else
+				{
+					choice_--;
+				}
                 break;
             case VK_DOWN:
-                choice_ > items_.size() - 1 ? choice_ = UserMenuAction::NOTHING1 : choice_++;
+				if (choice_ > items_.size() - 1)
+				{
+					choice_ = UserMenuAction::NOTHING1;
+				}
+				else
+				{
+					choice_++;
+				}
                 break;
             case VK_RETURN:
                 return choice_;
@@ -78,9 +98,14 @@ void UserMenu::showItems()
         if (choice_ == i + 1)
         {
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
+
         }
-        choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
     }
 }
 

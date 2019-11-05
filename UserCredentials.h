@@ -15,7 +15,7 @@ class UserCredentials
     bool adminAccess_;
 public:
     UserCredentials();
-    UserCredentials(string username, string password, bool adminAccess);
+	UserCredentials(string& username, string& password, bool& adminAccess);
 
     void setUsername(string username);
     void setPassword(string password);

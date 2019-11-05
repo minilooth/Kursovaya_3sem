@@ -8,6 +8,12 @@ LoginMenu::LoginMenu()
     items_ = { "Login by user.", "Login by admin.", "Quit." };
 }
 
+LoginMenu::LoginMenu(string& title, vector<string>& items)
+{
+	title_ = title;
+	items_ = items;
+}
+
 void LoginMenu::resetChoice()
 {
     choice_ = LoginMenuAction::BY_USER;
@@ -57,18 +63,33 @@ unsigned LoginMenu::selectMode()
     {
         system("cls");
 
-		LoginMenu::showTitle();
-        LoginMenu::showItems();
+		showTitle();
+
+        showItems();
 
 		VP_GetCh(key);
 
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-                choice_ < LoginMenuAction::BY_ADMIN ? choice_ = items_.size() : choice_--;
+				if (choice_ < LoginMenuAction::BY_ADMIN)
+				{
+					choice_ = items_.size();
+				}
+				else
+				{
+					choice_--;
+				}
                 break;
             case VK_DOWN:
-                choice_ > items_.size() - 1 ? choice_ = LoginMenuAction::BY_USER : choice_++;
+				if (choice_ > items_.size() - 1)
+				{
+					choice_ = LoginMenuAction::BY_USER;
+				}
+				else
+				{
+					choice_++;
+				}
                 break;
             case VK_RETURN:
                 return choice_;
@@ -90,9 +111,13 @@ void LoginMenu::showItems()
         if (choice_ == i + 1)
         {
 			setTextColor(Color::WHITE);
+			cout << "->" << items_.at(i) << endl;
+			setTextColor(Color::LIGHT_CYAN);
         }
-        choice_ == i + 1 ? cout << "->" << items_.at(i) << endl : cout << "  " << items_.at(i) << endl;
-		setTextColor(Color::LIGHT_CYAN);
+		else
+		{
+			cout << "  " << items_.at(i) << endl;
+		}
     }
 }
 

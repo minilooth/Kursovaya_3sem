@@ -2,11 +2,11 @@
 
 UserCredentials::UserCredentials() = default;
 
-UserCredentials::UserCredentials(string username, string password, bool adminAccess)
+UserCredentials::UserCredentials(string& username, string& password, bool& adminAccess)
 {
-    username_ = username;
-    password_ = password;
-    adminAccess_ = adminAccess;
+	username_ = username;
+	password_ = password;
+	adminAccess_ = adminAccess;
 }
 
 void UserCredentials::setUsername(string username)
