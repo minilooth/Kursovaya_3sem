@@ -15,6 +15,7 @@ protected:
 	unsigned maxPages_;
 	unsigned currentPage_;
 	unsigned choice_;
+	unsigned pageSize_;
 public:
 	ItemSelection();
 	ItemSelection(string& title, vector<T>& items);
@@ -37,11 +38,12 @@ ItemSelection<T>::ItemSelection(string& title, vector<T>& items)
 {
 	title_ = title;
 	items_ = items;
-	tooltip_ = "Press -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	pageSize_ = 10;
 
-	maxPages_ = items_.size() / 10;
+	maxPages_ = items_.size() / pageSize_;
 
-	if (items_.size() % 10 != 0)
+	if (items_.size() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
@@ -56,11 +58,12 @@ ItemSelection<T>::ItemSelection(const char* title, vector<T>& items)
 {
 	title_ = title;
 	items_ = items;
-	tooltip_ = "Press -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	tooltip_ = "Toolip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	pageSize_ = 10;
 
-	maxPages_ = items_.size() / 10;
+	maxPages_ = items_.size() / pageSize_;
 
-	if (items_.size() % 10 != 0)
+	if (items_.size() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
@@ -80,7 +83,7 @@ void ItemSelection<T>::nextPage()
 
 	currentPage_++;
 
-	choice_ = (10 * (currentPage_ - 1)) + 1;
+	choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
 }
 
 template<typename T>
@@ -93,7 +96,7 @@ void ItemSelection<T>::previousPage()
 
 	currentPage_--;
 
-	choice_ = (10 * (currentPage_ - 1)) + 1;
+	choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
 }
 
 template<typename T>
@@ -128,7 +131,7 @@ unsigned ItemSelection<T>::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ > (10 * (currentPage_ - 1)) + 1)
+			if (choice_ > (pageSize_ * (currentPage_ - 1)) + 1)
 			{
 				choice_--;
 			}
@@ -136,7 +139,7 @@ unsigned ItemSelection<T>::selectMode()
 			{
 				if (currentPage_ < maxPages_)
 				{
-					choice_ = (10 * currentPage_);
+					choice_ = (pageSize_ * currentPage_);
 				}
 				else
 				{
@@ -147,9 +150,9 @@ unsigned ItemSelection<T>::selectMode()
 		case VK_DOWN:
 			if (currentPage_ < maxPages_)
 			{
-				if (choice_ > (10 * currentPage_) - 1)
+				if (choice_ > (pageSize_ * currentPage_) - 1)
 				{
-					choice_ = (10 * (currentPage_ - 1)) + 1;
+					choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
 				}
 				else
 				{
@@ -160,7 +163,7 @@ unsigned ItemSelection<T>::selectMode()
 			{
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = (10 * (currentPage_ - 1)) + 1 ;
+					choice_ = (pageSize_ * (currentPage_ - 1)) + 1 ;
 				}
 				else
 				{
@@ -199,7 +202,7 @@ void ItemSelection<T>::showTooltip()
 template<typename T>
 void ItemSelection<T>::showItems()
 {
-	if (typeid(T) == typeid(UserCredentials))
+	if (typeid(T) == typeid(Account))
 	{
 		unsigned solidLineLength = (AccountHandler::calculateUsernameMaxLength() < 9 ? 8 : AccountHandler::calculateUsernameMaxLength()) +
 								   (AccountHandler::calculatePasswordMaxLength() < 9 ? 8 : AccountHandler::calculatePasswordMaxLength()) + 22;

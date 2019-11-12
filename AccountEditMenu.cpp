@@ -1,43 +1,43 @@
-#include "EditUserMenu.h"
+#include "AccountEditMenu.h"
 
-unsigned EditUserMenu::choice_ = EditUserMenuAction::CHANGE_USERNAME;
+unsigned AccountEditMenu::choice_ = AccountEditMenuAction::CHANGE_USERNAME;
 
-EditUserMenu::EditUserMenu()
+AccountEditMenu::AccountEditMenu()
 {
 	title_ = "";
 	items_ = { "Change username.", "Change password.", "Change admin access.", "Back." };
 }
 
-EditUserMenu::EditUserMenu(string& title, vector<string>& items)
+AccountEditMenu::AccountEditMenu(string& title, vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
 }
 
-void EditUserMenu::resetChoice()
+void AccountEditMenu::resetChoice()
 {
-	choice_ = EditUserMenuAction::CHANGE_USERNAME;
+	choice_ = AccountEditMenuAction::CHANGE_USERNAME;
 }
 
-ConsoleMenu* EditUserMenu::getNextMenu()
+ConsoleMenu* AccountEditMenu::getNextMenu()
 {
 	ConsoleMenu* newMenu = nullptr;
 
 	switch (selectMode())
 	{
-	case EditUserMenuAction::CHANGE_USERNAME :
+	case AccountEditMenuAction::CHANGE_USERNAME :
 		AccountHandler::inputNewUsername();
 		newMenu = this;
 		break;
-	case EditUserMenuAction::CHANGE_PASSWORD :
+	case AccountEditMenuAction::CHANGE_PASSWORD :
 		AccountHandler::inputNewPassword();
 		newMenu = this;
 		break;
-	case EditUserMenuAction::CHANGE_ADMIN_ACCESS :
+	case AccountEditMenuAction::CHANGE_ADMIN_ACCESS :
 		AccountHandler::changeAdminAccess();
 		newMenu = this;
 		break;
-	case EditUserMenuAction::BACK :
+	case AccountEditMenuAction::BACK :
 		this->resetChoice();
 		break;
 	default:
@@ -47,14 +47,14 @@ ConsoleMenu* EditUserMenu::getNextMenu()
 	return newMenu;
 }
 
-unsigned EditUserMenu::selectMode()
+unsigned AccountEditMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 	while (true)
 	{
 		system("cls");
 
-		AccountHandler::showEditUser();
+		AccountHandler::showEditAccount();
 
 		cout << endl;
 
@@ -65,7 +65,7 @@ unsigned EditUserMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < EditUserMenuAction::CHANGE_PASSWORD)
+			if (choice_ < AccountEditMenuAction::CHANGE_PASSWORD)
 			{
 				choice_ = items_.size();
 			}
@@ -77,7 +77,7 @@ unsigned EditUserMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = EditUserMenuAction::CHANGE_USERNAME;
+				choice_ = AccountEditMenuAction::CHANGE_USERNAME;
 			}
 			else
 			{
@@ -92,12 +92,12 @@ unsigned EditUserMenu::selectMode()
 	}
 }
 
-void EditUserMenu::showTitle()
+void AccountEditMenu::showTitle()
 {
 	cout << title_ << endl;
 }
 
-void EditUserMenu::showItems()
+void AccountEditMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -114,4 +114,4 @@ void EditUserMenu::showItems()
 	}
 }
 
-EditUserMenu::~EditUserMenu() = default;
+AccountEditMenu::~AccountEditMenu() = default;

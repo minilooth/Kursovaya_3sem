@@ -20,31 +20,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccountHandler.cpp" />
-    <ClCompile Include="AddUserMenu.cpp" />
+    <ClCompile Include="AccountAddMenu.cpp" />
     <ClCompile Include="AdminMenu.cpp" />
     <ClCompile Include="ConsoleMenu.cpp" />
-    <ClCompile Include="EditUserMenu.cpp" />
+    <ClCompile Include="AccountEditMenu.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="LoginMenu.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShowUserMenu.cpp" />
-    <ClCompile Include="UserCredentials.cpp" />
-    <ClCompile Include="UserManagementMenu.cpp" />
+    <ClCompile Include="AccountShowMenu.cpp" />
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountManagementMenu.cpp" />
     <ClCompile Include="UserMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountHandler.h" />
-    <ClInclude Include="AddUserMenu.h" />
+    <ClInclude Include="AccountAddMenu.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="ConsoleMenu.h" />
-    <ClInclude Include="EditUserMenu.h" />
+    <ClInclude Include="AccountEditMenu.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="ItemSelection.h" />
     <ClInclude Include="LoginMenu.h" />
-    <ClInclude Include="ShowUserMenu.h" />
-    <ClInclude Include="UserCredentials.h" />
-    <ClInclude Include="UserManagementMenu.h" />
+    <ClInclude Include="AccountShowMenu.h" />
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountManagementMenu.h" />
     <ClInclude Include="UserMenu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -5,7 +5,7 @@ unsigned LoginMenu::choice_ = LoginMenuAction::BY_USER;
 LoginMenu::LoginMenu()
 {
     title_ = "Login Menu:";
-    items_ = { "Login by user.", "Login by admin.", "Quit." };
+    items_ = { "Login by user.", "Login by admin.", "Registration.", "Quit." };
 }
 
 LoginMenu::LoginMenu(string& title, vector<string>& items)
@@ -47,6 +47,10 @@ ConsoleMenu* LoginMenu::getNextMenu()
 				newMenu = this;
 			}
             break;
+		case LoginMenuAction::REGISTRATION :
+			AccountHandler::registration();
+			newMenu = this;
+			break;
 		case LoginMenuAction::QUIT :
             break;
         default:

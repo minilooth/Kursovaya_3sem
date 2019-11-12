@@ -2,13 +2,13 @@
 #define ADMINMENU_H
 
 
-#include "UserManagementMenu.h"
+#include "AccountManagementMenu.h"
 
 namespace AdminMenuAction
 {
 	enum
 	{
-		USER_MANAGEMENT = 1,
+		ACCOUNT_MANAGEMENT = 1,
 		BACK
 	};
 }

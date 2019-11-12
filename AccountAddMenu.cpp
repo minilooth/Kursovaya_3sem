@@ -1,30 +1,30 @@
-#include "AddUserMenu.h"
+#include "AccountAddMenu.h"
 
-unsigned AddUserMenu::choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS;
+unsigned AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
 
-AddUserMenu::AddUserMenu()
+AccountAddMenu::AccountAddMenu()
 {
 	title_ = "Give admin access? ";
 	items_ = { "Yes", "No" };
 }
 
-AddUserMenu::AddUserMenu(string& title, vector<string>& items)
+AccountAddMenu::AccountAddMenu(string& title, vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
 }
 
-void AddUserMenu::resetChoice()
+void AccountAddMenu::resetChoice()
 {
-	AddUserMenu::choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS;
+	AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
 }
 
-ConsoleMenu* AddUserMenu::getNextMenu()
+ConsoleMenu* AccountAddMenu::getNextMenu()
 {
 	return nullptr;
 }
 
-unsigned AddUserMenu::selectMode()
+unsigned AccountAddMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
@@ -39,7 +39,7 @@ unsigned AddUserMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_RIGHT:
-			if (choice_ < AddUserMenuChoice::DONT_GIVE_ADMIN_ACCESS)
+			if (choice_ < AccountAddMenuChoice::DONT_GIVE_ADMIN_ACCESS)
 			{
 				choice_ = items_.size();
 			}
@@ -51,7 +51,7 @@ unsigned AddUserMenu::selectMode()
 		case VK_LEFT:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AddUserMenuChoice::GIVE_ADMIN_ACCESS;
+				choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
 			}
 			else
 			{
@@ -68,12 +68,12 @@ unsigned AddUserMenu::selectMode()
 	}
 }
 
-void AddUserMenu::showTitle()
+void AccountAddMenu::showTitle()
 {
 	cout << title_;
 }
 
-void AddUserMenu::showItems()
+void AccountAddMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -90,4 +90,4 @@ void AddUserMenu::showItems()
 	}
 }
 
-AddUserMenu::~AddUserMenu() = default;
+AccountAddMenu::~AccountAddMenu() = default;

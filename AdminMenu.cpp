@@ -1,11 +1,11 @@
 #include "AdminMenu.h"
 
-unsigned AdminMenu::choice_ = AdminMenuAction::USER_MANAGEMENT;
+unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 
 AdminMenu::AdminMenu()
 {
     title_ = "Admin main menu:";
-    items_ = { "User management.", "Back." };
+    items_ = { "Account management.", "Back." };
 }
 
 AdminMenu::AdminMenu(string& title, vector<string>& items)
@@ -16,7 +16,7 @@ AdminMenu::AdminMenu(string& title, vector<string>& items)
 
 void AdminMenu::resetChoice()
 {
-    choice_ = AdminMenuAction::USER_MANAGEMENT;
+    choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 }
 
 ConsoleMenu* AdminMenu::getNextMenu()
@@ -25,8 +25,8 @@ ConsoleMenu* AdminMenu::getNextMenu()
 
     switch (selectMode())
     {
-		case AdminMenuAction::USER_MANAGEMENT :
-            newMenu = new UserManagementMenu();
+		case AdminMenuAction::ACCOUNT_MANAGEMENT :
+            newMenu = new AccountManagementMenu();
             break;
 		case AdminMenuAction::BACK :
             this->resetChoice();
@@ -66,7 +66,7 @@ unsigned AdminMenu::selectMode()
             case VK_DOWN:
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = AdminMenuAction::USER_MANAGEMENT;
+					choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 				}
 				else
 				{

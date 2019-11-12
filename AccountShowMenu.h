@@ -1,11 +1,11 @@
-#ifndef SHOWUSERMENU_H
-#define SHOWUSERMENU_H
+#ifndef ACCOUNTSHOWMENU_H
+#define ACCOUNTSHOWMENU_H
 
 
 #include "AccountHandler.h"
 #include "AdminMenu.h"
 
-namespace ShowUserMenuAction
+namespace AccountShowMenuAction
 {
 	enum
 	{
@@ -14,17 +14,18 @@ namespace ShowUserMenuAction
 	};
 }
 
-class ShowUserMenu : virtual public ConsoleMenu
+class AccountShowMenu : virtual public ConsoleMenu
 {
 private:
 	ConsoleMenu* getNextMenu();
 	string tooltip_;
+	unsigned pageSize_;
 	static unsigned choice_;
 	static unsigned currentPage_;
 	static unsigned maxPages_;
 public:
-	ShowUserMenu();
-	ShowUserMenu(string& title, vector<string>& items);
+	AccountShowMenu();
+	AccountShowMenu(string& title, vector<string>& items, string& tooltip, unsigned pageSize);
 	unsigned selectMode();
 	void resetChoice();
 	static void resetMaxPages();
@@ -35,8 +36,8 @@ public:
 	void showTooltip();
 	void showTitle();
 	void showItems();
-	~ShowUserMenu();
+	~AccountShowMenu();
 };
 
 
-#endif //SHOWUSERMENU_H
+#endif //ACCOUNTSHOWMENU_H

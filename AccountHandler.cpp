@@ -1,10 +1,10 @@
 #include "AccountHandler.h"
 
 // Static initialization
-vector<UserCredentials> AccountHandler::users_;
+vector<Account> AccountHandler::accounts_;
 bool AccountHandler::showPasswordStatus_ = false;
 bool AccountHandler::adminAccessStatus_ = false;
-UserCredentials* AccountHandler::userToEdit_ = nullptr;
+Account* AccountHandler::accountToEdit_ = nullptr;
 
 // Constructors
 AccountHandler::AccountHandler()
@@ -15,7 +15,7 @@ AccountHandler::AccountHandler()
 	string password;
 	bool adminAccess;
 
-	UserCredentials* userCredentials = nullptr;
+	Account* account = nullptr;
 
 	ifstream readableFile(R"(users.txt)");
 
@@ -30,13 +30,13 @@ AccountHandler::AccountHandler()
 				getline(iss, password, ';');
 				iss >> adminAccess;
 
-				userCredentials = new UserCredentials(username, password, adminAccess);
+				account = new Account(username, password, adminAccess);
 
-				users_.push_back(*userCredentials);
+				accounts_.push_back(*account);
 			}
 		}
 		readableFile.close();
-		delete userCredentials;
+		delete account;
 	}
 }
 
@@ -48,7 +48,7 @@ AccountHandler::AccountHandler(string fileName)
 	string password;
 	bool adminAccess;
 
-	UserCredentials* userCredentials = nullptr;
+	Account* account = nullptr;
 
 	ifstream readableFile(fileName);
 
@@ -63,22 +63,22 @@ AccountHandler::AccountHandler(string fileName)
 				getline(iss, password, ';');
 				iss >> adminAccess;
 
-				userCredentials = new UserCredentials(username, password, adminAccess);
+				account = new Account(username, password, adminAccess);
 
-				users_.push_back(*userCredentials);
+				accounts_.push_back(*account);
 			}
 		}
 		readableFile.close();
-		delete userCredentials;
+		delete account;
 	}
 }
 
 // Find
 bool AccountHandler::findUser(string &username)
 {
-    for (unsigned i = 0; i < users_.size(); i++)
+    for (unsigned i = 0; i < accounts_.size(); i++)
     {
-        if (users_.at(i).getUsername() == username)
+        if (accounts_.at(i).getUsername() == username)
         {
             return true;
         }
@@ -87,32 +87,32 @@ bool AccountHandler::findUser(string &username)
 }
 
 // Gets
-UserCredentials* AccountHandler::getUserCredentials(string &username)
+Account* AccountHandler::getAccount(string &username)
 {
-    UserCredentials* user = nullptr;
+    Account* account = nullptr;
 
-    for (unsigned i = 0; i < users_.size(); i++)
+    for (unsigned i = 0; i < accounts_.size(); i++)
     {
-        if (users_.at(i).getUsername() == username)
+        if (accounts_.at(i).getUsername() == username)
         {
-            user = &(users_.at(i));
+            account = &(accounts_.at(i));
         }
     }
 
-    return user;
+    return account;
 }
 
-UserCredentials* AccountHandler::getUserCredentials(unsigned index)
+Account* AccountHandler::getAccount(unsigned index)
 {
-	return &(users_.at(index));
+	return &(accounts_.at(index));
 }
 
-unsigned AccountHandler::getUser(string& username)
+unsigned AccountHandler::getAccountIndex(string& username)
 {
 	unsigned index = 0;
-	for (unsigned i = 0; i < users_.size(); i++)
+	for (unsigned i = 0; i < accounts_.size(); i++)
 	{
-		if (users_.at(i).getUsername() == username)
+		if (accounts_.at(i).getUsername() == username)
 		{
 			index = i;
 			break;
@@ -136,11 +136,11 @@ unsigned AccountHandler::calculatePasswordMaxLength()
 {
 	unsigned length = 0;
 
-	for (unsigned i = 0; i < AccountHandler::users_.size(); i++)
+	for (unsigned i = 0; i < AccountHandler::accounts_.size(); i++)
 	{
-		if (length < AccountHandler::users_.at(i).getPassword().length())
+		if (length < AccountHandler::accounts_.at(i).getPassword().length())
 		{
-			length = AccountHandler::users_.at(i).getPassword().length();
+			length = AccountHandler::accounts_.at(i).getPassword().length();
 		}
 	}
 
@@ -151,11 +151,11 @@ unsigned AccountHandler::calculateUsernameMaxLength()
 {
 	unsigned length = 0;
 
-	for (unsigned i = 0; i < AccountHandler::users_.size(); i++)
+	for (unsigned i = 0; i < AccountHandler::accounts_.size(); i++)
 	{
-		if (length < AccountHandler::users_.at(i).getUsername().length())
+		if (length < AccountHandler::accounts_.at(i).getUsername().length())
 		{
-			length = AccountHandler::users_.at(i).getUsername().length();
+			length = AccountHandler::accounts_.at(i).getUsername().length();
 		}
 	}
 
@@ -165,15 +165,15 @@ unsigned AccountHandler::calculateUsernameMaxLength()
 // Count
 unsigned AccountHandler::countAccounts()
 {
-	return users_.size();
+	return accounts_.size();
 }
 
 unsigned AccountHandler::countAdmins()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < users_.size(); i++)
+	for (unsigned i = 0; i < accounts_.size(); i++)
 	{
-		if (users_.at(i).getAdminAccess())
+		if (accounts_.at(i).getAdminAccess())
 		{
 			counter++;
 		}
@@ -184,9 +184,9 @@ unsigned AccountHandler::countAdmins()
 unsigned AccountHandler::countUsers()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < users_.size(); i++)
+	for (unsigned i = 0; i < accounts_.size(); i++)
 	{
-		if (!(users_.at(i).getAdminAccess()))
+		if (!(accounts_.at(i).getAdminAccess()))
 		{
 			counter++;
 		}
@@ -216,9 +216,9 @@ void AccountHandler::invertShowPasswordStatus()
 	showPasswordStatus_ = !showPasswordStatus_;
 }
 
-void AccountHandler::resetUserToEdit()
+void AccountHandler::resetAccountToEdit()
 {
-	userToEdit_ = nullptr;
+	accountToEdit_ = nullptr;
 }
 
 void AccountHandler::inputNewUsername()
@@ -227,7 +227,7 @@ void AccountHandler::inputNewUsername()
 
 	system("cls");
 
-	showEditUser();
+	showEditAccount();
 
 	try
 	{
@@ -236,30 +236,31 @@ void AccountHandler::inputNewUsername()
 
 		if (findUser(username))
 		{
-			throw new exception("User is already exists!");
+			throw exception("User is already exists!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw new exception("Username should be at least three characters long!");
+			throw exception("Username should be at least three characters long!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw new exception("Username should only consists of letters and digits!");
+			throw exception("Username should only consists of letters and digits!");
 		}
 
-		userToEdit_->setUsername(username);
+		accountToEdit_->setUsername(username);
 
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		ofstream writeFile(R"(users.txt)", ios::trunc);
 		if (writeFile.is_open())
 		{
-			for (unsigned i = 0; i < users_.size(); i++)
+			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
 			}
 		}
 		writeFile.close();
@@ -271,7 +272,8 @@ void AccountHandler::inputNewUsername()
 	catch (exception & ex)
 	{
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
@@ -288,7 +290,7 @@ void AccountHandler::inputNewPassword()
 
 	system("cls");
 
-	showEditUser();
+	showEditAccount();
 
 	try
 	{
@@ -297,25 +299,26 @@ void AccountHandler::inputNewPassword()
 
 		if (password.length() < 3)
 		{
-			throw new exception("Password should be at least three characters long!");
+			throw exception("Password should be at least three characters long!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw new exception("Password should only consists of letters and digits!");
+			throw exception("Password should only consists of letters and digits!");
 		}
 
-		userToEdit_->setPassword(password);
+		accountToEdit_->setPassword(password);
 
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		ofstream writeFile(R"(users.txt)", ios::trunc);
 		if (writeFile.is_open())
 		{
-			for (unsigned i = 0; i < users_.size(); i++)
+			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
 			}
 		}
 		writeFile.close();
@@ -327,7 +330,8 @@ void AccountHandler::inputNewPassword()
 	catch (exception & ex)
 	{
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
@@ -342,26 +346,30 @@ void AccountHandler::changeAdminAccess()
 {
 	system("cls");
 
-	showEditUser();
+	showEditAccount();
 
 	try
 	{
-		if (userToEdit_->getAdminAccess() == true && countAdmins() < 2)
+		if (accountToEdit_->getAdminAccess() == true && countAdmins() < 2)
 		{
-			throw new exception("Unable to change admin access of last admin!");
+			throw exception("Unable to change admin access of last admin!");
 		}
+		
+		string username = accountToEdit_->getUsername();
+		string password = accountToEdit_->getPassword();
 
-		userToEdit_->setAdminAccess(!(userToEdit_->getAdminAccess()));
+		accountToEdit_->setAdminAccess(!(accountToEdit_->getAdminAccess()));
 
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		ofstream writeFile(R"(users.txt)", ios::trunc);
 		if (writeFile.is_open())
 		{
-			for (unsigned i = 0; i < users_.size(); i++)
+			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
 			}
 		}
 		writeFile.close();
@@ -373,7 +381,8 @@ void AccountHandler::changeAdminAccess()
 	catch (exception& ex)
 	{
 		system("cls");
-		showEditUser();
+
+		showEditAccount();
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
@@ -393,9 +402,8 @@ bool AccountHandler::auth()
 	int passwordAttempts = 0;
 
 	bool isPasswordCorrect = false;
-	bool isUserHasAdminAccess = false;
 	
-    UserCredentials* receivedUserCredentials = nullptr;
+    Account* account = nullptr;
 
     system("cls");
 
@@ -406,11 +414,11 @@ bool AccountHandler::auth()
 
 		if (findUser(username))
 		{
-			receivedUserCredentials = getUserCredentials(username);
+			account = getAccount(username);
 		}
 		else
 		{
-			throw new exception("User not found!");
+			throw exception("User not found!");
 		}
 	}
 	catch (exception &ex)
@@ -434,17 +442,17 @@ bool AccountHandler::auth()
 			if (password.length() == 0)
 			{
 				passwordAttempts++;
-				throw new exception(passwordAttempts > 4 ? "Enter at least one character!\nPassword attemps exceeded!" : "Enter at least one character!");
+				throw exception(passwordAttempts > 4 ? "Enter at least one character!\nPassword attemps exceeded!" : "Enter at least one character!");
 			}
 
-			if (receivedUserCredentials->getPassword() == password && passwordAttempts < 5)
+			if (account->getPassword() == password && passwordAttempts < 5)
 			{
 				isPasswordCorrect = true;
 			}
 			else
 			{
 				passwordAttempts++;
-				throw new exception(passwordAttempts > 4 ? "Wrong password!\nPassword attempts exceeded!" : "Wrong password!");
+				throw exception(passwordAttempts > 4 ? "Wrong password!\nPassword attempts exceeded!" : "Wrong password!");
 			}
 		}
 		catch (exception& ex)
@@ -473,7 +481,7 @@ bool AccountHandler::auth()
 		}
 	}
 
-    if (receivedUserCredentials->getAdminAccess() == adminAccessStatus_)
+    if (account->getAdminAccess() == adminAccessStatus_)
     {
 		setTextColor(Color::LIGHT_GREEN);
 		cout << endl << "Logged in!";
@@ -482,7 +490,7 @@ bool AccountHandler::auth()
 
 		clearLine();
 
-		cout << "Welcome, " << receivedUserCredentials->getUsername() << "!" << endl << endl;
+		cout << "Welcome, " << account->getUsername() << "!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		system("pause");
@@ -501,7 +509,74 @@ bool AccountHandler::auth()
     }
 }
 
-void AccountHandler::showUsers()
+void AccountHandler::registration()
+{
+	string username;
+	string password;
+
+	Account* newAccount = nullptr;
+
+	system("cls");
+
+	try
+	{
+		cout << "Enter username: ";
+		limitedInput(username, usernameLengthInputLimit);
+
+		if (findUser(username))
+		{
+			throw exception("User is already exists!");
+		}
+
+		if (username.length() < 3)
+		{
+			throw exception("Username should be at least three characters long!");
+		}
+
+		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
+		{
+			throw exception("Username should only consists of letters and digits!");
+		}
+
+		cout << "Enter password: ";
+		maskedPasswordInput(password, passwordLengthInputLimit);
+
+		if (password.length() < 3)
+		{
+			throw exception("Password should be at least three characters long!");
+		}
+
+		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
+		{
+			throw exception("Password should only consists of letters and digits!");
+		}
+
+		newAccount = new Account(username, password, false);
+
+		accounts_.push_back(*(newAccount));
+
+		ofstream writeFile(R"(users.txt)", ios::app);
+		if (writeFile.is_open())
+		{
+			writeFile << newAccount->getUsername() << ";" << newAccount->getPassword() << ";" << newAccount->getAdminAccess() << endl;
+		}
+		writeFile.close();
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << endl << endl << "You are succesfully registered!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	catch (exception& ex)
+	{
+		setTextColor(Color::RED);
+		cout << endl << ex.what() << endl << "You are not registered!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+
+	system("pause");
+}
+
+void AccountHandler::showAccounts()
 {
 	unsigned solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
 							   (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
@@ -514,19 +589,19 @@ void AccountHandler::showUsers()
 
 	drawSolidLine(solidLineLength);
 
-    for (unsigned i = 0; i < users_.size(); i++)
+    for (unsigned i = 0; i < accounts_.size(); i++)
     {
-        cout <<  "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << users_.at(i).getUsername()
+        cout <<  "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << accounts_.at(i).getUsername()
 			 << " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left 
-					  << (AccountHandler::showPasswordStatus_ ? users_.at(i).getPassword() : makeMaskedString(users_.at(i).getPassword()))
-			 << " | " << setw(12) << left << (users_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
+					  << (AccountHandler::showPasswordStatus_ ? accounts_.at(i).getPassword() : makeMaskedString(accounts_.at(i).getPassword()))
+			 << " | " << setw(12) << left << (accounts_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
 			 << endl;
     }
 
 	drawSolidLine(solidLineLength);
 }
 
-void AccountHandler::showUsers(unsigned from, unsigned to)
+void AccountHandler::showAccounts(unsigned from, unsigned to)
 {
 	unsigned solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
 		(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
@@ -539,47 +614,49 @@ void AccountHandler::showUsers(unsigned from, unsigned to)
 
 	drawSolidLine(solidLineLength);
 
-	for (unsigned i = from; i < to && i < users_.size(); i++)
+	for (unsigned i = from; i < to && i < accounts_.size(); i++)
 	{
-		cout << "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << users_.at(i).getUsername()
+		cout << "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << accounts_.at(i).getUsername()
 			<< " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left
-			<< (AccountHandler::showPasswordStatus_ ? users_.at(i).getPassword() : makeMaskedString(users_.at(i).getPassword()))
-			<< " | " << setw(12) << left << (users_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
+			<< (AccountHandler::showPasswordStatus_ ? accounts_.at(i).getPassword() : makeMaskedString(accounts_.at(i).getPassword()))
+			<< " | " << setw(12) << left << (accounts_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
 			<< endl;
 	}
 
 	drawSolidLine(solidLineLength);
 }
 
-void AccountHandler::showEditUser()
+void AccountHandler::showEditAccount()
 {
-	unsigned solidLineLength = (userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length()) +
-							   (userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length()) + 22;
+	unsigned solidLineLength = (accountToEdit_->getUsername().length() < 9 ? 8 : accountToEdit_->getUsername().length()) +
+							   (accountToEdit_->getPassword().length() < 9 ? 8 : accountToEdit_->getPassword().length()) + 22;
 
 	drawSolidLine(solidLineLength);
 
-	cout <<  "| " << makeCenteredString("Username", userToEdit_->getUsername().length()) 
-		 << " | " << makeCenteredString("Password", userToEdit_->getPassword().length()) 
+	cout <<  "| " << makeCenteredString("Username", accountToEdit_->getUsername().length()) 
+		 << " | " << makeCenteredString("Password", accountToEdit_->getPassword().length()) 
 		 << " | " << "Admin access" 
 		 << " |"  << endl;
 
 	drawSolidLine(solidLineLength);
 
-	cout <<  "| " << setw((userToEdit_->getUsername().length() < 9 ? 8 : userToEdit_->getUsername().length())) << left << userToEdit_->getUsername()
-		 << " | " << setw((userToEdit_->getPassword().length() < 9 ? 8 : userToEdit_->getPassword().length())) << left << makeMaskedString(userToEdit_->getPassword())
-		 << " | " << setw(12) << left << (userToEdit_->getAdminAccess() ? "Yes" : "No") 
+	cout <<  "| " << setw((accountToEdit_->getUsername().length() < 9 ? 8 : accountToEdit_->getUsername().length())) << left << accountToEdit_->getUsername()
+		 << " | " << setw((accountToEdit_->getPassword().length() < 9 ? 8 : accountToEdit_->getPassword().length())) << left << makeMaskedString(accountToEdit_->getPassword())
+		 << " | " << setw(12) << left << (accountToEdit_->getAdminAccess() ? "Yes" : "No") 
 		 << " |"  << endl;
 
 	drawSolidLine(solidLineLength);
 }
 
-void AccountHandler::addUser()
+void AccountHandler::addAccount()
 {
     string username;
     string password;
     bool adminAccess = false;
 
-	ConsoleMenu* menu = new AddUserMenu();
+	Account* newAccount = nullptr;
+
+	ConsoleMenu* menu = new AccountAddMenu();
 
 	system("cls");
 
@@ -590,17 +667,17 @@ void AccountHandler::addUser()
 
 		if (findUser(username))
 		{
-			throw new exception("User is already exists!");
+			throw exception("User is already exists!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw new exception("Username should be at least three characters long!");
+			throw exception("Username should be at least three characters long!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw new exception("Username should only consists of letters and digits!");
+			throw exception("Username should only consists of letters and digits!");
 		}
 
 		cout << "Password: ";
@@ -608,21 +685,21 @@ void AccountHandler::addUser()
 
 		if (password.length() < 3)
 		{
-			throw new exception("Password should be at least three characters long!");
+			throw exception("Password should be at least three characters long!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw new exception("Password should only consists of letters and digits!");
+			throw exception("Password should only consists of letters and digits!");
 		}
 
 		menu->resetChoice();
 		switch (menu->selectMode())
 		{
-		case AddUserMenuChoice::GIVE_ADMIN_ACCESS:
+		case AccountAddMenuChoice::GIVE_ADMIN_ACCESS:
 			adminAccess = true;
 			break;
-		case AddUserMenuChoice::DONT_GIVE_ADMIN_ACCESS:
+		case AccountAddMenuChoice::DONT_GIVE_ADMIN_ACCESS:
 			adminAccess = false;
 			break;
 		default:
@@ -632,14 +709,15 @@ void AccountHandler::addUser()
 		clearLine();
 		cout << "Admin access: " << (adminAccess ? "Yes" : "No");
 
-		UserCredentials newUser(username, password, adminAccess);
+		newAccount = new Account(username, password, adminAccess);
 
-		users_.push_back(newUser);
+
+		accounts_.push_back(*(newAccount));
 
 		ofstream writeFile(R"(users.txt)", ios::app);
 		if (writeFile.is_open())
 		{
-			writeFile << newUser.getUsername() << ";" << newUser.getPassword() << ";" << newUser.getAdminAccess() << endl;
+			writeFile << newAccount->getUsername() << ";" << newAccount->getPassword() << ";" << newAccount->getAdminAccess() << endl;
 		}
 		writeFile.close();
 
@@ -659,13 +737,13 @@ void AccountHandler::addUser()
 	delete menu;
 }
 
-void AccountHandler::deleteUser()
+void AccountHandler::deleteAccount()
 {
 	string username;
 
 	system("cls");
 
-	ItemSelection<UserCredentials>* itemSelection = new ItemSelection<UserCredentials>("Choose user to delete: ", users_);
+	ItemSelection<Account>* itemSelection = new ItemSelection<Account>("Choose user to delete: ", accounts_);
 
 	unsigned index = itemSelection->selectMode();
 
@@ -680,19 +758,19 @@ void AccountHandler::deleteUser()
 
 	try
 	{
-		if (getUserCredentials(index)->getAdminAccess() == true && countAdmins() == 1)
+		if (getAccount(index)->getAdminAccess() == true && countAdmins() == 1)
 		{
-			throw new exception("Unable to delete last admin!");
+			throw exception("Unable to delete last admin!");
 		}
 
-		users_.erase(users_.begin() + index);
+		accounts_.erase(accounts_.begin() + index);
 
 		ofstream writeFile(R"(users.txt)", ios::trunc);
 		if (writeFile.is_open())
 		{
-			for (unsigned i = 0; i < users_.size(); i++)
+			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << users_.at(i).getUsername() << ";" << users_.at(i).getPassword() << ";" << users_.at(i).getAdminAccess() << endl;
+				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
 			}
 		}
 		writeFile.close();
@@ -718,11 +796,11 @@ void AccountHandler::deleteUser()
 	delete itemSelection;
 }
 
-void AccountHandler::editUser()
+void AccountHandler::editAccount()
 {
 	string username;
 
-	ItemSelection<UserCredentials>* itemSelection = new ItemSelection<UserCredentials>("Shoose user to edit: ", users_);
+	ItemSelection<Account>* itemSelection = new ItemSelection<Account>("Shoose user to edit: ", accounts_);
 
 	system("cls");
 
@@ -737,9 +815,9 @@ void AccountHandler::editUser()
 		index -= 1;
 	}
 
-	userToEdit_ = getUserCredentials(index);
+	accountToEdit_ = getAccount(index);
 
-	ConsoleMenu* menu = new EditUserMenu();
+	ConsoleMenu* menu = new AccountEditMenu();
 
 	while (menu)
 	{
@@ -752,5 +830,5 @@ void AccountHandler::editUser()
 // Destructors
 AccountHandler::~AccountHandler()
 {
-	delete userToEdit_;
+	delete accountToEdit_;
 }

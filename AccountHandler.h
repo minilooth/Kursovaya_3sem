@@ -2,9 +2,9 @@
 #define ACCOUNTHANDLER_H
 
 
-#include "AddUserMenu.h"
-#include "UserCredentials.h"
-#include "EditUserMenu.h"
+#include "AccountAddMenu.h"
+#include "Account.h"
+#include "AccountEditMenu.h"
 #include "ItemSelection.h"
 
 using namespace std;
@@ -20,9 +20,9 @@ public:
 	static bool findUser(string& username);
 
 	// Gets
-    static UserCredentials* getUserCredentials(string &username);
-	static UserCredentials* getUserCredentials(unsigned index);
-	static unsigned getUser(string& username);
+    static Account* getAccount(string &username);
+	static Account* getAccount(unsigned index);
+	static unsigned getAccountIndex(string& username);
 	static bool getShowPasswordStatus();
 	static bool getAdminAccessStatus();
 
@@ -42,27 +42,28 @@ public:
 	// Change
 	static void resetShowPasswordStatus();
 	static void invertShowPasswordStatus();
-	static void resetUserToEdit();
+	static void resetAccountToEdit();
 	static void inputNewUsername();
 	static void inputNewPassword();
 	static void changeAdminAccess();
 
 	// Functional
 	static bool auth();
-    static void showUsers();
-	static void showUsers(unsigned from, unsigned to);
-	static void showEditUser();
-    static void addUser();
-	static void deleteUser();
-	static void editUser();
+	static void registration();
+    static void showAccounts();
+	static void showAccounts(unsigned from, unsigned to);
+	static void showEditAccount();
+    static void addAccount();
+	static void deleteAccount();
+	static void editAccount();
 
 	// Destructors
     ~AccountHandler();
 private:
-	static vector<UserCredentials> users_;
+	static vector<Account> accounts_;
 	static bool showPasswordStatus_;
 	static bool adminAccessStatus_;
-	static UserCredentials* userToEdit_;
+	static Account* accountToEdit_;
 	const static unsigned passwordLengthInputLimit = 20;
 	const static unsigned usernameLengthInputLimit = 20;
 };

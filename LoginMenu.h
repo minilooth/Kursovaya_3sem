@@ -12,6 +12,7 @@ namespace LoginMenuAction
 	{
 		BY_USER = 1,
 		BY_ADMIN,
+		REGISTRATION,
 		QUIT
 	};
 }

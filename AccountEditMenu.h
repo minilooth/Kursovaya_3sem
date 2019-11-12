@@ -1,11 +1,11 @@
-#ifndef EDITUSERMENU_H
-#define EDITUSERMENU_H
+#ifndef ACCOUNTEDITMENU_H
+#define ACCOUNTEDITMENU_H
 
 
 #include "AdminMenu.h"
 #include "AccountHandler.h"
 
-namespace EditUserMenuAction
+namespace AccountEditMenuAction
 {
 	enum
 	{
@@ -16,20 +16,20 @@ namespace EditUserMenuAction
 	};
 }
 
-class EditUserMenu : virtual public ConsoleMenu
+class AccountEditMenu : virtual public ConsoleMenu
 {
 private:
 	ConsoleMenu* getNextMenu();
 	static unsigned choice_;
 public:
-	EditUserMenu();
-	EditUserMenu(string& title, vector<string>& items);
+	AccountEditMenu();
+	AccountEditMenu(string& title, vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();
 	void showItems();
-	~EditUserMenu();
+	~AccountEditMenu();
 };
 
 
-#endif //EDITUSERMENU_H
+#endif //ACCOUNTEDITMENU_H

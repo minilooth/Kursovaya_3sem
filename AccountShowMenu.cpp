@@ -1,53 +1,56 @@
-#include "ShowUserMenu.h"
+#include "AccountShowMenu.h"
 
-unsigned ShowUserMenu::choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD;
-unsigned ShowUserMenu::currentPage_ = 1;
-unsigned ShowUserMenu::maxPages_ = 1;
+unsigned AccountShowMenu::choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
+unsigned AccountShowMenu::currentPage_ = 1;
+unsigned AccountShowMenu::maxPages_ = 1;
 
-ShowUserMenu::ShowUserMenu()
+AccountShowMenu::AccountShowMenu()
 {
 	title_ = "";
 	items_ = { AccountHandler::getShowPasswordStatus() ? "Hide password." : "Show password." , "Back." };
-	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.";
+	pageSize_ = 10;
 
-	maxPages_ = AccountHandler::countAccounts() / 10;
+	maxPages_ = AccountHandler::countAccounts() / pageSize_;
 
-	if (AccountHandler::countAccounts() % 10 != 0)
+	if (AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
 }
 
-ShowUserMenu::ShowUserMenu(string& title, vector<string>& items)
+AccountShowMenu::AccountShowMenu(string& title, vector<string>& items, string& tooltip, unsigned pageSize)
 {
 	title_ = title;
 	items_ = items;
+	tooltip_ = tooltip;
+	pageSize_ = pageSize;
 
-	maxPages_ = AccountHandler::countAccounts() / 10;
+	maxPages_ = AccountHandler::countAccounts() / pageSize_;
 
-	if (AccountHandler::countAccounts() % 10 != 0)
+	if (AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
 }
 
-ConsoleMenu* ShowUserMenu::getNextMenu()
+ConsoleMenu* AccountShowMenu::getNextMenu()
 {
 	ConsoleMenu* newMenu = nullptr;
 
 	switch (selectMode())
 	{
-	case ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD :
+	case AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD :
 		AccountHandler::invertShowPasswordStatus();
-		newMenu = new ShowUserMenu();
+		newMenu = new AccountShowMenu();
 		break;
-	case ShowUserMenuAction::BACK :
+	case AccountShowMenuAction::BACK :
 		this->resetChoice();
 		AccountHandler::resetShowPasswordStatus();
 		resetChoice();
 		resetCurrentPage();
 		resetMaxPages();
-		newMenu = new UserManagementMenu();
+		newMenu = new AccountManagementMenu();
 		break;
 	default:
 		break;
@@ -56,7 +59,7 @@ ConsoleMenu* ShowUserMenu::getNextMenu()
 	return newMenu;
 }
 
-void ShowUserMenu::nextPage()
+void AccountShowMenu::nextPage()
 {
 	if (currentPage_ < maxPages_)
 	{
@@ -68,7 +71,7 @@ void ShowUserMenu::nextPage()
 	}
 }
 
-void ShowUserMenu::previousPage()
+void AccountShowMenu::previousPage()
 {
 	if (currentPage_ > 1)
 	{
@@ -80,17 +83,17 @@ void ShowUserMenu::previousPage()
 	}
 }
 
-void ShowUserMenu::resetCurrentPage()
+void AccountShowMenu::resetCurrentPage()
 {
 	currentPage_ = 1;
 }
 
-void ShowUserMenu::resetMaxPages()
+void AccountShowMenu::resetMaxPages()
 {
 	maxPages_ = 1;
 }
 
-unsigned ShowUserMenu::selectMode()
+unsigned AccountShowMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
@@ -100,7 +103,7 @@ unsigned ShowUserMenu::selectMode()
 
 		showCurrentPageNumber();
 
-		AccountHandler::showUsers((10 * (currentPage_ - 1)), (10 * currentPage_));
+		AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
 
 		cout << endl;
 
@@ -115,7 +118,7 @@ unsigned ShowUserMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < ShowUserMenuAction::BACK)
+			if (choice_ < AccountShowMenuAction::BACK)
 			{
 				choice_ = items_.size();
 			}
@@ -127,7 +130,7 @@ unsigned ShowUserMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD;
+				choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
 			}
 			else
 			{
@@ -143,29 +146,29 @@ unsigned ShowUserMenu::selectMode()
 		case VK_RETURN:
 			return choice_;
 		case VK_ESCAPE:
-			return ShowUserMenuAction::BACK;
+			return AccountShowMenuAction::BACK;
 		default:
 			break;
 		}
 	}
 }
 
-void ShowUserMenu::showCurrentPageNumber()
+void AccountShowMenu::showCurrentPageNumber()
 {
 	cout << "Page " << currentPage_ << " of " << maxPages_ << endl;
 }
 
-void ShowUserMenu::showTooltip()
+void AccountShowMenu::showTooltip()
 {
 	cout << tooltip_ << endl;
 }
 
-void ShowUserMenu::showTitle()
+void AccountShowMenu::showTitle()
 {
 	cout << title_ << endl;
 }
 
-void ShowUserMenu::showItems()
+void AccountShowMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -182,9 +185,9 @@ void ShowUserMenu::showItems()
 	}
 }
 
-void ShowUserMenu::resetChoice()
+void AccountShowMenu::resetChoice()
 {
-	choice_ = ShowUserMenuAction::SHOW_OR_HIDE_PASSWORD;
+	choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
 }
 
-ShowUserMenu::~ShowUserMenu() = default;
+AccountShowMenu::~AccountShowMenu() = default;
