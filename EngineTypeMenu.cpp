@@ -1,30 +1,30 @@
-#include "AccountAddMenu.h"
+#include "EngineTypeMenu.h"
 
-unsigned AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+unsigned EngineTypeMenu::choice_ = EngineType::PETROL;
 
-AccountAddMenu::AccountAddMenu()
+EngineTypeMenu::EngineTypeMenu()
 {
-	title_ = "Give admin access? ";
-	items_ = { "Yes", "No" };
+	title_ = "Engine type: ";
+	items_ = { "Petrol", "Diesel" };
 }
 
-AccountAddMenu::AccountAddMenu(string& title, vector<string>& items)
+EngineTypeMenu::EngineTypeMenu(string& title, vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
 }
 
-void AccountAddMenu::resetChoice()
+void EngineTypeMenu::resetChoice()
 {
-	AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+	EngineTypeMenu::choice_ = EngineType::PETROL;
 }
 
-ConsoleMenu* AccountAddMenu::getNextMenu()
+ConsoleMenu* EngineTypeMenu::getNextMenu()
 {
-	return nullptr;
+	return this;
 }
 
-unsigned AccountAddMenu::selectMode()
+unsigned EngineTypeMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
@@ -35,13 +35,13 @@ unsigned AccountAddMenu::selectMode()
 		showItems();
 
 		VP_GetCh(key);
-		
+
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_RIGHT:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+				choice_ = EngineType::PETROL;
 			}
 			else
 			{
@@ -49,7 +49,7 @@ unsigned AccountAddMenu::selectMode()
 			}
 			break;
 		case VK_LEFT:
-			if (choice_ < AccountAddMenuChoice::DONT_GIVE_ADMIN_ACCESS)
+			if (choice_ < EngineType::DIESEL)
 			{
 				choice_ = items_.size();
 			}
@@ -68,12 +68,12 @@ unsigned AccountAddMenu::selectMode()
 	}
 }
 
-void AccountAddMenu::showTitle()
+void EngineTypeMenu::showTitle()
 {
 	cout << title_;
 }
 
-void AccountAddMenu::showItems()
+void EngineTypeMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -90,4 +90,4 @@ void AccountAddMenu::showItems()
 	}
 }
 
-AccountAddMenu::~AccountAddMenu() = default;
+EngineTypeMenu::~EngineTypeMenu() = default;

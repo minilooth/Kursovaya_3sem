@@ -10,6 +10,7 @@ int main()
 
     system("color 0B");
 
+	CarHandler* carHandler = new CarHandler();
     AccountHandler *accountHandler = new AccountHandler();
     ConsoleMenu *currentMenu = new LoginMenu();
 

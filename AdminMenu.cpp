@@ -5,7 +5,7 @@ unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 AdminMenu::AdminMenu()
 {
     title_ = "Admin main menu:";
-    items_ = { "Account management.", "Back." };
+    items_ = { "Account management.", "Add car.", "Back." };
 }
 
 AdminMenu::AdminMenu(string& title, vector<string>& items)
@@ -28,6 +28,10 @@ ConsoleMenu* AdminMenu::getNextMenu()
 		case AdminMenuAction::ACCOUNT_MANAGEMENT :
             newMenu = new AccountManagementMenu();
             break;
+		case AdminMenuAction::ADD_CAR :
+			CarHandler::addCar();
+			newMenu = this;
+			break;
 		case AdminMenuAction::BACK :
             this->resetChoice();
             newMenu = new LoginMenu();
@@ -54,7 +58,7 @@ unsigned AdminMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-				if (choice_ < AdminMenuAction::BACK)
+				if (choice_ < AdminMenuAction::ADD_CAR)
 				{
 					choice_ = items_.size();
 				}

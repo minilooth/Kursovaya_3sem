@@ -98,7 +98,7 @@ void drawSolidLine(unsigned width)
 	cout << endl;
 }
 
-void stringSplitter(string &source, string& username, string& password, bool& adminRights)
+vector<string> stringSplitter(string& source)
 {
     size_t pos = 0;
     vector<string> tokenVector;
@@ -110,9 +110,7 @@ void stringSplitter(string &source, string& username, string& password, bool& ad
     }
     tokenVector.push_back(source);
 
-    username = tokenVector[0];
-    password = tokenVector[1];
-    adminRights = tokenVector[2] == "1" ? true : false;
+	return tokenVector;
 }
 
 void maskedPasswordInput(string &password, unsigned limit)

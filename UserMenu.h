@@ -4,13 +4,15 @@
 
 #include "ConsoleMenu.h"
 #include "LoginMenu.h"
+#include "CarHandler.h"
 
 namespace UserMenuAction
 {
 	enum
 	{
-		NOTHING1 = 1,
-		NOTHING2,
+		NEW_CARS = 1,
+		CARS_FOR_SALE,
+		FIND_CAR,
 		BACK
 	};
 }

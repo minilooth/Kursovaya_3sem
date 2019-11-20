@@ -25,6 +25,12 @@
     <Filter Include="Исходные файлы\Accounts">
       <UniqueIdentifier>{4a0fc02d-95d2-4f8e-bca6-0d4f37df2fcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Car">
+      <UniqueIdentifier>{cc029618-0b7e-4e5a-9b3d-acd3d4a5aef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Car">
+      <UniqueIdentifier>{7c65d9f4-ee9b-4e33-8726-48aa9d2844e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdminMenu.cpp">
@@ -62,6 +68,57 @@
     </ClCompile>
     <ClCompile Include="AccountManagementMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="FiveDoorHatchback.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="Sedan.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="StationWagon.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreeDoorHatchback.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="TwoDoorCoupe.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="SevenSeatMinivan.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="LongWheelbaseSedan.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="FourDoorCoupe.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="FiveSeatMinivan.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="Cabriolet.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="Crossover.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="CarHandler.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="BodyTypeMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="WheelDriveMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTypeMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="TransmissionTypeMenu.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +160,57 @@
     </ClInclude>
     <ClInclude Include="AccountManagementMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="FiveDoorHatchback.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="Sedan.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="StationWagon.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreeDoorHatchback.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="TwoDoorCoupe.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="SevenSeatMinivan.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="LongWheelbaseSedan.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="FourDoorCoupe.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="FiveSeatMinivan.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="Cabriolet.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="Crossover.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="CarHandler.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyTypeMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="WheelDriveMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTypeMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="TransmissionTypeMenu.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

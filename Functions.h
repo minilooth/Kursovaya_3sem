@@ -9,34 +9,32 @@
 
 using namespace std;
 
-namespace Color
+
+enum Color
 {
-	enum
-	{
-		BLACK,
-		BLUE,
-		GREEN,
-		CYAN,
-		RED,
-		MAGENTA,
-		BROWN,
-		LIGHT_GRAY,
-		DARK_GRAY,
-		LIGHT_BLUE,
-		LIGHT_GREEN,
-		LIGHT_CYAN,
-		LIGHT_RED,
-		LIGHT_MAGENTA,
-		YELLOW,
-		WHITE
-	};
-}
+	BLACK,
+	BLUE,
+	GREEN,
+	CYAN,
+	RED,
+	MAGENTA,
+	BROWN,
+	LIGHT_GRAY,
+	DARK_GRAY,
+	LIGHT_BLUE,
+	LIGHT_GREEN,
+	LIGHT_CYAN,
+	LIGHT_RED,
+	LIGHT_MAGENTA,
+	YELLOW,
+	WHITE
+};
 
 void clearLine();
 void moveCursorUpToNLines(int n);
 void setTextColor(int textColor);
 bool VP_GetCh(KEY_EVENT_RECORD& krec);
-void stringSplitter(string source, string& username, string& password, bool& adminRights);
+vector<string> stringSplitter(string& source);
 string makeMaskedString(const string &inputString);
 string makeSpaceString(unsigned countOfSpaces);
 string makeCenteredString(const string& inputString, unsigned width);

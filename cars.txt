@@ -1,0 +1,4 @@
+BMW;3 series;1995;Automatic;RWD;Petrol;2.8;Sedan;Black;White;Leather;200000;5000;0
+BMW;5 series;1992;Manual;RWD;Diesel;2.5;Sedan;Gray;Black;Cloth;380000;2500;1
+BMW;7 series;2005;Automatic;RWD;Petrol;4.4;Sedan;Black;Black;Leather;0;50000;0
+BMW;6 series;2016;Automatic;AWD;Petrol;4.4;Two-door coupe;Black;Black;Leather;0;50000;0

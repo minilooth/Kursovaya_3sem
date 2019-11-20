@@ -1,11 +1,11 @@
 #include "UserMenu.h"
 
-unsigned UserMenu::choice_ = UserMenuAction::NOTHING1;
+unsigned UserMenu::choice_ = UserMenuAction::NEW_CARS;
 
 UserMenu::UserMenu()
 {
     title_ = "Main menu: ";
-    items_ = { "User do smth...", "User do smth...", "Back" };
+    items_ = { "New cars.", "Cars for sale.", "Find car.", "Back." };
 }
 
 UserMenu::UserMenu(string& title, vector<string>& items)
@@ -16,7 +16,7 @@ UserMenu::UserMenu(string& title, vector<string>& items)
 
 void UserMenu::resetChoice()
 {
-    choice_ = UserMenuAction::NOTHING1;
+    choice_ = UserMenuAction::NEW_CARS;
 }
 
 ConsoleMenu* UserMenu::getNextMenu()
@@ -25,12 +25,19 @@ ConsoleMenu* UserMenu::getNextMenu()
 
     switch (selectMode())
     {
-	case UserMenuAction::NOTHING1 :
+	case UserMenuAction::NEW_CARS :
+		//CarHandler::showCars();
+		CarHandler::showNewCars();
             newMenu = this;
             break;
-	case UserMenuAction::NOTHING2 :
+	case UserMenuAction::CARS_FOR_SALE :
+		CarHandler::showCarsForSale();
             newMenu = this;
             break;
+	case UserMenuAction::FIND_CAR :
+		//CarHandler::findCar();
+		newMenu = this;
+		break;
 	case UserMenuAction::BACK :
             this->resetChoice();
             newMenu = new LoginMenu();
@@ -59,7 +66,7 @@ unsigned UserMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP:
-				if (choice_ < UserMenuAction::NOTHING1)
+				if (choice_ < UserMenuAction::NEW_CARS)
 				{
 					choice_ = items_.size();
 				}
@@ -71,7 +78,7 @@ unsigned UserMenu::selectMode()
             case VK_DOWN:
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = UserMenuAction::NOTHING1;
+					choice_ = UserMenuAction::NEW_CARS;
 				}
 				else
 				{

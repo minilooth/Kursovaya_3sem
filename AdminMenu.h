@@ -3,12 +3,14 @@
 
 
 #include "AccountManagementMenu.h"
+#include "CarHandler.h"
 
 namespace AdminMenuAction
 {
 	enum
 	{
 		ACCOUNT_MANAGEMENT = 1,
+		ADD_CAR,
 		BACK
 	};
 }

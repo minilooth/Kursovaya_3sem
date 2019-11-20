@@ -1,30 +1,30 @@
-#include "AccountAddMenu.h"
+#include "WheelDriveMenu.h"
 
-unsigned AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+unsigned WheelDriveMenu::choice_ = WheelDrive::FWD;
 
-AccountAddMenu::AccountAddMenu()
+WheelDriveMenu::WheelDriveMenu()
 {
-	title_ = "Give admin access? ";
-	items_ = { "Yes", "No" };
+	title_ = "Wheel drive: ";
+	items_ = { "FWD", "RWD", "AWD" };
 }
 
-AccountAddMenu::AccountAddMenu(string& title, vector<string>& items)
+WheelDriveMenu::WheelDriveMenu(string& title, vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
 }
 
-void AccountAddMenu::resetChoice()
+void WheelDriveMenu::resetChoice()
 {
-	AccountAddMenu::choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+	WheelDriveMenu::choice_ = WheelDrive::FWD;
 }
 
-ConsoleMenu* AccountAddMenu::getNextMenu()
+ConsoleMenu* WheelDriveMenu::getNextMenu()
 {
-	return nullptr;
+	return this;
 }
 
-unsigned AccountAddMenu::selectMode()
+unsigned WheelDriveMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
@@ -35,13 +35,13 @@ unsigned AccountAddMenu::selectMode()
 		showItems();
 
 		VP_GetCh(key);
-		
+
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_RIGHT:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountAddMenuChoice::GIVE_ADMIN_ACCESS;
+				choice_ = WheelDrive::FWD;
 			}
 			else
 			{
@@ -49,7 +49,7 @@ unsigned AccountAddMenu::selectMode()
 			}
 			break;
 		case VK_LEFT:
-			if (choice_ < AccountAddMenuChoice::DONT_GIVE_ADMIN_ACCESS)
+			if (choice_ < WheelDrive::RWD)
 			{
 				choice_ = items_.size();
 			}
@@ -68,12 +68,12 @@ unsigned AccountAddMenu::selectMode()
 	}
 }
 
-void AccountAddMenu::showTitle()
+void WheelDriveMenu::showTitle()
 {
 	cout << title_;
 }
 
-void AccountAddMenu::showItems()
+void WheelDriveMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -90,4 +90,4 @@ void AccountAddMenu::showItems()
 	}
 }
 
-AccountAddMenu::~AccountAddMenu() = default;
+WheelDriveMenu::~WheelDriveMenu() = default;
