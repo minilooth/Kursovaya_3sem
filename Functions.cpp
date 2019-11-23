@@ -81,7 +81,7 @@ string makeCenteredString(const string& inputString, unsigned width)
 		centeredString += " ";
 	}
 
-	if (width % 2 != 0)
+	if ((width - inputString.length()) % 2 != 0)
 	{
 		centeredString += " ";
 	}
@@ -96,6 +96,12 @@ void drawSolidLine(unsigned width)
 		cout << "-";
 	}
 	cout << endl;
+}
+
+unsigned calculateDoubleLength(double toCalculate, unsigned signsAfterDot)
+{
+	unsigned length = (to_string(toCalculate).length() - ((signsAfterDot == 0 ? 7 : 6)  - signsAfterDot));
+	return length;
 }
 
 vector<string> stringSplitter(string& source)

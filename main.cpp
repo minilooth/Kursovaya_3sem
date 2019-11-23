@@ -22,6 +22,7 @@ int main()
     system("pause");
 
 	delete accountHandler;
+	delete carHandler;
 	delete currentMenu;
 
     return 0;

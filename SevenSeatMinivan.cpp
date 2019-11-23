@@ -6,6 +6,7 @@ SevenSeatMinivan::SevenSeatMinivan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
+	bodyType_ = "Seven-seat minivan";
 	wheelDrive_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -25,20 +26,16 @@ SevenSeatMinivan::SevenSeatMinivan(string& brand, string& model, unsigned yearOf
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
+	bodyType_ = "Seven-seat minivan";
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
-	bodyColor_ = bodyColor_;
+	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
 	mealeage_ = mealeage;
 	price_ = price;
 	isReserved_ = isReserved;
-}
-
-string SevenSeatMinivan::getBodyType()
-{
-	return bodyType_;
 }
 
 SevenSeatMinivan::~SevenSeatMinivan() = default;

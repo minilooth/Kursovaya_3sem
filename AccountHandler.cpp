@@ -4,7 +4,7 @@
 vector<Account> AccountHandler::accounts_;
 bool AccountHandler::showPasswordStatus_ = false;
 bool AccountHandler::adminAccessStatus_ = false;
-Account* AccountHandler::accountToEdit_ = nullptr;
+Account* AccountHandler::accountToEdit_;
 
 // Constructors
 AccountHandler::AccountHandler()
@@ -17,25 +17,35 @@ AccountHandler::AccountHandler()
 
 	Account* account = nullptr;
 
-	ifstream readableFile(R"(users.txt)");
+	ifstream accountsFile;
 
-	if (readableFile.is_open())
+	accountsFile.open(R"(accounts.txt)");
+
+	if (accountsFile.is_open())
 	{
-		while (!readableFile.eof())
+		while (!accountsFile.eof())
 		{
-			if (getline(readableFile, token, '\n'))
+			if (getline(accountsFile, token, '\n'))
 			{
-				stringstream iss(token);
-				getline(iss, username, ';');
-				getline(iss, password, ';');
-				iss >> adminAccess;
+				auto data = stringSplitter(token);
 
-				account = new Account(username, password, adminAccess);
+				username = data.at(0);
+				password = data.at(1);
+				adminAccess = data.at(2) == "1" ? true : false;
+
+				if (adminAccess == true)
+				{
+					account = new Admin(username, password);
+				}
+				else
+				{
+					account = new User(username, password);
+				}
 
 				accounts_.push_back(*account);
 			}
 		}
-		readableFile.close();
+		accountsFile.close();
 		delete account;
 	}
 }
@@ -50,25 +60,35 @@ AccountHandler::AccountHandler(string fileName)
 
 	Account* account = nullptr;
 
-	ifstream readableFile(fileName);
+	ifstream accountsFile;
 
-	if (readableFile.is_open())
+	accountsFile.open(fileName);
+
+	if (accountsFile.is_open())
 	{
-		while (!readableFile.eof())
+		while (!accountsFile.eof())
 		{
-			if (getline(readableFile, token, '\n'))
+			if (getline(accountsFile, token, '\n'))
 			{
-				stringstream iss(token);
-				getline(iss, username, ';');
-				getline(iss, password, ';');
-				iss >> adminAccess;
+				auto data = stringSplitter(token);
 
-				account = new Account(username, password, adminAccess);
+				username = data.at(0);
+				password = data.at(1);
+				adminAccess = data.at(2) == "1" ? true : false;
+
+				if (adminAccess == true)
+				{
+					account = new Admin(username, password);
+				}
+				else
+				{
+					account = new User(username, password);
+				}
 
 				accounts_.push_back(*account);
 			}
 		}
-		readableFile.close();
+		accountsFile.close();
 		delete account;
 	}
 }
@@ -113,6 +133,20 @@ unsigned AccountHandler::getAccountIndex(string& username)
 	for (unsigned i = 0; i < accounts_.size(); i++)
 	{
 		if (accounts_.at(i).getUsername() == username)
+		{
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
+
+unsigned AccountHandler::getAccountIndex(Account& account)
+{
+	unsigned index = 0;
+	for (unsigned i = 0; i < accounts_.size(); i++)
+	{
+		if (accounts_.at(i).getUsername() == account.getUsername())
 		{
 			index = i;
 			break;
@@ -255,7 +289,7 @@ void AccountHandler::inputNewUsername()
 
 		showEditAccount();
 
-		ofstream writeFile(R"(users.txt)", ios::trunc);
+		ofstream writeFile(R"(accounts.txt)", ios::trunc);
 		if (writeFile.is_open())
 		{
 			for (unsigned i = 0; i < accounts_.size(); i++)
@@ -288,6 +322,8 @@ void AccountHandler::inputNewPassword()
 {
 	string password;
 
+	ofstream accountsFile;
+
 	system("cls");
 
 	showEditAccount();
@@ -313,15 +349,18 @@ void AccountHandler::inputNewPassword()
 
 		showEditAccount();
 
-		ofstream writeFile(R"(users.txt)", ios::trunc);
-		if (writeFile.is_open())
+		accountsFile.open(R"(accounts.txt)", ios::trunc);
+		if (accountsFile.is_open())
 		{
 			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
+				accountsFile << accounts_.at(i).getUsername() << ";" 
+							 << accounts_.at(i).getPassword() << ";" 
+							 << accounts_.at(i).getAdminAccess() 
+							 << endl;
 			}
 		}
-		writeFile.close();
+		accountsFile.close();
 
 		setTextColor(Color::LIGHT_GREEN);
 		cout << endl << "Password succesfully changed!" << endl << endl;
@@ -344,6 +383,13 @@ void AccountHandler::inputNewPassword()
 
 void AccountHandler::changeAdminAccess()
 {
+	string username;
+	string password;
+
+	unsigned index = 0;
+
+	ofstream accountsFile;
+
 	system("cls");
 
 	showEditAccount();
@@ -355,24 +401,38 @@ void AccountHandler::changeAdminAccess()
 			throw exception("Unable to change admin access of last admin!");
 		}
 		
-		string username = accountToEdit_->getUsername();
-		string password = accountToEdit_->getPassword();
+		username = accountToEdit_->getUsername();
+		password = accountToEdit_->getPassword();
 
-		accountToEdit_->setAdminAccess(!(accountToEdit_->getAdminAccess()));
+		if (accountToEdit_->getAdminAccess() == true)
+		{
+			accountToEdit_ = new User(username, password);
+		}
+		else
+		{
+			accountToEdit_ = new Admin(username, password);
+		}
+
+		index = getAccountIndex(*accountToEdit_);
+		accounts_.erase(accounts_.begin() + index);
+		accounts_.insert(accounts_.begin() + index, *accountToEdit_);
 
 		system("cls");
 
 		showEditAccount();
 
-		ofstream writeFile(R"(users.txt)", ios::trunc);
-		if (writeFile.is_open())
+		accountsFile.open(R"(accounts.txt)", ios::trunc);
+		if (accountsFile.is_open())
 		{
 			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
+				accountsFile << accounts_.at(i).getUsername() << ";" 
+							 << accounts_.at(i).getPassword() << ";" 
+							 << accounts_.at(i).getAdminAccess() 
+							 << endl;
 			}
 		}
-		writeFile.close();
+		accountsFile.close();
 
 		setTextColor(Color::LIGHT_GREEN);
 		cout << endl << "Admin access succesfully changed!" << endl << endl;
@@ -555,7 +615,7 @@ void AccountHandler::registration()
 
 		accounts_.push_back(*(newAccount));
 
-		ofstream writeFile(R"(users.txt)", ios::app);
+		ofstream writeFile(R"(accounts.txt)", ios::app);
 		if (writeFile.is_open())
 		{
 			writeFile << newAccount->getUsername() << ";" << newAccount->getPassword() << ";" << newAccount->getAdminAccess() << endl;
@@ -578,27 +638,47 @@ void AccountHandler::registration()
 
 void AccountHandler::showAccounts()
 {
-	unsigned solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
-							   (calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
+	unsigned solidLineLength = 0;
 
-	drawSolidLine(solidLineLength);
+	try
+	{
+		if (accounts_.size() == 0)
+		{
+			throw exception("Account list is empty");
+		}
 
-	cout <<  "| " << makeCenteredString("Username", calculateUsernameMaxLength()) 
-		 << " | " << makeCenteredString("Password", calculatePasswordMaxLength()) 
-		 << " | " << "Admin access" << " |" << endl;
+		solidLineLength = (calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) +
+			(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) + 22;
 
-	drawSolidLine(solidLineLength);
+		drawSolidLine(solidLineLength);
 
-    for (unsigned i = 0; i < accounts_.size(); i++)
-    {
-        cout <<  "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << accounts_.at(i).getUsername()
-			 << " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left 
-					  << (AccountHandler::showPasswordStatus_ ? accounts_.at(i).getPassword() : makeMaskedString(accounts_.at(i).getPassword()))
-			 << " | " << setw(12) << left << (accounts_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
-			 << endl;
-    }
+		cout << "| " << makeCenteredString("Username", calculateUsernameMaxLength())
+			<< " | " << makeCenteredString("Password", calculatePasswordMaxLength())
+			<< " | " << "Admin access" << " |" << endl;
 
-	drawSolidLine(solidLineLength);
+		drawSolidLine(solidLineLength);
+
+		for (unsigned i = 0; i < accounts_.size(); i++)
+		{
+			cout << "| " << setw(calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength()) << left << accounts_.at(i).getUsername()
+				<< " | " << setw(calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength()) << left
+				<< (AccountHandler::showPasswordStatus_ ? accounts_.at(i).getPassword() : makeMaskedString(accounts_.at(i).getPassword()))
+				<< " | " << setw(12) << left << (accounts_.at(i).getAdminAccess() ? "Yes" : "No") << " |"
+				<< endl;
+		}
+
+		drawSolidLine(solidLineLength);
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+
+		system("pause");
+	}
 }
 
 void AccountHandler::showAccounts(unsigned from, unsigned to)
@@ -652,11 +732,27 @@ void AccountHandler::addAccount()
 {
     string username;
     string password;
-    bool adminAccess = false;
 
-	Account* newAccount = nullptr;
+	ofstream accountsFile;
 
-	ConsoleMenu* menu = new AccountAddMenu();
+	Account* account = nullptr;
+
+	ConsoleMenu* consoleMenu = new AccountTypeMenu();
+
+	switch (consoleMenu->selectMode())
+	{
+	case AccountType::ADMIN :
+		account = new Admin();
+		break;
+	case AccountType::USER :
+		account = new User();
+		break;
+	default:
+		consoleMenu->resetChoice();
+		return;
+	}
+
+	consoleMenu->resetChoice();
 
 	system("cls");
 
@@ -680,6 +776,8 @@ void AccountHandler::addAccount()
 			throw exception("Username should only consists of letters and digits!");
 		}
 
+		account->setUsername(username);
+
 		cout << "Password: ";
 		maskedPasswordInput(password, passwordLengthInputLimit);
 
@@ -693,71 +791,79 @@ void AccountHandler::addAccount()
 			throw exception("Password should only consists of letters and digits!");
 		}
 
-		menu->resetChoice();
-		switch (menu->selectMode())
+		account->setPassword(password);
+
+		accounts_.push_back(*(account));
+
+		accountsFile.open(R"(accounts.txt)", ios::app);
+		if (accountsFile.is_open())
 		{
-		case AccountAddMenuChoice::GIVE_ADMIN_ACCESS:
-			adminAccess = true;
-			break;
-		case AccountAddMenuChoice::DONT_GIVE_ADMIN_ACCESS:
-			adminAccess = false;
-			break;
-		default:
-			break;
+			accountsFile << account->getUsername() << ";" 
+						 << account->getPassword() << ";" 
+						 << account->getAdminAccess() 
+						 << endl;
 		}
-
-		clearLine();
-		cout << "Admin access: " << (adminAccess ? "Yes" : "No");
-
-		newAccount = new Account(username, password, adminAccess);
-
-
-		accounts_.push_back(*(newAccount));
-
-		ofstream writeFile(R"(users.txt)", ios::app);
-		if (writeFile.is_open())
-		{
-			writeFile << newAccount->getUsername() << ";" << newAccount->getPassword() << ";" << newAccount->getAdminAccess() << endl;
-		}
-		writeFile.close();
+		accountsFile.close();
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << endl << "User succesfully added!" << endl << endl;
+		if (account->getAdminAccess())
+		{
+			cout << endl << endl << "Admin succesfully added!" << endl << endl;
+		}
+		else
+		{
+			cout << endl << endl << "User succesfully added!" << endl << endl;
+		}
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception& ex)
 	{
 		setTextColor(Color::RED);
-		cout << endl << ex.what() << endl << "User not added!" << endl << endl;
+		if (account->getAdminAccess())
+		{
+			cout << endl << ex.what() << endl << "Admin not added!" << endl << endl;
+		}
+		else
+		{
+			cout << endl << ex.what() << endl << "User not added!" << endl << endl;
+		}
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
 	system("pause");
 
-	delete menu;
+	delete consoleMenu;
 }
 
 void AccountHandler::deleteAccount()
 {
-	string username;
+	ItemSelection<Account>* itemSelection = nullptr;
 
-	system("cls");
+	unsigned index = 0;
 
-	ItemSelection<Account>* itemSelection = new ItemSelection<Account>("Choose user to delete: ", accounts_);
-
-	unsigned index = itemSelection->selectMode();
-
-	if (index == 0)
-	{
-		return;
-	}
-	else
-	{
-		index -= 1;
-	}
+	ofstream accountsFile;
 
 	try
 	{
+		if (accounts_.size() == 0)
+		{
+			throw exception("Accounts file is empty!");
+		}
+
+		itemSelection = new ItemSelection<Account>("Choose user to delete: ", accounts_);
+
+		index = itemSelection->selectMode();
+
+		if (index == 0)
+		{
+			delete itemSelection;
+			return;
+		}
+		else
+		{
+			index -= 1;
+		}
+
 		if (getAccount(index)->getAdminAccess() == true && countAdmins() == 1)
 		{
 			throw exception("Unable to delete last admin!");
@@ -765,15 +871,18 @@ void AccountHandler::deleteAccount()
 
 		accounts_.erase(accounts_.begin() + index);
 
-		ofstream writeFile(R"(users.txt)", ios::trunc);
-		if (writeFile.is_open())
+		accountsFile.open(R"(accounts.txt)", ios::trunc);
+		if (accountsFile.is_open())
 		{
 			for (unsigned i = 0; i < accounts_.size(); i++)
 			{
-				writeFile << accounts_.at(i).getUsername() << ";" << accounts_.at(i).getPassword() << ";" << accounts_.at(i).getAdminAccess() << endl;
+				accountsFile << accounts_.at(i).getUsername() << ";" 
+							 << accounts_.at(i).getPassword() << ";" 
+							 << accounts_.at(i).getAdminAccess() 
+							 << endl;
 			}
 		}
-		writeFile.close();
+		accountsFile.close();
 
 
 		system("cls");
@@ -781,6 +890,8 @@ void AccountHandler::deleteAccount()
 		setTextColor(Color::LIGHT_GREEN);
 		cout << "User succesfully deleted!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
+
+		delete itemSelection;
 	}
 	catch(exception& ex)
 	{
@@ -789,42 +900,63 @@ void AccountHandler::deleteAccount()
 		setTextColor(Color::RED);
 		cout << ex.what() << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
+
+		delete itemSelection;
 	}
 
 	system("pause");
-
-	delete itemSelection;
 }
 
 void AccountHandler::editAccount()
 {
-	string username;
+	ItemSelection<Account>* itemSelection = nullptr;
 
-	ItemSelection<Account>* itemSelection = new ItemSelection<Account>("Shoose user to edit: ", accounts_);
+	unsigned index;
 
-	system("cls");
+	ConsoleMenu* menu = nullptr;
 
-	unsigned index = itemSelection->selectMode();
-
-	if (index == 0)
+	try
 	{
-		return;
+		if (accounts_.size() == 0)
+		{
+			throw exception("Account list is empty!");
+		}
+
+		itemSelection = new ItemSelection<Account>("Shoose user to edit: ", accounts_);
+
+		index = itemSelection->selectMode();
+
+		if (index == 0)
+		{
+			return;
+		}
+		else
+		{
+			index -= 1;
+		}
+
+		accountToEdit_ = getAccount(index);
+
+		menu = new AccountEditMenu();
+
+		while (menu)
+		{
+			menu = menu->getNextMenu();
+		}
+
+		delete itemSelection;
+		delete menu;
 	}
-	else
+	catch (exception & ex)
 	{
-		index -= 1;
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+
+		system("pause");
 	}
-
-	accountToEdit_ = getAccount(index);
-
-	ConsoleMenu* menu = new AccountEditMenu();
-
-	while (menu)
-	{
-		menu = menu->getNextMenu();
-	}
-
-	delete menu;
 }
 
 // Destructors

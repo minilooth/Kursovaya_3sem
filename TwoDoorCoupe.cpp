@@ -6,6 +6,7 @@ TwoDoorCoupe::TwoDoorCoupe()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
+	bodyType_ = "Two-door coupe";
 	wheelDrive_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -25,20 +26,16 @@ TwoDoorCoupe::TwoDoorCoupe(string& brand, string& model, unsigned yearOfProducti
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
+	bodyType_ = "Two-door coupe";
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
-	bodyColor_ = bodyColor_;
+	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
 	mealeage_ = mealeage;
 	price_ = price;
 	isReserved_ = isReserved;
-}
-
-string TwoDoorCoupe::getBodyType()
-{
-	return bodyType_;
 }
 
 TwoDoorCoupe::~TwoDoorCoupe() = default;

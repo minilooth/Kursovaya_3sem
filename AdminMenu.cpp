@@ -5,7 +5,7 @@ unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 AdminMenu::AdminMenu()
 {
     title_ = "Admin main menu:";
-    items_ = { "Account management.", "Add car.", "Back." };
+    items_ = { "Account management.", "Add car.", "Show cars.", "Delete car.", "Back." };
 }
 
 AdminMenu::AdminMenu(string& title, vector<string>& items)
@@ -30,6 +30,14 @@ ConsoleMenu* AdminMenu::getNextMenu()
             break;
 		case AdminMenuAction::ADD_CAR :
 			CarHandler::addCar();
+			newMenu = this;
+			break;
+		case AdminMenuAction::SHOW_CARS :
+			CarHandler::showCars();
+			newMenu = this;
+			break;
+		case AdminMenuAction::DELETE_CAR :
+			CarHandler::deleteCar();
 			newMenu = this;
 			break;
 		case AdminMenuAction::BACK :

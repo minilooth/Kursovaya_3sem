@@ -41,6 +41,7 @@ string makeCenteredString(const string& inputString, unsigned width);
 void drawSolidLine(unsigned width);
 void maskedPasswordInput(string &password, unsigned limit);
 void limitedInput(string &input, unsigned limit);
+unsigned calculateDoubleLength(double toCalculate, unsigned signsAfterDot);
 
 
 #endif //FUNCTIONS_H

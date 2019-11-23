@@ -11,6 +11,8 @@ namespace AdminMenuAction
 	{
 		ACCOUNT_MANAGEMENT = 1,
 		ADD_CAR,
+		SHOW_CARS,
+		DELETE_CAR,
 		BACK
 	};
 }

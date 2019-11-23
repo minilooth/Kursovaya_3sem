@@ -39,6 +39,7 @@ ConsoleMenu* BodyTypeMenu::getNextMenu()
 unsigned BodyTypeMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
 	while (true)
 	{
 		system("cls");

@@ -6,6 +6,7 @@ FiveSeatMinivan::FiveSeatMinivan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
+	bodyType_ = "Five-seat minivan";
 	wheelDrive_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -25,20 +26,16 @@ FiveSeatMinivan::FiveSeatMinivan(string& brand, string& model, unsigned yearOfPr
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
+	bodyType_ = "Five-seat minivan";
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
-	bodyColor_ = bodyColor_;
+	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
 	mealeage_ = mealeage;
 	price_ = price;
 	isReserved_ = isReserved;
-}
-
-string FiveSeatMinivan::getBodyType()
-{
-	return bodyType_;
 }
 
 FiveSeatMinivan::~FiveSeatMinivan() = default;

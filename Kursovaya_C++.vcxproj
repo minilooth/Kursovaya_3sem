@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AccountTypeMenu.cpp" />
     <ClCompile Include="AccountHandler.cpp" />
     <ClCompile Include="AccountAddMenu.cpp" />
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="AdminMenu.cpp" />
     <ClCompile Include="BodyTypeMenu.cpp" />
     <ClCompile Include="Cabriolet.cpp" />
@@ -46,12 +48,15 @@
     <ClCompile Include="ThreeDoorHatchback.cpp" />
     <ClCompile Include="TransmissionTypeMenu.cpp" />
     <ClCompile Include="TwoDoorCoupe.cpp" />
+    <ClCompile Include="User.cpp" />
     <ClCompile Include="UserMenu.cpp" />
     <ClCompile Include="WheelDriveMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccountTypeMenu.h" />
     <ClInclude Include="AccountHandler.h" />
     <ClInclude Include="AccountAddMenu.h" />
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="BodyTypeMenu.h" />
     <ClInclude Include="Cabriolet.h" />
@@ -78,6 +83,7 @@
     <ClInclude Include="ThreeDoorHatchback.h" />
     <ClInclude Include="TransmissionTypeMenu.h" />
     <ClInclude Include="TwoDoorCoupe.h" />
+    <ClInclude Include="User.h" />
     <ClInclude Include="UserMenu.h" />
     <ClInclude Include="WheelDriveMenu.h" />
   </ItemGroup>

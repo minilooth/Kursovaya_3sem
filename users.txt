@@ -1,5 +1,0 @@
-admin;admin;1
-user;user;0
-qwerty;qwert;0
-asdf;asdf;0
-qqqqq;qqqqq;1

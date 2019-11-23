@@ -6,6 +6,7 @@ FiveDoorHatchback::FiveDoorHatchback()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
+	bodyType_ = "Five-door hatchback";
 	wheelDrive_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -24,7 +25,8 @@ FiveDoorHatchback::FiveDoorHatchback(string& brand, string& model, unsigned year
 	brand_ = brand;
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
-	transmissionType_ = transmissionType_;
+	transmissionType_ = transmissionType;
+	bodyType_ = "Five-door hatchback";
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -34,11 +36,6 @@ FiveDoorHatchback::FiveDoorHatchback(string& brand, string& model, unsigned year
 	mealeage_ = mealeage;
 	price_ = price;
 	isReserved_ = isReserved;
-}
-
-string FiveDoorHatchback::getBodyType()
-{
-	return bodyType_;
 }
 
 FiveDoorHatchback::~FiveDoorHatchback() = default;

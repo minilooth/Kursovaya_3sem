@@ -8,16 +8,17 @@ using namespace std;
 
 class Account
 {
+protected:
     string username_;
     string password_;
     bool adminAccess_;
 public:
     Account();
 	Account(string& username, string& password, bool adminAccess);
+	//Account(Account& account);
 
     void setUsername(string& username);
     void setPassword(string& password);
-    void setAdminAccess(bool adminAccess);
 
     string getUsername();
     string getPassword();

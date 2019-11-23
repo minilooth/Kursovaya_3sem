@@ -2,18 +2,15 @@
 #define SEDAN_H
 
 
-#include "Car.h"
+#include "CarHandler.h"
 
 class Sedan : public Car
 {
-	string bodyType_ = "Sedan";
 public:
 	Sedan();
 	Sedan(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDrive,
 		  string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial, double mealeage,
 		  double price, bool isReserved);
-
-	string getBodyType();
 
 	~Sedan();
 };

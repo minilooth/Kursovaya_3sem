@@ -6,6 +6,7 @@ ThreeDoorHatchback::ThreeDoorHatchback()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
+	bodyType_ = "Three-door hatchback";
 	wheelDrive_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -25,20 +26,16 @@ ThreeDoorHatchback::ThreeDoorHatchback(string& brand, string& model, unsigned ye
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
+	bodyType_ = "Three-door hatchback";
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
-	bodyColor_ = bodyColor_;
+	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
 	mealeage_ = mealeage;
 	price_ = price;
 	isReserved_ = isReserved;
-}
-
-string ThreeDoorHatchback::getBodyType()
-{
-	return bodyType_;
 }
 
 ThreeDoorHatchback::~ThreeDoorHatchback() = default;

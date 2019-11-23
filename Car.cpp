@@ -1,4 +1,4 @@
-#include "Car.h"
+#include "CarHandler.h"
 
 Car::Car()
 {
@@ -24,7 +24,7 @@ Car::Car(string& brand, string& model, unsigned yearOfProduction, string& transm
 	brand_ = brand;
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
-	transmissionType_ = transmissionType_;
+	transmissionType_ = transmissionType;
 	wheelDrive_ = wheelDrive;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -68,7 +68,7 @@ void Car::setEngineType(string engineType)
 
 void Car::setEngineVolume(double engineVolume)
 {
-	engineVolume_ = engineVolume_;
+	engineVolume_ = engineVolume;
 }
 
 void Car::setBodyColor(string bodyColor)
@@ -121,6 +121,11 @@ string Car::getTransmissionType()
 	return transmissionType_;
 }
 
+string Car::getBodyType()
+{
+	return bodyType_;
+}
+
 string Car::getWheelDrive()
 {
 	return wheelDrive_;
@@ -164,6 +169,50 @@ double Car::getPrice()
 bool Car::getIsReserved()
 {
 	return isReserved_;
+}
+
+ostream& operator<<(ostream& out, const Car& car)
+{
+	unsigned brandLabelLength = CarHandler::calculateBrandMaxLength() < 5 ? 5 : CarHandler::calculateBrandMaxLength();
+	unsigned modelLabelLength = CarHandler::calculateModelMaxLength() < 5 ? 5 : CarHandler::calculateModelMaxLength();
+	unsigned bodyTypeLabelLength = CarHandler::calculateBodyTypeMaxLength() < 9 ? 9 : CarHandler::calculateBodyTypeMaxLength();
+	unsigned bodyColorLabelLength = CarHandler::calculateBodyColorMaxLength() < 10 ? 10 : CarHandler::calculateBodyColorMaxLength();
+	unsigned interiorColorLabelLength = CarHandler::calculateInteriorColorMaxLength() < 14 ? 14 : CarHandler::calculateInteriorColorMaxLength();
+	unsigned interiorMaterialLabelLength = CarHandler::calculateInteriorMaterialMaxLength() < 17 ? 17 : CarHandler::calculateInteriorMaterialMaxLength();
+	unsigned mealeageLableLength = (CarHandler::calculateMealeageMaxLength() < 8 ? 8 : CarHandler::calculateMealeageMaxLength()) + 3;
+	unsigned priceLabelLength = (CarHandler::calculatePriceMaxLength() < 5 ? 5 : CarHandler::calculatePriceMaxLength()) + 2;
+	unsigned yearOfProductionLabelLength = 18;
+	unsigned transmissionTypeLabelLength = 12;
+	unsigned wheelDriveLabelLength = 11;
+	unsigned engineTypeLabelLength = 11;
+	unsigned engineVolumeLabelLength = 13;
+	unsigned reserveStatusLabelLength = 14;
+
+	out << "|" << left << setw(brandLabelLength) << car.brand_
+		<< "|" << left << setw(modelLabelLength) << car.model_
+		<< "|" << left << setw(yearOfProductionLabelLength) << car.yearOfProduction_
+		<< "|" << left << setw(bodyTypeLabelLength) << car.bodyType_
+		<< "|" << left << setw(transmissionTypeLabelLength) << car.transmissionType_
+		<< "|" << left << setw(wheelDriveLabelLength) << car.wheelDrive_
+		<< "|" << left << setw(engineTypeLabelLength) << car.engineType_
+		<< "|" << left << setw(engineVolumeLabelLength) << setprecision(CarHandler::getSignsAfterDotValue()) << fixed << car.engineVolume_
+		<< "|" << left << setw(bodyColorLabelLength) << car.bodyColor_
+		<< "|" << left << setw(interiorColorLabelLength) << car.interiorColor_
+		<< "|" << left << setw(interiorMaterialLabelLength) << car.interiorMaterial_
+
+		<< "|" << left << setw(calculateDoubleLength(car.mealeage_, CarHandler::getSignsAfterDotValue()) + 1)
+		<< setprecision(CarHandler::getSignsAfterDotValue()) << fixed << car.mealeage_ << left
+		<< setw((mealeageLableLength - 1) - calculateDoubleLength(car.mealeage_, CarHandler::getSignsAfterDotValue())) << "km"
+
+		<< "|" << left << setw(calculateDoubleLength(car.price_, CarHandler::getSignsAfterDotValue()) + 1)
+		<< setprecision(CarHandler::getSignsAfterDotValue()) << fixed << car.price_ << left
+		<< setw((priceLabelLength - 1) - calculateDoubleLength(car.price_, CarHandler::getSignsAfterDotValue())) << "$"
+
+		<< "|" << left << setw(reserveStatusLabelLength) << (car.isReserved_ ? "Yes" : "No")
+		<< "|";
+
+
+	return out;
 }
 
 Car::~Car() = default;

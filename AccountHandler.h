@@ -2,10 +2,14 @@
 #define ACCOUNTHANDLER_H
 
 
+#include "ItemSelection.h"
 #include "AccountAddMenu.h"
 #include "AccountEditMenu.h"
+#include "AccountTypeMenu.h"
+
 #include "Account.h"
-#include "ItemSelection.h"
+#include "Admin.h"
+#include "User.h"
 
 using namespace std;
 
@@ -23,6 +27,7 @@ public:
     static Account* getAccount(string &username);
 	static Account* getAccount(unsigned index);
 	static unsigned getAccountIndex(string& username);
+	static unsigned getAccountIndex(Account& account);
 	static bool getShowPasswordStatus();
 	static bool getAdminAccessStatus();
 

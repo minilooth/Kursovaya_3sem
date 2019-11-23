@@ -118,7 +118,16 @@
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
     <ClCompile Include="TransmissionTypeMenu.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Исходные файлы\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Исходные файлы\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountTypeMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +219,16 @@
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
     <ClInclude Include="TransmissionTypeMenu.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountTypeMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

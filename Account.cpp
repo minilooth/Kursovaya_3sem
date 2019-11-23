@@ -14,6 +14,13 @@ Account::Account(string& username, string& password, bool adminAccess)
 	adminAccess_ = adminAccess;
 }
 
+//Account::Account(Account& account)
+//{
+//	username_ = account.username_;
+//	password_ = account.password_;
+//	adminAccess_ = account.adminAccess_;
+//}
+
 void Account::setUsername(string& username)
 {
     username_ = username;
@@ -22,11 +29,6 @@ void Account::setUsername(string& username)
 void Account::setPassword(string& password)
 {
     password_ = password;
-}
-
-void Account::setAdminAccess(bool adminAccess)
-{
-    adminAccess_ = adminAccess;
 }
 
 string Account::getUsername()

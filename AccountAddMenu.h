@@ -12,7 +12,7 @@ namespace AccountAddMenuChoice
 	};
 }
 
-class AccountAddMenu : public virtual  ConsoleMenu
+class AccountAddMenu : public virtual ConsoleMenu
 {
 	ConsoleMenu* getNextMenu();
 	static unsigned choice_;

@@ -35,20 +35,20 @@ CarHandler::CarHandler()
 			{
 				auto data = stringSplitter(token);
 
-				brand = data.at(0);
-				model = data.at(1);
-				yearOfProduction = stoi(data.at(2));
-				transmissionType = data.at(3);
-				wheelDrive = data.at(4);
-				engineType = data.at(5);
-				engineVolume = stod(data.at(6));
-				bodyType = data.at(7);
-				bodyColor = data.at(8);
-				interiorColor = data.at(9);
-				interiorMaterial = data.at(10);
-				mealeage = stod(data.at(11));
-				price = stod(data.at(12));
-				isReserved = data.at(13) == "1" ? true : false;
+				brand				= data.at(0);
+				model				= data.at(1);
+				yearOfProduction	= stoi(data.at(2));
+				transmissionType	= data.at(3);
+				wheelDrive			= data.at(4);
+				engineType			= data.at(5);
+				engineVolume		= stod(data.at(6));
+				bodyType			= data.at(7);
+				bodyColor			= data.at(8);
+				interiorColor		= data.at(9);
+				interiorMaterial	= data.at(10);
+				mealeage			= stod(data.at(11));
+				price				= stod(data.at(12));
+				isReserved			= data.at(13) == "1" ? true : false;
 
 				if (bodyType == "Crossover")
 				{
@@ -75,7 +75,7 @@ CarHandler::CarHandler()
 					car = new FourDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDrive, engineType, engineVolume, bodyColor, 
 											interiorColor, interiorMaterial, mealeage, price, isReserved);
 				}
-				else if (bodyType == "Long wheel-base sedan")
+				else if (bodyType == "Long-wheelbase sedan")
 				{
 					car = new LongWheelbaseSedan(brand, model, yearOfProduction, transmissionType, wheelDrive, engineType, engineVolume, bodyColor, 
 												 interiorColor, interiorMaterial, mealeage, price, isReserved);
@@ -145,20 +145,20 @@ CarHandler::CarHandler(string fileName)
 			{
 				auto data = stringSplitter(token);
 
-				brand = data.at(0);
-				model = data.at(1);
-				yearOfProduction = stoi(data.at(2));
-				transmissionType = data.at(3);
-				wheelDrive = data.at(4);
-				engineType = data.at(5);
-				engineVolume = stod(data.at(6));
-				bodyType = data.at(7);
-				bodyColor = data.at(8);
-				interiorColor = data.at(9);
-				interiorMaterial = data.at(10);
-				mealeage = stod(data.at(11));
-				price = stod(data.at(12));
-				isReserved = data.at(13) == "1" ? true : false;
+				brand				= data.at(0);
+				model				= data.at(1);
+				yearOfProduction	= stoi(data.at(2));
+				transmissionType	= data.at(3);
+				wheelDrive			= data.at(4);
+				engineType			= data.at(5);
+				engineVolume		= stod(data.at(6));
+				bodyType			= data.at(7);
+				bodyColor			= data.at(8);
+				interiorColor		= data.at(9);
+				interiorMaterial	= data.at(10);
+				mealeage			= stod(data.at(11));
+				price				= stod(data.at(12));
+				isReserved			= data.at(13) == "1" ? true : false;
 
 				if (bodyType == "Crossover")
 				{
@@ -224,27 +224,234 @@ CarHandler::CarHandler(string fileName)
 	}
 }
 
+// Calculate
+unsigned CarHandler::calculateBrandMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getBrand().length())
+		{
+			length = cars_.at(i).getBrand().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateModelMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getModel().length())
+		{
+			length = cars_.at(i).getModel().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateTransmissionTypeMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getTransmissionType().length())
+		{
+			length = cars_.at(i).getTransmissionType().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateBodyColorMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getBodyColor().length())
+		{
+			length = cars_.at(i).getBodyColor().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateInteriorColorMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getInteriorColor().length())
+		{
+			length = cars_.at(i).getInteriorColor().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateInteriorMaterialMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getInteriorMaterial().length())
+		{
+			length = cars_.at(i).getInteriorMaterial().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateBodyTypeMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= cars_.at(i).getBodyType().length())
+		{
+			length = cars_.at(i).getBodyType().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculateMealeageMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= calculateDoubleLength(cars_.at(i).getMealeage(), signsAfterDot_))
+		{
+			length = calculateDoubleLength(cars_.at(i).getMealeage(), signsAfterDot_);
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::calculatePriceMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (length <= calculateDoubleLength(cars_.at(i).getPrice(), signsAfterDot_))
+		{
+			length = calculateDoubleLength(cars_.at(i).getPrice(), signsAfterDot_);
+		}
+	}
+	return length;
+}
+
+unsigned CarHandler::getSignsAfterDotValue()
+{
+	return signsAfterDot_;
+}
+
 // Functional
 void CarHandler::showCars()
 {
-	system("cls");
+	unsigned brandLabelLength				= 0;
+	unsigned modelLabelLength				= 0;
+	unsigned bodyTypeLabelLength			= 0;
+	unsigned bodyColorLabelLength			= 0;
+	unsigned interiorColorLabelLength		= 0;
+	unsigned interiorMaterialLabelLength	= 0;
+	unsigned mealeageLabelLength			= 0;
+	unsigned priceLabelLength				= 0;
+	unsigned yearOfProductionLabelLength	= 0;
+	unsigned transmissionTypeLabelLength	= 0;
+	unsigned wheelDriveLabelLength			= 0;
+	unsigned engineTypeLabelLength			= 0;
+	unsigned engineVolumeLabelLength		= 0;
+	unsigned reserveStatusLabelLength		= 0;
 
-	for (unsigned i = 0; i < cars_.size(); i++)
+	unsigned solidLineLength				= 0;
+
+	try
 	{
-		cout <<   "Brand: "					<< cars_.at(i).getBrand() 
-			 << ", Model: "					<< cars_.at(i).getModel() 
-			 << ", Year Of Production: "	<< cars_.at(i).getYearOfProduction() 
-			 << ", Transmission: "			<< cars_.at(i).getTransmissionType()
-			 << ", Wheel Drive: "			<< cars_.at(i).getWheelDrive() 
-			 << ", Engine Type: "			<< cars_.at(i).getEngineType() 
-			 << ", Engine Volume: "			<< cars_.at(i).getEngineVolume() 
-			 << ", Body Color: "			<< cars_.at(i).getBodyColor()
-			 << ", Interior Color: "		<< cars_.at(i).getInteriorColor() 
-			 << ", Interior Material: "		<< cars_.at(i).getInteriorMaterial() 
-			 << ", Mealeage: "				<< cars_.at(i).getMealeage() 
-			 << ", Price: "					<< cars_.at(i).getPrice()
-			 << ", Is Reserved: "			<< boolalpha << cars_.at(i).getIsReserved() 
-			 << endl;
+		if (cars_.size() == 0)
+		{
+			throw exception("List of cars is empty!");
+		}
+
+		brandLabelLength				= calculateBrandMaxLength() < 5 ? 5 : calculateBrandMaxLength();
+		modelLabelLength				= calculateModelMaxLength() < 5 ? 5 : calculateModelMaxLength();
+		bodyTypeLabelLength				= calculateBodyTypeMaxLength() < 9 ? 9 : calculateBodyTypeMaxLength();
+		bodyColorLabelLength			= calculateBodyColorMaxLength() < 10 ? 10 : calculateBodyColorMaxLength();
+		interiorColorLabelLength		= calculateInteriorColorMaxLength() < 14 ? 14 : calculateInteriorColorMaxLength();
+		interiorMaterialLabelLength		= calculateInteriorMaterialMaxLength() < 17 ? 17 : calculateInteriorMaterialMaxLength();
+		mealeageLabelLength				= (calculateMealeageMaxLength() < 8 ? 8 : calculateMealeageMaxLength()) + 3;
+		priceLabelLength				= (calculatePriceMaxLength() < 5 ? 5 : calculatePriceMaxLength()) + 2;
+		yearOfProductionLabelLength		= 18;
+		transmissionTypeLabelLength		= 12;
+		wheelDriveLabelLength			= 11;
+		engineTypeLabelLength			= 11;
+		engineVolumeLabelLength			= 13;
+		reserveStatusLabelLength		= 14;
+
+		solidLineLength = brandLabelLength + modelLabelLength + bodyTypeLabelLength + bodyColorLabelLength + interiorColorLabelLength + interiorMaterialLabelLength +
+						  yearOfProductionLabelLength + transmissionTypeLabelLength + wheelDriveLabelLength + engineTypeLabelLength + engineVolumeLabelLength +
+						  reserveStatusLabelLength + mealeageLabelLength + priceLabelLength + 15;
+
+		system("cls");
+
+		drawSolidLine(solidLineLength);
+
+		cout << "|" << makeCenteredString("Brand", brandLabelLength)
+			 << "|" << makeCenteredString("Model", modelLabelLength)
+			 << "|" << makeCenteredString("Year of production", yearOfProductionLabelLength)
+			 << "|" << makeCenteredString("Body type", bodyTypeLabelLength)
+			 << "|" << makeCenteredString("Transmission", transmissionTypeLabelLength)
+			 << "|" << makeCenteredString("Wheel drive", wheelDriveLabelLength)
+			 << "|" << makeCenteredString("Engine type", engineTypeLabelLength)
+			 << "|" << makeCenteredString("Engine volume", engineVolumeLabelLength)
+			 << "|" << makeCenteredString("Body color", bodyColorLabelLength)
+			 << "|" << makeCenteredString("Interior color", interiorColorLabelLength)
+			 << "|" << makeCenteredString("Interior material", interiorMaterialLabelLength)
+			 << "|" << makeCenteredString("Mealeage", mealeageLabelLength)
+			 << "|" << makeCenteredString("Price", priceLabelLength)
+			 << "|" << makeCenteredString("Reserve status", reserveStatusLabelLength)
+			 << "|" << endl;
+
+		drawSolidLine(solidLineLength);
+
+		for (unsigned i = 0; i < cars_.size(); i++)
+		{
+			cout << "|" << left << setw(brandLabelLength) << cars_.at(i).getBrand()
+				 << "|" << left << setw(modelLabelLength) << cars_.at(i).getModel()
+				 << "|" << left << setw(yearOfProductionLabelLength) << cars_.at(i).getYearOfProduction()
+				 << "|" << left << setw(bodyTypeLabelLength) << cars_.at(i).getBodyType()
+				 << "|" << left << setw(transmissionTypeLabelLength) << cars_.at(i).getTransmissionType()
+				 << "|" << left << setw(wheelDriveLabelLength) << cars_.at(i).getWheelDrive()
+				 << "|" << left << setw(engineTypeLabelLength) << cars_.at(i).getEngineType()
+				 << "|" << left << setw(engineVolumeLabelLength) << setprecision(signsAfterDot_) << fixed << cars_.at(i).getEngineVolume()
+				 << "|" << left << setw(bodyColorLabelLength) << cars_.at(i).getBodyColor()
+				 << "|" << left << setw(interiorColorLabelLength) << cars_.at(i).getInteriorColor()
+				 << "|" << left << setw(interiorMaterialLabelLength) << cars_.at(i).getInteriorMaterial()
+
+				 << "|" << left << setw(calculateDoubleLength(cars_.at(i).getMealeage(), signsAfterDot_) + 1)
+				 << setprecision(signsAfterDot_) << fixed << cars_.at(i).getMealeage() << left
+				 << setw((mealeageLabelLength - 1) - calculateDoubleLength(cars_.at(i).getMealeage(), signsAfterDot_)) << "km"
+
+				 << "|" << left << setw(calculateDoubleLength(cars_.at(i).getPrice(), signsAfterDot_) + 1)
+				 << setprecision(signsAfterDot_) << fixed << cars_.at(i).getPrice() << left
+				 << setw((priceLabelLength - 1) - calculateDoubleLength(cars_.at(i).getPrice(), signsAfterDot_)) << "$"
+
+				 << "|" << left << setw(reserveStatusLabelLength) << (cars_.at(i).getIsReserved() ? "Yes" : "No")
+				 << "|" << endl;
+		}
+
+		drawSolidLine(solidLineLength);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
 	}
 
 	system("pause");
@@ -322,6 +529,8 @@ void CarHandler::addCar()
 	Car* car = nullptr;
 	ConsoleMenu* menu = new BodyTypeMenu();
 
+	ofstream carsFile;
+
 	switch (menu->selectMode())
 	{
 		case BodyType::CROSSOVER :
@@ -369,14 +578,14 @@ void CarHandler::addCar()
 	try
 	{
 		cout << "Brand: ";
-		limitedInput(brand, brandMaxLength);
+		limitedInput(brand, inputBrandMaxLength);
 
 		if (brand.length() < 3)
 		{
 			throw exception("Brand should be at least three characters long!");
 		}
 
-		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ") != string::npos)
 		{
 			throw exception("Brand should only consists of letters!");
 		}
@@ -384,7 +593,7 @@ void CarHandler::addCar()
 		car->setBrand(brand);
 
 		cout << "Model: ";
-		limitedInput(model, modelMaxLength);
+		limitedInput(model, inputModelMaxLength);
 
 		if (model.length() < 3)
 		{
@@ -399,7 +608,7 @@ void CarHandler::addCar()
 		car->setModel(model);
 
 		cout << "Year of production: ";
-		limitedInput(yearOfProduction, yearOfProductionMaxLength);
+		limitedInput(yearOfProduction, inputYearOfProductionMaxLength);
 
 		if (yearOfProduction.length() < 4)
 		{
@@ -477,7 +686,7 @@ void CarHandler::addCar()
 		cout << "Transmission type: " << car->getTransmissionType() << endl;
 
 		cout << "Engine volume: ";
-		limitedInput(engineVolume, engineVolumeMaxLength);
+		limitedInput(engineVolume, inputEngineVolumeMaxLength);
 
 		if (engineVolume.length() < 3)
 		{
@@ -489,12 +698,12 @@ void CarHandler::addCar()
 			throw exception("Engine volume should only consists of digits!");
 		}
 
-		car->setEngineVolume(stoul(engineVolume));
+		car->setEngineVolume(stod(engineVolume));
 
 		cout << "Body color: ";
-		limitedInput(bodyColor, bodyColorMaxLength);
+		limitedInput(bodyColor, inputBodyColorMaxLength);
 
-		if (bodyColor.length() < 4)
+		if (bodyColor.length() < 3)
 		{
 			throw exception("Body color should be at least three characters long!");
 		}
@@ -507,9 +716,9 @@ void CarHandler::addCar()
 		car->setBodyColor(bodyColor);
 
 		cout << "Interior color: ";
-		limitedInput(interiorColor, interiorColorMaxLength);
+		limitedInput(interiorColor, inputInteriorColorMaxLength);
 
-		if (interiorColor.length() < 4)
+		if (interiorColor.length() < 3)
 		{
 			throw exception("Interior color should be at least three characters long!");
 		}
@@ -522,9 +731,9 @@ void CarHandler::addCar()
 		car->setInteriorColor(interiorColor);
 
 		cout << "Interior material: ";
-		limitedInput(interiorMaterial, interiorMaterialMaxLength);
+		limitedInput(interiorMaterial, inputInteriorMaterialMaxLength);
 
-		if (interiorMaterial.length() < 4)
+		if (interiorMaterial.length() < 3)
 		{
 			throw exception("Interior material should be at least three characters long!");
 		}
@@ -537,7 +746,7 @@ void CarHandler::addCar()
 		car->setInteriorMaterial(interiorMaterial);
 
 		cout << "Mealeage: ";
-		limitedInput(mealeage, mealeageMaxLength);
+		limitedInput(mealeage, inputMealeageMaxLength);
 
 		if (mealeage.length() < 1)
 		{
@@ -552,7 +761,7 @@ void CarHandler::addCar()
 		car->setMealeage(stoul(mealeage));
 
 		cout << "Price: ";
-		limitedInput(price, priceMaxLength);
+		limitedInput(price, inputPriceMaxLength);
 
 		if (price.length() < 1)
 		{
@@ -568,8 +777,35 @@ void CarHandler::addCar()
 
 		car->setIsReserved(false);
 
+		carsFile.open(R"(cars.txt)", ios::app);
+		if (carsFile.is_open())
+		{
+			carsFile << car->getBrand() << ";"
+					 << car->getModel() << ";"
+					 << car->getYearOfProduction() << ";"
+					 << car->getTransmissionType() << ";"
+					 << car->getWheelDrive() << ";"
+					 << car->getEngineType() << ";"
+					 << car->getEngineVolume() << ";"
+					 << car->getBodyType() << ";"
+					 << car->getBodyColor() << ";"
+					 << car->getInteriorColor() << ";"
+					 << car->getInteriorMaterial() << ";"
+					 << car->getMealeage() << ";"
+			   		 << car->getPrice() << ";"
+					 << car->getIsReserved()
+					 << endl;
+		}
+		else
+		{
+			throw exception("Cannot open file!");
+		}
+		carsFile.close();
+
+		cars_.push_back(*car);
+
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << endl << "Car succesfully added!" << endl << endl;
+		cout << endl << "Car succesfully added!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -582,4 +818,78 @@ void CarHandler::addCar()
 	system("pause");
 
 	delete menu;
+}
+
+void CarHandler::deleteCar()
+{
+	ItemSelection<Car>* itemSelection = nullptr;
+
+	unsigned index = 0;
+
+	ofstream carsFile;
+
+	try
+	{
+		if (cars_.size() == 0)
+		{
+			throw exception("List of cars is empty!");
+		}
+
+		itemSelection = new ItemSelection<Car>("Choose car to delete:", cars_);
+
+		index = itemSelection->selectMode();
+
+		if (index == 0)
+		{
+			return;
+		}
+		else
+		{
+			index -= 1;
+		}
+
+		cars_.erase(cars_.begin() + index);
+
+		carsFile.open(R"(cars.txt)", ios::trunc);
+		if (carsFile.is_open())
+		{
+			for (unsigned i = 0; i < cars_.size(); i++)
+			{
+				carsFile << cars_.at(i).getBrand() << ";"
+						 << cars_.at(i).getModel() << ";"
+						 << cars_.at(i).getYearOfProduction() << ";"
+						 << cars_.at(i).getTransmissionType() << ";"
+						 << cars_.at(i).getWheelDrive() << ";"
+						 << cars_.at(i).getEngineType() << ";"
+						 << cars_.at(i).getEngineVolume() << ";"
+						 << cars_.at(i).getBodyType() << ";"
+						 << cars_.at(i).getBodyColor() << ";"
+						 << cars_.at(i).getInteriorColor() << ";"
+						 << cars_.at(i).getInteriorMaterial() << ";"
+					 	 << cars_.at(i).getMealeage() << ";"
+						 << cars_.at(i).getPrice() << ";"
+						 << cars_.at(i).getIsReserved()
+						 << endl;
+			}
+		}
+		carsFile.close();
+
+		system("cls");
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << "Car succesfully deleted!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+
+		delete itemSelection;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+
+	system("pause");
 }

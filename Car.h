@@ -2,7 +2,7 @@
 #define CAR_H
 
 
-#include "Includes.h"
+#include "CarHandler.h"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ protected:
 	string brand_;
 	string model_;
 	unsigned yearOfProduction_;
+	string bodyType_;
 	string transmissionType_;
 	string wheelDrive_;
 	string engineType_;
@@ -46,6 +47,7 @@ public:
 	string getModel();
 	unsigned getYearOfProduction();
 	string getTransmissionType();
+	string getBodyType();
 	string getWheelDrive ();
 	string getEngineType();
 	double getEngineVolume();
@@ -55,6 +57,8 @@ public:
 	double getMealeage();
 	double getPrice();
 	bool getIsReserved();
+
+	friend ostream& operator<<(ostream& out, const Car& car);
 	
 	~Car();
 };
