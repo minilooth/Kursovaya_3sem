@@ -42,8 +42,6 @@ unsigned BodyTypeMenu::selectMode()
 
 	while (true)
 	{
-		system("cls");
-
 		showTitle();
 
 		showItems();
@@ -52,7 +50,7 @@ unsigned BodyTypeMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_UP:
+		case VK_UP :
 			if (choice_ < BodyType::CABRIOLET)
 			{
 				choice_ = items_.size();
@@ -62,7 +60,7 @@ unsigned BodyTypeMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_DOWN:
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = BodyType::CROSSOVER;
@@ -72,11 +70,20 @@ unsigned BodyTypeMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE :
+			return 0;
+		case VK_RETURN :
 			return choice_;
 		default:
 			break;
 		}
+
+		for (unsigned i = 0; i < items_.size() + 1; i++)
+		{
+			clearLine();
+			moveCursorUpToNLines(1);
+		}
+
 	}
 }
 

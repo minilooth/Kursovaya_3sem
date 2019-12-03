@@ -15,7 +15,6 @@ protected:
 public:
     Account();
 	Account(string& username, string& password, bool adminAccess);
-	//Account(Account& account);
 
     void setUsername(string& username);
     void setPassword(string& password);

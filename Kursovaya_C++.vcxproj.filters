@@ -57,9 +57,6 @@
     <ClCompile Include="Account.cpp">
       <Filter>Исходные файлы\Accounts</Filter>
     </ClCompile>
-    <ClCompile Include="AccountAddMenu.cpp">
-      <Filter>Исходные файлы\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="AccountEditMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
     <ClCompile Include="BodyTypeMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="WheelDriveMenu.cpp">
-      <Filter>Исходные файлы\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="EngineTypeMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
@@ -127,6 +121,18 @@
       <Filter>Исходные файлы\Accounts</Filter>
     </ClCompile>
     <ClCompile Include="AccountTypeMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CarPrinter.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="WheelDriveTypeMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountPrinter.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CarEditMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
   </ItemGroup>
@@ -157,9 +163,6 @@
     </ClInclude>
     <ClInclude Include="Account.h">
       <Filter>Файлы заголовков\Accounts</Filter>
-    </ClInclude>
-    <ClInclude Include="AccountAddMenu.h">
-      <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
     <ClInclude Include="AccountEditMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
@@ -212,9 +215,6 @@
     <ClInclude Include="BodyTypeMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="WheelDriveMenu.h">
-      <Filter>Файлы заголовков\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="EngineTypeMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
@@ -228,6 +228,18 @@
       <Filter>Файлы заголовков\Accounts</Filter>
     </ClInclude>
     <ClInclude Include="AccountTypeMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CarPrinter.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="WheelDriveTypeMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountPrinter.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CarEditMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
   </ItemGroup>

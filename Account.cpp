@@ -14,13 +14,6 @@ Account::Account(string& username, string& password, bool adminAccess)
 	adminAccess_ = adminAccess;
 }
 
-//Account::Account(Account& account)
-//{
-//	username_ = account.username_;
-//	password_ = account.password_;
-//	adminAccess_ = account.adminAccess_;
-//}
-
 void Account::setUsername(string& username)
 {
     username_ = username;
@@ -48,9 +41,15 @@ bool Account::getAdminAccess()
 
 ostream& operator<<(ostream& out, const Account& account)
 {
-	out << "| " << setw(AccountHandler::calculateUsernameMaxLength() < 9 ? 8 : AccountHandler::calculateUsernameMaxLength()) << left << account.username_
-		<< " | " << setw(AccountHandler::calculatePasswordMaxLength() < 9 ? 8 : AccountHandler::calculatePasswordMaxLength()) << left << makeMaskedString(account.password_)
-		<< " | " << setw(12) << left << (account.adminAccess_ ? "Yes" : "No") << " |";
+	/*out << "| " << setw(AccountPrinter::getUsernameLabelLength()) << left << account.username_
+		<< " | " << setw(AccountPrinter::getPasswordLabelLength()) << left << makeMaskedString(account.password_)
+		<< " | " << setw(12) << left << (account.adminAccess_ ? "Yes" : "No") << " |";*/
+
+	out << "| " << setw(AccountPrinter::getUsernameLabelLength()) << left << account.username_
+		<< " | " << setw(AccountPrinter::getPasswordLabelLength()) << left
+		<< (AccountHandler::getShowPasswordStatus() ? account.password_ : makeMaskedString(account.password_))
+		<< " | " << setw(AccountPrinter::getAdminAccessLabelLength()) << left << (account.adminAccess_ ? "Yes" : "No")
+		<< " |";
 
 	return out;
 }

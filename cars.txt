@@ -1,1 +1,3 @@
-Peugeot;306;1998;Manual;FWD;Diesel;1.9;Station wagon;Red;Grey;Cloth;600000;1500;0
+www;www;1111;Automatic;AWD;Diesel;1.5;Five-seat minivan;Black;asdasdasd;asdasdada;75000;10000;1;user
+asdasd;asdasdas;1111;Manual;FWD;Petrol;1.1;Crossover;asdasdas;asdasdasd;asdasdas;11111;111111;1;user
+qqqqqqqqqq;qqqqqqqqqq;1111;Automatic;FWD;Petrol;1.1;Three-door hatchback;qqqqqqqqq;qqqqqqqqq;qqqqqqqqq;111111;111111;0;

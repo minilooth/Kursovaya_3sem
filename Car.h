@@ -14,7 +14,7 @@ protected:
 	unsigned yearOfProduction_;
 	string bodyType_;
 	string transmissionType_;
-	string wheelDrive_;
+	string wheelDriveType_;
 	string engineType_;
 	double engineVolume_;
 	string bodyColor_;
@@ -22,18 +22,19 @@ protected:
 	string interiorMaterial_;
 	double mealeage_;
 	double price_;
-	bool isReserved_;
+	bool reserveStatus_;
+	string reserverUsername_;
 public:
 	Car();
-	Car(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDrive,
+	Car(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDriveType,
 		string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial, double mealeage, 
-		double price, bool isReserved);
+		double price, bool reserveStatus, string& reserverUsername);
 
 	void setBrand(string brand);
 	void setModel(string model);
 	void setYearOfProduction(unsigned yearOfProduction);
 	void setTransmissionType(string transmissionType);
-	void setWheelDrive(string wheelDrive);
+	void setWheelDriveType(string wheelDriveType);
 	void setEngineType(string engineType);
 	void setEngineVolume(double engineVolume);
 	void setBodyColor(string bodyColor);
@@ -41,14 +42,15 @@ public:
 	void setInteriorMaterial(string interiorMaterial);
 	void setMealeage(double mealeage);
 	void setPrice(double price);
-	void setIsReserved(bool isReserved);
+	void setReserveStatus(bool reserveStatus);
+	void setReserverUsername(string reserverUsername);
 
 	string getBrand();
 	string getModel();
 	unsigned getYearOfProduction();
 	string getTransmissionType();
 	string getBodyType();
-	string getWheelDrive ();
+	string getWheelDriveType();
 	string getEngineType();
 	double getEngineVolume();
 	string getBodyColor();
@@ -56,7 +58,8 @@ public:
 	string getInteriorMaterial();
 	double getMealeage();
 	double getPrice();
-	bool getIsReserved();
+	bool getReserveStatus();
+	string getReserverUsername();
 
 	friend ostream& operator<<(ostream& out, const Car& car);
 	

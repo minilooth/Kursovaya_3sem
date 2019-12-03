@@ -6,9 +6,9 @@ unsigned AccountShowMenu::maxPages_ = 1;
 
 AccountShowMenu::AccountShowMenu()
 {
-	title_ = "";
+	title_ = "All accounts:";
 	items_ = { AccountHandler::getShowPasswordStatus() ? "Hide password." : "Show password." , "Back." };
-	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.";
+	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC or select \"Back\" to go back.";
 	pageSize_ = 10;
 
 	maxPages_ = AccountHandler::countAccounts() / pageSize_;
@@ -101,16 +101,17 @@ unsigned AccountShowMenu::selectMode()
 	{
 		system("cls");
 
+		showTitle();
+		cout << endl;
+
 		showCurrentPageNumber();
 
 		AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
 
 		cout << endl;
-
 		showItems();
 
 		cout << endl;
-
 		showTooltip();
 
 		VP_GetCh(key);

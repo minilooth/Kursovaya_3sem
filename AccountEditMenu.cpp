@@ -4,8 +4,8 @@ unsigned AccountEditMenu::choice_ = AccountEditMenuAction::CHANGE_USERNAME;
 
 AccountEditMenu::AccountEditMenu()
 {
-	title_ = "";
-	items_ = { "Change username.", "Change password.", "Change admin access.", "Back." };
+	title_ = "Account editing:";
+	items_ = { "Edit username.", "Edit password.", "Edit admin access.", "Back." };
 }
 
 AccountEditMenu::AccountEditMenu(string& title, vector<string>& items)
@@ -26,15 +26,15 @@ ConsoleMenu* AccountEditMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case AccountEditMenuAction::CHANGE_USERNAME :
-		AccountHandler::inputNewUsername();
+		AccountHandler::editUsername();
 		newMenu = this;
 		break;
 	case AccountEditMenuAction::CHANGE_PASSWORD :
-		AccountHandler::inputNewPassword();
+		AccountHandler::editPassword();
 		newMenu = this;
 		break;
 	case AccountEditMenuAction::CHANGE_ADMIN_ACCESS :
-		AccountHandler::changeAdminAccess();
+		AccountHandler::editAdminAccess();
 		newMenu = this;
 		break;
 	case AccountEditMenuAction::BACK :
@@ -58,13 +58,14 @@ unsigned AccountEditMenu::selectMode()
 
 		cout << endl;
 
+		showTitle();
 		showItems();
 
 		VP_GetCh(key);
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_UP:
+		case VK_UP :
 			if (choice_ < AccountEditMenuAction::CHANGE_PASSWORD)
 			{
 				choice_ = items_.size();
@@ -74,7 +75,7 @@ unsigned AccountEditMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_DOWN:
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = AccountEditMenuAction::CHANGE_USERNAME;
@@ -84,7 +85,9 @@ unsigned AccountEditMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE :
+			return AccountEditMenuAction::BACK;
+		case VK_RETURN :
 			return choice_;
 		default:
 			break;

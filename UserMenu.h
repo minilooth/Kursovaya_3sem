@@ -7,10 +7,12 @@
 
 namespace UserMenuAction
 {
-	enum
+	enum 
 	{
-		NEW_CARS = 1,
-		CARS_FOR_SALE,
+		SHOW_ALL_CARS = 1,
+		RESERVE_NEW_CAR,
+		RESERVE_USED_CAR,
+		SHOW_ACCOUNT_RESERVED_CARS,
 		FIND_CAR,
 		BACK
 	};

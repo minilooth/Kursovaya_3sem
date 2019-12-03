@@ -1,9 +1,8 @@
 admin;admin;1
 user;user;0
-qwerty;qwert;0
+qwerty;qwerty;0
 asdf;asdf;0
-qqqqq;qqqqq;0
-qwertyq;qweqweqweqwe;1
+qqqqq;qqqqq;1
+qwertyu;qweqweqweqwe;1
 qwertqq;eqweqweqwe;1
 Madskoy;123qweasdzxc;0
-rrrrt;asdasdasd;0

@@ -41,6 +41,16 @@ bool VP_GetCh(KEY_EVENT_RECORD& krec)
 	return false;
 }
 
+
+//void showConsoleCursor(bool showFlag)
+//{
+//	CONSOLE_CURSOR_INFO cursorInfo;
+//	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+//	cursorInfo.bVisible = showFlag;
+//	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+//}
+
+
 string makeMaskedString(const string &inputString)
 {
     string maskedString;
@@ -100,8 +110,7 @@ void drawSolidLine(unsigned width)
 
 unsigned calculateDoubleLength(double toCalculate, unsigned signsAfterDot)
 {
-	unsigned length = (to_string(toCalculate).length() - ((signsAfterDot == 0 ? 7 : 6)  - signsAfterDot));
-	return length;
+	return (to_string(toCalculate).length() - ((signsAfterDot == 0 ? 7 : 6)  - signsAfterDot));
 }
 
 vector<string> stringSplitter(string& source)
@@ -119,7 +128,7 @@ vector<string> stringSplitter(string& source)
 	return tokenVector;
 }
 
-void maskedPasswordInput(string &password, unsigned limit)
+bool maskedPasswordInput(string& password, unsigned limit)
 {
 	char ch;
 	while (true)
@@ -128,7 +137,12 @@ void maskedPasswordInput(string &password, unsigned limit)
 		if (ch == VK_RETURN || ch == VK_TAB)
 		{
 			cout << '\n';
-			break;
+			return true;
+		}
+		else if (ch == VK_ESCAPE)
+		{
+			password.clear();
+			return false;
 		}
 		else if (ch == VK_BACK && password.length() > 0)
 		{
@@ -151,7 +165,7 @@ void maskedPasswordInput(string &password, unsigned limit)
 	}
 }
 
-void limitedInput(string& input, unsigned limit)
+bool limitedInput(string& input, unsigned limit)
 {
 	char ch;
 	while (true)
@@ -160,7 +174,12 @@ void limitedInput(string& input, unsigned limit)
 		if (ch == VK_RETURN || ch == VK_TAB)
 		{
 			cout << '\n';
-			break;
+			return true;
+		}
+		else if (ch == VK_ESCAPE)
+		{
+			input.clear();
+			return false;
 		}
 		else if (ch == VK_BACK && input.length() > 0)
 		{

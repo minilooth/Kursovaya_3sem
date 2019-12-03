@@ -208,16 +208,7 @@ void ItemSelection<T>::showItems()
 {
 	if (typeid(T) == typeid(Account))
 	{
-		unsigned solidLineLength = (AccountHandler::calculateUsernameMaxLength() < 9 ? 8 : AccountHandler::calculateUsernameMaxLength()) +
-								   (AccountHandler::calculatePasswordMaxLength() < 9 ? 8 : AccountHandler::calculatePasswordMaxLength()) + 22;
-
-		drawSolidLine(solidLineLength);
-
-		cout << "| " << makeCenteredString("Username", AccountHandler::calculateUsernameMaxLength()) 
-			<< " | " << makeCenteredString("Password", AccountHandler::calculatePasswordMaxLength()) 
-			<< " | " << "Admin access" << " |" << endl;
-
-		drawSolidLine(solidLineLength);
+		AccountPrinter::showHeader();
 
 		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
 		{
@@ -229,50 +220,12 @@ void ItemSelection<T>::showItems()
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(solidLineLength);
+		drawSolidLine(AccountPrinter::getSolidLineLength());
 	}
 
 	if (typeid(T) == typeid(Car))
 	{
-
-		unsigned brandLabelLength = CarHandler::calculateBrandMaxLength() < 5 ? 5 : CarHandler::calculateBrandMaxLength();
-		unsigned modelLabelLength = CarHandler::calculateModelMaxLength() < 5 ? 5 : CarHandler::calculateModelMaxLength();
-		unsigned bodyTypeLabelLength = CarHandler::calculateBodyTypeMaxLength() < 9 ? 9 : CarHandler::calculateBodyTypeMaxLength();
-		unsigned bodyColorLabelLength = CarHandler::calculateBodyColorMaxLength() < 10 ? 10 : CarHandler::calculateBodyColorMaxLength();
-		unsigned interiorColorLabelLength = CarHandler::calculateInteriorColorMaxLength() < 14 ? 14 : CarHandler::calculateInteriorColorMaxLength();
-		unsigned interiorMaterialLabelLength = CarHandler::calculateInteriorMaterialMaxLength() < 17 ? 17 : CarHandler::calculateInteriorMaterialMaxLength();
-		unsigned mealeageLableLength = (CarHandler::calculateMealeageMaxLength() < 8 ? 8 : CarHandler::calculateMealeageMaxLength()) + 3;
-		unsigned priceLabelLength = (CarHandler::calculatePriceMaxLength() < 5 ? 5 : CarHandler::calculatePriceMaxLength()) + 2;
-		unsigned yearOfProductionLabelLength = 18;
-		unsigned transmissionTypeLabelLength = 12;
-		unsigned wheelDriveLabelLength = 11;
-		unsigned engineTypeLabelLength = 11;
-		unsigned engineVolumeLabelLength = 13;
-		unsigned reserveStatusLabelLength = 14;
-
-		unsigned solidLineLength = brandLabelLength + modelLabelLength + bodyTypeLabelLength + bodyColorLabelLength + interiorColorLabelLength + interiorMaterialLabelLength +
-			yearOfProductionLabelLength + transmissionTypeLabelLength + wheelDriveLabelLength + engineTypeLabelLength + engineVolumeLabelLength +
-			reserveStatusLabelLength + mealeageLableLength + priceLabelLength + 15;
-
-		drawSolidLine(solidLineLength);
-
-		cout << "|" << makeCenteredString("Brand", brandLabelLength)
-			<< "|" << makeCenteredString("Model", modelLabelLength)
-			<< "|" << makeCenteredString("Year of production", yearOfProductionLabelLength)
-			<< "|" << makeCenteredString("Body type", bodyTypeLabelLength)
-			<< "|" << makeCenteredString("Transmission", transmissionTypeLabelLength)
-			<< "|" << makeCenteredString("Wheel drive", wheelDriveLabelLength)
-			<< "|" << makeCenteredString("Engine type", engineTypeLabelLength)
-			<< "|" << makeCenteredString("Engine volume", engineVolumeLabelLength)
-			<< "|" << makeCenteredString("Body color", bodyColorLabelLength)
-			<< "|" << makeCenteredString("Interior color", interiorColorLabelLength)
-			<< "|" << makeCenteredString("Interior material", interiorMaterialLabelLength)
-			<< "|" << makeCenteredString("Mealeage", mealeageLableLength)
-			<< "|" << makeCenteredString("Price", priceLabelLength)
-			<< "|" << makeCenteredString("Reserve status", reserveStatusLabelLength)
-			<< "|" << endl;
-
-		drawSolidLine(solidLineLength);
+		CarPrinter::showHeader();
 
 		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
 		{
@@ -284,7 +237,7 @@ void ItemSelection<T>::showItems()
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(solidLineLength);
+		drawSolidLine(CarPrinter::getSolidLineLength());
 	}
 }
 

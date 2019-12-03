@@ -3,13 +3,14 @@
 
 
 #include "ItemSelection.h"
-#include "AccountAddMenu.h"
 #include "AccountEditMenu.h"
 #include "AccountTypeMenu.h"
 
 #include "Account.h"
 #include "Admin.h"
 #include "User.h"
+
+#include "AccountPrinter.h"
 
 using namespace std;
 
@@ -26,14 +27,13 @@ public:
 	// Gets
     static Account* getAccount(string &username);
 	static Account* getAccount(unsigned index);
+	static Account* getCurrentAccount();
+	static vector<Account> getAccounts();
+	static vector<Account> getUsers();
 	static unsigned getAccountIndex(string& username);
 	static unsigned getAccountIndex(Account& account);
 	static bool getShowPasswordStatus();
 	static bool getAdminAccessStatus();
-
-	// Calculate
-	static unsigned calculatePasswordMaxLength();
-	static unsigned calculateUsernameMaxLength();
 
 	// Count
 	static unsigned countAccounts();
@@ -45,12 +45,15 @@ public:
 	static void setShowPasswordStatus(bool showPasswordStatus);
 
 	// Change
-	static void resetShowPasswordStatus();
 	static void invertShowPasswordStatus();
+	static void resetShowPasswordStatus();
 	static void resetAccountToEdit();
-	static void inputNewUsername();
-	static void inputNewPassword();
-	static void changeAdminAccess();
+	static void resetCurrentAccount();
+
+	// Edit
+	static void editUsername();
+	static void editPassword();
+	static void editAdminAccess();
 
 	// Functional
 	static bool auth();
@@ -69,8 +72,14 @@ private:
 	static bool showPasswordStatus_;
 	static bool adminAccessStatus_;
 	static Account* accountToEdit_;
+	static Account* currentAccount_;
+
+	// Limits
 	const static unsigned passwordLengthInputLimit = 20;
 	const static unsigned usernameLengthInputLimit = 20;
+
+	// Files
+	static void rewriteAccountsFile();
 };
 
 

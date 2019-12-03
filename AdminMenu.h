@@ -7,12 +7,13 @@
 
 namespace AdminMenuAction
 {
-	enum
+	enum 
 	{
 		ACCOUNT_MANAGEMENT = 1,
 		ADD_CAR,
 		SHOW_CARS,
 		DELETE_CAR,
+		EDIT_CAR,
 		BACK
 	};
 }

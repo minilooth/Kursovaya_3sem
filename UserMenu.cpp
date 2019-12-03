@@ -1,11 +1,11 @@
 #include "UserMenu.h"
 
-unsigned UserMenu::choice_ = UserMenuAction::NEW_CARS;
+unsigned UserMenu::choice_ = UserMenuAction::SHOW_ALL_CARS;
 
 UserMenu::UserMenu()
 {
     title_ = "Main menu: ";
-    items_ = { "New cars.", "Cars for sale.", "Find car.", "Back." };
+    items_ = { "Show all cars.", "Reserve new car.", "Reserve used car.", "Show account reserved cars.", "Find car.", "Back." };
 }
 
 UserMenu::UserMenu(string& title, vector<string>& items)
@@ -16,7 +16,7 @@ UserMenu::UserMenu(string& title, vector<string>& items)
 
 void UserMenu::resetChoice()
 {
-    choice_ = UserMenuAction::NEW_CARS;
+    choice_ = UserMenuAction::SHOW_ALL_CARS;
 }
 
 ConsoleMenu* UserMenu::getNextMenu()
@@ -25,25 +25,32 @@ ConsoleMenu* UserMenu::getNextMenu()
 
     switch (selectMode())
     {
-	case UserMenuAction::NEW_CARS :
-		//CarHandler::showCars();
-		CarHandler::showNewCars();
-            newMenu = this;
-            break;
-	case UserMenuAction::CARS_FOR_SALE :
-		CarHandler::showCarsForSale();
-            newMenu = this;
-            break;
+	case UserMenuAction::SHOW_ALL_CARS :
+		CarHandler::showCars();
+		newMenu = this;
+		break;
+	case UserMenuAction::RESERVE_NEW_CAR :
+		CarHandler::reserveNewCar();
+	    newMenu = this;
+		break;
+	case UserMenuAction::RESERVE_USED_CAR :
+		CarHandler::reserveUsedCar();
+        newMenu = this;
+		break;
+	case UserMenuAction::SHOW_ACCOUNT_RESERVED_CARS :
+		CarHandler::showAccountReservedCars();
+		newMenu = this;
+		break;
 	case UserMenuAction::FIND_CAR :
-		//CarHandler::findCar();
 		newMenu = this;
 		break;
 	case UserMenuAction::BACK :
-            this->resetChoice();
-            newMenu = new LoginMenu();
-            break;
-        default:
-            break;
+		this->resetChoice();
+		AccountHandler::resetCurrentAccount();
+		newMenu = new LoginMenu();
+		break;
+    default:
+        break;
     }
 
     return newMenu;
@@ -58,15 +65,14 @@ unsigned UserMenu::selectMode()
         system("cls");
 
 		showTitle();
-
         showItems();
 
 		VP_GetCh(key);
 
         switch (key.wVirtualKeyCode)
         {
-            case VK_UP:
-				if (choice_ < UserMenuAction::NEW_CARS)
+            case VK_UP :
+				if (choice_ < UserMenuAction::RESERVE_NEW_CAR)
 				{
 					choice_ = items_.size();
 				}
@@ -75,17 +81,19 @@ unsigned UserMenu::selectMode()
 					choice_--;
 				}
                 break;
-            case VK_DOWN:
+            case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = UserMenuAction::NEW_CARS;
+					choice_ = UserMenuAction::SHOW_ALL_CARS;
 				}
 				else
 				{
 					choice_++;
 				}
                 break;
-            case VK_RETURN:
+			case VK_ESCAPE :
+				return UserMenuAction::BACK;
+            case VK_RETURN :
                 return choice_;
             default:
                 break;

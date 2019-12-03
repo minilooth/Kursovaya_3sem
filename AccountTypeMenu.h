@@ -4,11 +4,13 @@
 
 #include "ConsoleMenu.h"
 
+
 enum AccountType
 {
 	ADMIN = 1,
 	USER
 };
+
 
 class AccountTypeMenu : virtual public ConsoleMenu
 {

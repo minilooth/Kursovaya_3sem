@@ -33,14 +33,13 @@ unsigned AccountTypeMenu::selectMode()
 		system("cls");
 
 		showTitle();
-
 		showItems();
 
 		VP_GetCh(key);
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_DOWN:
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = AccountType::ADMIN;
@@ -50,7 +49,7 @@ unsigned AccountTypeMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_UP:
+		case VK_UP :
 			if (choice_ < AccountType::USER)
 			{
 				choice_ = items_.size();
@@ -60,7 +59,9 @@ unsigned AccountTypeMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE :
+			return 0;
+		case VK_RETURN :
 			return choice_;
 		default:
 			break;

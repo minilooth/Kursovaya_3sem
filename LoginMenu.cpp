@@ -75,7 +75,7 @@ unsigned LoginMenu::selectMode()
 
         switch (key.wVirtualKeyCode)
         {
-            case VK_UP:
+            case VK_UP :
 				if (choice_ < LoginMenuAction::BY_ADMIN)
 				{
 					choice_ = items_.size();
@@ -85,7 +85,7 @@ unsigned LoginMenu::selectMode()
 					choice_--;
 				}
                 break;
-            case VK_DOWN:
+            case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
 					choice_ = LoginMenuAction::BY_USER;
@@ -95,7 +95,9 @@ unsigned LoginMenu::selectMode()
 					choice_++;
 				}
                 break;
-            case VK_RETURN:
+			case VK_ESCAPE :
+				return 0;
+            case VK_RETURN :
                 return choice_;
             default:
                 break;

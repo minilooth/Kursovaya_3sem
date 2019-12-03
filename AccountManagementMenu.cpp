@@ -1,6 +1,6 @@
 #include "AccountManagementMenu.h"
 
-unsigned AccountManagementMenu::choice_ = AccountManagementMenuAction::ACCOUNTS_SHOW;
+unsigned AccountManagementMenu::choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
 
 AccountManagementMenu::AccountManagementMenu()
 {
@@ -16,7 +16,7 @@ AccountManagementMenu::AccountManagementMenu(string& title, vector<string>& item
 
 void AccountManagementMenu::resetChoice()
 {
-	choice_ = AccountManagementMenuAction::ACCOUNTS_SHOW;
+	choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
 }
 
 ConsoleMenu* AccountManagementMenu::getNextMenu()
@@ -25,18 +25,18 @@ ConsoleMenu* AccountManagementMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case AccountManagementMenuAction::ACCOUNTS_SHOW:
+	case AccountManagementMenuAction::SHOW_ACCOUNTS:
 		newMenu = new AccountShowMenu();
 		break;
-	case AccountManagementMenuAction::ACCOUNT_ADD:
+	case AccountManagementMenuAction::ADD_ACCOUNT:
 		AccountHandler::addAccount();
 		newMenu = this;
 		break;
-	case AccountManagementMenuAction::ACCOUNT_DELETE:
+	case AccountManagementMenuAction::DELETE_ACCOUNT:
 		AccountHandler::deleteAccount();
 		newMenu = this;
 		break;
-	case AccountManagementMenuAction::ACCOUNT_EDIT:
+	case AccountManagementMenuAction::EDIT_ACCOUNT:
 		AccountHandler::editAccount();
 		newMenu = this;
 		AccountHandler::resetAccountToEdit();
@@ -67,8 +67,8 @@ unsigned AccountManagementMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_UP:
-			if (choice_ < AccountManagementMenuAction::ACCOUNT_ADD)
+		case VK_UP :
+			if (choice_ < AccountManagementMenuAction::ADD_ACCOUNT)
 			{
 				choice_ = items_.size();
 			}
@@ -77,17 +77,19 @@ unsigned AccountManagementMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_DOWN:
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountManagementMenuAction::ACCOUNTS_SHOW;
+				choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
 			}
 			else
 			{
 				choice_++;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE :
+			return AccountManagementMenuAction::BACK;
+		case VK_RETURN :
 			return choice_;
 		default:
 			break;

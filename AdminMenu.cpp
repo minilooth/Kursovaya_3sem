@@ -5,7 +5,7 @@ unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 AdminMenu::AdminMenu()
 {
     title_ = "Admin main menu:";
-    items_ = { "Account management.", "Add car.", "Show cars.", "Delete car.", "Back." };
+    items_ = { "Account management.", "Add car.", "Show cars.", "Delete car.", "Edit car.", "Back." };
 }
 
 AdminMenu::AdminMenu(string& title, vector<string>& items)
@@ -40,8 +40,14 @@ ConsoleMenu* AdminMenu::getNextMenu()
 			CarHandler::deleteCar();
 			newMenu = this;
 			break;
+		case AdminMenuAction::EDIT_CAR :
+			CarHandler::editCar();
+			CarHandler::resetCarToEdit();
+			newMenu = this;
+			break;
 		case AdminMenuAction::BACK :
             this->resetChoice();
+			AccountHandler::resetCurrentAccount();
             newMenu = new LoginMenu();
             break;
         default:
@@ -65,7 +71,7 @@ unsigned AdminMenu::selectMode()
 
         switch (key.wVirtualKeyCode)
         {
-            case VK_UP:
+            case VK_UP :
 				if (choice_ < AdminMenuAction::ADD_CAR)
 				{
 					choice_ = items_.size();
@@ -75,7 +81,7 @@ unsigned AdminMenu::selectMode()
 					choice_--;
 				}
                 break;
-            case VK_DOWN:
+            case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
 					choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
@@ -85,7 +91,9 @@ unsigned AdminMenu::selectMode()
 					choice_++;
 				}
                 break;
-            case VK_RETURN:
+			case VK_ESCAPE :
+				return AdminMenuAction::BACK;
+            case VK_RETURN :
                 return choice_;
             default:
                 break;

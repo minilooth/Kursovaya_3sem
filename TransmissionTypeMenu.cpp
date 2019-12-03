@@ -38,7 +38,7 @@ unsigned TransmissionTypeMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_RIGHT:
+		case VK_RIGHT :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = TransmissionType::MANUAL;
@@ -48,7 +48,7 @@ unsigned TransmissionTypeMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_LEFT:
+		case VK_LEFT :
 			if (choice_ < TransmissionType::AUTOMATIC)
 			{
 				choice_ = items_.size();
@@ -58,7 +58,9 @@ unsigned TransmissionTypeMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE :
+			return 0;
+		case VK_RETURN : 
 			return choice_;
 		default:
 			break;

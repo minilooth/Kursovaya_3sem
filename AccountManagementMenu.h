@@ -10,10 +10,10 @@ namespace AccountManagementMenuAction
 {
 	enum
 	{
-		ACCOUNTS_SHOW = 1,
-		ACCOUNT_ADD,
-		ACCOUNT_DELETE,
-		ACCOUNT_EDIT,
+		SHOW_ACCOUNTS = 1,
+		ADD_ACCOUNT,
+		DELETE_ACCOUNT,
+		EDIT_ACCOUNT,
 		BACK
 	};
 }

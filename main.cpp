@@ -9,6 +9,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
     system("color 0B");
+	//system("mode con cols=128 lines=32");
 
 	CarHandler* carHandler = new CarHandler();
     AccountHandler *accountHandler = new AccountHandler();
@@ -18,8 +19,6 @@ int main()
     {
         currentMenu = currentMenu->getNextMenu();
     }
-
-    system("pause");
 
 	delete accountHandler;
 	delete carHandler;

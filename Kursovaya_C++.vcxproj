@@ -19,15 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AccountPrinter.cpp" />
     <ClCompile Include="AccountTypeMenu.cpp" />
     <ClCompile Include="AccountHandler.cpp" />
-    <ClCompile Include="AccountAddMenu.cpp" />
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="AdminMenu.cpp" />
     <ClCompile Include="BodyTypeMenu.cpp" />
     <ClCompile Include="Cabriolet.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="CarEditMenu.cpp" />
     <ClCompile Include="CarHandler.cpp" />
+    <ClCompile Include="CarPrinter.cpp" />
     <ClCompile Include="ConsoleMenu.cpp" />
     <ClCompile Include="AccountEditMenu.cpp" />
     <ClCompile Include="Crossover.cpp" />
@@ -50,18 +52,20 @@
     <ClCompile Include="TwoDoorCoupe.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserMenu.cpp" />
-    <ClCompile Include="WheelDriveMenu.cpp" />
+    <ClCompile Include="WheelDriveTypeMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccountPrinter.h" />
     <ClInclude Include="AccountTypeMenu.h" />
     <ClInclude Include="AccountHandler.h" />
-    <ClInclude Include="AccountAddMenu.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminMenu.h" />
     <ClInclude Include="BodyTypeMenu.h" />
     <ClInclude Include="Cabriolet.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="CarEditMenu.h" />
     <ClInclude Include="CarHandler.h" />
+    <ClInclude Include="CarPrinter.h" />
     <ClInclude Include="ConsoleMenu.h" />
     <ClInclude Include="AccountEditMenu.h" />
     <ClInclude Include="Crossover.h" />
@@ -85,7 +89,7 @@
     <ClInclude Include="TwoDoorCoupe.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserMenu.h" />
-    <ClInclude Include="WheelDriveMenu.h" />
+    <ClInclude Include="WheelDriveTypeMenu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

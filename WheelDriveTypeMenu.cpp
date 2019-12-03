@@ -1,30 +1,30 @@
-#include "WheelDriveMenu.h"
+#include "WheelDriveTypeMenu.h"
 
-unsigned WheelDriveMenu::choice_ = WheelDrive::FWD;
+unsigned WheelDriveTypeMenu::choice_ = WheelDriveType::FWD;
 
-WheelDriveMenu::WheelDriveMenu()
+WheelDriveTypeMenu::WheelDriveTypeMenu()
 {
-	title_ = "Wheel drive: ";
+	title_ = "Wheel drive type: ";
 	items_ = { "FWD", "RWD", "AWD" };
 }
 
-WheelDriveMenu::WheelDriveMenu(string& title, vector<string>& items)
+WheelDriveTypeMenu::WheelDriveTypeMenu(string& title, vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
 }
 
-void WheelDriveMenu::resetChoice()
+void WheelDriveTypeMenu::resetChoice()
 {
-	WheelDriveMenu::choice_ = WheelDrive::FWD;
+	WheelDriveTypeMenu::choice_ = WheelDriveType::FWD;
 }
 
-ConsoleMenu* WheelDriveMenu::getNextMenu()
+ConsoleMenu* WheelDriveTypeMenu::getNextMenu()
 {
 	return this;
 }
 
-unsigned WheelDriveMenu::selectMode()
+unsigned WheelDriveTypeMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
@@ -38,18 +38,18 @@ unsigned WheelDriveMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_RIGHT:
+		case VK_RIGHT :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = WheelDrive::FWD;
+				choice_ = WheelDriveType::FWD;
 			}
 			else
 			{
 				choice_++;
 			}
 			break;
-		case VK_LEFT:
-			if (choice_ < WheelDrive::RWD)
+		case VK_LEFT :
+			if (choice_ < WheelDriveType::RWD)
 			{
 				choice_ = items_.size();
 			}
@@ -58,7 +58,9 @@ unsigned WheelDriveMenu::selectMode()
 				choice_--;
 			}
 			break;
-		case VK_RETURN:
+		case VK_ESCAPE : 
+			return 0;
+		case VK_RETURN :
 			return choice_;
 		default:
 			break;
@@ -68,12 +70,12 @@ unsigned WheelDriveMenu::selectMode()
 	}
 }
 
-void WheelDriveMenu::showTitle()
+void WheelDriveTypeMenu::showTitle()
 {
 	cout << title_;
 }
 
-void WheelDriveMenu::showItems()
+void WheelDriveTypeMenu::showItems()
 {
 	for (unsigned i = 0; i < items_.size(); i++)
 	{
@@ -90,4 +92,4 @@ void WheelDriveMenu::showItems()
 	}
 }
 
-WheelDriveMenu::~WheelDriveMenu() = default;
+WheelDriveTypeMenu::~WheelDriveTypeMenu() = default;
