@@ -4,15 +4,15 @@ unsigned CarEditMenu::choice_ = CarEditMenuAction::EDIT_BRAND;
 
 CarEditMenu::CarEditMenu()
 {
-	title_ = "Car edit menu:";
+	title_ = "Меню редактирования автомобиля:";
 	items_ = { 
-			   "Edit brand.", "Edit model.", "Edit year of production.", "Edit body type.", "Edit transmission type", 
-			   "Edit wheel drive type.", "Edit engine type.", "Edit engine volume.", "Edit body color.", "Edit interior color.", 
-			   "Edit interior material.", "Edit mealeage.", "Edit price.", "Edit reserve status.", "Back." 
+			   "Редактировать марку.", "Редактировать модель.", "Редактировать год выпуска.", "Редактировать тип кузова.", "Редактировать КПП.", 
+			   "Редактировать привод.", "Редактировать тип двигателя.", "Редактировать объем двигателя.", "Редактировать цвет кузова.", "Редактировать цвет салона.", 
+			   "Редактировать материал салона.", "Редактировать пробег.", "Редактировать цену.", "Редактировать статус резерва.", "Редактировать резервирующий аккаунт.", "Назад." 
 			 };
 }
 
-CarEditMenu::CarEditMenu(string& title, vector<string>& items)
+CarEditMenu::CarEditMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -85,6 +85,10 @@ ConsoleMenu* CarEditMenu::getNextMenu()
 		CarHandler::editReserveStatus();
 		newMenu = this;
 		break;
+	case CarEditMenuAction::EDIT_RESERVER_USERNAME :
+		CarHandler::editReserverUsername();
+		newMenu = this;
+		break;
 	case CarEditMenuAction::BACK:
 		this->resetChoice();
 		break;
@@ -98,12 +102,13 @@ ConsoleMenu* CarEditMenu::getNextMenu()
 unsigned CarEditMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
+	system("cls");
+
+	CarHandler::showEditCar();
+
 	while (true)
 	{
-		system("cls");
-
-		CarHandler::showEditCar();
-
 		showTitle();
 
 		showItems();
@@ -139,12 +144,25 @@ unsigned CarEditMenu::selectMode()
 		default:
 			break;
 		}
+
+		if (items_.size() + 1)
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void CarEditMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void CarEditMenu::showItems()

@@ -1,0 +1,20 @@
+-----------------------------------------------------------------------------------
+                               Car sales report                                    
+-----------------------------------------------------------------------------------
+Brand:                                                                          BMW
+Model:                                                                     3 series
+Year of production:                                                            1995
+Transmission type:                                                           Manual
+Wheel drive type:                                                               RWD
+Engine type:                                                                 Petrol
+Engine volume:                                                                  2.8
+Body type:                                                           Two-door coupe
+Body color:                                                                    Gray
+Interior color:                                                               Black
+Interior material:                                                            Cloth
+Mealeage:                                                                 300000 km
+-----------------------------------------------------------------------------------
+Buyer:                                                                         user
+Price:                                                                        4500$
+-----------------------------------------------------------------------------------
+Date of sale:                                                       4.12.2019 15:57

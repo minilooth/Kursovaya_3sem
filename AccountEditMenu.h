@@ -9,9 +9,10 @@ namespace AccountEditMenuAction
 {
 	enum
 	{
-		CHANGE_USERNAME = 1,
-		CHANGE_PASSWORD,
-		CHANGE_ADMIN_ACCESS,
+		EDIT_USERNAME = 1,
+		EDIT_PASSWORD,
+		EDIT_ADMIN_ACCESS,
+		EDIT_BAN_STATUS,
 		BACK
 	};
 }
@@ -23,7 +24,7 @@ private:
 	static unsigned choice_;
 public:
 	AccountEditMenu();
-	AccountEditMenu(string& title, vector<string>& items);
+	AccountEditMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

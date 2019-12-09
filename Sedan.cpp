@@ -6,7 +6,7 @@ Sedan::Sedan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Sedan";
+	bodyType_ = "Седан";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ Sedan::Sedan(string& brand, string& model, unsigned yearOfProduction, string& tr
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Sedan";
+	bodyType_ = "Седан";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ Sedan::Sedan(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Sedan";
+	bodyType_ = "Седан";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

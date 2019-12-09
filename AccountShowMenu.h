@@ -25,7 +25,7 @@ private:
 	static unsigned maxPages_;
 public:
 	AccountShowMenu();
-	AccountShowMenu(string& title, vector<string>& items, string& tooltip, unsigned pageSize);
+	AccountShowMenu(const string& title, const vector<string>& items, const string& tooltip, unsigned pageSize);
 	unsigned selectMode();
 	void resetChoice();
 	static void resetMaxPages();

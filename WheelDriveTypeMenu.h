@@ -17,7 +17,7 @@ class WheelDriveTypeMenu : virtual public ConsoleMenu
 	static unsigned choice_;
 public:
 	WheelDriveTypeMenu();
-	WheelDriveTypeMenu(string& title, vector<string>& items);
+	WheelDriveTypeMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

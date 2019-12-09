@@ -1,14 +1,14 @@
 #include "AccountEditMenu.h"
 
-unsigned AccountEditMenu::choice_ = AccountEditMenuAction::CHANGE_USERNAME;
+unsigned AccountEditMenu::choice_ = AccountEditMenuAction::EDIT_USERNAME;
 
 AccountEditMenu::AccountEditMenu()
 {
-	title_ = "Account editing:";
-	items_ = { "Edit username.", "Edit password.", "Edit admin access.", "Back." };
+	title_ = "Редактирование аккаунта:";
+	items_ = { "Редактировать имя аккаунта.", "Редактировать пароль.", "Редактировать права администратора.", "Редактировать статус блокировки.", "Назад." };
 }
 
-AccountEditMenu::AccountEditMenu(string& title, vector<string>& items)
+AccountEditMenu::AccountEditMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -16,7 +16,7 @@ AccountEditMenu::AccountEditMenu(string& title, vector<string>& items)
 
 void AccountEditMenu::resetChoice()
 {
-	choice_ = AccountEditMenuAction::CHANGE_USERNAME;
+	choice_ = AccountEditMenuAction::EDIT_USERNAME;
 }
 
 ConsoleMenu* AccountEditMenu::getNextMenu()
@@ -25,16 +25,20 @@ ConsoleMenu* AccountEditMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case AccountEditMenuAction::CHANGE_USERNAME :
+	case AccountEditMenuAction::EDIT_USERNAME :
 		AccountHandler::editUsername();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::CHANGE_PASSWORD :
+	case AccountEditMenuAction::EDIT_PASSWORD :
 		AccountHandler::editPassword();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::CHANGE_ADMIN_ACCESS :
+	case AccountEditMenuAction::EDIT_ADMIN_ACCESS :
 		AccountHandler::editAdminAccess();
+		newMenu = this;
+		break;
+	case AccountEditMenuAction::EDIT_BAN_STATUS :
+		AccountHandler::editBanStatus();
 		newMenu = this;
 		break;
 	case AccountEditMenuAction::BACK :
@@ -50,14 +54,15 @@ ConsoleMenu* AccountEditMenu::getNextMenu()
 unsigned AccountEditMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
+	system("cls");
+
+	AccountHandler::showEditAccount();
+	
+	cout << endl;
+
 	while (true)
 	{
-		system("cls");
-
-		AccountHandler::showEditAccount();
-
-		cout << endl;
-
 		showTitle();
 		showItems();
 
@@ -66,7 +71,7 @@ unsigned AccountEditMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP :
-			if (choice_ < AccountEditMenuAction::CHANGE_PASSWORD)
+			if (choice_ < AccountEditMenuAction::EDIT_PASSWORD)
 			{
 				choice_ = items_.size();
 			}
@@ -78,7 +83,7 @@ unsigned AccountEditMenu::selectMode()
 		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountEditMenuAction::CHANGE_USERNAME;
+				choice_ = AccountEditMenuAction::EDIT_USERNAME;
 			}
 			else
 			{
@@ -92,12 +97,25 @@ unsigned AccountEditMenu::selectMode()
 		default:
 			break;
 		}
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void AccountEditMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void AccountEditMenu::showItems()

@@ -24,7 +24,7 @@ private:
     static unsigned choice_;
 public:
     LoginMenu();
-	LoginMenu(string& title, vector<string>& items);
+	LoginMenu(const string& title, const vector<string>& items);
     unsigned selectMode();
     void resetChoice();
 	void showTitle();

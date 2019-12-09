@@ -4,11 +4,11 @@ unsigned WheelDriveTypeMenu::choice_ = WheelDriveType::FWD;
 
 WheelDriveTypeMenu::WheelDriveTypeMenu()
 {
-	title_ = "Wheel drive type: ";
-	items_ = { "FWD", "RWD", "AWD" };
+	title_ = "Привод: ";
+	items_ = { "Передний", "Задний", "Полный" };
 }
 
-WheelDriveTypeMenu::WheelDriveTypeMenu(string& title, vector<string>& items)
+WheelDriveTypeMenu::WheelDriveTypeMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -38,7 +38,7 @@ unsigned WheelDriveTypeMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_RIGHT :
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = WheelDriveType::FWD;
@@ -48,7 +48,7 @@ unsigned WheelDriveTypeMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_LEFT :
+		case VK_UP :
 			if (choice_ < WheelDriveType::RWD)
 			{
 				choice_ = items_.size();
@@ -66,13 +66,25 @@ unsigned WheelDriveTypeMenu::selectMode()
 			break;
 		}
 
-		clearLine();
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
+
 	}
 }
 
 void WheelDriveTypeMenu::showTitle()
 {
 	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void WheelDriveTypeMenu::showItems()
@@ -82,12 +94,12 @@ void WheelDriveTypeMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
-			cout << "->" << items_.at(i) << "  ";
+			cout << "->" << items_.at(i) << endl;
 			setTextColor(Color::LIGHT_CYAN);
 		}
 		else
 		{
-			cout << "  " << items_.at(i) << "  ";
+			cout << "  " << items_.at(i) << endl;
 		}
 	}
 }

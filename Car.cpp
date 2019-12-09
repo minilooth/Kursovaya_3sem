@@ -192,20 +192,24 @@ ostream& operator<<(ostream& out, const Car& car)
 		<< "|" << left << setw(CarPrinter::getTransmissionTypeLabelLength()) << car.transmissionType_
 		<< "|" << left << setw(CarPrinter::getWheelDriveTypeLabelLength()) << car.wheelDriveType_
 		<< "|" << left << setw(CarPrinter::getEngineTypeLabelLength()) << car.engineType_
-		<< "|" << left << setw(CarPrinter::getEngineVolumeLabelLength()) << setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.engineVolume_
+
+		<< "|" << left << setw(calculateDoubleLength(car.engineVolume_, CarPrinter::getSignsAfterDotValue() + 1)) 
+		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.engineVolume_ << left 
+		<< setw((CarPrinter::getEngineVolumeLabelLength() - 1) - calculateDoubleLength(car.engineVolume_, CarPrinter::getSignsAfterDotValue())) << "л"
+
 		<< "|" << left << setw(CarPrinter::getBodyColorLabelLength()) << car.bodyColor_
 		<< "|" << left << setw(CarPrinter::getInteriorColorLabelLength()) << car.interiorColor_
 		<< "|" << left << setw(CarPrinter::getInteriorMaterialLabelLength()) << car.interiorMaterial_
 
 		<< "|" << left << setw(calculateDoubleLength(car.mealeage_, CarPrinter::getSignsAfterDotValue()) + 1)
 		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.mealeage_ << left
-		<< setw((CarPrinter::getMealeageLabelLength() - 1) - calculateDoubleLength(car.mealeage_, CarPrinter::getSignsAfterDotValue())) << "km"
+		<< setw((CarPrinter::getMealeageLabelLength() - 1) - calculateDoubleLength(car.mealeage_, CarPrinter::getSignsAfterDotValue())) << "км"
 
 		<< "|" << left << setw(calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue()) + 1)
 		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.price_ << left
 		<< setw((CarPrinter::getPriceLabelLength() - 1) - calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue())) << "$"
 
-		<< "|" << left << setw(CarPrinter::getReserveStatusLabelLength()) << (car.reserveStatus_ ? ("Reserved by " + car.reserverUsername_) : "Not reserved")
+		<< "|" << left << setw(CarPrinter::getReserveStatusLabelLength()) << (car.reserveStatus_ ? ("Зарезервирован " + car.reserverUsername_) : "Не зарезервирован")
 		<< "|";
 
 

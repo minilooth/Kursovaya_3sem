@@ -28,12 +28,14 @@
     <ClCompile Include="Cabriolet.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CarEditMenu.cpp" />
+    <ClCompile Include="CarFiltering.cpp" />
     <ClCompile Include="CarHandler.cpp" />
     <ClCompile Include="CarPrinter.cpp" />
     <ClCompile Include="ConsoleMenu.cpp" />
     <ClCompile Include="AccountEditMenu.cpp" />
     <ClCompile Include="Crossover.cpp" />
     <ClCompile Include="EngineTypeMenu.cpp" />
+    <ClCompile Include="FilteringMenu.cpp" />
     <ClCompile Include="FiveDoorHatchback.cpp" />
     <ClCompile Include="FiveSeatMinivan.cpp" />
     <ClCompile Include="FourDoorCoupe.cpp" />
@@ -44,14 +46,20 @@
     <ClCompile Include="AccountShowMenu.cpp" />
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountManagementMenu.cpp" />
+    <ClCompile Include="SearchingMenu.cpp" />
+    <ClCompile Include="SearchingSortingAndFilteringMenu.cpp" />
     <ClCompile Include="Sedan.cpp" />
     <ClCompile Include="SevenSeatMinivan.cpp" />
+    <ClCompile Include="SortingMenu.cpp" />
     <ClCompile Include="StationWagon.cpp" />
+    <ClCompile Include="StatisticsHandler.cpp" />
     <ClCompile Include="ThreeDoorHatchback.cpp" />
     <ClCompile Include="TransmissionTypeMenu.cpp" />
     <ClCompile Include="TwoDoorCoupe.cpp" />
+    <ClCompile Include="TypeOfSortingMenu.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserMenu.cpp" />
+    <ClCompile Include="AccountStatistics.cpp" />
     <ClCompile Include="WheelDriveTypeMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -64,12 +72,14 @@
     <ClInclude Include="Cabriolet.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="CarEditMenu.h" />
+    <ClInclude Include="CarFiltering.h" />
     <ClInclude Include="CarHandler.h" />
     <ClInclude Include="CarPrinter.h" />
     <ClInclude Include="ConsoleMenu.h" />
     <ClInclude Include="AccountEditMenu.h" />
     <ClInclude Include="Crossover.h" />
     <ClInclude Include="EngineTypeMenu.h" />
+    <ClInclude Include="FilteringMenu.h" />
     <ClInclude Include="FiveDoorHatchback.h" />
     <ClInclude Include="FiveSeatMinivan.h" />
     <ClInclude Include="FourDoorCoupe.h" />
@@ -81,14 +91,20 @@
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountManagementMenu.h" />
     <ClInclude Include="LongWheelbaseSedan.h" />
+    <ClInclude Include="SearchingMenu.h" />
+    <ClInclude Include="SearchingSortingAndFilteringMenu.h" />
     <ClInclude Include="Sedan.h" />
     <ClInclude Include="SevenSeatMinivan.h" />
+    <ClInclude Include="SortingMenu.h" />
     <ClInclude Include="StationWagon.h" />
+    <ClInclude Include="StatisticsHandler.h" />
     <ClInclude Include="ThreeDoorHatchback.h" />
     <ClInclude Include="TransmissionTypeMenu.h" />
     <ClInclude Include="TwoDoorCoupe.h" />
+    <ClInclude Include="TypeOfSortingMenu.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserMenu.h" />
+    <ClInclude Include="AccountStatistics.h" />
     <ClInclude Include="WheelDriveTypeMenu.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -164,6 +180,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -4,23 +4,23 @@ unsigned BodyTypeMenu::choice_ = BodyType::CROSSOVER;
 
 BodyTypeMenu::BodyTypeMenu()
 {
-	title_ = "Choose body type:";
-	items_ = { "Crossover.", 
-			   "Cabriolet.", 
-			   "Five-door hatchback.", 
-			   "Five-seat minivan.", 
-			   "Four-door coupe.", 
-			   "Long-wheelbase sedan.", 
-			   "Sedan.", 
-			   "Seven-seat minivan.", 
-			   "Station wagon.", 
-			   "Three-door hatchback.", 
-			   "Two-door coupe.", 
-			   "Back." 
+	title_ = "Выберите тип кузова:";
+	items_ = { "Кроссовер.", 
+			   "Кабриолет.", 
+			   "Хэтчбек 5 дв.", 
+			   "5 м. минивен.", 
+			   "4 дв. купе.", 
+			   "Длинный седан.", 
+			   "Седан.", 
+			   "7 м. минивен.", 
+			   "Универсал.", 
+			   "Хэтчбек 3 дв.", 
+			   "2 дв. купе.", 
+			   "Назад." 
 			 };
 }
 
-BodyTypeMenu::BodyTypeMenu(string& title, vector<string>& items)
+BodyTypeMenu::BodyTypeMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -39,7 +39,6 @@ ConsoleMenu* BodyTypeMenu::getNextMenu()
 unsigned BodyTypeMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
-
 	while (true)
 	{
 		showTitle();
@@ -78,18 +77,24 @@ unsigned BodyTypeMenu::selectMode()
 			break;
 		}
 
-		for (unsigned i = 0; i < items_.size() + 1; i++)
+		if (title_ != "")
 		{
-			clearLine();
-			moveCursorUpToNLines(1);
+			clearNLines(items_.size() + 1);
 		}
-
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void BodyTypeMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void BodyTypeMenu::showItems()

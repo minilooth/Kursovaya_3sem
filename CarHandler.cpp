@@ -53,57 +53,57 @@ CarHandler::CarHandler()
 				reserveStatus		= data.at(13) == "1" ? true : false;
 				reserverUsername	= data.at(14);
 
-				if (bodyType == "Crossover")
+				if (bodyType == "Кроссовер")
 				{
 					car = new Crossover(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 										interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Cabriolet")
+				else if (bodyType == "Кабриолет")
 				{
 					car = new Cabriolet(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 										interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Five-door hatchback")
+				else if (bodyType == "Хэтчбэк 5 дв.")
 				{
 					car = new FiveDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 												interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Five-seat minivan")
+				else if (bodyType == "5 м. минивен")
 				{
 					car = new FiveSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 											  interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Four-door coupe")
+				else if (bodyType == "4 дв. купе")
 				{
 					car = new FourDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 											interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Long-wheelbase sedan")
+				else if (bodyType == "Длинный седан")
 				{
 					car = new LongWheelbaseSedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 												 interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Sedan")
+				else if (bodyType == "Седан")
 				{
 					car = new Sedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 									interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Seven-seat minivan")
+				else if (bodyType == "7 м. минивен")
 				{
 					car = new SevenSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 											   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Station wagon")
+				else if (bodyType == "Универсал")
 				{
 					car = new StationWagon(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 										   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Three-door hatchback")
+				else if (bodyType == "Хэтчбэк 3 дв.")
 				{
 					car = new ThreeDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 												 interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Two-door coupe")
+				else if (bodyType == "2 дв. купе")
 				{
 					car = new TwoDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
 										   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
@@ -165,57 +165,57 @@ CarHandler::CarHandler(string fileName)
 				reserveStatus		= data.at(13) == "1" ? true : false;
 				reserverUsername	= data.at(14);
 
-				if (bodyType == "Crossover")
+				if (bodyType == "Кроссовер")
 				{
 					car = new Crossover(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Cabriolet")
+				else if (bodyType == "Кабриолет")
 				{
 					car = new Cabriolet(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Five-door hatchback")
+				else if (bodyType == "Хэтчбэк 5 дв.")
 				{
 					car = new FiveDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Five-seat minivan")
+				else if (bodyType == "5 м. минивен")
 				{
 					car = new FiveSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Four-door coupe")
+				else if (bodyType == "4 дв. купе")
 				{
 					car = new FourDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Long wheel-base sedan")
+				else if (bodyType == "Длинный седан")
 				{
 					car = new LongWheelbaseSedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Sedan")
+				else if (bodyType == "Седан")
 				{
 					car = new Sedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Seven-seat minivan")
+				else if (bodyType == "7 м. минивен")
 				{
 					car = new SevenSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Station wagon")
+				else if (bodyType == "Универсал")
 				{
 					car = new StationWagon(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else if (bodyType == "Three-door hatchback")
+				else if (bodyType == "Хэтчбэк 3 дв.")
 				{
 					car = new ThreeDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
 				}
-				else
+				else if (bodyType == "2 дв. купе")
 				{
 					car = new TwoDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
 						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
@@ -263,35 +263,100 @@ void CarHandler::rewriteCarsFile()
 	}
 }
 
-void CarHandler::createReport(Car car)
+string CarHandler::createReport(Car& car)
 {
 	time_t time = std::time(0);
 	tm* now = std::localtime(&time);
 
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "                               Car sales report                                    " << endl;
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "Brand: " << car.getBrand() << endl;
-	cout << "Model: " << car.getModel() << endl;
-	cout << "Year of production: " << car.getYearOfProduction() << endl;
-	cout << "Transmission type: " << car.getTransmissionType() << endl;
-	cout << "Wheel drive type: " << car.getWheelDriveType() << endl;
-	cout << "Engine type: " << car.getEngineType() << endl;
-	cout << "Engine volume: " << car.getEngineVolume() << endl;
-	cout << "Body type: " << car.getBodyType() << endl;
-	cout << "Body color: " << car.getBodyColor() << endl;
-	cout << "Interior color: " << car.getInteriorColor() << endl;
-	cout << "Interior material: " << car.getInteriorMaterial() << endl;
-	cout << "Mealeage: " << car.getMealeage() << endl;
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "Buyer: " << car.getReserverUsername() << " Price: " << car.getPrice() << endl;
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "Date of sale: " << now->tm_wday << "."
-							 << (now->tm_mon + 1) << "."
-							 << (now->tm_year + 1900) << " "
-							 << now->tm_hour << ":"
-							 << now->tm_min
-		 << endl;
+	ofstream report;
+	string path = "Checks/";
+	string filename = to_string(now->tm_mday) + "-" + to_string(now->tm_mon + 1) + "-" + to_string(now->tm_year + 1900) + " " + 
+					  to_string(now->tm_hour) + "." + to_string(now->tm_min) + "." + to_string(now->tm_sec) + ".txt";
+
+	string currentDate = to_string(now->tm_mday) + "." + to_string(now->tm_mon + 1) + "." + to_string(now->tm_year + 1900) + " " +
+						 to_string(now->tm_hour) + ":" + to_string(now->tm_min);
+
+	if (!filesystem::exists(path))
+	{
+		filesystem::create_directory(path);
+	}
+
+	report.open(path + filename);
+
+	if (report.is_open())
+	{
+		report << "-----------------------------------------------------------------------------------" << endl
+			   << makeCenteredString("Чек о продаже автомобиля", 83) << endl
+			   << "-----------------------------------------------------------------------------------" << endl
+			   << "Марка:" << setw(77) << right << car.getBrand() << endl
+			   << "Модель:" << setw(76) << right << car.getModel() << endl
+			   << "Год выпуска:" << setw(71) << right << car.getYearOfProduction() << endl
+			   << "КПП:" << setw(80) << right << car.getTransmissionType() << endl
+			   << "Привод:" << setw(76) << right << car.getWheelDriveType() << endl
+			   << "Тип двигателя:" << setw(69) << right << car.getEngineType() << endl
+			   << "Объем двигателя:" << setw(67) << right << car.getEngineVolume() << endl
+			   << "Тип кузова:" << setw(72) << right << car.getBodyType() << endl
+			   << "Цвет кузова:" << setw(71) << right << car.getBodyColor() << endl
+			   << "Цвет салона:" << setw(71) << right << car.getInteriorColor() << endl
+			   << "Материал салона:" << setw(67) << right << car.getInteriorMaterial() << endl
+			   << "Пробег:" << setw(76) << right << car.getMealeage() << " km" << endl
+			   << "-----------------------------------------------------------------------------------" << endl
+			   << "Покупатель:" << setw(72) << right << car.getReserverUsername() << endl
+			   << "Цена:" << setw(78) << right << car.getPrice() << "$" << endl
+			   << "-----------------------------------------------------------------------------------" << endl
+			   << "Дата продажи:" << setw(70) << right << currentDate << endl;
+
+		report.close();
+	}
+
+	return (path + filename);
+}
+
+// Equal
+bool CarHandler::isBodyTypesNotEqual(Car& car)
+{
+	return car.getBodyType() != CarFiltering::getBodyTypeFilter();
+}
+
+bool CarHandler::isTransmissionTypesNotEqual(Car& car)
+{
+	return car.getTransmissionType() != CarFiltering::getTransmissionTypeFilter();
+}
+
+bool CarHandler::isWheelDriveTypesNotEqual(Car& car)
+{
+	return car.getWheelDriveType() != CarFiltering::getWheelDriveTypeFilter();
+}
+
+// Compare
+bool CarHandler::compareYearsOfProductionsAscending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getYearOfProduction() > secondCar.getYearOfProduction();
+}
+
+bool CarHandler::compareYearsOfProductionsDescending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getYearOfProduction() < secondCar.getYearOfProduction();
+}
+
+bool CarHandler::compareEngineVolumesAscending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getEngineVolume() > secondCar.getEngineVolume();
+}
+
+bool CarHandler::compareEngineVolumesDescending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getEngineVolume() < secondCar.getEngineVolume();
+}
+
+bool CarHandler::comparePricesAscending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getPrice() > secondCar.getPrice();
+}
+
+bool CarHandler::comparePricesDescending(Car& firstCar, Car& secondCar)
+{
+	return firstCar.getPrice() < secondCar.getPrice();
 }
 
 // Reset
@@ -310,6 +375,172 @@ void CarHandler::resetReservedCarsByUsername(string username)
 		}
 	}
 	rewriteCarsFile();
+}
+
+// Set
+void CarHandler::setFilterByBodyType()
+{
+	ConsoleMenu* menu = new BodyTypeMenu();
+
+	if (CarFiltering::getBodyTypeFilterStatus() == false)
+	{
+		system("cls");
+
+		switch (menu->selectMode())
+		{
+		case BodyType::CROSSOVER:
+			CarFiltering::setBodyTypeFilter("Кроссовер");
+			break;
+		case BodyType::CABRIOLET:
+			CarFiltering::setBodyTypeFilter("Кабриолет");
+			break;
+		case BodyType::FIVE_DOOR_HATCHBACK:
+			CarFiltering::setBodyTypeFilter("Хэтчбек 5 дв.");
+			break;
+		case BodyType::FIVE_SEAT_MINIVAN:
+			CarFiltering::setBodyTypeFilter("5 м. минивен");
+			break;
+		case BodyType::FOUR_DOOR_COUPE:
+			CarFiltering::setBodyTypeFilter("4 дв. купе");
+			break;
+		case BodyType::LONG_WHEEL_BASE_SEDAN:
+			CarFiltering::setBodyTypeFilter("Длинный седан");
+			break;
+		case BodyType::SEDAN:
+			CarFiltering::setBodyTypeFilter("Седан");
+			break;
+		case BodyType::SEVEN_SEAT_MINIVAN:
+			CarFiltering::setBodyTypeFilter("7 м. минивен");
+			break;
+		case BodyType::STATION_WAGON:
+			CarFiltering::setBodyTypeFilter("Универсал");
+			break;
+		case BodyType::THREE_DOOR_HATCHBACK:
+			CarFiltering::setBodyTypeFilter("Хэтчбек 3 дв.");
+			break;
+		case BodyType::TWO_DOOR_COUPE:
+			CarFiltering::setBodyTypeFilter("2 дв. купе");
+			break;
+		default:
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+	}
+	else
+	{
+		CarFiltering::resetBodyTypeFilter();
+	}
+
+	system("cls");
+
+	setTextColor(Color::LIGHT_GREEN);
+	if (CarFiltering::getBodyTypeFilterStatus() == false)
+	{
+		cout << "Фильтр успешно удален!" << endl << endl;
+	}
+	else
+	{
+		cout << "Фильтр успешно установлен!" << endl << endl;
+	}
+	setTextColor(Color::LIGHT_CYAN);
+
+	system("pause");
+}
+
+void CarHandler::setFilterByWheelDriveType()
+{
+	ConsoleMenu* menu = new WheelDriveTypeMenu("Тип привода:", { "Передний.", "Задний.", "Полный.", "Назад." });
+
+	if (CarFiltering::getWheelDriveTypeFilterStatus() == false)
+	{
+		system("cls");
+
+		switch (menu->selectMode())
+		{
+		case WheelDriveType::FWD:
+			CarFiltering::setWheelDriveTypeFilter("Передний");
+			break;
+		case WheelDriveType::RWD:
+			CarFiltering::setWheelDriveTypeFilter("Задний");
+			break;
+		case WheelDriveType::AWD:
+			CarFiltering::setWheelDriveTypeFilter("Полный");
+			break;
+		default:
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+	}
+	else
+	{
+		CarFiltering::resetWheelDriveTypeFilter();
+	}
+
+	system("cls");
+
+	setTextColor(Color::LIGHT_GREEN);
+	if (CarFiltering::getWheelDriveTypeFilterStatus() == false)
+	{
+		cout << "Фильтр успешно удален!" << endl << endl;
+	}
+	else
+	{
+		cout << "Фильтр успешно установлен!" << endl << endl;
+	}
+	setTextColor(Color::LIGHT_CYAN);
+
+	system("pause");
+}
+
+void CarHandler::setFilterByTransmissionType()
+{
+	ConsoleMenu* menu = new TransmissionTypeMenu("Тип КПП:", { "Механическая.", "Автоматическая.", "Назад." });
+
+	if (CarFiltering::getTransmissionTypeFilterStatus() == false)
+	{
+		system("cls");
+
+		switch (menu->selectMode())
+		{
+		case TransmissionType::MANUAL:
+			CarFiltering::setTransmissionTypeFilter("Механическая");
+			break;
+		case TransmissionType::AUTOMATIC:
+			CarFiltering::setTransmissionTypeFilter("Автоматическая");
+			break;
+		default:
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();;
+		delete menu;
+	}
+	else
+	{
+		CarFiltering::resetTransmissionTypeFilter();
+	}
+
+	system("cls");
+
+	setTextColor(Color::LIGHT_GREEN);
+	if (CarFiltering::getTransmissionTypeFilterStatus() == false)
+	{
+		cout << "Фильтр успешно удален!" << endl << endl;
+	}
+	else
+	{
+		cout << "Фильтр успешно установлен!" << endl << endl;
+	}
+	setTextColor(Color::LIGHT_CYAN);
+
+	system("pause");
 }
 
 // Count
@@ -378,6 +609,356 @@ unsigned CarHandler::countReservedCars()
 	return counter;
 }
 
+// Search
+void CarHandler::searchByBrand()
+{
+	string brand;
+
+	try
+	{
+		system("cls");
+
+		cout << "Введите марку: ";
+		if (limitedInput(brand, brandMaxInputLength) == false)
+		{
+			return;
+		}
+
+		if (brand.length() < 3)
+		{
+			throw exception("Марка должна быть как минимум три символа в длину!");
+		}
+
+		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
+		{
+			throw exception("Марка должна состоять только из букв!");
+		}
+
+		auto cars = getCarsByBrand(brand);
+
+		if (cars.size() == 0)
+		{
+			throw exception("Не найдено ни одного автомобиля!");
+		}
+
+		system("cls");
+
+		cout << "Были найдены автомобили: " << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void CarHandler::searchByModel()
+{
+	string model;
+
+	try
+	{
+		system("cls");
+
+		cout << "Введите модель: ";
+		if (limitedInput(model, modelMaxInputLength) == false)
+		{
+			return;
+		}
+
+		if (model.length() < 2)
+		{
+			throw exception("Модель должна быть как минимум два символа в длину!");
+		}
+
+		if (model.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 1234567890") != string::npos)
+		{
+			throw exception("Модель должна состоять только из цифр и букв латинского алфавита!");
+		}
+
+		auto cars = getCarsByModel(model);
+
+		if (cars.size() == 0)
+		{
+			throw exception("Не найдено ни одного автомобиля!");
+		}
+
+		system("cls");
+
+		cout << "Были найдены автомобили: " << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void CarHandler::searchByYearOfProduction()
+{
+	string yearOfProduction;
+
+	try
+	{
+		system("cls");
+
+		cout << "Введите новый год выпуска: ";
+		if (limitedInput(yearOfProduction, yearOfProductionMaxInputLength) == false)
+		{
+			return;
+		}
+
+		if (yearOfProduction.length() < 4)
+		{
+			throw exception("Год выпуска должен быть минимум четыре символа в длину!");
+		}
+		if (yearOfProduction.find_first_not_of("1234567890") != string::npos)
+		{
+			throw exception("Год выпуска должен состоять только из цифр!");
+		}
+		if (stoul(yearOfProduction) < 1900 || stoul(yearOfProduction) > 2020)
+		{
+			throw exception("Год выпуска должен быть больше чем 1900 и меньше чем 2020!");
+		}
+
+		auto cars = getCarsByYearOfProduction(stoul(yearOfProduction));
+
+		if (cars.size() == 0)
+		{
+			throw exception("Не найдено ни одного автомобиля!");
+		}
+
+		system("cls");
+
+		cout << "Были найдены автомобили: " << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void CarHandler::searchByEngineType()
+{
+	ConsoleMenu* menu = nullptr;
+
+	string engineType;
+
+	try
+	{
+		system("cls");
+
+		menu = new EngineTypeMenu("Выберите тип двигателя: ", { "Бензиновый.", "Дизельный.", "Назад." });
+
+		switch (menu->selectMode())
+		{
+		case EngineType::PETROL:
+			engineType = "Бензиновый";
+			break;
+		case EngineType::DIESEL:
+			engineType = "Дизельный";
+			break;
+		default:
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+
+		auto cars = getCarsByEngineType(engineType);
+
+		if (cars.size() == 0)
+		{
+			throw exception("Не найдено ни одного автомобиля!");
+		}
+
+		system("cls");
+
+		cout << "Были найдены автомобили: " << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+// Sorting
+void CarHandler::sortByYearOfProduction()
+{
+	ConsoleMenu* menu = nullptr;
+
+	try
+	{
+		auto cars = getCars();
+		if (cars.size() == 0)
+		{
+			throw exception("Список автомобилей пуст!");
+		}
+
+		menu = new TypeOfSortingMenu();
+
+		switch (menu->selectMode())
+		{
+		case TypeOfSortingMenuAction::ASCENDING :
+			sort(cars.begin(), cars.end(), compareYearsOfProductionsAscending);
+			break;
+		case TypeOfSortingMenuAction::DESCENDING :
+			sort(cars.begin(), cars.end(), compareYearsOfProductionsDescending);
+			break;
+		case TypeOfSortingMenuAction::BACK :
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+
+		system("cls");
+
+		cout << "Автомобили, отсортированные по году выпуска по убыванию:" << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void CarHandler::sortByEngineVolume()
+{
+	ConsoleMenu* menu = nullptr;
+
+	try
+	{
+		auto cars = getCars();
+		if (cars.size() == 0)
+		{
+			throw exception("Список автомобилей пуст!");
+		}
+
+		menu = new TypeOfSortingMenu();
+
+		switch (menu->selectMode())
+		{
+		case TypeOfSortingMenuAction::ASCENDING :
+			sort(cars.begin(), cars.end(), compareEngineVolumesAscending);
+			break;
+		case TypeOfSortingMenuAction::DESCENDING :
+			sort(cars.begin(), cars.end(), compareEngineVolumesDescending);
+			break;
+		case TypeOfSortingMenuAction::BACK :
+			menu->resetChoice();
+			delete menu;
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+
+		system("cls");
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void CarHandler::sortByPrice()
+{
+	ConsoleMenu* menu = nullptr;
+	try
+	{
+		auto cars = getCars();
+		if (cars.size() == 0)
+		{
+			throw exception("Список автомобилей пуст!");
+		}
+
+		menu = new TypeOfSortingMenu();
+
+		switch (menu->selectMode())
+		{
+		case TypeOfSortingMenuAction::ASCENDING :
+			sort(cars.begin(), cars.end(), comparePricesAscending);
+			break;
+		case TypeOfSortingMenuAction::DESCENDING : 
+			sort(cars.begin(), cars.end(), comparePricesDescending);
+			break;
+		case TypeOfSortingMenuAction::BACK :
+			menu->resetChoice();
+			return;
+		}
+		menu->resetChoice();
+		delete menu;
+
+		system("cls");
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
 // Edit
 void CarHandler::editBrand()
 {
@@ -387,14 +968,14 @@ void CarHandler::editBrand()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new brand: ";
+		cout << "Введите новую марку: ";
 		if (limitedInput(brand, brandMaxInputLength) == false)
 		{
 			return;
@@ -402,24 +983,24 @@ void CarHandler::editBrand()
 
 		if (brand.length() < 3)
 		{
-			throw exception("Brand should be at least three characters long!");
+			throw exception("Марка должна быть как минимум три символа в длину!");
 		}
 
-		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ") != string::npos)
+		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Brand should only consists of letters!");
+			throw exception("Марка должна состоять только из букв!");
 		}
 
 		carToEdit_->setBrand(brand);
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Brand has succesfully changed!" << endl << endl;
+		cout << "Марка успешно изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -430,7 +1011,7 @@ void CarHandler::editBrand()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Brand has not changed!" << endl << endl;
+		cout << "Марка не изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -445,14 +1026,14 @@ void CarHandler::editModel()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new model: ";
+		cout << "Введите новую модель: ";
 		if (limitedInput(model, modelMaxInputLength) == false)
 		{
 			return;
@@ -460,24 +1041,24 @@ void CarHandler::editModel()
 
 		if (model.length() < 2)
 		{
-			throw exception("Model should be at least three characters long!");
+			throw exception("Модель должна быть как минимум два символа в длину!");
 		}
 
 		if (model.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 1234567890") != string::npos)
 		{
-			throw exception("Model should only consists of letters!");
+			throw exception("Модель должна состоять только из цифр и букв латинского алфавита!");
 		}
 
 		carToEdit_->setModel(model);
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Model has succesfully changed!" << endl << endl;
+		cout << "Модель успешно изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -488,7 +1069,7 @@ void CarHandler::editModel()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Model has not changed!" << endl << endl;
+		cout << "Модель не изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -503,14 +1084,14 @@ void CarHandler::editYearOfProduction()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new year of production: ";
+		cout << "Введите новый год выпуска: ";
 		if (limitedInput(yearOfProduction, yearOfProductionMaxInputLength) == false)
 		{
 			return;
@@ -518,24 +1099,27 @@ void CarHandler::editYearOfProduction()
 
 		if (yearOfProduction.length() < 4)
 		{
-			throw exception("Year of production should be four characters long!");
+			throw exception("Год выпуска должен быть минимум четыре символа в длину!");
 		}
-
 		if (yearOfProduction.find_first_not_of("1234567890") != string::npos)
 		{
-			throw exception("Year of production should only consists of digits!");
+			throw exception("Год выпуска должен состоять только из цифр!");
+		}
+		if (stoul(yearOfProduction) < 1900 || stoul(yearOfProduction) > 2020)
+		{
+			throw exception("Год выпуска должен быть больше чем 1900 и меньше чем 2020!");
 		}
 
 		carToEdit_->setYearOfProduction(stoul(yearOfProduction));
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Year of production has succesfully changed!" << endl << endl;
+		cout << "Год выпуска успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -546,7 +1130,7 @@ void CarHandler::editYearOfProduction()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Year of production has not changed!" << endl << endl;
+		cout << "Год выпуска не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -563,7 +1147,7 @@ void CarHandler::editBodyType()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
@@ -572,6 +1156,7 @@ void CarHandler::editBodyType()
 
 		menu = new BodyTypeMenu();
 
+		index = getCarIndex(carToEdit_);
 		switch (menu->selectMode())
 		{
 		case BodyType::CROSSOVER:
@@ -611,21 +1196,21 @@ void CarHandler::editBodyType()
 			menu->resetChoice();
 			return;
 		}
+		menu->resetChoice();
 
-		index = getCarIndex(carToEdit_);
 		cars_.erase(cars_.begin() + index);
 		cars_.insert(cars_.begin() + index, *carToEdit_);
 
 		carToEdit_ = getCar(index);
 
+		rewriteCarsFile();
+
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Body type has succesfully changed!" << endl << endl;
+		cout << "Тип кузова успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -636,7 +1221,7 @@ void CarHandler::editBodyType()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Body type has not changed!" << endl << endl;
+		cout << "Тип кузова не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -651,36 +1236,37 @@ void CarHandler::editTransmissionType()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		menu = new TransmissionTypeMenu();
+		menu = new TransmissionTypeMenu("Тип КПП:", { "Механическая.", "Автоматическая.", "Назад." });
 
 		switch (menu->selectMode())
 		{
 		case TransmissionType::MANUAL :
-			carToEdit_->setTransmissionType("Manual");
+			carToEdit_->setTransmissionType("Механическая");
 			break;
 		case TransmissionType::AUTOMATIC :
-			carToEdit_->setTransmissionType("Automatic");
+			carToEdit_->setTransmissionType("Автоматическая");
 			break;
 		default:
 			menu->resetChoice();
 			return;
 		}
+		menu->resetChoice();
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Transmission type has succesfully changed!" << endl << endl;
+		cout << "КПП успешно изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -691,7 +1277,7 @@ void CarHandler::editTransmissionType()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Transmission type has not changed!" << endl << endl;
+		cout << "КПП не изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -706,39 +1292,40 @@ void CarHandler::editWheelDriveType()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактиреумый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		menu = new WheelDriveTypeMenu();
+		menu = new WheelDriveTypeMenu("Тип привода:", {"Передний.", "Задний.", "Полный.", "Назад."});
 
 		switch (menu->selectMode())
 		{
 		case WheelDriveType::FWD :
-			carToEdit_->setWheelDriveType("FWD");
+			carToEdit_->setWheelDriveType("Передний");
 			break;
 		case WheelDriveType::RWD :
-			carToEdit_->setWheelDriveType("RWD");
+			carToEdit_->setWheelDriveType("Задний");
 			break;
 		case WheelDriveType::AWD :
-			carToEdit_->setWheelDriveType("AWD");
+			carToEdit_->setWheelDriveType("Полный");
 			break;
 		default:
 			menu->resetChoice();
 			return;
 		}
+		menu->resetChoice();
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Wheel drive type has succesfully changed!" << endl << endl;
+		cout << "Привод успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -749,7 +1336,7 @@ void CarHandler::editWheelDriveType()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Wheel drive type has not changed!" << endl << endl;
+		cout << "Привод не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -764,36 +1351,37 @@ void CarHandler::editEngineType()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		menu = new EngineTypeMenu();
+		menu = new EngineTypeMenu("Тип двигателя: ", { "Бензиновый.", "Дизельный.", "Назад." });
 
 		switch (menu->selectMode())
 		{
 		case EngineType::PETROL :
-			carToEdit_->setEngineType("Petrol");
+			carToEdit_->setEngineType("Бензиновый");
 			break;
 		case EngineType::DIESEL :
-			carToEdit_->setEngineType("Diesel");
+			carToEdit_->setEngineType("Дизельный");
 			break;
 		default:
 			menu->resetChoice();
 			return;
 		}
+		menu->resetChoice();
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Engine type has succesfully changed!" << endl << endl;
+		cout << "Тип двигателя успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -804,7 +1392,7 @@ void CarHandler::editEngineType()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Engine type has not changed!" << endl << endl;
+		cout << "Тип двигателя не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -819,14 +1407,14 @@ void CarHandler::editEngineVolume()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new engine volume: ";
+		cout << "Введите новый объем двигателя: ";
 		if (limitedInput(engineVolume, engineVolumeMaxInputLength) == false)
 		{
 			return;
@@ -834,29 +1422,29 @@ void CarHandler::editEngineVolume()
 
 		if (engineVolume.length() < 3 || engineVolume.length() > 3)
 		{
-			throw exception("Engine volume should be three characters long!");
+			throw exception("Объем двигателя должен состоять не меньше и не более чем из трех символов!");
 		}
 
 		if (engineVolume.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Engine volume should only consists of digits!");
+			throw exception("Объем двигателя должен стостять только из цирф!");
 		}
 
 		if (engineVolume.find(".") != 1)
 		{
-			throw exception("Engine volume should be like X.Y!");
+			throw exception("Объем двигателя должен быть заполнен в виде X.Y!");
 		}
 
 		carToEdit_->setEngineVolume(stod(engineVolume));
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Engine volume has succesfully changed!" << endl << endl;
+		cout << "Объем двигателя успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -867,7 +1455,7 @@ void CarHandler::editEngineVolume()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Engine volume has not changed!" << endl << endl;
+		cout << "Объем двигателя не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -882,14 +1470,14 @@ void CarHandler::editBodyColor()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new body color: ";
+		cout << "Введите новый цвет кузова: ";
 		if (limitedInput(bodyColor, bodyColorMaxInputLength) == false)
 		{
 			return;
@@ -897,24 +1485,24 @@ void CarHandler::editBodyColor()
 
 		if (bodyColor.length() < 3)
 		{
-			throw exception("Body color should be at least three characters long!");
+			throw exception("Цвет кузова должен состоять минимум из трех сиволов!");
 		}
 
-		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Body color should only consists of letters!");
+			throw exception("Цвет кузова должен состоять только из букв!");
 		}
 
 		carToEdit_->setBodyColor(bodyColor);
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Body color has succesfully changed!" << endl << endl;
+		cout << "Цвет кузова успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -925,7 +1513,7 @@ void CarHandler::editBodyColor()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Body color has not changed!" << endl << endl;
+		cout << "Цвет кузова не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -940,14 +1528,14 @@ void CarHandler::editInteriorColor()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new interior color: ";
+		cout << "Введите новый цвет салона: ";
 		if (limitedInput(interiorColor, interiorColorMaxInputLength) == false)
 		{
 			return;
@@ -955,24 +1543,24 @@ void CarHandler::editInteriorColor()
 
 		if (interiorColor.length() < 3)
 		{
-			throw exception("Interior color should be at least three characters long!");
+			throw exception("Цвет салона должен состоять как мининмум из трех символов!");
 		}
 
-		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Interior color should only consists of letters!");
+			throw exception("Цвет салона должен стостоять только из букв!");
 		}
 
 		carToEdit_->setInteriorColor(interiorColor);
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Interior color has succesfully changed!" << endl << endl;
+		cout << "Цвет салона успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -983,7 +1571,7 @@ void CarHandler::editInteriorColor()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Interior color has not changed!" << endl << endl;
+		cout << "Цвет салона не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -998,14 +1586,14 @@ void CarHandler::editInteriorMaterial()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new interior material: ";
+		cout << "Введите новый материал салона: ";
 		if (limitedInput(interiorMaterial, interiorMaterialMaxInputLength) == false)
 		{
 			return;
@@ -1013,24 +1601,24 @@ void CarHandler::editInteriorMaterial()
 
 		if (interiorMaterial.length() < 3)
 		{
-			throw exception("Interior material should be at least three characters long!");
+			throw exception("Материал салона должен состоять как минимум из трех символов!");
 		}
 
-		if (interiorMaterial.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (interiorMaterial.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Interior material should only consists of letters!");
+			throw exception("Материал салона должен состоять только из букв!");
 		}
 
 		carToEdit_->setInteriorMaterial(interiorMaterial);
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Interior material has succesfully changed!" << endl << endl;
+		cout << "Материал салона успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -1041,7 +1629,7 @@ void CarHandler::editInteriorMaterial()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Interior material has not changed!" << endl << endl;
+		cout << "Материал салона не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -1056,14 +1644,14 @@ void CarHandler::editMealeage()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new mealeage: ";
+		cout << "Введите новый пробег: ";
 		if (limitedInput(mealeage, mealeageMaxInputLength) == false)
 		{
 			return;
@@ -1071,24 +1659,24 @@ void CarHandler::editMealeage()
 
 		if (mealeage.length() < 1)
 		{
-			throw exception("Mealeage should be at least one characters long!");
+			throw exception("Пробег должен состоять как минимум из одного символа!");
 		}
 
 		if (mealeage.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Mealeage should only consists of digits!");
+			throw exception("Пробег должен состоять только из цифр!");
 		}
 
 		carToEdit_->setMealeage(stoul(mealeage));
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Mealeage has succesfully changed!" << endl << endl;
+		cout << "Пробег успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -1099,12 +1687,12 @@ void CarHandler::editMealeage()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Mealeage has not changed!" << endl << endl;
+		cout << "Пробег не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
 	system("pause");
-}
+} 
 
 void CarHandler::editPrice()
 {
@@ -1114,14 +1702,14 @@ void CarHandler::editPrice()
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не установлен!");
 		}
 
 		system("cls");
 
 		showEditCar();
 
-		cout << "Enter new mealeage: ";
+		cout << "Введите новую цену: ";
 		if (limitedInput(price, priceMaxInputLength) == false)
 		{
 			return;
@@ -1129,24 +1717,24 @@ void CarHandler::editPrice()
 
 		if (price.length() < 1)
 		{
-			throw exception("Price should be at least one characters long!");
+			throw exception("Цена должна состоять как минимум из одного символа!");
 		}
 
 		if (price.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Price should only consists of digits!");
+			throw exception("Цена должна состоять только из цифр!");
 		}
 
 		carToEdit_->setPrice(stoul(price));
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Price has succesfully changed!" << endl << endl;
+		cout << "Цена успешно изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -1157,7 +1745,7 @@ void CarHandler::editPrice()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Price has not changed!" << endl << endl;
+		cout << "Цена не изменена!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -1166,27 +1754,51 @@ void CarHandler::editPrice()
 
 void CarHandler::editReserveStatus()
 {
+	ItemSelection<Account>* itemSelection = nullptr;
+
+	unsigned index = 0;
+
 	try
 	{
 		if (carToEdit_ == nullptr)
 		{
-			throw exception("Car to edit not setted!");
+			throw exception("Редактируемый автомобиль не изменен!");
 		}
 
-		carToEdit_->setReserveStatus(!(carToEdit_->getReserveStatus()));
-		if (carToEdit_->getReserveStatus() == false)
+		
+		if (carToEdit_->getReserveStatus() == true)
 		{
-			carToEdit_->setReserverUsername("");
+			carToEdit_->setReserveStatus(!(carToEdit_->getReserveStatus()));
 		}
+		else
+		{
+			auto accounts = AccountHandler::getUsers();
+
+			itemSelection = new ItemSelection<Account>("Выберете новый резервирующий аккаунт:", accounts);
+
+			index = itemSelection->selectMode();
+
+			if (index == 0)
+			{
+				return;
+			}
+			else
+			{
+				index--;
+			}
+
+			carToEdit_->setReserverUsername(accounts.at(index).getUsername());
+			carToEdit_->setReserveStatus(true);
+		}
+
+		rewriteCarsFile();
 
 		system("cls");
 
 		showEditCar();
 
-		rewriteCarsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Reserve status has succesfully changed!" << endl << endl;
+		cout << "Статус резерва успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -1197,7 +1809,7 @@ void CarHandler::editReserveStatus()
 
 		setTextColor(Color::RED);
 		cout << ex.what() << endl;
-		cout << "Reserve status has not changed!" << endl << endl;
+		cout << "Статус резерва не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -1206,7 +1818,65 @@ void CarHandler::editReserveStatus()
 
 void CarHandler::editReserverUsername()
 {
+	ItemSelection<Account>* itemSelection = nullptr;
 
+	unsigned index = 0;
+
+	try
+	{
+		if (carToEdit_ == nullptr)
+		{
+			throw exception("Редактируемый автомобиль не установлен!");
+		}
+
+		system("cls");
+
+		showEditCar();
+
+		auto accounts = AccountHandler::getUsers();
+
+		itemSelection = new ItemSelection<Account>("Выберете новый резервирующий автомобиль:", accounts);
+
+		index = itemSelection->selectMode();
+
+		if (index == 0)
+		{
+			return;
+		}
+		else
+		{
+			index--;
+		}
+
+		if (carToEdit_->getReserveStatus() == false)
+		{
+			carToEdit_->setReserveStatus(true);
+		}
+
+		carToEdit_->setReserverUsername(accounts.at(index).getUsername());
+
+		rewriteCarsFile();
+
+		system("cls");
+
+		showEditCar();
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << "Резервирующий аккаунт успешно изменен!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		showEditCar();
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl;
+		cout << "Резервирующий аккаунт не изменен!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
 }
 
 void CarHandler::editReservedCarsReserverUsername(string oldUsername, string newUsername)
@@ -1301,6 +1971,76 @@ vector<Car> CarHandler::getReservedCarsByUsername(string username)
 	return cars;
 }
 
+vector<Car> CarHandler::getFilteredCars()
+{
+	auto cars = getCars();
+	if (CarFiltering::getBodyTypeFilterStatus() == true)
+	{
+		cars.erase(remove_if(cars.begin(), cars.end(), isBodyTypesNotEqual), cars.end());
+	}
+	if (CarFiltering::getWheelDriveTypeFilterStatus() == true)
+	{
+		cars.erase(remove_if(cars.begin(), cars.end(), isWheelDriveTypesNotEqual), cars.end());
+	}
+	if (CarFiltering::getTransmissionTypeFilterStatus() == true)
+	{
+		cars.erase(remove_if(cars.begin(), cars.end(), isTransmissionTypesNotEqual), cars.end());
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getCarsByBrand(const string& brand)
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getBrand() == brand)
+		{
+			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getCarsByModel(const string& model)
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getModel() == model)
+		{
+			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getCarsByYearOfProduction(const unsigned yearOfProduction)
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getYearOfProduction() == yearOfProduction)
+		{
+			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getCarsByEngineType(const string& engineType)
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getEngineType() == engineType)
+		{
+			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
 // Functional
 void CarHandler::showCars()
 {
@@ -1308,7 +2048,7 @@ void CarHandler::showCars()
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("List of cars is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 
 		system("cls");
@@ -1342,19 +2082,19 @@ void CarHandler::showAccountReservedCars()
 	{
 		if (AccountHandler::getCurrentAccount() == nullptr)
 		{
-			throw exception("Current account is not setted!");
+			throw exception("Текущий аккаунт не установлен!");
 		}
 
 		auto cars = getReservedCarsByUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		if (cars.size() == 0)
 		{
-			throw exception("You have not reserved cars!");
+			throw exception("У вас нет зарезервированных автомобилей!");
 		}
 
 		system("cls");
 
-		cout << "Cars that reserved by you: " << endl << endl;
+		cout << "Автомобили, зарезервиранные вами: " << endl << endl;
 
 		CarPrinter::showHeader();
 
@@ -1385,7 +2125,7 @@ void CarHandler::showNewCars()
 	{
 		if (countNewCars() == 0)
 		{
-			throw exception("List of new cars is empty!");
+			throw exception("Список новых автомобилей пуст!");
 		}
 
 		system("cls");
@@ -1422,7 +2162,7 @@ void CarHandler::showUsedCars()
 	{
 		if (countNewCars() == 0)
 		{
-			throw exception("List of used cars is empty!");
+			throw exception("Список автомобилей с пробегом пуст!");
 		}
 
 		system("cls");
@@ -1465,28 +2205,59 @@ void CarHandler::showEditCar()
 
 }
 
+void CarHandler::showFilteredCars()
+{
+	auto cars = getFilteredCars();
+	try
+	{
+		if (cars.size() == 0)
+		{
+			throw exception("Такие автомобили не найдены!");
+		}
+
+		system("cls");
+
+		CarPrinter::showHeader();
+		for (unsigned i = 0; i < cars.size(); i++)
+		{
+			cout << cars.at(i) << endl;
+		}
+		drawSolidLine(CarPrinter::getSolidLineLength());
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+
+	system("pause");
+}
+
 void CarHandler::sellCar()
 {
 	ItemSelection<Car>* itemSelection = nullptr;
 
 	unsigned index = 0;
 
-	ofstream reportFile;
+	string path;
 
 	try
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("Cars list is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 		if (countReservedCars() == 0)
 		{
-			throw exception("No reserved cars!");
+			throw exception("Нет зарезервированных атвоомобилей!");
 		}
 
 		auto reservedCars = getReservedCars();
 
-		itemSelection = new ItemSelection<Car>("Choose car to sell:", reservedCars.second);
+		itemSelection = new ItemSelection<Car>("Выберете автомобиль для продажи:", reservedCars.second);
 
 		index = itemSelection->selectMode();
 
@@ -1499,15 +2270,33 @@ void CarHandler::sellCar()
 			index--;
 		}
 
+		path = createReport(cars_.at(index));
+
+		StatisticsHandler::getAccountStatistics(cars_.at(index).getReserverUsername())->addPurchaseAmount(cars_.at(index).getPrice());
+		StatisticsHandler::rewriteStatisticsFile();
+
 		cars_.erase(cars_.begin() + index);
 
 		rewriteCarsFile();
 
+		system("cls");
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << "Автомобиль успешно продан!\nЧек сохранен по пути " << path << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+
+		delete itemSelection;
 	}
 	catch (exception & ex)
 	{
+		system("cls");
 
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
 	}
+
+	system("pause");
 }
 
 void CarHandler::addCar()
@@ -1574,7 +2363,7 @@ void CarHandler::addCar()
 
 	try
 	{
-		cout << "Brand: ";
+		cout << "Марка: ";
 		if (limitedInput(brand, brandMaxInputLength) == false)
 		{
 			return;
@@ -1582,17 +2371,17 @@ void CarHandler::addCar()
 
 		if (brand.length() < 3)
 		{
-			throw exception("Brand should be at least three characters long!");
+			throw exception("Марка должна состоять как минимум из трех символов!");
 		}
 
-		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ") != string::npos)
+		if (brand.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Brand should only consists of letters!");
+			throw exception("Марка должна состоять только из букв!");
 		}
 
 		car->setBrand(brand);
 
-		cout << "Model: ";
+		cout << "Модель: ";
 		if (limitedInput(model, modelMaxInputLength) == false)
 		{
 			return;
@@ -1600,17 +2389,17 @@ void CarHandler::addCar()
 
 		if (model.length() < 2)
 		{
-			throw exception("Model should be at least three characters long!");
+			throw exception("Модель должна состоять как минимум из трех символов!");
 		}
 
 		if (model.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 1234567890") != string::npos)
 		{
-			throw exception("Model should only consists of letters!");
+			throw exception("Модель должна состоять только из цифр и букв латинского алфавита!");
 		}
 		
 		car->setModel(model);
 
-		cout << "Year of production: ";
+		cout << "Год выпуска: ";
 		if (limitedInput(yearOfProduction, yearOfProductionMaxInputLength) == false)
 		{
 			return;
@@ -1618,12 +2407,16 @@ void CarHandler::addCar()
 
 		if (yearOfProduction.length() < 4)
 		{
-			throw exception("Year of production should be four characters long!");
+			throw exception("Год выпуска должен состоять из четырех символов!");
 		}
 
 		if (yearOfProduction.find_first_not_of("1234567890") != string::npos)
 		{
-			throw exception("Year of production should only consists of digits!");
+			throw exception("Год выпуска должен состоять только из цифр!");
+		}
+		if (stoul(yearOfProduction) < 1900 || stoul(yearOfProduction) > 2020)
+		{
+			throw exception("Год выпуска должен быть больше 1900 и меньше чем 2020!");
 		}
 
 		car->setYearOfProduction(stoul(yearOfProduction));
@@ -1633,13 +2426,13 @@ void CarHandler::addCar()
 		switch (menu->selectMode())
 		{
 		case WheelDriveType::FWD :
-			car->setWheelDriveType("FWD");
+			car->setWheelDriveType("Передний");
 			break;
 		case WheelDriveType::RWD :
-			car->setWheelDriveType("RWD");
+			car->setWheelDriveType("Задний");
 			break;
 		case WheelDriveType::AWD :
-			car->setWheelDriveType("AWD");
+			car->setWheelDriveType("Полный");
 			break;
 		default:
 			menu->resetChoice();
@@ -1648,18 +2441,18 @@ void CarHandler::addCar()
 
 		menu->resetChoice();
 
-		clearLine();
-		cout << "Wheel drive type: " << car->getWheelDriveType() << endl;
+		clearNLines(4);
+		cout << "Привод: " << car->getWheelDriveType() << endl;
 
-		menu = new EngineTypeMenu();
+		menu = new EngineTypeMenu("Тип двигателя:", {"Бензиновый.", "Дизельный."});
 
 		switch (menu->selectMode())
 		{
 		case EngineType::PETROL :
-			car->setEngineType("Petrol");
+			car->setEngineType("Бензиновый");
 			break;
 		case EngineType::DIESEL :
-			car->setEngineType("Diesel");
+			car->setEngineType("Дизельный");
 			break;
 		default:
 			menu->resetChoice();
@@ -1668,18 +2461,18 @@ void CarHandler::addCar()
 
 		menu->resetChoice();
 
-		clearLine();
-		cout << "Engine type: " << car->getEngineType() << endl;
+		clearNLines(3);
+		cout << "Тип двигателя: " << car->getEngineType() << endl;
 
-		menu = new TransmissionTypeMenu();
+		menu = new TransmissionTypeMenu("Тип КПП:", {"Механическая.", "Автоматическая."});
 
 		switch (menu->selectMode())
 		{
 		case TransmissionType::MANUAL :
-			car->setTransmissionType("Manual");
+			car->setTransmissionType("Механическая");
 			break;
 		case TransmissionType::AUTOMATIC :
-			car->setTransmissionType("Automatic");
+			car->setTransmissionType("Автоматическая");
 			break;
 		default:
 			menu->resetChoice();
@@ -1688,10 +2481,10 @@ void CarHandler::addCar()
 
 		menu->resetChoice();
 
-		clearLine();
-		cout << "Transmission type: " << car->getTransmissionType() << endl;
+		clearNLines(3);
+		cout << "Тип КПП: " << car->getTransmissionType() << endl;
 
-		cout << "Engine volume: ";
+		cout << "Объем двигателя: ";
 		if (limitedInput(engineVolume, engineVolumeMaxInputLength) == false)
 		{
 			return;
@@ -1699,22 +2492,22 @@ void CarHandler::addCar()
 
 		if (engineVolume.length() < 3 || engineVolume.length() > 3)
 		{
-			throw exception("Engine volume should be three characters long!");
+			throw exception("Объем двигателя должен состоять из трех символов!");
 		}
 
 		if (engineVolume.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Engine volume should only consists of digits!");
+			throw exception("Объем двигателя должен стоять только из цифр!");
 		}
 
 		if (engineVolume.find(".") != 1)
 		{
-			throw exception("Engine volume should be like X.Y!");
+			throw exception("Объем двигателя должен быть заполнен в виде X.Y!");
 		}
 
 		car->setEngineVolume(stod(engineVolume));
 
-		cout << "Body color: ";
+		cout << "Цвет кузова: ";
 		if (limitedInput(bodyColor, bodyColorMaxInputLength) == false)
 		{
 			return;
@@ -1722,17 +2515,17 @@ void CarHandler::addCar()
 
 		if (bodyColor.length() < 3)
 		{
-			throw exception("Body color should be at least three characters long!");
+			throw exception("Цвет кузова должен состоять как минимум из трех символов!");
 		}
 
-		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя") != string::npos)
 		{
-			throw exception("Body color should only consists of letters!");
+			throw exception("Цвет кузова должен состоять только из букв!");
 		}
 
 		car->setBodyColor(bodyColor);
 
-		cout << "Interior color: ";
+		cout << "Цвет салона: ";
 		if (limitedInput(interiorColor, interiorColorMaxInputLength) == false)
 		{
 			return;
@@ -1740,17 +2533,17 @@ void CarHandler::addCar()
 
 		if (interiorColor.length() < 3)
 		{
-			throw exception("Interior color should be at least three characters long!");
+			throw exception("Цвет салона должен состоять как минимум из трех символов!");
 		}
 
-		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя") != string::npos)
 		{
-			throw exception("Interior color should only consists of letters!");
+			throw exception("Цвет салона должен состоять только из букв!");
 		}
 
 		car->setInteriorColor(interiorColor);
 
-		cout << "Interior material: ";
+		cout << "Материал салона: ";
 		if (limitedInput(interiorMaterial, interiorMaterialMaxInputLength) == false)
 		{
 			return;
@@ -1758,17 +2551,17 @@ void CarHandler::addCar()
 
 		if (interiorMaterial.length() < 3)
 		{
-			throw exception("Interior material should be at least three characters long!");
+			throw exception("Материал салона должен состоять как минимум из трех символов!");
 		}
 
-		if (interiorMaterial.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") != string::npos)
+		if (interiorMaterial.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
 		{
-			throw exception("Interior material should only consists of letters!");
+			throw exception("Материал салона должен состоять только из букв!");
 		}
 
 		car->setInteriorMaterial(interiorMaterial);
 
-		cout << "Mealeage: ";
+		cout << "Пробег: ";
 		if (limitedInput(mealeage, mealeageMaxInputLength) == false)
 		{
 			return;
@@ -1776,17 +2569,17 @@ void CarHandler::addCar()
 
 		if (mealeage.length() < 1)
 		{
-			throw exception("Mealeage should be at least one characters long!");
+			throw exception("Пробег должен состоять как минимум из одного символа!");
 		}
 
 		if (mealeage.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Mealeage should only consists of digits!");
+			throw exception("Пробег должен состоять только из цифр!");
 		}
 
 		car->setMealeage(stoul(mealeage));
 
-		cout << "Price: ";
+		cout << "Цена: ";
 		if (limitedInput(price, priceMaxInputLength) == false)
 		{
 			return;
@@ -1794,30 +2587,31 @@ void CarHandler::addCar()
 
 		if (price.length() < 1)
 		{
-			throw exception("Price should be at least one characters long!");
+			throw exception("Цена должна состоять как минимум из одного символа!");
 		}
 
 		if (price.find_first_not_of("1234567890.") != string::npos)
 		{
-			throw exception("Price should only consists of digits!");
+			throw exception("Цена должна состоять только из цифр!");
 		}
 
 		car->setPrice(stoul(price));
 
 		car->setReserveStatus(false);
+		car->setReserverUsername("");
 
 		cars_.push_back(*car);
 
 		rewriteCarsFile();
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "Car succesfully added!" << endl << endl;
+		cout << endl << "Автомобиль успешно добавлен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
 	{
 		setTextColor(Color::RED);
-		cout << endl << ex.what() << endl << "Car not added!" << endl << endl;
+		cout << endl << ex.what() << endl << "Автомобиль не добавлен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -1836,10 +2630,10 @@ void CarHandler::deleteCar()
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("List of cars is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 
-		itemSelection = new ItemSelection<Car>("Choose car to delete:", cars_);
+		itemSelection = new ItemSelection<Car>("Выберете автомобиль для удаления:", cars_);
 
 		index = itemSelection->selectMode();
 
@@ -1859,7 +2653,7 @@ void CarHandler::deleteCar()
 		system("cls");
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "Car succesfully deleted!" << endl << endl;
+		cout << "Автомобиль успешно удален!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		delete itemSelection;
@@ -1886,16 +2680,16 @@ void CarHandler::reserveNewCar()
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("Cars list is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 		if (countNotReservedNewCars() == 0)
 		{
-			throw exception("No not reserved new cars!");
+			throw exception("Список незарезервированных новых автомобилей!");
 		}
 
 		auto notReservedNewCars = getNotReservedNewCars();
 
-		itemSelection = new ItemSelection<Car>("Choose car to reserve:", notReservedNewCars.second);
+		itemSelection = new ItemSelection<Car>("Выберете автомобиль, чтобы его зарезервировать:", notReservedNewCars.second);
 
 		index = itemSelection->selectMode();
 
@@ -1916,7 +2710,7 @@ void CarHandler::reserveNewCar()
 		system("cls");
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "You succesfully reserved a car!" << endl << endl;
+		cout << "Вы успешно зарезервировали автомобиль!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		delete itemSelection;
@@ -1943,16 +2737,16 @@ void CarHandler::reserveUsedCar()
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("Cars list is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 		if (countNotReservedUsedCars() == 0)
 		{
-			throw exception("No not reserved used cars!");
+			throw exception("Список незарезервированных автомобилей с пробегом пуст!");
 		}
 
 		auto notReservedUsedCars = getNotReservedUsedCars();
 
-		itemSelection = new ItemSelection<Car>("Choose car to reserve:", notReservedUsedCars.second);
+		itemSelection = new ItemSelection<Car>("Выбере автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
 
 		index = itemSelection->selectMode();
 
@@ -1973,7 +2767,7 @@ void CarHandler::reserveUsedCar()
 		system("cls");
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "You succesfully reserved a car!" << endl << endl;
+		cout << "Вы успешно зарезервировали автомобиль!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		delete itemSelection;
@@ -2002,10 +2796,10 @@ void CarHandler::editCar()
 	{
 		if (cars_.size() == 0)
 		{
-			throw exception("Car list is empty!");
+			throw exception("Список автомобилей пуст!");
 		}
 
-		itemSelection = new ItemSelection<Car>("Shoose car to edit: ", cars_);
+		itemSelection = new ItemSelection<Car>("Выберете автомобиль для редактирования: ", cars_);
 
 		index = itemSelection->selectMode();
 

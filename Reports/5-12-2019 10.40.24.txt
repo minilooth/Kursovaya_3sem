@@ -1,0 +1,20 @@
+-----------------------------------------------------------------------------------
+                                 Car sales report                                  
+-----------------------------------------------------------------------------------
+Brand:                                                                      qqqqqqq
+Model:                                                                        qqqqq
+Year of production:                                                            2000
+Transmission type:                                                           Manual
+Wheel drive type:                                                               FWD
+Engine type:                                                                 Petrol
+Engine volume:                                                                  5.5
+Body type:                                                                    Sedan
+Body color:                                                                 asdasda
+Interior color:                                                             asdsada
+Interior material:                                                         asdasdas
+Mealeage:                                                                   1111 km
+-----------------------------------------------------------------------------------
+Buyer:                                                                         user
+Price:                                                                        1111$
+-----------------------------------------------------------------------------------
+Date of sale:                                                       5.12.2019 10:40

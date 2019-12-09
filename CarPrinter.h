@@ -36,6 +36,8 @@ class CarPrinter
 	static unsigned calculateMealeageMaxLength();
 	static unsigned calculatePriceMaxLength();
 	static unsigned calculateReservedStatusMaxLength();
+	static unsigned calculateWheelDriveTypeMaxLength();
+	static unsigned calculateEngineTypeMaxLength();
 
 	static void refresh();
 
@@ -61,6 +63,8 @@ public:
 	static unsigned getSolidLineLength();
 
 	static void showHeader();
+
+	static void printCars(const vector<Car>& cars);
 
 	~CarPrinter();
 };

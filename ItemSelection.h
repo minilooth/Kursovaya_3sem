@@ -30,7 +30,7 @@ public:
 	void showCurrentPageNumber();
 	void showTooltip();
 	void showTitle();
-	void showItems();
+	virtual void showItems();
 	~ItemSelection();
 };
 
@@ -42,7 +42,7 @@ ItemSelection<T>::ItemSelection(string& title, vector<T>& items)
 {
 	title_ = title;
 	items_ = items;
-	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
 	pageSize_ = 10;
 
 	maxPages_ = items_.size() / pageSize_;
@@ -62,7 +62,7 @@ ItemSelection<T>::ItemSelection(const char* title, vector<T>& items)
 {
 	title_ = title;
 	items_ = items;
-	tooltip_ = "Toolip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC to go back.";
+	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
 	pageSize_ = 10;
 
 	maxPages_ = items_.size() / pageSize_;
@@ -106,7 +106,7 @@ void ItemSelection<T>::previousPage()
 template<typename T>
 void ItemSelection<T>::showCurrentPageNumber()
 {
-	cout << "Page " + to_string(currentPage_) + " of " + to_string(maxPages_) << endl;
+	cout << "Страница " + to_string(currentPage_) + " из " + to_string(maxPages_) << endl;
 }
 
 template<typename T>

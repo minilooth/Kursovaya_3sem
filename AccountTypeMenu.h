@@ -18,7 +18,7 @@ class AccountTypeMenu : virtual public ConsoleMenu
 	static unsigned choice_;
 public:
 	AccountTypeMenu();
-	AccountTypeMenu(string& title, vector<string>& items);
+	AccountTypeMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

@@ -4,11 +4,11 @@ unsigned LoginMenu::choice_ = LoginMenuAction::BY_USER;
 
 LoginMenu::LoginMenu()
 {
-    title_ = "Login Menu:";
-    items_ = { "Login by user.", "Login by admin.", "Registration.", "Quit." };
+    title_ = "";
+    items_ = { "Войти как пользователь.", "Войти как администратор.", "Регистрация.", "Выход." };
 }
 
-LoginMenu::LoginMenu(string& title, vector<string>& items)
+LoginMenu::LoginMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -63,12 +63,11 @@ ConsoleMenu* LoginMenu::getNextMenu()
 unsigned LoginMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
+	system("cls");
+
     while (true)
     {
-        system("cls");
-
-		showTitle();
-
         showItems();
 
 		VP_GetCh(key);
@@ -102,12 +101,25 @@ unsigned LoginMenu::selectMode()
             default:
                 break;
         }
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
     }
 }
 
 void LoginMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void LoginMenu::showItems()

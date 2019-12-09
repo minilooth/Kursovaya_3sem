@@ -31,6 +31,7 @@ enum Color
 };
 
 void clearLine();
+void clearNLines(int n);
 void moveCursorUpToNLines(int n);
 void setTextColor(int textColor);
 bool VP_GetCh(KEY_EVENT_RECORD& krec);
@@ -42,6 +43,8 @@ void drawSolidLine(unsigned width);
 bool maskedPasswordInput(string &password, unsigned limit);
 bool limitedInput(string &input, unsigned limit);
 unsigned calculateDoubleLength(double toCalculate, unsigned signsAfterDot);
+void showConsoleCursor(bool showFlag);
+void setConsoleMaxWidth();
 
 
 #endif //FUNCTIONS_H

@@ -6,7 +6,7 @@ FiveDoorHatchback::FiveDoorHatchback()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Five-door hatchback";
+	bodyType_ = "ױ‎עקבוך 5 הג.";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ FiveDoorHatchback::FiveDoorHatchback(string& brand, string& model, unsigned year
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Five-door hatchback";
+	bodyType_ = "ױ‎עקבוך 5 הג.";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ FiveDoorHatchback::FiveDoorHatchback(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Five-door hatchback";
+	bodyType_ = "ױ‎עקבוך 5 הג.";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

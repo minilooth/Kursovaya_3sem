@@ -6,7 +6,7 @@ StationWagon::StationWagon()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Station wagon";
+	bodyType_ = "Универсал";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ StationWagon::StationWagon(string& brand, string& model, unsigned yearOfProducti
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Station wagon";
+	bodyType_ = "Универсал";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ StationWagon::StationWagon(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Station wagon";
+	bodyType_ = "Универсал";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

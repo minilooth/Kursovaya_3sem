@@ -13,7 +13,8 @@ namespace UserMenuAction
 		RESERVE_NEW_CAR,
 		RESERVE_USED_CAR,
 		SHOW_ACCOUNT_RESERVED_CARS,
-		FIND_CAR,
+		SHOW_ACCOUNT_STATISTICS,
+		SEARCHING_SORTING_AND_FILTRATION,
 		BACK
 	};
 }
@@ -25,7 +26,7 @@ private:
     static unsigned choice_;
 public:
     UserMenu();
-	UserMenu(string& title, vector<string>& items);
+	UserMenu(const string& title, const vector<string>& items);
     unsigned selectMode();
     void resetChoice();
 	void showTitle();

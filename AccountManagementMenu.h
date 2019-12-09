@@ -25,7 +25,7 @@ private:
 	static unsigned choice_;
 public:
 	AccountManagementMenu();
-	AccountManagementMenu(string& title, vector<string>& items);
+	AccountManagementMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

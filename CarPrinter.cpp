@@ -41,19 +41,19 @@ CarPrinter::CarPrinter()
 void CarPrinter::refresh()
 {
 	brandLabelLength_				= calculateBrandMaxLength() < 5 ? 5 : calculateBrandMaxLength();
-	modelLabelLength_				= calculateModelMaxLength() < 5 ? 5 : calculateModelMaxLength();
-	bodyTypeLabelLength_			= calculateBodyTypeMaxLength() < 9 ? 9 : calculateBodyTypeMaxLength();
-	bodyColorLabelLength_			= calculateBodyColorMaxLength() < 10 ? 10 : calculateBodyColorMaxLength();
-	interiorColorLabelLength_		= calculateInteriorColorMaxLength() < 14 ? 14 : calculateInteriorColorMaxLength();
-	interiorMaterialLabelLength_	= calculateInteriorMaterialMaxLength() < 17 ? 17 : calculateInteriorMaterialMaxLength();
-	mealeageLabelLength_			= ((calculateMealeageMaxLength() < 8 ? 8 : calculateMealeageMaxLength()) + 3);
-	priceLabelLength_				= ((calculatePriceMaxLength() < 5 ? 5 : calculatePriceMaxLength()) + 2);
-	yearOfProductionLabelLength_	= 18;
-	transmissionTypeLabelLength_	= 12;
-	wheelDriveTypeLabelLength_		= 11;
-	engineTypeLabelLength_			= 11;
-	engineVolumeLabelLength_		= 13;
-	reserveStatusLabelLength_		= calculateReservedStatusMaxLength() < 12 ? 12 : calculateReservedStatusMaxLength();
+	modelLabelLength_				= calculateModelMaxLength() < 6 ? 6 : calculateModelMaxLength();
+	bodyTypeLabelLength_			= calculateBodyTypeMaxLength() < 10 ? 10 : calculateBodyTypeMaxLength();
+	bodyColorLabelLength_			= calculateBodyColorMaxLength() < 11 ? 11 : calculateBodyColorMaxLength();
+	interiorColorLabelLength_		= calculateInteriorColorMaxLength() < 11 ? 11 : calculateInteriorColorMaxLength();
+	interiorMaterialLabelLength_	= calculateInteriorMaterialMaxLength() < 15 ? 15 : calculateInteriorMaterialMaxLength();
+	mealeageLabelLength_			= ((calculateMealeageMaxLength() < 6 ? 6 : calculateMealeageMaxLength()) + 3);
+	priceLabelLength_				= ((calculatePriceMaxLength() < 4 ? 4 : calculatePriceMaxLength()) + 2);
+	yearOfProductionLabelLength_	= 11;
+	transmissionTypeLabelLength_	= calculateTransmissionTypeMaxLength() < 3 ? 3 : calculateTransmissionTypeMaxLength();
+	wheelDriveTypeLabelLength_		= calculateWheelDriveTypeMaxLength() < 6 ? 6 : calculateWheelDriveTypeMaxLength();
+	engineTypeLabelLength_			= calculateEngineTypeMaxLength() < 13 ? 13 : calculateEngineTypeMaxLength();
+	engineVolumeLabelLength_		= 15;
+	reserveStatusLabelLength_		= calculateReservedStatusMaxLength() < 14 ? 14 : calculateReservedStatusMaxLength();
 	solidLineLength_				= (brandLabelLength_ + modelLabelLength_ + bodyTypeLabelLength_ + bodyColorLabelLength_ + interiorColorLabelLength_ + 
 									   interiorMaterialLabelLength_ + yearOfProductionLabelLength_ + transmissionTypeLabelLength_ + wheelDriveTypeLabelLength_ + 
 									   engineTypeLabelLength_ + engineVolumeLabelLength_ + reserveStatusLabelLength_ + mealeageLabelLength_ + priceLabelLength_ + 15);
@@ -183,12 +183,44 @@ unsigned CarPrinter::calculateReservedStatusMaxLength()
 	{
 		if (length <= CarHandler::getCars().at(i).getReserverUsername().length())
 		{
-			length = CarHandler::getCars().at(i).getReserverUsername().length();
+			if (CarHandler::getCars().at(i).getReserveStatus() == false)
+			{
+				if (length <= 17)
+				{
+					length = 17;
+				}
+			}
+			else
+			{
+				length = (15 + CarHandler::getCars().at(i).getReserverUsername().length());
+			}
 		}
 	}
-	if (length != 0)
+	return length;
+}
+
+unsigned CarPrinter::calculateWheelDriveTypeMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < CarHandler::getCars().size(); i++)
 	{
-		length = length + 12;
+		if (length <= CarHandler::getCars().at(i).getWheelDriveType().length())
+		{
+			length = CarHandler::getCars().at(i).getWheelDriveType().length();
+		}
+	}
+	return length;
+}
+
+unsigned CarPrinter::calculateEngineTypeMaxLength()
+{
+	unsigned length = 0;
+	for (unsigned i = 0; i < CarHandler::getCars().size(); i++)
+	{
+		if (length <= CarHandler::getCars().at(i).getEngineType().length())
+		{
+			length = CarHandler::getCars().at(i).getEngineType().length();
+		}
 	}
 	return length;
 }
@@ -279,22 +311,32 @@ void CarPrinter::showHeader()
 
 	drawSolidLine(solidLineLength_);
 
-	cout << "|" << makeCenteredString("Brand", brandLabelLength_)
-		 << "|" << makeCenteredString("Model", modelLabelLength_)
-		 << "|" << makeCenteredString("Year of production", yearOfProductionLabelLength_)
-		 << "|" << makeCenteredString("Body type", bodyTypeLabelLength_)
-		 << "|" << makeCenteredString("Transmission", transmissionTypeLabelLength_)
-		 << "|" << makeCenteredString("Wheel drive", wheelDriveTypeLabelLength_)
-		 << "|" << makeCenteredString("Engine type", engineTypeLabelLength_)
-		 << "|" << makeCenteredString("Engine volume", engineVolumeLabelLength_)
-		 << "|" << makeCenteredString("Body color", bodyColorLabelLength_)
-		 << "|" << makeCenteredString("Interior color", interiorColorLabelLength_)
-		 << "|" << makeCenteredString("Interior material", interiorMaterialLabelLength_)
-		 << "|" << makeCenteredString("Mealeage", mealeageLabelLength_)
-		 << "|" << makeCenteredString("Price", priceLabelLength_)
-		 << "|" << makeCenteredString("Reserve status", reserveStatusLabelLength_)
+	cout << "|" << makeCenteredString("Марка", brandLabelLength_)
+		 << "|" << makeCenteredString("Модель", modelLabelLength_)
+		 << "|" << makeCenteredString("Год выпуска", yearOfProductionLabelLength_)
+		 << "|" << makeCenteredString("Тип кузова", bodyTypeLabelLength_)
+		 << "|" << makeCenteredString("КПП", transmissionTypeLabelLength_)
+		 << "|" << makeCenteredString("Привод", wheelDriveTypeLabelLength_)
+		 << "|" << makeCenteredString("Тип двигателя", engineTypeLabelLength_)
+		 << "|" << makeCenteredString("Объем двигателя", engineVolumeLabelLength_)
+		 << "|" << makeCenteredString("Цвет кузова", bodyColorLabelLength_)
+		 << "|" << makeCenteredString("Цвет салона", interiorColorLabelLength_)
+		 << "|" << makeCenteredString("Материал салона", interiorMaterialLabelLength_)
+		 << "|" << makeCenteredString("Пробег", mealeageLabelLength_)
+		 << "|" << makeCenteredString("Цена", priceLabelLength_)
+		 << "|" << makeCenteredString("Статус резерва", reserveStatusLabelLength_)
 		 << "|" << endl;
 
+	drawSolidLine(solidLineLength_);
+}
+
+void CarPrinter::printCars(const vector<Car>& cars)
+{
+	showHeader();
+	for (unsigned i = 0; i < cars.size(); i++)
+	{
+		cout << cars.at(i) << endl;
+	}
 	drawSolidLine(solidLineLength_);
 }
 

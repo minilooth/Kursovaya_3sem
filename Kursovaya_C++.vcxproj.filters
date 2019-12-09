@@ -123,17 +123,41 @@
     <ClCompile Include="AccountTypeMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="CarPrinter.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="WheelDriveTypeMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="AccountPrinter.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="CarEditMenu.cpp">
       <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountStatistics.cpp">
+      <Filter>Исходные файлы\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="StatisticsHandler.cpp">
+      <Filter>Исходные файлы\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountPrinter.cpp">
+      <Filter>Исходные файлы\Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="CarPrinter.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchingSortingAndFilteringMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchingMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="SortingMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="FilteringMenu.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="CarFiltering.cpp">
+      <Filter>Исходные файлы\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeOfSortingMenu.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,17 +254,41 @@
     <ClInclude Include="AccountTypeMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="CarPrinter.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="WheelDriveTypeMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="AccountPrinter.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="CarEditMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountPrinter.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountStatistics.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="StatisticsHandler.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="CarPrinter.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchingSortingAndFilteringMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchingMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="SortingMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="FilteringMenu.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="CarFiltering.h">
+      <Filter>Файлы заголовков\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeOfSortingMenu.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

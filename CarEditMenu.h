@@ -23,6 +23,7 @@ namespace CarEditMenuAction
 		EDIT_MEALEAGE,
 		EDIT_PRICE,
 		EDIT_RESERVE_STATUS,
+		EDIT_RESERVER_USERNAME,
 		BACK
 	};
 }
@@ -34,7 +35,7 @@ private:
 	static unsigned choice_;
 public:
 	CarEditMenu();
-	CarEditMenu(string& title, vector<string>& items);
+	CarEditMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

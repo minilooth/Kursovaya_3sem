@@ -10,6 +10,7 @@ class AccountPrinter
 	static unsigned usernameLabelLength_;
 	static unsigned passwordLabelLength_;
 	static unsigned adminAccessLabelLength_;
+	static unsigned banStatusLabelLength_;
 
 	static unsigned solidLineLength_;
 
@@ -23,6 +24,7 @@ public:
 	static unsigned getUsernameLabelLength();
 	static unsigned getPasswordLabelLength();
 	static unsigned getAdminAccessLabelLength();
+	static unsigned getBanStatusLabelLength();
 
 	static unsigned getSolidLineLength();
 

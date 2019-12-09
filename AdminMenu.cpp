@@ -4,11 +4,11 @@ unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
 
 AdminMenu::AdminMenu()
 {
-    title_ = "Admin main menu:";
-    items_ = { "Account management.", "Add car.", "Show cars.", "Delete car.", "Edit car.", "Back." };
+    title_ = "Главное меню администратора:";
+    items_ = { "Управление аккаунтами.", "Добавить автомобиль.", "Показать все автомобили.", "Удалить автомобиль.", "Редактировать автомобиль.", "Продать автомобиль.", "Показать общую статистику.", "Поиск, сортировка и фильтрация.", "Назад." };
 }
 
-AdminMenu::AdminMenu(string& title, vector<string>& items)
+AdminMenu::AdminMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -45,6 +45,17 @@ ConsoleMenu* AdminMenu::getNextMenu()
 			CarHandler::resetCarToEdit();
 			newMenu = this;
 			break;
+		case AdminMenuAction::SELL_CAR :
+			CarHandler::sellCar();
+			newMenu = this;
+			break;
+		case AdminMenuAction::SHOW_STATISTICS :
+			AccountHandler::showTotalStatistics();
+			newMenu = this;
+			break;
+		case AdminMenuAction::SEARCHING_SORITNG_AND_FILTRATION :
+			newMenu = new SearchingSortingAndFilteringMenu();
+			break;
 		case AdminMenuAction::BACK :
             this->resetChoice();
 			AccountHandler::resetCurrentAccount();
@@ -60,10 +71,11 @@ ConsoleMenu* AdminMenu::getNextMenu()
 unsigned AdminMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
+	system("cls");
+
     while (true)
     {
-        system("cls");
-
 		showTitle();
         showItems();
 
@@ -98,12 +110,25 @@ unsigned AdminMenu::selectMode()
             default:
                 break;
         }
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
     }
 }
 
 void AdminMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void AdminMenu::showItems()

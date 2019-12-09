@@ -4,11 +4,11 @@ unsigned AccountManagementMenu::choice_ = AccountManagementMenuAction::SHOW_ACCO
 
 AccountManagementMenu::AccountManagementMenu()
 {
-	title_ = "Account management menu:";
-	items_ = { "Show accounts.", "Add account.", "Delete account.", "Edit account.", "Back." };
+	title_ = "Меню управления аккаунтами:";
+	items_ = { "Показать все аккаунты.", "Добавить аккаунт.", "Удалить аккаунт.", "Редактировать аккаунт.", "Назад." };
 }
 
-AccountManagementMenu::AccountManagementMenu(string& title, vector<string>& items)
+AccountManagementMenu::AccountManagementMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -55,10 +55,11 @@ ConsoleMenu* AccountManagementMenu::getNextMenu()
 unsigned AccountManagementMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
+
+	system("cls");
+
 	while (true)
 	{
-		system("cls");
-
 		showTitle();
 
 		showItems();
@@ -94,12 +95,25 @@ unsigned AccountManagementMenu::selectMode()
 		default:
 			break;
 		}
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void AccountManagementMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void AccountManagementMenu::showItems()

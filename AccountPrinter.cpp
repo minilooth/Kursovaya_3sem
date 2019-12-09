@@ -3,6 +3,7 @@
 unsigned AccountPrinter::usernameLabelLength_ = 0;
 unsigned AccountPrinter::passwordLabelLength_ = 0;
 unsigned AccountPrinter::adminAccessLabelLength_ = 0;
+unsigned AccountPrinter::banStatusLabelLength_ = 0;
 
 unsigned AccountPrinter::solidLineLength_ = 0;
 
@@ -11,17 +12,19 @@ AccountPrinter::AccountPrinter()
 	usernameLabelLength_ = 0;
 	passwordLabelLength_ = 0;
 	adminAccessLabelLength_ = 0;
+	banStatusLabelLength_ = 0;
 
 	solidLineLength_ = 0;
 }
 
 void AccountPrinter::refresh()
 {
-	usernameLabelLength_ = calculateUsernameMaxLength() < 9 ? 8 : calculateUsernameMaxLength();
-	passwordLabelLength_ = calculatePasswordMaxLength() < 9 ? 8 : calculatePasswordMaxLength();
-	adminAccessLabelLength_ = 12;
+	usernameLabelLength_ = calculateUsernameMaxLength() < 17 ? 16 : calculateUsernameMaxLength();
+	passwordLabelLength_ = calculatePasswordMaxLength() < 7 ? 6 : calculatePasswordMaxLength();
+	adminAccessLabelLength_ = 20;
+	banStatusLabelLength_ = 17;
 
-	solidLineLength_ = usernameLabelLength_ + passwordLabelLength_ + adminAccessLabelLength_ + 10;
+	solidLineLength_ = usernameLabelLength_ + passwordLabelLength_ + adminAccessLabelLength_ + banStatusLabelLength_ + 13;
 }
 
 unsigned AccountPrinter::calculateUsernameMaxLength()
@@ -65,6 +68,11 @@ unsigned AccountPrinter::getAdminAccessLabelLength()
 	return adminAccessLabelLength_;
 }
 
+unsigned AccountPrinter::getBanStatusLabelLength()
+{
+	return banStatusLabelLength_;
+}
+
 unsigned AccountPrinter::getSolidLineLength()
 {
 	return solidLineLength_;
@@ -76,9 +84,11 @@ void AccountPrinter::showHeader()
 
 	drawSolidLine(solidLineLength_);
 
-	cout <<  "| " << makeCenteredString("Username", usernameLabelLength_)
-		 << " | " << makeCenteredString("Password", passwordLabelLength_)
-		 << " | " << "Admin access" << " |" << endl;
+	cout <<  "| " << makeCenteredString("Имя пользователя", usernameLabelLength_)
+		 << " | " << makeCenteredString("Пароль", passwordLabelLength_)
+		 << " | " << "Права администратора" 
+		 << " | " << "Статус блокировки"
+		 << " |"  << endl;
 
 	drawSolidLine(solidLineLength_);
 }

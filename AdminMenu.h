@@ -3,6 +3,7 @@
 
 
 #include "AccountManagementMenu.h"
+#include "SearchingSortingAndFilteringMenu.h"
 #include "CarHandler.h"
 
 namespace AdminMenuAction
@@ -14,6 +15,9 @@ namespace AdminMenuAction
 		SHOW_CARS,
 		DELETE_CAR,
 		EDIT_CAR,
+		SELL_CAR,
+		SHOW_STATISTICS,
+		SEARCHING_SORITNG_AND_FILTRATION,
 		BACK
 	};
 }
@@ -25,7 +29,7 @@ private:
     static unsigned choice_;
 public:
     AdminMenu();
-	AdminMenu(string& title, vector<string>& items);
+	AdminMenu(const string& title, const vector<string>& items);
     unsigned selectMode();
     void resetChoice();
 	void showTitle();

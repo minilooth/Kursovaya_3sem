@@ -12,7 +12,12 @@
 
 #include "AccountPrinter.h"
 
+#include "StatisticsHandler.h"
+
 using namespace std;
+
+const unsigned passwordLengthInputLimit = 20;
+const unsigned usernameLengthInputLimit = 20;
 
 class AccountHandler
 {
@@ -38,6 +43,8 @@ public:
 	// Count
 	static unsigned countAccounts();
 	static unsigned countAdmins();
+	static unsigned countNotBannedAdmins();
+	static unsigned countBannedAdmins();
 	static unsigned countUsers();
 
 	// Sets
@@ -54,6 +61,7 @@ public:
 	static void editUsername();
 	static void editPassword();
 	static void editAdminAccess();
+	static void editBanStatus();
 
 	// Functional
 	static bool auth();
@@ -64,6 +72,8 @@ public:
     static void addAccount();
 	static void deleteAccount();
 	static void editAccount();
+	static void showCurrentAccountStatistics();
+	static void showTotalStatistics();
 
 	// Destructors
     ~AccountHandler();
@@ -73,10 +83,6 @@ private:
 	static bool adminAccessStatus_;
 	static Account* accountToEdit_;
 	static Account* currentAccount_;
-
-	// Limits
-	const static unsigned passwordLengthInputLimit = 20;
-	const static unsigned usernameLengthInputLimit = 20;
 
 	// Files
 	static void rewriteAccountsFile();

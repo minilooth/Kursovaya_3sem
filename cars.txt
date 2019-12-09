@@ -1,3 +1,4 @@
-www;www;1111;Automatic;AWD;Diesel;1.5;Five-seat minivan;Black;asdasdasd;asdasdada;75000;10000;1;user
-asdasd;asdasdas;1111;Manual;FWD;Petrol;1.1;Crossover;asdasdas;asdasdasd;asdasdas;11111;111111;1;user
-qqqqqqqqqq;qqqqqqqqqq;1111;Automatic;FWD;Petrol;1.1;Three-door hatchback;qqqqqqqqq;qqqqqqqqq;qqqqqqqqq;111111;111111;0;
+rrrrr;www;1988;Механическая;Передний;Бензиновый;1.1;Седан;wwww;www;wwww;2222;2222;0;
+ttttt;www;2003;Автоматическая;Задний;Дизельный;1.1;Длинный седан;wwww;www;wwww;2222;2222;0;
+ssss;ssss;1996;Автоматическая;Полный;Бензиновый;1.1;Длинный седан;qqq;www;www;1111;1111;0;
+BMW;X6 series;2010;Автоматическая;Полный;Бензиновый;3;Кроссовер;Черный;Белый;Кожа;75000;23200;0;

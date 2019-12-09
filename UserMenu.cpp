@@ -4,11 +4,11 @@ unsigned UserMenu::choice_ = UserMenuAction::SHOW_ALL_CARS;
 
 UserMenu::UserMenu()
 {
-    title_ = "Main menu: ";
-    items_ = { "Show all cars.", "Reserve new car.", "Reserve used car.", "Show account reserved cars.", "Find car.", "Back." };
+    title_ = "Главное меню пользователя: ";
+    items_ = { "Показать все автомобили.", "Зарезервировать все автомобили.", "Зарезервировать автомобиль с пробегом.", "Показать все зарезервированные пользователем автомобили.", "Показать статистику аккаунта.", "Поиск, сортировка и фильтрация.", "Назад." };
 }
 
-UserMenu::UserMenu(string& title, vector<string>& items)
+UserMenu::UserMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -41,8 +41,12 @@ ConsoleMenu* UserMenu::getNextMenu()
 		CarHandler::showAccountReservedCars();
 		newMenu = this;
 		break;
-	case UserMenuAction::FIND_CAR :
+	case UserMenuAction::SHOW_ACCOUNT_STATISTICS :
+		AccountHandler::showCurrentAccountStatistics();
 		newMenu = this;
+		break;
+	case UserMenuAction::SEARCHING_SORTING_AND_FILTRATION :
+		newMenu = new SearchingSortingAndFilteringMenu();
 		break;
 	case UserMenuAction::BACK :
 		this->resetChoice();
@@ -60,10 +64,10 @@ unsigned UserMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
+	system("cls");
+
     while (true)
     {
-        system("cls");
-
 		showTitle();
         showItems();
 
@@ -98,12 +102,25 @@ unsigned UserMenu::selectMode()
             default:
                 break;
         }
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
     }
 }
 
 void UserMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void UserMenu::showItems()

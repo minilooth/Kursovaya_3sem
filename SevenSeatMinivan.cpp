@@ -6,7 +6,7 @@ SevenSeatMinivan::SevenSeatMinivan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Seven-seat minivan";
+	bodyType_ = "7 м. минивен";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ SevenSeatMinivan::SevenSeatMinivan(string& brand, string& model, unsigned yearOf
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Seven-seat minivan";
+	bodyType_ = "7 м. минивен";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ SevenSeatMinivan::SevenSeatMinivan(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Seven-seat minivan";
+	bodyType_ = "7 м. минивен";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

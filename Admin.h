@@ -8,7 +8,7 @@ class Admin : public Account
 {
 public:
 	Admin();
-	Admin(string& username, string& password);
+	Admin(string& username, string& password, bool banStatus);
 	Admin(Account& account);
 
 	~Admin();

@@ -6,7 +6,7 @@ LongWheelbaseSedan::LongWheelbaseSedan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Long-wheelbase sedan";
+	bodyType_ = "Длинный седан";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ LongWheelbaseSedan::LongWheelbaseSedan(string& brand, string& model, unsigned ye
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Long-wheelbase sedan";
+	bodyType_ = "Длинный седан";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ LongWheelbaseSedan::LongWheelbaseSedan(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Long-wheelbase sedan";
+	bodyType_ = "Длинный седан";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

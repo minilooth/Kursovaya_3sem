@@ -13,6 +13,15 @@ void clearLine()
 	cout << "\x1b[2K\r";
 }
 
+void clearNLines(int n)
+{
+	for (unsigned i = 0; i < n; i++)
+	{
+		clearLine();
+		moveCursorUpToNLines(1);
+	}
+}
+
 void setTextColor(int textColor)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), textColor);
@@ -42,13 +51,13 @@ bool VP_GetCh(KEY_EVENT_RECORD& krec)
 }
 
 
-//void showConsoleCursor(bool showFlag)
-//{
-//	CONSOLE_CURSOR_INFO cursorInfo;
-//	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-//	cursorInfo.bVisible = showFlag;
-//	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-//}
+void showConsoleCursor(bool showFlag)
+{
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+	cursorInfo.bVisible = showFlag;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
 
 
 string makeMaskedString(const string &inputString)
@@ -131,17 +140,22 @@ vector<string> stringSplitter(string& source)
 bool maskedPasswordInput(string& password, unsigned limit)
 {
 	char ch;
+
+	showConsoleCursor(true);
+
 	while (true)
 	{
 		ch = (char)_getch();
 		if (ch == VK_RETURN || ch == VK_TAB)
 		{
 			cout << '\n';
+			showConsoleCursor(false);
 			return true;
 		}
 		else if (ch == VK_ESCAPE)
 		{
 			password.clear();
+			showConsoleCursor(false);
 			return false;
 		}
 		else if (ch == VK_BACK && password.length() > 0)
@@ -168,17 +182,22 @@ bool maskedPasswordInput(string& password, unsigned limit)
 bool limitedInput(string& input, unsigned limit)
 {
 	char ch;
+
+	showConsoleCursor(true);
+
 	while (true)
 	{
 		ch = (char)_getch();
 		if (ch == VK_RETURN || ch == VK_TAB)
 		{
 			cout << '\n';
+			showConsoleCursor(false);
 			return true;
 		}
 		else if (ch == VK_ESCAPE)
 		{
 			input.clear();
+			showConsoleCursor(false);
 			return false;
 		}
 		else if (ch == VK_BACK && input.length() > 0)
@@ -200,4 +219,22 @@ bool limitedInput(string& input, unsigned limit)
 			cout << ch;
 		}
 	}
+}
+
+void setConsoleMaxWidth()
+{
+	CONSOLE_SCREEN_BUFFER_INFO currentConsoleInfo;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &currentConsoleInfo);
+
+	COORD coord = GetLargestConsoleWindowSize(GetStdHandle(STD_OUTPUT_HANDLE));
+
+	SMALL_RECT rect;
+	rect.Top = 0;
+	rect.Left = 0;
+	rect.Bottom = currentConsoleInfo.srWindow.Bottom;
+	rect.Right = coord.X - 1;
+
+	MoveWindow(GetConsoleWindow(), -7, 0, 0, 0, TRUE);
+	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &rect);
 }

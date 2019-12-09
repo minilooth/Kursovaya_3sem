@@ -6,7 +6,7 @@ Crossover::Crossover()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Crossover";
+	bodyType_ = "Кроссовер";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ Crossover::Crossover(string& brand, string& model, unsigned yearOfProduction, st
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Crossover";
+	bodyType_ = "Кроссовер";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;

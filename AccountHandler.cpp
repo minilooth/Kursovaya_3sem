@@ -15,6 +15,7 @@ AccountHandler::AccountHandler()
 	string username;
 	string password;
 	bool adminAccess;
+	bool banStatus;
 
 	Account* account = nullptr;
 
@@ -33,14 +34,20 @@ AccountHandler::AccountHandler()
 				username = data.at(0);
 				password = data.at(1);
 				adminAccess = data.at(2) == "1" ? true : false;
+				banStatus = data.at(3) == "1" ? true : false;
 
 				if (adminAccess == true)
 				{
-					account = new Admin(username, password);
+					account = new Admin(username, password, banStatus);
 				}
 				else
 				{
-					account = new User(username, password);
+					account = new User(username, password, banStatus);
+				}
+
+				if (StatisticsHandler::checkForStatistics(account->getUsername()) == false)
+				{
+					StatisticsHandler::createStatistics(account->getUsername());
 				}
 
 				accounts_.push_back(*account);
@@ -58,6 +65,7 @@ AccountHandler::AccountHandler(string fileName)
 	string username;
 	string password;
 	bool adminAccess;
+	bool banStatus;
 
 	Account* account = nullptr;
 
@@ -76,14 +84,20 @@ AccountHandler::AccountHandler(string fileName)
 				username = data.at(0);
 				password = data.at(1);
 				adminAccess = data.at(2) == "1" ? true : false;
+				banStatus = data.at(3) == "1" ? true : false;
 
 				if (adminAccess == true)
 				{
-					account = new Admin(username, password);
+					account = new Admin(username, password, banStatus);
 				}
 				else
 				{
-					account = new User(username, password);
+					account = new User(username, password, banStatus);
+				}
+
+				if (StatisticsHandler::checkForStatistics(account->getUsername()) == false)
+				{
+					StatisticsHandler::createStatistics(account->getUsername());
 				}
 
 				accounts_.push_back(*account);
@@ -98,7 +112,6 @@ AccountHandler::AccountHandler(string fileName)
 void AccountHandler::rewriteAccountsFile()
 {
 	ofstream accountsFile;
-
 	accountsFile.open(R"(accounts.txt)", ios::trunc);
 	if (accountsFile.is_open())
 	{
@@ -106,14 +119,15 @@ void AccountHandler::rewriteAccountsFile()
 		{
 			accountsFile << accounts_.at(i).getUsername() << ";"
 						 << accounts_.at(i).getPassword() << ";"
-						 << accounts_.at(i).getAdminAccess()
+						 << accounts_.at(i).getAdminAccess() << ";"
+						 << accounts_.at(i).getBanStatus()
 						 << endl;
 		}
 		accountsFile.close();
 	}
 	else
 	{
-		throw exception("Cannot open accounts file!");
+		throw exception("Невозможно открыть файл с аккаунтами!");
 	}
 }
 
@@ -231,6 +245,32 @@ unsigned AccountHandler::countAdmins()
 	return counter;
 }
 
+unsigned AccountHandler::countNotBannedAdmins()
+{
+	unsigned counter = 0;
+	for (unsigned i = 0; i < accounts_.size(); i++)
+	{
+		if (accounts_.at(i).getAdminAccess() == true && accounts_.at(i).getBanStatus() == false)
+		{
+			counter++;
+		}
+	}
+	return counter;
+}
+
+unsigned AccountHandler::countBannedAdmins()
+{
+	unsigned counter = 0;
+	for (unsigned i = 0; i < accounts_.size(); i++)
+	{
+		if (accounts_.at(i).getAdminAccess() == true && accounts_.at(i).getBanStatus() == true)
+		{
+			counter++;
+		}
+	}
+	return counter;
+}
+
 unsigned AccountHandler::countUsers()
 {
 	unsigned counter = 0;
@@ -285,14 +325,14 @@ void AccountHandler::editUsername()
 	{
 		if (accountToEdit_ == nullptr)
 		{
-			throw exception("Account to edit not setted up!");
+			throw exception("Аккаунт для редактирования не установлен!");
 		}
 
 		system("cls");
 
 		showEditAccount();
 
-		cout << endl << "Enter new username: ";
+		cout << endl << "Введите новое имя аккаунта: ";
 		if (limitedInput(username, usernameLengthInputLimit) == false)
 		{
 			return;
@@ -300,18 +340,21 @@ void AccountHandler::editUsername()
 
 		if (findUser(username))
 		{
-			throw exception("User is already exists!");
+			throw exception("Такой аккаунт уже существует!");
 		}
 		if (username.length() < 3)
 		{
-			throw exception("Username should be at least three characters long!");
+			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
 		}
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Username should only consists of letters and digits!");
+			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
 		CarHandler::editReservedCarsReserverUsername(accountToEdit_->getUsername(), username);
+
+		StatisticsHandler::getAccountStatistics(accountToEdit_->getUsername())->setUsername(username);
+		StatisticsHandler::rewriteStatisticsFile();
 
 		accountToEdit_->setUsername(username);
 
@@ -322,7 +365,7 @@ void AccountHandler::editUsername()
 		rewriteAccountsFile();
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "Username succesfully changed!" << endl << endl;
+		cout << endl << "Имя аккаунта успешно изменено!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -333,7 +376,7 @@ void AccountHandler::editUsername()
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
-		cout << "Username not changed!" << endl << endl;
+		cout << "Имя аккаунта не изменено!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -348,14 +391,14 @@ void AccountHandler::editPassword()
 	{
 		if (accountToEdit_ == nullptr)
 		{
-			throw exception("Account to edit not setted up!");
+			throw exception("Аккаунт для редактирования не установлен!");
 		}
 
 		system("cls");
 
 		showEditAccount();
 
-		cout << endl << "Enter new password: ";
+		cout << endl << "Введите новый пароль аккаунта: ";
 		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
 		{
 			return;
@@ -363,11 +406,11 @@ void AccountHandler::editPassword()
 
 		if (password.length() < 3)
 		{
-			throw exception("Password should be at least three characters long!");
+			throw exception("Пароль аккаунта должен быть как минимум три символа в длину!");
 		}
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Password should only consists of letters and digits!");
+			throw exception("Пароль аккаунта должен состоять только из букв и цифр!");
 		}
 
 		accountToEdit_->setPassword(password);
@@ -379,7 +422,7 @@ void AccountHandler::editPassword()
 		rewriteAccountsFile();
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "Password succesfully changed!" << endl << endl;
+		cout << endl << "Пароль аккаунта успешно изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception & ex)
@@ -390,7 +433,7 @@ void AccountHandler::editPassword()
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
-		cout << "Password not changed!" << endl << endl;
+		cout << "Пароль аккаунта не изменен!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -405,16 +448,16 @@ void AccountHandler::editAdminAccess()
 	{
 		if (accountToEdit_ == nullptr)
 		{
-			throw exception("Account to edit not setted up!");
+			throw exception("Аккаунта для редактирования не установлен!");
 		}
 
 		system("cls");
 
 		showEditAccount();
 
-		if (accountToEdit_->getAdminAccess() == true && countAdmins() < 2)
+		if (accountToEdit_->getBanStatus() == false && accountToEdit_->getAdminAccess() == true && countNotBannedAdmins() < 2)
 		{
-			throw exception("Unable to change admin access of last admin!");
+			throw exception("Невозможно изменить права администратора последнего не заблокированного администратора!");
 		}
 	
 		if (accountToEdit_->getAdminAccess() == true)
@@ -432,14 +475,14 @@ void AccountHandler::editAdminAccess()
 		accounts_.insert(accounts_.begin() + index, *accountToEdit_);
 		accountToEdit_ = getAccount(index);
 
+		rewriteAccountsFile();
+
 		system("cls");
 
 		showEditAccount();
 
-		rewriteAccountsFile();
-
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "Admin access succesfully changed!" << endl << endl;
+		cout << endl << "Права администратора успешно изменены!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception& ex)
@@ -450,10 +493,55 @@ void AccountHandler::editAdminAccess()
 
 		setTextColor(Color::RED);
 		cout << endl << ex.what() << endl;
-		cout << "Admin access not changed!" << endl << endl;
+		cout << "Права администратора не изменены!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
+
 	}
 
+	system("pause");
+}
+
+void AccountHandler::editBanStatus()
+{
+	try
+	{
+		if (accountToEdit_ == nullptr)
+		{
+			throw exception("Аккаунт для редактирования не установлен!");
+		}
+
+		system("cls");
+
+		showEditAccount();
+
+		if (countNotBannedAdmins() < 2 && accountToEdit_->getAdminAccess() == true && accountToEdit_->getBanStatus() == false)
+		{
+			throw exception("Невозможно заблокировать последнего адмнистратора!");
+		}
+
+		accountToEdit_->setBanStatus(!accountToEdit_->getBanStatus());
+
+		rewriteAccountsFile();
+
+		system("cls");
+
+		showEditAccount();
+
+		setTextColor(Color::LIGHT_GREEN);
+		cout << endl << "Статус блокировки успешно изменен!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		showEditAccount();
+
+		setTextColor(Color::RED);
+		cout << endl << ex.what() << endl;
+		cout << "Статус блокировки не изменен!" << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
 	system("pause");
 }
 
@@ -473,7 +561,7 @@ bool AccountHandler::auth()
 
 	try
 	{
-		cout << "Username: ";
+		cout << "Имя пользователя: ";
 		if (limitedInput(username, usernameLengthInputLimit) == false)
 		{
 			return false;
@@ -485,7 +573,7 @@ bool AccountHandler::auth()
 		}
 		else
 		{
-			throw exception("User not found!");
+			throw exception("Аккаунт не найден!");
 		}
 	}
 	catch (exception &ex)
@@ -503,7 +591,7 @@ bool AccountHandler::auth()
 	{
 		try
 		{
-			cout << "Password: ";
+			cout << "Пароль: ";
 			if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
 			{
 				return false;
@@ -512,7 +600,7 @@ bool AccountHandler::auth()
 			if (password.length() == 0)
 			{
 				passwordAttempts++;
-				throw exception(passwordAttempts > 4 ? "Enter at least one character!\nPassword attemps exceeded!" : "Enter at least one character!");
+				throw exception(passwordAttempts > 4 ? "Введите хотя бы один символ!\nПревышено число попыток ввода пароля!" : "Введите хотя бы один символ!");
 			}
 
 			if (account->getPassword() == password && passwordAttempts < 5)
@@ -522,7 +610,7 @@ bool AccountHandler::auth()
 			else
 			{
 				passwordAttempts++;
-				throw exception(passwordAttempts > 4 ? "Wrong password!\nPassword attempts exceeded!" : "Wrong password!");
+				throw exception(passwordAttempts > 4 ? "Неверный пароль!\nПревышено число попыток ввода пароля!" : "Неверный пароль!");
 			}
 		}
 		catch (exception& ex)
@@ -551,18 +639,18 @@ bool AccountHandler::auth()
 		}
 	}
 
-    if (account->getAdminAccess() == adminAccessStatus_)
+    if (account->getAdminAccess() == adminAccessStatus_ && account->getBanStatus() == false)
     {
 		currentAccount_ = account;
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << "Logged in!";
+		cout << endl << "Вы успешно вошли в систему!";
 
 		Sleep(1500);
 
 		clearLine();
 
-		cout << "Welcome, " << account->getUsername() << "!" << endl << endl;
+		cout << "Приветствуем, " << account->getUsername() << "!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		system("pause");
@@ -572,7 +660,7 @@ bool AccountHandler::auth()
     else
     {
 		setTextColor(Color::RED);
-		cout << endl << "Access denied!" << endl << endl;
+		cout << endl << "Доступ заблокирован!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		system("pause");
@@ -592,7 +680,7 @@ void AccountHandler::registration()
 
 	try
 	{
-		cout << "Enter username: ";
+		cout << "Введите имя аккаунта: ";
 		if (limitedInput(username, usernameLengthInputLimit) == false)
 		{
 			return;
@@ -600,20 +688,20 @@ void AccountHandler::registration()
 
 		if (findUser(username))
 		{
-			throw exception("User is already exists!");
+			throw exception("Такой аккаунт уже существует!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw exception("Username should be at least three characters long!");
+			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Username should only consists of letters and digits!");
+			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
-		cout << "Enter password: ";
+		cout << "Введите пароль: ";
 		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
 		{
 			return;
@@ -621,28 +709,30 @@ void AccountHandler::registration()
 
 		if (password.length() < 3)
 		{
-			throw exception("Password should be at least three characters long!");
+			throw exception("Пароль аккаунта должен быть как минимум три символа в длину!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Password should only consists of letters and digits!");
+			throw exception("Пароль аккаунта должен состоять только из букв и цифр!");
 		}
 
-		newAccount = new User(username, password);
+		newAccount = new User(username, password, false);
+
+		StatisticsHandler::createStatistics(newAccount->getUsername());
 
 		accounts_.push_back(*(newAccount));
 
 		rewriteAccountsFile();
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << endl << endl << "You are succesfully registered!" << endl << endl;
+		cout << endl << "Вы успешно зарегистрировались!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 	catch (exception& ex)
 	{
 		setTextColor(Color::RED);
-		cout << endl << ex.what() << endl << "You are not registered!" << endl << endl;
+		cout << endl << ex.what() << endl << "Вы не зарегистрировались!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 	}
 
@@ -655,7 +745,7 @@ void AccountHandler::showAccounts()
 	{
 		if (accounts_.size() == 0)
 		{
-			throw exception("Account list is empty");
+			throw exception("Список аккаунтов пуст!");
 		}
 
 		AccountPrinter::showHeader();
@@ -685,7 +775,7 @@ void AccountHandler::showAccounts(unsigned from, unsigned to)
 	{
 		if (accounts_.size() == 0)
 		{
-			throw exception("Account list is empty");
+			throw exception("Список аккаунтов пуст!");
 		}
 
 		AccountPrinter::showHeader();
@@ -715,7 +805,7 @@ void AccountHandler::showEditAccount()
 	{
 		if (accountToEdit_ == nullptr)
 		{
-			throw exception("Account to edit not setted!");
+			throw exception("Аккаунт для редактирования не установен!");
 		}
 
 		AccountPrinter::showHeader();
@@ -764,7 +854,7 @@ void AccountHandler::addAccount()
 
 	try
 	{
-		cout << "Username: ";
+		cout << "Имя аккаунта: ";
 		if (limitedInput(username, usernameLengthInputLimit) == false)
 		{
 			return;
@@ -772,22 +862,22 @@ void AccountHandler::addAccount()
 
 		if (findUser(username))
 		{
-			throw exception("User is already exists!");
+			throw exception("Такой аккаунт уже существует!");
 		}
 
 		if (username.length() < 3)
 		{
-			throw exception("Username should be at least three characters long!");
+			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
 		}
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Username should only consists of letters and digits!");
+			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
 		account->setUsername(username);
 
-		cout << "Password: ";
+		cout << "Пароль: ";
 		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
 		{
 			return;
@@ -795,12 +885,12 @@ void AccountHandler::addAccount()
 
 		if (password.length() < 3)
 		{
-			throw exception("Password should be at least three characters long!");
+			throw exception("Пароль аккаунта должен быть как мининмум три символа в длину!");
 		}
 
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Password should only consists of letters and digits!");
+			throw exception("Пароль аккаунта должен состоять только из букв и цирф!");
 		}
 
 		account->setPassword(password);
@@ -809,14 +899,16 @@ void AccountHandler::addAccount()
 
 		rewriteAccountsFile();
 
+		StatisticsHandler::createStatistics(account->getUsername());
+
 		setTextColor(Color::LIGHT_GREEN);
 		if (account->getAdminAccess())
 		{
-			cout << endl << endl << "Admin succesfully added!" << endl << endl;
+			cout << endl << "Администратор успешно добавлен!" << endl << endl;
 		}
 		else
 		{
-			cout << endl << endl << "User succesfully added!" << endl << endl;
+			cout << endl << "Пользователь успешно добавлен!" << endl << endl;
 		}
 		setTextColor(Color::LIGHT_CYAN);
 	}
@@ -825,11 +917,11 @@ void AccountHandler::addAccount()
 		setTextColor(Color::RED);
 		if (account->getAdminAccess())
 		{
-			cout << endl << ex.what() << endl << "Admin not added!" << endl << endl;
+			cout << endl << ex.what() << endl << "Администратор не добавлен!" << endl << endl;
 		}
 		else
 		{
-			cout << endl << ex.what() << endl << "User not added!" << endl << endl;
+			cout << endl << ex.what() << endl << "Пользователь не добавлен!" << endl << endl;
 		}
 		setTextColor(Color::LIGHT_CYAN);
 	}
@@ -849,10 +941,10 @@ void AccountHandler::deleteAccount()
 	{
 		if (accounts_.size() == 0)
 		{
-			throw exception("Accounts file is empty!");
+			throw exception("Список аккаунтов пуст!");
 		}
 
-		itemSelection = new ItemSelection<Account>("Choose user to delete: ", accounts_);
+		itemSelection = new ItemSelection<Account>("Выберете удаляемый аккаунт: ", accounts_);
 
 		index = itemSelection->selectMode();
 
@@ -868,10 +960,12 @@ void AccountHandler::deleteAccount()
 
 		if (getAccount(index)->getAdminAccess() == true && countAdmins() == 1)
 		{
-			throw exception("Unable to delete last admin!");
+			throw exception("Невозможно удалить последнего администратора!");
 		}
 
 		CarHandler::resetReservedCarsByUsername(getAccount(index)->getUsername());
+
+		StatisticsHandler::deleteStatistics(getAccount(index)->getUsername());
 
 		accounts_.erase(accounts_.begin() + index);
 
@@ -880,7 +974,7 @@ void AccountHandler::deleteAccount()
 		system("cls");
 
 		setTextColor(Color::LIGHT_GREEN);
-		cout << "User succesfully deleted!" << endl << endl;
+		cout << "Аккаунт успешно удален!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		delete itemSelection;
@@ -890,7 +984,8 @@ void AccountHandler::deleteAccount()
 		system("cls");
 
 		setTextColor(Color::RED);
-		cout << ex.what() << endl << endl;
+		cout << ex.what() << endl;
+		cout << "Аккаунт не удален!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
 
 		delete itemSelection;
@@ -911,10 +1006,10 @@ void AccountHandler::editAccount()
 	{
 		if (accounts_.size() == 0)
 		{
-			throw exception("Account list is empty!");
+			throw exception("Список аккаунтов пуст!");
 		}
 
-		itemSelection = new ItemSelection<Account>("Shoose user to edit: ", accounts_);
+		itemSelection = new ItemSelection<Account>("Выберете аккаунт для редактирования: ", accounts_);
 
 		index = itemSelection->selectMode();
 
@@ -951,8 +1046,61 @@ void AccountHandler::editAccount()
 	}
 }
 
+void AccountHandler::showCurrentAccountStatistics()
+{
+	AccountStatistics* statistic = nullptr;
+	try
+	{
+		if (currentAccount_ == nullptr)
+		{
+			throw exception("Текущий аккаунт не установлен!");
+		}
+		if (StatisticsHandler::checkForStatistics(currentAccount_->getUsername()) == false)
+		{
+			throw exception("Статистика для этого аккаунта не найдена!");
+		}
+
+		statistic = StatisticsHandler::getAccountStatistics(currentAccount_->getUsername());
+
+		system("cls");
+
+		cout << "Статистика для текущего аккаунта:" << endl << endl
+			 << "Имя аккаунта: " << statistic->getUsername() << endl
+			 << "Количество купленных автомобилей: " << statistic->getTotalCarsPurchased() << endl
+			 << "Наибольший чек: " << statistic->getLargestCheck() << "$" << endl
+			 << "Средний чек: " << statistic->getAverageCheck() << "$" << endl
+			 << "Общая сумма покупок: " << statistic->getTotalPurchases() << "$" << endl
+			 << endl;
+	}
+	catch (exception & ex)
+	{
+		system("cls");
+
+		setTextColor(Color::RED);
+		cout << ex.what() << endl << endl;
+		setTextColor(Color::LIGHT_CYAN);
+	}
+	system("pause");
+}
+
+void AccountHandler::showTotalStatistics()
+{
+	system("cls");
+
+	cout << "Общая статистика:" << endl << endl;
+
+	cout << "Всего продано автомобилей: " << StatisticsHandler::getSoldCarsQuantity() << endl;
+	cout << "Аккаунт, купивший наибольшее количество автомобилей: " << StatisticsHandler::getMostBuyedCarsUsername() << endl;
+	cout << "Средний чек: " << StatisticsHandler::getAccountsAverageCheck() << "$" << endl;
+	cout << "Наибольший чек: " << StatisticsHandler::getAccountsLargestCheck() << "$" << endl;
+	cout << "Общая сумма покупок: " << StatisticsHandler::getAccountsTotalPurchaseAmount() << "$" << endl << endl;
+
+	system("pause");
+}
+
 // Destructors
 AccountHandler::~AccountHandler()
 {
 	delete accountToEdit_;
+	delete currentAccount_;
 }

@@ -16,7 +16,7 @@ class EngineTypeMenu : virtual public ConsoleMenu
 	static unsigned choice_;
 public:
 	EngineTypeMenu();
-	EngineTypeMenu(string& title, vector<string>& items);
+	EngineTypeMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

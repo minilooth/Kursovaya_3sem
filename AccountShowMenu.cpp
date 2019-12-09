@@ -6,9 +6,9 @@ unsigned AccountShowMenu::maxPages_ = 1;
 
 AccountShowMenu::AccountShowMenu()
 {
-	title_ = "All accounts:";
-	items_ = { AccountHandler::getShowPasswordStatus() ? "Hide password." : "Show password." , "Back." };
-	tooltip_ = "Tooltip:\nPress -> to go to next page.\nPress <- to go to previous page.\nPress ESC or select \"Back\" to go back.";
+	title_ = "Все аккаунты:";
+	items_ = { AccountHandler::getShowPasswordStatus() ? "Скрыть пароль." : "Показать пароль." , "Назад." };
+	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC или \"Назад\" чтобы вернуться назад.";
 	pageSize_ = 10;
 
 	maxPages_ = AccountHandler::countAccounts() / pageSize_;
@@ -19,7 +19,7 @@ AccountShowMenu::AccountShowMenu()
 	}
 }
 
-AccountShowMenu::AccountShowMenu(string& title, vector<string>& items, string& tooltip, unsigned pageSize)
+AccountShowMenu::AccountShowMenu(const string& title, const vector<string>& items, const string& tooltip, unsigned pageSize)
 {
 	title_ = title;
 	items_ = items;
@@ -156,7 +156,7 @@ unsigned AccountShowMenu::selectMode()
 
 void AccountShowMenu::showCurrentPageNumber()
 {
-	cout << "Page " << currentPage_ << " of " << maxPages_ << endl;
+	cout << "Страница " << currentPage_ << " из " << maxPages_ << endl;
 }
 
 void AccountShowMenu::showTooltip()

@@ -26,7 +26,7 @@ private:
 	static unsigned choice_;
 public:
 	BodyTypeMenu();
-	BodyTypeMenu(string& title, vector<string>& items);
+	BodyTypeMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

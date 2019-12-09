@@ -6,7 +6,7 @@ FiveSeatMinivan::FiveSeatMinivan()
 	model_ = "";
 	yearOfProduction_ = 0;
 	transmissionType_ = "";
-	bodyType_ = "Five-seat minivan";
+	bodyType_ = "5 м. минивен";
 	wheelDriveType_ = "";
 	engineType_ = "";
 	engineVolume_ = 0.0;
@@ -27,7 +27,7 @@ FiveSeatMinivan::FiveSeatMinivan(string& brand, string& model, unsigned yearOfPr
 	model_ = model;
 	yearOfProduction_ = yearOfProduction;
 	transmissionType_ = transmissionType;
-	bodyType_ = "Five-seat minivan";
+	bodyType_ = "5 м. минивен";
 	wheelDriveType_ = wheelDriveType;
 	engineType_ = engineType;
 	engineVolume_ = engineVolume;
@@ -46,7 +46,7 @@ FiveSeatMinivan::FiveSeatMinivan(Car& car)
 	model_ = car.getModel();
 	yearOfProduction_ = car.getYearOfProduction();
 	transmissionType_ = car.getTransmissionType();
-	bodyType_ = "Five-seat minivan";
+	bodyType_ = "5 м. минивен";
 	wheelDriveType_ = car.getWheelDriveType();
 	engineType_ = car.getEngineType();
 	engineVolume_ = car.getEngineVolume();

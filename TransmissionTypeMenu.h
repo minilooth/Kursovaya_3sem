@@ -16,7 +16,7 @@ class TransmissionTypeMenu : virtual public ConsoleMenu
 	static unsigned choice_;
 public:
 	TransmissionTypeMenu();
-	TransmissionTypeMenu(string& title, vector<string>& items);
+	TransmissionTypeMenu(const string& title, const vector<string>& items);
 	unsigned selectMode();
 	void resetChoice();
 	void showTitle();

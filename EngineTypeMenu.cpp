@@ -4,11 +4,11 @@ unsigned EngineTypeMenu::choice_ = EngineType::PETROL;
 
 EngineTypeMenu::EngineTypeMenu()
 {
-	title_ = "Engine type: ";
-	items_ = { "Petrol", "Diesel" };
+	title_ = "Тип двигателя: ";
+	items_ = { "Бензиновый.", "Дизельный." };
 }
 
-EngineTypeMenu::EngineTypeMenu(string& title, vector<string>& items)
+EngineTypeMenu::EngineTypeMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -38,7 +38,7 @@ unsigned EngineTypeMenu::selectMode()
 
 		switch (key.wVirtualKeyCode)
 		{
-		case VK_RIGHT :
+		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
 				choice_ = EngineType::PETROL;
@@ -48,7 +48,7 @@ unsigned EngineTypeMenu::selectMode()
 				choice_++;
 			}
 			break;
-		case VK_LEFT :
+		case VK_UP :
 			if (choice_ < EngineType::DIESEL)
 			{
 				choice_ = items_.size();
@@ -66,13 +66,24 @@ unsigned EngineTypeMenu::selectMode()
 			break;
 		}
 
-		clearLine();
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void EngineTypeMenu::showTitle()
 {
 	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void EngineTypeMenu::showItems()
@@ -82,12 +93,12 @@ void EngineTypeMenu::showItems()
 		if (choice_ == i + 1)
 		{
 			setTextColor(Color::WHITE);
-			cout << "->" << items_.at(i) << "  ";
+			cout << "->" << items_.at(i) << endl;
 			setTextColor(Color::LIGHT_CYAN);
 		}
 		else
 		{
-			cout << "  " << items_.at(i) << "  ";
+			cout << "  " << items_.at(i) << endl;
 		}
 	}
 }

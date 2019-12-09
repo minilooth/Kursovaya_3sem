@@ -4,11 +4,11 @@ unsigned AccountTypeMenu::choice_ = AccountType::ADMIN;
 
 AccountTypeMenu::AccountTypeMenu()
 {
-	title_ = "Choose type of account: ";
-	items_ = { "Add admin.", "Add user." };
+	title_ = "Выберите тип аккаунта: ";
+	items_ = { "Добавить администратора.", "Добавить пользователя." };
 }
 
-AccountTypeMenu::AccountTypeMenu(string& title, vector<string>& items)
+AccountTypeMenu::AccountTypeMenu(const string& title, const vector<string>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -28,10 +28,10 @@ unsigned AccountTypeMenu::selectMode()
 {
 	KEY_EVENT_RECORD key;
 
+	system("cls");
+
 	while (true)
 	{
-		system("cls");
-
 		showTitle();
 		showItems();
 
@@ -66,12 +66,25 @@ unsigned AccountTypeMenu::selectMode()
 		default:
 			break;
 		}
+
+		if (title_ != "")
+		{
+			clearNLines(items_.size() + 1);
+		}
+		else
+		{
+			clearNLines(items_.size());
+		}
 	}
 }
 
 void AccountTypeMenu::showTitle()
 {
-	cout << title_ << endl;
+	cout << title_;
+	if (title_ != "")
+	{
+		cout << endl;
+	}
 }
 
 void AccountTypeMenu::showItems()
