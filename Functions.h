@@ -46,5 +46,8 @@ unsigned calculateDoubleLength(double toCalculate, unsigned signsAfterDot);
 void showConsoleCursor(bool showFlag);
 void setConsoleMaxWidth();
 
+template<typename T>
+vector<T> derefenceVectorItems(vector<T*> items);
+
 
 #endif //FUNCTIONS_H

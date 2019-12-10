@@ -1,6 +1,7 @@
 #ifndef CARHANDLER_H
 #define CARHANDLER_H
 
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "BodyTypeMenu.h"
@@ -36,9 +37,9 @@ const unsigned brandMaxInputLength = 10;
 const unsigned modelMaxInputLength = 10;
 const unsigned yearOfProductionMaxInputLength = 4;
 const unsigned engineVolumeMaxInputLength = 3;
-const unsigned bodyColorMaxInputLength = 9;
-const unsigned interiorColorMaxInputLength = 9;
-const unsigned interiorMaterialMaxInputLength = 9;
+const unsigned bodyColorMaxInputLength = 10;
+const unsigned interiorColorMaxInputLength = 10;
+const unsigned interiorMaterialMaxInputLength = 10;
 const unsigned mealeageMaxInputLength = 6;
 const unsigned priceMaxInputLength = 6;
 
@@ -69,11 +70,11 @@ public:
 	CarHandler(string fileName);
 
 	// Count
-	static unsigned countNewCars();
+	/*static unsigned countNewCars();
 	static unsigned countNotReservedNewCars();
 	static unsigned countUsedCars();
 	static unsigned countNotReservedUsedCars();
-	static unsigned countReservedCars();
+	static unsigned countReservedCars();*/
 
 	// Reset
 	static void resetCarToEdit();
@@ -90,8 +91,11 @@ public:
 	static vector<Car> getCars();
 	static pair<vector<Car*>, vector<Car>> getNotReservedNewCars();
 	static pair<vector<Car*>, vector<Car>> getNotReservedUsedCars();
+	//static vector<Car*> getNotReservedUsedCars();
 	static pair<vector<Car*>, vector<Car>> getReservedCars();
 	static vector<Car> getReservedCarsByUsername(string username);
+	static vector<Car> getUsedCars();
+	static vector<Car> getNewCars();
 	static vector<Car> getFilteredCars();
 	static vector<Car> getCarsByBrand(const string& brand);
 	static vector<Car> getCarsByModel(const string& brand);

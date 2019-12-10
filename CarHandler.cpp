@@ -544,70 +544,70 @@ void CarHandler::setFilterByTransmissionType()
 }
 
 // Count
-unsigned CarHandler::countNewCars()
-{
-	unsigned counter = 0;
-	for (unsigned i = 0; i < cars_.size(); i++)
-	{
-		if (cars_.at(i).getMealeage() == 0.0)
-		{
-			counter++;
-		}
-	}
-	return counter;
-}
-
-unsigned CarHandler::countNotReservedNewCars()
-{
-	unsigned counter = 0;
-	for (unsigned i = 0; i < cars_.size(); i++)
-	{
-		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() == 0.0)
-		{
-			counter++;
-		}
-	}
-	return counter;
-}
-
-unsigned CarHandler::countUsedCars()
-{
-	unsigned counter = 0;
-	for (unsigned i = 0; i < cars_.size(); i++)
-	{
-		if (cars_.at(i).getMealeage() != 0.0)
-		{
-			counter++;
-		}
-	}
-	return counter;
-}
-
-unsigned CarHandler::countNotReservedUsedCars()
-{
-	unsigned counter = 0;
-	for (unsigned i = 0; i < cars_.size(); i++)
-	{
-		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() != 0.0)
-		{
-			counter++;
-		}
-	}
-	return counter;
-}
-
-unsigned CarHandler::countReservedCars()
-{
-	unsigned counter = 0;
-	for (unsigned i = 0; i < cars_.size(); i++)
-	{
-		if (cars_.at(i).getReserveStatus() == true)
-		{
-			counter++;
-		}
-	}
-	return counter;
-}
+//unsigned CarHandler::countNewCars()
+//{
+//	unsigned counter = 0;
+//	for (unsigned i = 0; i < cars_.size(); i++)
+//	{
+//		if (cars_.at(i).getMealeage() == 0.0)
+//		{
+//			counter++;
+//		}
+//	}
+//	return counter;
+//}
+//
+//unsigned CarHandler::countNotReservedNewCars()
+//{
+//	unsigned counter = 0;
+//	for (unsigned i = 0; i < cars_.size(); i++)
+//	{
+//		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() == 0.0)
+//		{
+//			counter++;
+//		}
+//	}
+//	return counter;
+//}
+//
+//unsigned CarHandler::countUsedCars()
+//{
+//	unsigned counter = 0;
+//	for (unsigned i = 0; i < cars_.size(); i++)
+//	{
+//		if (cars_.at(i).getMealeage() != 0.0)
+//		{
+//			counter++;
+//		}
+//	}
+//	return counter;
+//}
+//
+//unsigned CarHandler::countNotReservedUsedCars()
+//{
+//	unsigned counter = 0;
+//	for (unsigned i = 0; i < cars_.size(); i++)
+//	{
+//		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() != 0.0)
+//		{
+//			counter++;
+//		}
+//	}
+//	return counter;
+//}
+//
+//unsigned CarHandler::countReservedCars()
+//{
+//	unsigned counter = 0;
+//	for (unsigned i = 0; i < cars_.size(); i++)
+//	{
+//		if (cars_.at(i).getReserveStatus() == true)
+//		{
+//			counter++;
+//		}
+//	}
+//	return counter;
+//}
 
 // Search
 void CarHandler::searchByBrand()
@@ -1488,7 +1488,7 @@ void CarHandler::editBodyColor()
 			throw exception("Цвет кузова должен состоять минимум из трех сиволов!");
 		}
 
-		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
+		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя- ") != string::npos)
 		{
 			throw exception("Цвет кузова должен состоять только из букв!");
 		}
@@ -1546,7 +1546,7 @@ void CarHandler::editInteriorColor()
 			throw exception("Цвет салона должен состоять как мининмум из трех символов!");
 		}
 
-		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ") != string::npos)
+		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя- ") != string::npos)
 		{
 			throw exception("Цвет салона должен стостоять только из букв!");
 		}
@@ -1933,10 +1933,12 @@ pair<vector<Car*>, vector<Car>> CarHandler::getNotReservedNewCars()
 pair<vector<Car*>, vector<Car>> CarHandler::getNotReservedUsedCars()
 {
 	pair<vector<Car*>, vector<Car>> cars;
+	//vector<Car*> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
 	{
 		if (cars_.at(i).getMealeage() != 0.0 && cars_.at(i).getReserveStatus() == false)
 		{
+			//cars.push_back(&(cars_.at(i)));
 			cars.first.push_back(&(cars_.at(i)));
 			cars.second.push_back(cars_.at(i));
 		}
@@ -1966,6 +1968,32 @@ vector<Car> CarHandler::getReservedCarsByUsername(string username)
 		if (cars_.at(i).getReserverUsername() == username)
 		{
 			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getUsedCars()
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getMealeage() != 0.0)
+		{
+			cars.push_back(cars_.at(i));
+		}
+	}
+	return cars;
+}
+
+vector<Car> CarHandler::getNewCars()
+{
+	vector<Car> cars;
+	for (unsigned i = 0; i < cars_.size(); i++)
+	{
+		if (cars_.at(i).getMealeage() == 0.0)
+		{
+			cout << cars_.at(i) << endl;
 		}
 	}
 	return cars;
@@ -2053,14 +2081,9 @@ void CarHandler::showCars()
 
 		system("cls");
 
-		CarPrinter::showHeader();
+		cout << "Все автомобили: " << endl << endl;
 
-		for (unsigned i = 0; i < cars_.size(); i++)
-		{
-			cout << cars_.at(i) << endl;
-		}
-
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		CarPrinter::printCars(cars_);
 
 		cout << endl;
 	}
@@ -2096,14 +2119,7 @@ void CarHandler::showAccountReservedCars()
 
 		cout << "Автомобили, зарезервиранные вами: " << endl << endl;
 
-		CarPrinter::showHeader();
-
-		for (unsigned i = 0; i < cars.size(); i++)
-		{
-			cout << cars.at(i) << endl;
-		}
-
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		CarPrinter::printCars(cars);
 
 		cout << endl;
 	}
@@ -2121,26 +2137,18 @@ void CarHandler::showAccountReservedCars()
 
 void CarHandler::showNewCars()
 {
+	auto newCars = getNewCars();
+
 	try
 	{
-		if (countNewCars() == 0)
+		if (newCars.size() == 0)
 		{
 			throw exception("Список новых автомобилей пуст!");
 		}
 
 		system("cls");
 
-		CarPrinter::showHeader();
-
-		for (unsigned i = 0; i < cars_.size(); i++)
-		{
-			if (cars_.at(i).getMealeage() == 0.0)
-			{
-				cout << cars_.at(i) << endl;
-			}
-		}
-
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		CarPrinter::printCars(newCars);
 
 		cout << endl;
 	}
@@ -2158,26 +2166,17 @@ void CarHandler::showNewCars()
 
 void CarHandler::showUsedCars()
 {
+	auto usedCars = getUsedCars();
 	try
 	{
-		if (countNewCars() == 0)
+		if (usedCars.size() == 0)
 		{
 			throw exception("Список автомобилей с пробегом пуст!");
 		}
 
 		system("cls");
 
-		CarPrinter::showHeader();
-
-		for (unsigned i = 0; i < cars_.size(); i++)
-		{
-			if (cars_.at(i).getMealeage() != 0.0)
-			{
-				cout << cars_.at(i) << endl;
-			}
-		}
-
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		CarPrinter::printCars(usedCars);
 
 		cout << endl;
 	}
@@ -2195,14 +2194,9 @@ void CarHandler::showUsedCars()
 
 void CarHandler::showEditCar()
 {
-	CarPrinter::showHeader();
-
-	cout << *carToEdit_ << endl;
-
-	drawSolidLine(CarPrinter::getSolidLineLength());
+	CarPrinter::printCars({ *carToEdit_ });
 
 	cout << endl;
-
 }
 
 void CarHandler::showFilteredCars()
@@ -2217,12 +2211,11 @@ void CarHandler::showFilteredCars()
 
 		system("cls");
 
-		CarPrinter::showHeader();
-		for (unsigned i = 0; i < cars.size(); i++)
-		{
-			cout << cars.at(i) << endl;
-		}
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		cout << "Отфильтрованные автомобили:" << endl << endl;
+
+		CarPrinter::printCars(cars);
+
+		cout << endl;
 	}
 	catch (exception & ex)
 	{
@@ -2250,12 +2243,13 @@ void CarHandler::sellCar()
 		{
 			throw exception("Список автомобилей пуст!");
 		}
-		if (countReservedCars() == 0)
+
+		auto reservedCars = getReservedCars();
+
+		if (reservedCars.second.size() == 0)
 		{
 			throw exception("Нет зарезервированных атвоомобилей!");
 		}
-
-		auto reservedCars = getReservedCars();
 
 		itemSelection = new ItemSelection<Car>("Выберете автомобиль для продажи:", reservedCars.second);
 
@@ -2518,7 +2512,7 @@ void CarHandler::addCar()
 			throw exception("Цвет кузова должен состоять как минимум из трех символов!");
 		}
 
-		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя") != string::npos)
+		if (bodyColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя- ") != string::npos)
 		{
 			throw exception("Цвет кузова должен состоять только из букв!");
 		}
@@ -2536,7 +2530,7 @@ void CarHandler::addCar()
 			throw exception("Цвет салона должен состоять как минимум из трех символов!");
 		}
 
-		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя") != string::npos)
+		if (interiorColor.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя-  ") != string::npos)
 		{
 			throw exception("Цвет салона должен состоять только из букв!");
 		}
@@ -2682,12 +2676,13 @@ void CarHandler::reserveNewCar()
 		{
 			throw exception("Список автомобилей пуст!");
 		}
-		if (countNotReservedNewCars() == 0)
-		{
-			throw exception("Список незарезервированных новых автомобилей!");
-		}
 
 		auto notReservedNewCars = getNotReservedNewCars();
+
+		if (notReservedNewCars.first.size() == 0)
+		{
+			throw exception("Список незарезервированных новых автомобилей пуст!");
+		}
 
 		itemSelection = new ItemSelection<Car>("Выберете автомобиль, чтобы его зарезервировать:", notReservedNewCars.second);
 
@@ -2739,14 +2734,15 @@ void CarHandler::reserveUsedCar()
 		{
 			throw exception("Список автомобилей пуст!");
 		}
-		if (countNotReservedUsedCars() == 0)
+		auto notReservedUsedCars = getNotReservedUsedCars();
+
+		if (notReservedUsedCars.first.size() == 0)
 		{
 			throw exception("Список незарезервированных автомобилей с пробегом пуст!");
 		}
 
-		auto notReservedUsedCars = getNotReservedUsedCars();
-
-		itemSelection = new ItemSelection<Car>("Выбере автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
+		itemSelection = new ItemSelection<Car>("Выберите автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
+		//itemSelection = new ItemSelection<Car>("Выберите автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
 
 		index = itemSelection->selectMode();
 

@@ -22,8 +22,8 @@ protected:
 	unsigned pageSize_;
 public:
 	ItemSelection();
-	ItemSelection(string& title, vector<T>& items);
-	ItemSelection(const char* title, vector<T>& items);
+	ItemSelection(const string& title, const vector<T>& items);
+	ItemSelection(const char* title, const vector<T>& items);
 	void nextPage();
 	void previousPage();
 	unsigned selectMode();
@@ -38,7 +38,7 @@ template<typename T>
 ItemSelection<T>::ItemSelection() = default;
 
 template<typename T>
-ItemSelection<T>::ItemSelection(string& title, vector<T>& items)
+ItemSelection<T>::ItemSelection(const string& title, const vector<T>& items)
 {
 	title_ = title;
 	items_ = items;
@@ -58,7 +58,7 @@ ItemSelection<T>::ItemSelection(string& title, vector<T>& items)
 }
 
 template<typename T>
-ItemSelection<T>::ItemSelection(const char* title, vector<T>& items)
+ItemSelection<T>::ItemSelection(const char* title, const vector<T>& items)
 {
 	title_ = title;
 	items_ = items;

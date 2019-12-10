@@ -157,7 +157,7 @@
       <Filter>Исходные файлы\Car</Filter>
     </ClCompile>
     <ClCompile Include="TypeOfSortingMenu.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,7 +288,7 @@
       <Filter>Файлы заголовков\Car</Filter>
     </ClInclude>
     <ClInclude Include="TypeOfSortingMenu.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

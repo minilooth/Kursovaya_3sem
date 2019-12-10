@@ -238,3 +238,14 @@ void setConsoleMaxWidth()
 	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &rect);
 }
+
+template<typename T>
+vector<T> dereferenceVectorItems(vector<T*> items)
+{
+	vector<T> derefencedItems;
+	for (unsigned i = 0; i < items.size(); i++)
+	{
+		derefencedItems.push_back(*items.at(i));
+	}
+	return;
+}

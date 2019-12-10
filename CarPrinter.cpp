@@ -181,7 +181,7 @@ unsigned CarPrinter::calculateReservedStatusMaxLength()
 	unsigned length = 0;
 	for (unsigned i = 0; i < CarHandler::getCars().size(); i++)
 	{
-		if (length <= CarHandler::getCars().at(i).getReserverUsername().length())
+		if (length <= (CarHandler::getCars().at(i).getReserverUsername().length() + 15))
 		{
 			if (CarHandler::getCars().at(i).getReserveStatus() == false)
 			{
