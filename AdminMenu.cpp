@@ -53,7 +53,7 @@ ConsoleMenu* AdminMenu::getNextMenu()
 			AccountHandler::showTotalStatistics();
 			newMenu = this;
 			break;
-		case AdminMenuAction::SEARCHING_SORITNG_AND_FILTRATION :
+		case AdminMenuAction::SEARCHING_SORTING_AND_FILTRATION :
 			newMenu = new SearchingSortingAndFilteringMenu();
 			break;
 		case AdminMenuAction::BACK :
@@ -111,7 +111,7 @@ unsigned AdminMenu::selectMode()
                 break;
         }
 
-		if (title_ != "")
+		if (!title_.empty())
 		{
 			clearNLines(items_.size() + 1);
 		}
@@ -125,7 +125,7 @@ unsigned AdminMenu::selectMode()
 void AdminMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (!title_.empty())
 	{
 		cout << endl;
 	}

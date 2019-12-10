@@ -100,7 +100,7 @@ unsigned FilteringMenu::selectMode()
 			break;
 		}
 
-		if (title_ != "")
+		if (title_.empty())
 		{
 			clearNLines(items_.size() + 1);
 		}
@@ -114,7 +114,7 @@ unsigned FilteringMenu::selectMode()
 void FilteringMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (title_.empty())
 	{
 		cout << endl;
 	}

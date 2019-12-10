@@ -13,15 +13,15 @@ Cabriolet::Cabriolet()
 	bodyColor_ = "";
 	interiorColor_ = "";
 	interiorMaterial_ = "";
-	mealeage_ = 0.0;
+	mileage_ = 0.0;
 	price_ = 0.0;
 	reserveStatus_ = false;
 	reserverUsername_ = "";
 }
 
-Cabriolet::Cabriolet(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDriveType,
-					 string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial, double mealeage,
-					 double price, bool reserveStatus, string& reserverUsername)
+Cabriolet::Cabriolet(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
+					 const string& engineType, double engineVolume, const string& bodyColor, const string& interiorColor, const string& interiorMaterial, double mileage,
+					 double price, bool reserveStatus, const string& reserverUsername)
 {
 	brand_ = brand;
 	model_ = model;
@@ -34,7 +34,7 @@ Cabriolet::Cabriolet(string& brand, string& model, unsigned yearOfProduction, st
 	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
-	mealeage_ = mealeage;
+	mileage_ = mileage;
 	price_ = price;
 	reserveStatus_ = reserveStatus;
 	reserverUsername_ = reserverUsername;
@@ -53,7 +53,7 @@ Cabriolet::Cabriolet(Car& car)
 	bodyColor_ = car.getBodyColor();
 	interiorColor_ = car.getInteriorColor();
 	interiorMaterial_ = car.getInteriorMaterial();
-	mealeage_ = car.getMealeage();
+	mileage_ = car.getMileage();
 	price_ = car.getPrice();
 	reserveStatus_ = car.getReserveStatus();
 	reserverUsername_ = car.getReserverUsername();

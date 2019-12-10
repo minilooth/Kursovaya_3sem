@@ -20,7 +20,7 @@ namespace CarEditMenuAction
 		EDIT_BODY_COLOR,
 		EDIT_INTERIOR_COLOR,
 		EDIT_INTERIOR_MATERIAL,
-		EDIT_MEALEAGE,
+		EDIT_MILEAGE,
 		EDIT_PRICE,
 		EDIT_RESERVE_STATUS,
 		EDIT_RESERVER_USERNAME,
@@ -31,15 +31,15 @@ namespace CarEditMenuAction
 class CarEditMenu : virtual public ConsoleMenu
 {
 private:
-	ConsoleMenu* getNextMenu();
+	ConsoleMenu* getNextMenu() override;
 	static unsigned choice_;
 public:
 	CarEditMenu();
 	CarEditMenu(const string& title, const vector<string>& items);
-	unsigned selectMode();
-	void resetChoice();
-	void showTitle();
-	void showItems();
+	unsigned selectMode() override;
+	void resetChoice() override;
+	void showTitle() override;
+	void showItems() override;
 	~CarEditMenu();
 };
 

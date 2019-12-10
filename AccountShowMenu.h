@@ -17,7 +17,7 @@ namespace AccountShowMenuAction
 class AccountShowMenu : virtual public ConsoleMenu
 {
 private:
-	ConsoleMenu* getNextMenu();
+	ConsoleMenu* getNextMenu() override;
 	string tooltip_;
 	unsigned pageSize_;
 	static unsigned choice_;
@@ -26,16 +26,16 @@ private:
 public:
 	AccountShowMenu();
 	AccountShowMenu(const string& title, const vector<string>& items, const string& tooltip, unsigned pageSize);
-	unsigned selectMode();
-	void resetChoice();
+	unsigned selectMode() override;
+	void resetChoice() override;
 	static void resetMaxPages();
 	static void resetCurrentPage();
 	static void nextPage();
 	static void previousPage();
-	void showCurrentPageNumber();
-	void showTooltip();
-	void showTitle();
-	void showItems();
+	static void showCurrentPageNumber();
+	void showTooltip() const;
+	void showTitle() override;
+	void showItems() override;
 	~AccountShowMenu();
 };
 

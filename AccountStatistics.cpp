@@ -44,27 +44,27 @@ void AccountStatistics::addPurchaseAmount(double purchaseAmount)
 	averageCheck_ = totalPurchases_ / totalCarsPurchased_;
 }
 
-string AccountStatistics::getUsername()
+string AccountStatistics::getUsername() const
 {
 	return username_;
 }
 
-unsigned AccountStatistics::getTotalCarsPurchased()
+unsigned AccountStatistics::getTotalCarsPurchased() const
 {
 	return totalCarsPurchased_;
 }
 
-double AccountStatistics::getLargestCheck()
+double AccountStatistics::getLargestCheck() const
 {
 	return largestCheck_;
 }
 
-double AccountStatistics::getAverageCheck()
+double AccountStatistics::getAverageCheck() const
 {
 	return averageCheck_;
 }
 
-double AccountStatistics::getTotalPurchases()
+double AccountStatistics::getTotalPurchases() const
 {
 	return totalPurchases_;
 }

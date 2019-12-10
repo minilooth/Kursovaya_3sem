@@ -13,18 +13,18 @@ class AccountStatistics
 	double totalPurchases_;
 public:
 	AccountStatistics();
-	AccountStatistics(const string& username);
+	explicit AccountStatistics(const string& username);
 	AccountStatistics(const string& username, unsigned totalCarsPurchased, double largestCheck, double averageCheck, double totalPurchases);
 
 	void setUsername(const string& username);
 
 	void addPurchaseAmount(double purchaseAmount);
 
-	string getUsername();
-	unsigned getTotalCarsPurchased();
-	double getLargestCheck();
-	double getAverageCheck();
-	double getTotalPurchases();
+	string getUsername() const;
+	unsigned getTotalCarsPurchased() const;
+	double getLargestCheck() const;
+	double getAverageCheck() const;
+	double getTotalPurchases() const;
 
 	~AccountStatistics();
 };

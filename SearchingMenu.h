@@ -19,16 +19,15 @@ namespace SearchingMenuAction
 
 class SearchingMenu : virtual public ConsoleMenu
 {
-private:
-	ConsoleMenu* getNextMenu();
+	ConsoleMenu* getNextMenu() override;
 	static unsigned choice_;
 public:
 	SearchingMenu();
 	SearchingMenu(const string& title, const vector<string>& items);
-	unsigned selectMode();
-	void resetChoice();
-	void showTitle();
-	void showItems();
+	unsigned selectMode() override;
+	void resetChoice() override;
+	void showTitle() override;
+	void showItems() override;
 	~SearchingMenu();
 };
 

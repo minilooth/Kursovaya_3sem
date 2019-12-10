@@ -7,7 +7,7 @@ unsigned CarPrinter::bodyTypeLabelLength_			 = 0;
 unsigned CarPrinter::bodyColorLabelLength_			 = 0;
 unsigned CarPrinter::interiorColorLabelLength_		 = 0;
 unsigned CarPrinter::interiorMaterialLabelLength_	 = 0;
-unsigned CarPrinter::mealeageLabelLength_			 = 0;
+unsigned CarPrinter::mileageLabelLength_			 = 0;
 unsigned CarPrinter::priceLabelLength_				 = 0;
 unsigned CarPrinter::yearOfProductionLabelLength_	 = 0;
 unsigned CarPrinter::transmissionTypeLabelLength_	 = 0;
@@ -27,7 +27,7 @@ CarPrinter::CarPrinter()
 	bodyColorLabelLength_			= 0;
 	interiorColorLabelLength_		= 0;
 	interiorMaterialLabelLength_	= 0;
-	mealeageLabelLength_			= 0;
+	mileageLabelLength_				= 0;
 	priceLabelLength_				= 0;
 	yearOfProductionLabelLength_	= 0;
 	transmissionTypeLabelLength_	= 0;
@@ -46,7 +46,7 @@ void CarPrinter::refresh()
 	bodyColorLabelLength_			= calculateBodyColorMaxLength() < 11 ? 11 : calculateBodyColorMaxLength();
 	interiorColorLabelLength_		= calculateInteriorColorMaxLength() < 11 ? 11 : calculateInteriorColorMaxLength();
 	interiorMaterialLabelLength_	= calculateInteriorMaterialMaxLength() < 15 ? 15 : calculateInteriorMaterialMaxLength();
-	mealeageLabelLength_			= ((calculateMealeageMaxLength() < 6 ? 6 : calculateMealeageMaxLength()) + 3);
+	mileageLabelLength_				= ((calculateMileageMaxLength() < 6 ? 6 : calculateMileageMaxLength()) + 3);
 	priceLabelLength_				= ((calculatePriceMaxLength() < 4 ? 4 : calculatePriceMaxLength()) + 2);
 	yearOfProductionLabelLength_	= 11;
 	transmissionTypeLabelLength_	= calculateTransmissionTypeMaxLength() < 3 ? 3 : calculateTransmissionTypeMaxLength();
@@ -56,7 +56,7 @@ void CarPrinter::refresh()
 	reserveStatusLabelLength_		= calculateReservedStatusMaxLength() < 14 ? 14 : calculateReservedStatusMaxLength();
 	solidLineLength_				= (brandLabelLength_ + modelLabelLength_ + bodyTypeLabelLength_ + bodyColorLabelLength_ + interiorColorLabelLength_ + 
 									   interiorMaterialLabelLength_ + yearOfProductionLabelLength_ + transmissionTypeLabelLength_ + wheelDriveTypeLabelLength_ + 
-									   engineTypeLabelLength_ + engineVolumeLabelLength_ + reserveStatusLabelLength_ + mealeageLabelLength_ + priceLabelLength_ + 15);
+									   engineTypeLabelLength_ + engineVolumeLabelLength_ + reserveStatusLabelLength_ + mileageLabelLength_ + priceLabelLength_ + 15);
 }
 
 unsigned CarPrinter::calculateBrandMaxLength()
@@ -150,14 +150,14 @@ unsigned CarPrinter::calculateInteriorMaterialMaxLength()
 	return length;
 }
 
-unsigned CarPrinter::calculateMealeageMaxLength()
+unsigned CarPrinter::calculateMileageMaxLength()
 {
 	unsigned length = 0;
 	for (unsigned i = 0; i < CarHandler::getCars().size(); i++)
 	{
-		if (length <= calculateDoubleLength(CarHandler::getCars().at(i).getMealeage(), signsAfterDot_))
+		if (length <= calculateDoubleLength(CarHandler::getCars().at(i).getMileage(), signsAfterDot_))
 		{
-			length = calculateDoubleLength(CarHandler::getCars().at(i).getMealeage(), signsAfterDot_);
+			length = calculateDoubleLength(CarHandler::getCars().at(i).getMileage(), signsAfterDot_);
 		}
 	}
 	return length;
@@ -260,9 +260,9 @@ unsigned CarPrinter::getInteriorMaterialLabelLength()
 	return interiorMaterialLabelLength_;
 }
 
-unsigned CarPrinter::getMealeageLabelLength()
+unsigned CarPrinter::getMileageLabelLength()
 {
-	return mealeageLabelLength_;
+	return mileageLabelLength_;
 }
 
 unsigned CarPrinter::getPriceLabelLength()
@@ -322,7 +322,7 @@ void CarPrinter::showHeader()
 		 << "|" << makeCenteredString("Цвет кузова", bodyColorLabelLength_)
 		 << "|" << makeCenteredString("Цвет салона", interiorColorLabelLength_)
 		 << "|" << makeCenteredString("Материал салона", interiorMaterialLabelLength_)
-		 << "|" << makeCenteredString("Пробег", mealeageLabelLength_)
+		 << "|" << makeCenteredString("Пробег", mileageLabelLength_)
 		 << "|" << makeCenteredString("Цена", priceLabelLength_)
 		 << "|" << makeCenteredString("Статус резерва", reserveStatusLabelLength_)
 		 << "|" << endl;

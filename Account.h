@@ -15,16 +15,16 @@ protected:
 	bool banStatus_;
 public:
     Account();
-	Account(string& username, string& password, bool adminAccess, bool banStatus);
+	Account(const string& username, const string& password, bool adminAccess, bool banStatus);
 
-    void setUsername(string& username);
-    void setPassword(string& password);
+    void setUsername(const string& username);
+    void setPassword(const string& password);
 	void setBanStatus(bool banStatus);
 
-    string getUsername();
-    string getPassword();
-    bool getAdminAccess();
-	bool getBanStatus();
+    string getUsername() const;
+    string getPassword() const;
+    bool getAdminAccess() const;
+	bool getBanStatus() const;
 
 	friend ostream& operator<<(ostream& out, const Account& account);
 

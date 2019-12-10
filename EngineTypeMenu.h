@@ -12,15 +12,15 @@ enum EngineType
 
 class EngineTypeMenu : virtual public ConsoleMenu
 {
-	ConsoleMenu* getNextMenu();
+	ConsoleMenu* getNextMenu() override;
 	static unsigned choice_;
 public:
 	EngineTypeMenu();
 	EngineTypeMenu(const string& title, const vector<string>& items);
-	unsigned selectMode();
-	void resetChoice();
-	void showTitle();
-	void showItems();
+	unsigned selectMode() override;
+	void resetChoice() override;
+	void showTitle() override;
+	void showItems() override;
 	~EngineTypeMenu();
 };
 

@@ -95,7 +95,7 @@ unsigned SearchingSortingAndFilteringMenu::selectMode()
 			break;
 		}
 
-		if (title_ != "")
+		if (title_.empty())
 		{
 			clearNLines(items_.size() + 1);
 		}
@@ -109,7 +109,7 @@ unsigned SearchingSortingAndFilteringMenu::selectMode()
 void SearchingSortingAndFilteringMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (title_.empty())
 	{
 		cout << endl;
 	}

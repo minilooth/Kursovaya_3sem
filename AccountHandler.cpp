@@ -50,7 +50,7 @@ AccountHandler::AccountHandler()
 					StatisticsHandler::createStatistics(account->getUsername());
 				}
 
-				accounts_.push_back(*account);
+				accounts_.push_back((*account));
 			}
 		}
 		accountsFile.close();
@@ -58,7 +58,7 @@ AccountHandler::AccountHandler()
 	}
 }
 
-AccountHandler::AccountHandler(string fileName)
+AccountHandler::AccountHandler(const string& fileName)
 {
 	string token;
 
@@ -100,7 +100,7 @@ AccountHandler::AccountHandler(string fileName)
 					StatisticsHandler::createStatistics(account->getUsername());
 				}
 
-				accounts_.push_back(*account);
+				accounts_.push_back((*account));
 			}
 		}
 		accountsFile.close();
@@ -132,7 +132,7 @@ void AccountHandler::rewriteAccountsFile()
 }
 
 // Find
-bool AccountHandler::findUser(string &username)
+bool AccountHandler::findUser(const string& username)
 {
     for (unsigned i = 0; i < accounts_.size(); i++)
     {
@@ -148,6 +148,16 @@ bool AccountHandler::findUser(string &username)
 vector<Account> AccountHandler::getAccounts()
 {
 	return accounts_;
+}
+
+vector<Account> AccountHandler::getAccounts(unsigned from, unsigned to)
+{
+	vector<Account> accounts;
+	for(unsigned i = from; i < to && i < accounts_.size(); i++)
+	{
+		accounts.push_back(accounts_.at(i));
+	}
+	return accounts;
 }
 
 vector<Account> AccountHandler::getUsers()
@@ -168,10 +178,9 @@ Account* AccountHandler::getCurrentAccount()
 	return currentAccount_;
 }
 
-Account* AccountHandler::getAccount(string &username)
+Account* AccountHandler::getAccount(const string& username)
 {
     Account* account = nullptr;
-
     for (unsigned i = 0; i < accounts_.size(); i++)
     {
         if (accounts_.at(i).getUsername() == username)
@@ -179,7 +188,6 @@ Account* AccountHandler::getAccount(string &username)
             account = &(accounts_.at(i));
         }
     }
-
     return account;
 }
 
@@ -188,7 +196,7 @@ Account* AccountHandler::getAccount(unsigned index)
 	return &(accounts_.at(index));
 }
 
-unsigned AccountHandler::getAccountIndex(string& username)
+unsigned AccountHandler::getAccountIndex(const string& username)
 {
 	unsigned index = 0;
 	for (unsigned i = 0; i < accounts_.size(); i++)
@@ -202,7 +210,7 @@ unsigned AccountHandler::getAccountIndex(string& username)
 	return index;
 }
 
-unsigned AccountHandler::getAccountIndex(Account& account)
+unsigned AccountHandler::getAccountIndex(const Account& account)
 {
 	unsigned index = 0;
 	for (unsigned i = 0; i < accounts_.size(); i++)
@@ -495,7 +503,6 @@ void AccountHandler::editAdminAccess()
 		cout << endl << ex.what() << endl;
 		cout << "Права администратора не изменены!" << endl << endl;
 		setTextColor(Color::LIGHT_CYAN);
-
 	}
 
 	system("pause");
@@ -633,7 +640,6 @@ bool AccountHandler::auth()
 			else
 			{
 				system("pause");
-
 				return false;
 			}
 		}
@@ -773,19 +779,14 @@ void AccountHandler::showAccounts(unsigned from, unsigned to)
 {
 	try
 	{
-		if (accounts_.size() == 0)
+		if (accounts_.empty())
 		{
 			throw exception("Список аккаунтов пуст!");
 		}
 
-		AccountPrinter::showHeader();
+		auto accounts = getAccounts(from, to);
 
-		for (unsigned i = from; i < to && i < accounts_.size(); i++)
-		{
-			cout << accounts_.at(i) << endl;
-		}
-
-		drawSolidLine(AccountPrinter::getSolidLineLength());
+		AccountPrinter::showAccounts(accounts);
 	}
 	catch (exception & ex)
 	{
@@ -808,11 +809,7 @@ void AccountHandler::showEditAccount()
 			throw exception("Аккаунт для редактирования не установен!");
 		}
 
-		AccountPrinter::showHeader();
-
-		cout << *accountToEdit_ << endl;
-
-		drawSolidLine(AccountPrinter::getSolidLineLength());
+		AccountPrinter::showAccounts({ *accountToEdit_ });
 	}
 	catch (exception & ex)
 	{
@@ -872,7 +869,7 @@ void AccountHandler::addAccount()
 
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
-			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
+			throw exception("Имя аккаунта должно состоять только из цифр и букв латинского алфавита!");
 		}
 
 		account->setUsername(username);
@@ -939,7 +936,7 @@ void AccountHandler::deleteAccount()
 
 	try
 	{
-		if (accounts_.size() == 0)
+		if (accounts_.empty())
 		{
 			throw exception("Список аккаунтов пуст!");
 		}
@@ -953,21 +950,17 @@ void AccountHandler::deleteAccount()
 			delete itemSelection;
 			return;
 		}
-		else
-		{
-			index -= 1;
-		}
 
-		if (getAccount(index)->getAdminAccess() == true && countAdmins() == 1)
+		if (getAccount(index - 1)->getAdminAccess() == true && countAdmins() == 1)
 		{
 			throw exception("Невозможно удалить последнего администратора!");
 		}
 
-		CarHandler::resetReservedCarsByUsername(getAccount(index)->getUsername());
+		CarHandler::resetReservedCarsByUsername(getAccount(index - 1)->getUsername());
 
-		StatisticsHandler::deleteStatistics(getAccount(index)->getUsername());
+		StatisticsHandler::deleteStatistics(getAccount(index - 1)->getUsername());
 
-		accounts_.erase(accounts_.begin() + index);
+		accounts_.erase(accounts_.begin() + (index - 1));
 
 		rewriteAccountsFile();
 
@@ -1004,7 +997,7 @@ void AccountHandler::editAccount()
 
 	try
 	{
-		if (accounts_.size() == 0)
+		if (accounts_.empty())
 		{
 			throw exception("Список аккаунтов пуст!");
 		}
@@ -1017,12 +1010,8 @@ void AccountHandler::editAccount()
 		{
 			return;
 		}
-		else
-		{
-			index -= 1;
-		}
 
-		accountToEdit_ = getAccount(index);
+		accountToEdit_ = getAccount(index - 1);
 
 		menu = new AccountEditMenu();
 

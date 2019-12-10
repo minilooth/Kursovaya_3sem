@@ -40,7 +40,7 @@ const unsigned engineVolumeMaxInputLength = 3;
 const unsigned bodyColorMaxInputLength = 10;
 const unsigned interiorColorMaxInputLength = 10;
 const unsigned interiorMaterialMaxInputLength = 10;
-const unsigned mealeageMaxInputLength = 6;
+const unsigned mileageMaxInputLength = 6;
 const unsigned priceMaxInputLength = 6;
 
 class CarHandler
@@ -67,14 +67,7 @@ class CarHandler
 public:
 	//Constructors
 	CarHandler();
-	CarHandler(string fileName);
-
-	// Count
-	/*static unsigned countNewCars();
-	static unsigned countNotReservedNewCars();
-	static unsigned countUsedCars();
-	static unsigned countNotReservedUsedCars();
-	static unsigned countReservedCars();*/
+	explicit CarHandler(const string& fileName);
 
 	// Reset
 	static void resetCarToEdit();
@@ -91,15 +84,14 @@ public:
 	static vector<Car> getCars();
 	static pair<vector<Car*>, vector<Car>> getNotReservedNewCars();
 	static pair<vector<Car*>, vector<Car>> getNotReservedUsedCars();
-	//static vector<Car*> getNotReservedUsedCars();
 	static pair<vector<Car*>, vector<Car>> getReservedCars();
 	static vector<Car> getReservedCarsByUsername(string username);
 	static vector<Car> getUsedCars();
 	static vector<Car> getNewCars();
 	static vector<Car> getFilteredCars();
 	static vector<Car> getCarsByBrand(const string& brand);
-	static vector<Car> getCarsByModel(const string& brand);
-	static vector<Car> getCarsByYearOfProduction(const unsigned yearOfProduction);
+	static vector<Car> getCarsByModel(const string& model);
+	static vector<Car> getCarsByYearOfProduction(unsigned yearOfProduction);
 	static vector<Car> getCarsByEngineType(const string& engineType);
 
 	// Search
@@ -125,7 +117,7 @@ public:
 	static void editBodyColor();
 	static void editInteriorColor();
 	static void editInteriorMaterial();
-	static void editMealeage();
+	static void editMileage();
 	static void editPrice();
 	static void editReserveStatus();
 	static void editReserverUsername();

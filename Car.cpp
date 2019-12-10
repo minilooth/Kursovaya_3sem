@@ -12,15 +12,15 @@ Car::Car()
 	bodyColor_ = "";
 	interiorColor_ = "";
 	interiorMaterial_ = "";
-	mealeage_ = 0.0;
+	mileage_ = 0.0;
 	price_ = 0.0;
 	reserveStatus_ = false;
 	reserverUsername_ = "";
 }
 
-Car::Car(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDriveType,
-		 string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial,
-		 double mealeage, double price, bool reserveStatus, string& reserverUsername)
+Car::Car(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
+		 const string& engineType, double engineVolume, const string& bodyColor, const string& interiorColor, const string& interiorMaterial,
+		 double mileage, double price, bool reserveStatus, const string& reserverUsername)
 {
 	brand_ = brand;
 	model_ = model;
@@ -32,18 +32,18 @@ Car::Car(string& brand, string& model, unsigned yearOfProduction, string& transm
 	bodyColor_ = bodyColor;
 	interiorColor_ = interiorColor;
 	interiorMaterial_ = interiorMaterial;
-	mealeage_ = mealeage;
+	mileage_ = mileage;
 	price_ = price;
 	reserveStatus_ = reserveStatus;
 	reserverUsername_ = reserverUsername;
 }
 
-void Car::setBrand(string brand)
+void Car::setBrand(const string& brand)
 {
 	brand_ = brand;
 }
 
-void Car::setModel(string model)
+void Car::setModel(const string& model)
 {
 	model_ = model;
 }
@@ -53,17 +53,17 @@ void Car::setYearOfProduction(unsigned yearOfProduction)
 	yearOfProduction_ = yearOfProduction;
 }
 
-void Car::setTransmissionType(string transmissionType)
+void Car::setTransmissionType(const string& transmissionType)
 {
 	transmissionType_ = transmissionType;
 }
 
-void Car::setWheelDriveType(string wheelDriveType)
+void Car::setWheelDriveType(const string& wheelDriveType)
 {
 	wheelDriveType_ = wheelDriveType;
 }
 
-void Car::setEngineType(string engineType)
+void Car::setEngineType(const string& engineType)
 {
 	engineType_ = engineType;
 }
@@ -73,24 +73,24 @@ void Car::setEngineVolume(double engineVolume)
 	engineVolume_ = engineVolume;
 }
 
-void Car::setBodyColor(string bodyColor)
+void Car::setBodyColor(const string& bodyColor)
 {
 	bodyColor_ = bodyColor;
 }
 
-void Car::setInteriorColor(string interiorColor)
+void Car::setInteriorColor(const string& interiorColor)
 {
 	interiorColor_ = interiorColor;
 }
 
-void Car::setInteriorMaterial(string interiorMaterial)
+void Car::setInteriorMaterial(const string& interiorMaterial)
 {
 	interiorMaterial_ = interiorMaterial;
 }
 
-void Car::setMealeage(double mealeage)
+void Car::setMileage(double mileage)
 {
-	mealeage_ = mealeage;
+	mileage_ = mileage;
 }
 
 void Car::setPrice(double price)
@@ -103,82 +103,82 @@ void Car::setReserveStatus(bool reserveStatus)
 	reserveStatus_ = reserveStatus;
 }
 
-void Car::setReserverUsername(string reserverUsername)
+void Car::setReserverUsername(const string& reserverUsername)
 {
 	reserverUsername_ = reserverUsername;
 }
 
-string Car::getBrand()
+string Car::getBrand() const
 {
 	return brand_;
 }
 
-string Car::getModel()
+string Car::getModel() const
 {
 	return model_;
 }
 
-unsigned Car::getYearOfProduction()
+unsigned Car::getYearOfProduction() const
 {
 	return yearOfProduction_;
 }
 
-string Car::getTransmissionType()
+string Car::getTransmissionType() const
 {
 	return transmissionType_;
 }
 
-string Car::getBodyType()
+string Car::getBodyType() const
 {
 	return bodyType_;
 }
 
-string Car::getWheelDriveType()
+string Car::getWheelDriveType() const
 {
 	return wheelDriveType_;
 }
 
-string Car::getEngineType()
+string Car::getEngineType() const
 {
 	return engineType_;
 }
 
-double Car::getEngineVolume()
+double Car::getEngineVolume() const
 {
 	return engineVolume_;
 }
 
-string Car::getBodyColor()
+string Car::getBodyColor() const
 {
 	return bodyColor_;
 }
 
-string Car::getInteriorColor()
+string Car::getInteriorColor() const
 {
 	return interiorColor_;
 }
 
-string Car::getInteriorMaterial()
+string Car::getInteriorMaterial() const
 {
 	return interiorMaterial_;
 }
 
-double Car::getMealeage()
+double Car::getMileage() const
 {
-	return mealeage_;
+	return mileage_;
 }
 
-double Car::getPrice()
+double Car::getPrice() const
 {
 	return price_;
 }
 
-bool Car::getReserveStatus()
+bool Car::getReserveStatus() const
 {
 	return reserveStatus_;
 }
 
-string Car::getReserverUsername()
+string Car::getReserverUsername() const
 {
 	return reserverUsername_;
 }
@@ -201,11 +201,11 @@ ostream& operator<<(ostream& out, const Car& car)
 		<< "|" << left << setw(CarPrinter::getInteriorColorLabelLength()) << car.interiorColor_
 		<< "|" << left << setw(CarPrinter::getInteriorMaterialLabelLength()) << car.interiorMaterial_
 
-		<< "|" << left << setw(calculateDoubleLength(car.mealeage_, CarPrinter::getSignsAfterDotValue()) + 1)
-		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.mealeage_ << left
-		<< setw((CarPrinter::getMealeageLabelLength() - 1) - calculateDoubleLength(car.mealeage_, CarPrinter::getSignsAfterDotValue())) << "κμ"
+		<< "|" << left << setw(static_cast<unsigned>(1) + static_cast<unsigned>(calculateDoubleLength(car.mileage_, CarPrinter::getSignsAfterDotValue())))
+		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.mileage_ << left
+		<< setw((CarPrinter::getMileageLabelLength() - 1) - calculateDoubleLength(car.mileage_, CarPrinter::getSignsAfterDotValue())) << "κμ"
 
-		<< "|" << left << setw(calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue()) + 1)
+		<< "|" << left << setw(static_cast<unsigned>(1) + static_cast<unsigned>(calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue())))
 		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.price_ << left
 		<< setw((CarPrinter::getPriceLabelLength() - 1) - calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue())) << "$"
 

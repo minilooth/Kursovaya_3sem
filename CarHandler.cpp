@@ -20,7 +20,7 @@ CarHandler::CarHandler()
 	string bodyColor;
 	string interiorColor;
 	string interiorMaterial;
-	double mealeage;
+	double mileage;
 	double price;
 	bool reserveStatus;
 	string reserverUsername;
@@ -41,14 +41,14 @@ CarHandler::CarHandler()
 				model				= data.at(1);
 				yearOfProduction	= stoi(data.at(2));
 				transmissionType	= data.at(3);
-				wheelDriveType			= data.at(4);
+				wheelDriveType		= data.at(4);
 				engineType			= data.at(5);
 				engineVolume		= stod(data.at(6));
 				bodyType			= data.at(7);
 				bodyColor			= data.at(8);
 				interiorColor		= data.at(9);
 				interiorMaterial	= data.at(10);
-				mealeage			= stod(data.at(11));
+				mileage				= stod(data.at(11));
 				price				= stod(data.at(12));
 				reserveStatus		= data.at(13) == "1" ? true : false;
 				reserverUsername	= data.at(14);
@@ -56,60 +56,60 @@ CarHandler::CarHandler()
 				if (bodyType == "Кроссовер")
 				{
 					car = new Crossover(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-										interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+										interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Кабриолет")
 				{
 					car = new Cabriolet(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-										interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+										interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Хэтчбэк 5 дв.")
 				{
 					car = new FiveDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-												interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+												interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "5 м. минивен")
 				{
 					car = new FiveSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-											  interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+											  interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "4 дв. купе")
 				{
 					car = new FourDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-											interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+											interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Длинный седан")
 				{
 					car = new LongWheelbaseSedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-												 interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+												 interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Седан")
 				{
 					car = new Sedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-									interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+									interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "7 м. минивен")
 				{
 					car = new SevenSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-											   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+											   interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Универсал")
 				{
 					car = new StationWagon(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-										   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+										   interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Хэтчбэк 3 дв.")
 				{
 					car = new ThreeDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-												 interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+												 interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "2 дв. купе")
 				{
 					car = new TwoDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor, 
-										   interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+										   interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 
-				cars_.push_back(*car);
+				cars_.push_back((*car));
 			}
 		}
 		carsFile.close();
@@ -117,7 +117,7 @@ CarHandler::CarHandler()
 	}
 }
 
-CarHandler::CarHandler(string fileName)
+CarHandler::CarHandler(const string& fileName)
 {
 	string token;
 
@@ -132,7 +132,7 @@ CarHandler::CarHandler(string fileName)
 	string bodyColor;
 	string interiorColor;
 	string interiorMaterial;
-	double mealeage;
+	double mileage;
 	double price;
 	bool reserveStatus;
 	string reserverUsername;
@@ -160,7 +160,7 @@ CarHandler::CarHandler(string fileName)
 				bodyColor			= data.at(8);
 				interiorColor		= data.at(9);
 				interiorMaterial	= data.at(10);
-				mealeage			= stod(data.at(11));
+				mileage			= stod(data.at(11));
 				price				= stod(data.at(12));
 				reserveStatus		= data.at(13) == "1" ? true : false;
 				reserverUsername	= data.at(14);
@@ -168,60 +168,60 @@ CarHandler::CarHandler(string fileName)
 				if (bodyType == "Кроссовер")
 				{
 					car = new Crossover(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Кабриолет")
 				{
 					car = new Cabriolet(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Хэтчбэк 5 дв.")
 				{
 					car = new FiveDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "5 м. минивен")
 				{
 					car = new FiveSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "4 дв. купе")
 				{
 					car = new FourDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Длинный седан")
 				{
 					car = new LongWheelbaseSedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Седан")
 				{
 					car = new Sedan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "7 м. минивен")
 				{
 					car = new SevenSeatMinivan(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Универсал")
 				{
 					car = new StationWagon(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "Хэтчбэк 3 дв.")
 				{
 					car = new ThreeDoorHatchback(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 				else if (bodyType == "2 дв. купе")
 				{
 					car = new TwoDoorCoupe(brand, model, yearOfProduction, transmissionType, wheelDriveType, engineType, engineVolume, bodyColor,
-						interiorColor, interiorMaterial, mealeage, price, reserveStatus, reserverUsername);
+						interiorColor, interiorMaterial, mileage, price, reserveStatus, reserverUsername);
 				}
 
-				cars_.push_back(*car);
+				cars_.push_back((*car));
 			}
 		}
 		carsFile.close();
@@ -249,7 +249,7 @@ void CarHandler::rewriteCarsFile()
 					 << cars_.at(i).getBodyColor() << ";"
 					 << cars_.at(i).getInteriorColor() << ";"
 					 << cars_.at(i).getInteriorMaterial() << ";"
-					 << cars_.at(i).getMealeage() << ";"
+					 << cars_.at(i).getMileage() << ";"
 					 << cars_.at(i).getPrice() << ";"
 					 << cars_.at(i).getReserveStatus() << ";"
 					 << cars_.at(i).getReserverUsername()
@@ -265,7 +265,7 @@ void CarHandler::rewriteCarsFile()
 
 string CarHandler::createReport(Car& car)
 {
-	time_t time = std::time(0);
+	time_t time = std::time(nullptr);
 	tm* now = std::localtime(&time);
 
 	ofstream report;
@@ -299,7 +299,7 @@ string CarHandler::createReport(Car& car)
 			   << "Цвет кузова:" << setw(71) << right << car.getBodyColor() << endl
 			   << "Цвет салона:" << setw(71) << right << car.getInteriorColor() << endl
 			   << "Материал салона:" << setw(67) << right << car.getInteriorMaterial() << endl
-			   << "Пробег:" << setw(76) << right << car.getMealeage() << " km" << endl
+			   << "Пробег:" << setw(76) << right << car.getMileage() << " km" << endl
 			   << "-----------------------------------------------------------------------------------" << endl
 			   << "Покупатель:" << setw(72) << right << car.getReserverUsername() << endl
 			   << "Цена:" << setw(78) << right << car.getPrice() << "$" << endl
@@ -543,72 +543,6 @@ void CarHandler::setFilterByTransmissionType()
 	system("pause");
 }
 
-// Count
-//unsigned CarHandler::countNewCars()
-//{
-//	unsigned counter = 0;
-//	for (unsigned i = 0; i < cars_.size(); i++)
-//	{
-//		if (cars_.at(i).getMealeage() == 0.0)
-//		{
-//			counter++;
-//		}
-//	}
-//	return counter;
-//}
-//
-//unsigned CarHandler::countNotReservedNewCars()
-//{
-//	unsigned counter = 0;
-//	for (unsigned i = 0; i < cars_.size(); i++)
-//	{
-//		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() == 0.0)
-//		{
-//			counter++;
-//		}
-//	}
-//	return counter;
-//}
-//
-//unsigned CarHandler::countUsedCars()
-//{
-//	unsigned counter = 0;
-//	for (unsigned i = 0; i < cars_.size(); i++)
-//	{
-//		if (cars_.at(i).getMealeage() != 0.0)
-//		{
-//			counter++;
-//		}
-//	}
-//	return counter;
-//}
-//
-//unsigned CarHandler::countNotReservedUsedCars()
-//{
-//	unsigned counter = 0;
-//	for (unsigned i = 0; i < cars_.size(); i++)
-//	{
-//		if (cars_.at(i).getReserveStatus() == false && cars_.at(i).getMealeage() != 0.0)
-//		{
-//			counter++;
-//		}
-//	}
-//	return counter;
-//}
-//
-//unsigned CarHandler::countReservedCars()
-//{
-//	unsigned counter = 0;
-//	for (unsigned i = 0; i < cars_.size(); i++)
-//	{
-//		if (cars_.at(i).getReserveStatus() == true)
-//		{
-//			counter++;
-//		}
-//	}
-//	return counter;
-//}
-
 // Search
 void CarHandler::searchByBrand()
 {
@@ -636,7 +570,7 @@ void CarHandler::searchByBrand()
 
 		auto cars = getCarsByBrand(brand);
 
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Не найдено ни одного автомобиля!");
 		}
@@ -686,7 +620,7 @@ void CarHandler::searchByModel()
 
 		auto cars = getCarsByModel(model);
 
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Не найдено ни одного автомобиля!");
 		}
@@ -739,7 +673,7 @@ void CarHandler::searchByYearOfProduction()
 
 		auto cars = getCarsByYearOfProduction(stoul(yearOfProduction));
 
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Не найдено ни одного автомобиля!");
 		}
@@ -793,7 +727,7 @@ void CarHandler::searchByEngineType()
 
 		auto cars = getCarsByEngineType(engineType);
 
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Не найдено ни одного автомобиля!");
 		}
@@ -825,7 +759,7 @@ void CarHandler::sortByYearOfProduction()
 	try
 	{
 		auto cars = getCars();
-		if (cars.size() == 0)
+		if (cars.empty() == 0)
 		{
 			throw exception("Список автомобилей пуст!");
 		}
@@ -844,6 +778,8 @@ void CarHandler::sortByYearOfProduction()
 			menu->resetChoice();
 			delete menu;
 			return;
+		default:
+			break;
 		}
 		menu->resetChoice();
 		delete menu;
@@ -874,7 +810,7 @@ void CarHandler::sortByEngineVolume()
 	try
 	{
 		auto cars = getCars();
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Список автомобилей пуст!");
 		}
@@ -920,7 +856,7 @@ void CarHandler::sortByPrice()
 	try
 	{
 		auto cars = getCars();
-		if (cars.size() == 0)
+		if (cars.empty())
 		{
 			throw exception("Список автомобилей пуст!");
 		}
@@ -1636,9 +1572,9 @@ void CarHandler::editInteriorMaterial()
 	system("pause");
 }
 
-void CarHandler::editMealeage()
+void CarHandler::editMileage()
 {
-	string mealeage;
+	string mileage;
 
 	try
 	{
@@ -1652,22 +1588,22 @@ void CarHandler::editMealeage()
 		showEditCar();
 
 		cout << "Введите новый пробег: ";
-		if (limitedInput(mealeage, mealeageMaxInputLength) == false)
+		if (limitedInput(mileage, mileageMaxInputLength) == false)
 		{
 			return;
 		}
 
-		if (mealeage.length() < 1)
+		if (mileage.length() < 1)
 		{
 			throw exception("Пробег должен состоять как минимум из одного символа!");
 		}
 
-		if (mealeage.find_first_not_of("1234567890.") != string::npos)
+		if (mileage.find_first_not_of("1234567890.") != string::npos)
 		{
 			throw exception("Пробег должен состоять только из цифр!");
 		}
 
-		carToEdit_->setMealeage(stoul(mealeage));
+		carToEdit_->setMileage(stoul(mileage));
 
 		rewriteCarsFile();
 
@@ -1921,7 +1857,7 @@ pair<vector<Car*>, vector<Car>> CarHandler::getNotReservedNewCars()
 	pair<vector<Car*>, vector<Car>> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
 	{
-		if (cars_.at(i).getMealeage() == 0.0 && cars_.at(i).getReserveStatus() == false)
+		if (cars_.at(i).getMileage() == 0.0 && cars_.at(i).getReserveStatus() == false)
 		{
 			cars.first.push_back(&(cars_.at(i)));
 			cars.second.push_back(cars_.at(i));
@@ -1936,7 +1872,7 @@ pair<vector<Car*>, vector<Car>> CarHandler::getNotReservedUsedCars()
 	//vector<Car*> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
 	{
-		if (cars_.at(i).getMealeage() != 0.0 && cars_.at(i).getReserveStatus() == false)
+		if (cars_.at(i).getMileage() != 0.0 && cars_.at(i).getReserveStatus() == false)
 		{
 			//cars.push_back(&(cars_.at(i)));
 			cars.first.push_back(&(cars_.at(i)));
@@ -1978,7 +1914,7 @@ vector<Car> CarHandler::getUsedCars()
 	vector<Car> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
 	{
-		if (cars_.at(i).getMealeage() != 0.0)
+		if (cars_.at(i).getMileage() != 0.0)
 		{
 			cars.push_back(cars_.at(i));
 		}
@@ -1991,7 +1927,7 @@ vector<Car> CarHandler::getNewCars()
 	vector<Car> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
 	{
-		if (cars_.at(i).getMealeage() == 0.0)
+		if (cars_.at(i).getMileage() == 0.0)
 		{
 			cout << cars_.at(i) << endl;
 		}
@@ -2043,7 +1979,7 @@ vector<Car> CarHandler::getCarsByModel(const string& model)
 	return cars;
 }
 
-vector<Car> CarHandler::getCarsByYearOfProduction(const unsigned yearOfProduction)
+vector<Car> CarHandler::getCarsByYearOfProduction(unsigned yearOfProduction)
 {
 	vector<Car> cars;
 	for (unsigned i = 0; i < cars_.size(); i++)
@@ -2259,14 +2195,10 @@ void CarHandler::sellCar()
 		{
 			return;
 		}
-		else
-		{
-			index--;
-		}
 
-		path = createReport(cars_.at(index));
+		path = createReport(cars_.at(index - 1));
 
-		StatisticsHandler::getAccountStatistics(cars_.at(index).getReserverUsername())->addPurchaseAmount(cars_.at(index).getPrice());
+		StatisticsHandler::getAccountStatistics(cars_.at(index - 1).getReserverUsername())->addPurchaseAmount(cars_.at(index - 1).getPrice());
 		StatisticsHandler::rewriteStatisticsFile();
 
 		cars_.erase(cars_.begin() + index);
@@ -2302,7 +2234,7 @@ void CarHandler::addCar()
 	string bodyColor;
 	string interiorColor;
 	string interiorMaterial;
-	string mealeage;
+	string mileage;
 	string price;
 	string isReserved;
 
@@ -2556,22 +2488,22 @@ void CarHandler::addCar()
 		car->setInteriorMaterial(interiorMaterial);
 
 		cout << "Пробег: ";
-		if (limitedInput(mealeage, mealeageMaxInputLength) == false)
+		if (limitedInput(mileage, mileageMaxInputLength) == false)
 		{
 			return;
 		}
 
-		if (mealeage.length() < 1)
+		if (mileage.length() < 1)
 		{
 			throw exception("Пробег должен состоять как минимум из одного символа!");
 		}
 
-		if (mealeage.find_first_not_of("1234567890.") != string::npos)
+		if (mileage.find_first_not_of("1234567890.") != string::npos)
 		{
 			throw exception("Пробег должен состоять только из цифр!");
 		}
 
-		car->setMealeage(stoul(mealeage));
+		car->setMileage(stoul(mileage));
 
 		cout << "Цена: ";
 		if (limitedInput(price, priceMaxInputLength) == false)
@@ -2630,17 +2562,12 @@ void CarHandler::deleteCar()
 		itemSelection = new ItemSelection<Car>("Выберете автомобиль для удаления:", cars_);
 
 		index = itemSelection->selectMode();
-
 		if (index == 0)
 		{
 			return;
 		}
-		else
-		{
-			index--;
-		}
 
-		cars_.erase(cars_.begin() + index);
+		cars_.erase(cars_.begin() + (index - 1));
 
 		rewriteCarsFile();
 
@@ -2687,18 +2614,13 @@ void CarHandler::reserveNewCar()
 		itemSelection = new ItemSelection<Car>("Выберете автомобиль, чтобы его зарезервировать:", notReservedNewCars.second);
 
 		index = itemSelection->selectMode();
-
 		if (index == 0)
 		{
 			return;
 		}
-		else
-		{
-			index--;
-		}
 
-		notReservedNewCars.first.at(index)->setReserveStatus(true);
-		notReservedNewCars.first.at(index)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
+		notReservedNewCars.first.at(index - 1)->setReserveStatus(true);
+		notReservedNewCars.first.at(index - 1)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		rewriteCarsFile();
 
@@ -2742,21 +2664,15 @@ void CarHandler::reserveUsedCar()
 		}
 
 		itemSelection = new ItemSelection<Car>("Выберите автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
-		//itemSelection = new ItemSelection<Car>("Выберите автомобиль, чтобы его зарезервировать:", notReservedUsedCars.second);
 
 		index = itemSelection->selectMode();
-
 		if (index == 0)
 		{
 			return;
 		}
-		else
-		{
-			index--;
-		}
 
-		notReservedUsedCars.first.at(index)->setReserveStatus(true);
-		notReservedUsedCars.first.at(index)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
+		notReservedUsedCars.first.at(index - 1)->setReserveStatus(true);
+		notReservedUsedCars.first.at(index - 1)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		rewriteCarsFile();
 

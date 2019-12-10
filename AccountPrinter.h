@@ -30,6 +30,8 @@ public:
 
 	static void showHeader();
 
+	static void showAccounts(const vector<Account>& accounts);
+
 	~AccountPrinter();
 };
 

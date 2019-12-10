@@ -65,10 +65,6 @@ void AccountShowMenu::nextPage()
 	{
 		currentPage_++;
 	}
-	else
-	{
-		return;
-	}
 }
 
 void AccountShowMenu::previousPage()
@@ -76,10 +72,6 @@ void AccountShowMenu::previousPage()
 	if (currentPage_ > 1)
 	{
 		currentPage_--;
-	}
-	else
-	{
-		return;
 	}
 }
 
@@ -159,7 +151,7 @@ void AccountShowMenu::showCurrentPageNumber()
 	cout << "Страница " << currentPage_ << " из " << maxPages_ << endl;
 }
 
-void AccountShowMenu::showTooltip()
+void AccountShowMenu::showTooltip() const
 {
 	cout << tooltip_ << endl;
 }

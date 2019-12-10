@@ -67,7 +67,7 @@ unsigned TypeOfSortingMenu::selectMode()
 			break;
 		}
 
-		if (title_ != "")
+		if (!title_.empty())
 		{
 			clearNLines(items_.size() + 1);
 		}
@@ -81,7 +81,7 @@ unsigned TypeOfSortingMenu::selectMode()
 void TypeOfSortingMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (!title_.empty())
 	{
 		cout << endl;
 	}

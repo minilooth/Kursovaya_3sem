@@ -20,46 +20,46 @@ protected:
 	string bodyColor_;
 	string interiorColor_;
 	string interiorMaterial_;
-	double mealeage_;
+	double mileage_;
 	double price_;
 	bool reserveStatus_;
 	string reserverUsername_;
 public:
 	Car();
-	Car(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDriveType,
-		string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial, double mealeage, 
-		double price, bool reserveStatus, string& reserverUsername);
+	Car(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
+		const string& engineType, double engineVolume, const string& bodyColor, const string& interiorColor, const string& interiorMaterial, double mileage,
+		double price, bool reserveStatus, const string& reserverUsername);
 
-	void setBrand(string brand);
-	void setModel(string model);
+	void setBrand(const string& brand);
+	void setModel(const string &model);
 	void setYearOfProduction(unsigned yearOfProduction);
-	void setTransmissionType(string transmissionType);
-	void setWheelDriveType(string wheelDriveType);
-	void setEngineType(string engineType);
+	void setTransmissionType(const string& transmissionType);
+	void setWheelDriveType(const string& wheelDriveType);
+	void setEngineType(const string& engineType);
 	void setEngineVolume(double engineVolume);
-	void setBodyColor(string bodyColor);
-	void setInteriorColor(string interiorColor);
-	void setInteriorMaterial(string interiorMaterial);
-	void setMealeage(double mealeage);
+	void setBodyColor(const string& bodyColor);
+	void setInteriorColor(const string& interiorColor);
+	void setInteriorMaterial(const string& interiorMaterial);
+	void setMileage(double mileage);
 	void setPrice(double price);
 	void setReserveStatus(bool reserveStatus);
-	void setReserverUsername(string reserverUsername);
+	void setReserverUsername(const string& reserverUsername);
 
-	string getBrand();
-	string getModel();
-	unsigned getYearOfProduction();
-	string getTransmissionType();
-	string getBodyType();
-	string getWheelDriveType();
-	string getEngineType();
-	double getEngineVolume();
-	string getBodyColor();
-	string getInteriorColor();
-	string getInteriorMaterial();
-	double getMealeage();
-	double getPrice();
-	bool getReserveStatus();
-	string getReserverUsername();
+	string getBrand() const;
+	string getModel() const;
+	unsigned getYearOfProduction() const;
+	string getTransmissionType() const;
+	string getBodyType() const;
+	string getWheelDriveType() const;
+	string getEngineType() const;
+	double getEngineVolume() const;
+	string getBodyColor() const;
+	string getInteriorColor() const;
+	string getInteriorMaterial() const;
+	double getMileage() const;
+	double getPrice() const;
+	bool getReserveStatus() const;
+	string getReserverUsername() const;
 
 	friend ostream& operator<<(ostream& out, const Car& car);
 	

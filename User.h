@@ -8,8 +8,8 @@ class User : public Account
 {
 public:
 	User();
-	User(string& username, string& password, bool banStatus);
-	User(Account& account);
+	User(const string& username, const string& password, bool banStatus);
+	explicit User(Account& account);
 
 	~User();
 };

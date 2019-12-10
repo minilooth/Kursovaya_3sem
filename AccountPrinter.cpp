@@ -93,4 +93,14 @@ void AccountPrinter::showHeader()
 	drawSolidLine(solidLineLength_);
 }
 
+void AccountPrinter::showAccounts(const vector<Account>& accounts)
+{
+	showHeader();
+	for(unsigned i = 0; i < accounts.size(); i++)
+	{
+		cout << accounts.at(i) << endl;
+	}
+	drawSolidLine(solidLineLength_);
+}
+
 AccountPrinter::~AccountPrinter() = default;

@@ -17,23 +17,22 @@ namespace AdminMenuAction
 		EDIT_CAR,
 		SELL_CAR,
 		SHOW_STATISTICS,
-		SEARCHING_SORITNG_AND_FILTRATION,
+		SEARCHING_SORTING_AND_FILTRATION,
 		BACK
 	};
 }
 
 class AdminMenu : virtual public ConsoleMenu
 {
-private:
-    ConsoleMenu* getNextMenu();
+    ConsoleMenu* getNextMenu() override;
     static unsigned choice_;
 public:
     AdminMenu();
 	AdminMenu(const string& title, const vector<string>& items);
-    unsigned selectMode();
-    void resetChoice();
-	void showTitle();
-    void showItems();
+    unsigned selectMode() override;
+    void resetChoice() override;
+	void showTitle() override;
+    void showItems() override;
     ~AdminMenu();
 };
 

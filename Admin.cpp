@@ -8,7 +8,7 @@ Admin::Admin()
 	banStatus_ = false;
 }
 
-Admin::Admin(string& username, string& password, bool banStatus)
+Admin::Admin(const string& username, const string& password, bool banStatus)
 {
 	username_ = username;
 	password_ = password;

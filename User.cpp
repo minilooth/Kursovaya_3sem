@@ -8,7 +8,7 @@ User::User()
 	banStatus_ = false;
 }
 
-User::User(string& username, string& password, bool banStatus)
+User::User(const string& username, const string& password, bool banStatus)
 {
 	username_ = username;
 	password_ = password;

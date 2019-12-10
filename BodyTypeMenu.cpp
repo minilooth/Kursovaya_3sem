@@ -77,7 +77,7 @@ unsigned BodyTypeMenu::selectMode()
 			break;
 		}
 
-		if (title_ != "")
+		if (title_.empty())
 		{
 			clearNLines(items_.size() + 1);
 		}
@@ -91,7 +91,7 @@ unsigned BodyTypeMenu::selectMode()
 void BodyTypeMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (title_ .empty())
 	{
 		cout << endl;
 	}

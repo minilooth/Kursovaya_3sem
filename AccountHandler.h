@@ -24,19 +24,20 @@ class AccountHandler
 public:
 	// Constructors
     AccountHandler();
-	AccountHandler(string fileName);
+	explicit AccountHandler(const string& fileName);
 
 	// Find
-	static bool findUser(string& username);
+	static bool findUser(const string& username);
 
 	// Gets
-    static Account* getAccount(string &username);
+    static Account* getAccount(const string& username);
 	static Account* getAccount(unsigned index);
 	static Account* getCurrentAccount();
 	static vector<Account> getAccounts();
+	static vector<Account> getAccounts(unsigned from, unsigned to);
 	static vector<Account> getUsers();
-	static unsigned getAccountIndex(string& username);
-	static unsigned getAccountIndex(Account& account);
+	static unsigned getAccountIndex(const string& username);
+	static unsigned getAccountIndex(const Account& account);
 	static bool getShowPasswordStatus();
 	static bool getAdminAccessStatus();
 

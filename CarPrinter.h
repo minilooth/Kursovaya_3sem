@@ -15,7 +15,7 @@ class CarPrinter
 	static unsigned bodyColorLabelLength_;
 	static unsigned interiorColorLabelLength_;
 	static unsigned interiorMaterialLabelLength_;
-	static unsigned mealeageLabelLength_;
+	static unsigned mileageLabelLength_;
 	static unsigned priceLabelLength_;
 	static unsigned yearOfProductionLabelLength_;
 	static unsigned transmissionTypeLabelLength_;
@@ -33,7 +33,7 @@ class CarPrinter
 	static unsigned calculateBodyColorMaxLength();
 	static unsigned calculateInteriorColorMaxLength();
 	static unsigned calculateInteriorMaterialMaxLength();
-	static unsigned calculateMealeageMaxLength();
+	static unsigned calculateMileageMaxLength();
 	static unsigned calculatePriceMaxLength();
 	static unsigned calculateReservedStatusMaxLength();
 	static unsigned calculateWheelDriveTypeMaxLength();
@@ -51,7 +51,7 @@ public:
 	static unsigned getBodyColorLabelLength();
 	static unsigned getInteriorColorLabelLength();
 	static unsigned getInteriorMaterialLabelLength();
-	static unsigned getMealeageLabelLength();
+	static unsigned getMileageLabelLength();
 	static unsigned getPriceLabelLength();
 	static unsigned getYearOfProductionLabelLength();
 	static unsigned getTransmissionTypeLabelLength();

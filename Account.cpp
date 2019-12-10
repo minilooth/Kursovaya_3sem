@@ -8,7 +8,7 @@ Account::Account()
 	banStatus_ = false;
 }
 
-Account::Account(string& username, string& password, bool adminAccess, bool banStatus)
+Account::Account(const string& username, const string& password, bool adminAccess, bool banStatus)
 {
 	username_ = username;
 	password_ = password;
@@ -16,12 +16,12 @@ Account::Account(string& username, string& password, bool adminAccess, bool banS
 	banStatus_ = banStatus;
 }
 
-void Account::setUsername(string& username)
+void Account::setUsername(const string& username)
 {
     username_ = username;
 };
 
-void Account::setPassword(string& password)
+void Account::setPassword(const string& password)
 {
     password_ = password;
 }
@@ -31,22 +31,22 @@ void Account::setBanStatus(bool banStatus)
 	banStatus_ = banStatus;
 }
 
-string Account::getUsername()
+string Account::getUsername() const
 {
     return username_;
 }
 
-string Account::getPassword()
+string Account::getPassword() const
 {
     return password_;
 }
 
-bool Account::getAdminAccess()
+bool Account::getAdminAccess() const
 {
     return adminAccess_;
 }
 
-bool Account::getBanStatus()
+bool Account::getBanStatus() const
 {
 	return banStatus_;
 }

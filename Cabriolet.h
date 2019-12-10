@@ -7,10 +7,10 @@ class Cabriolet : public Car
 {
 public:
 	Cabriolet();
-	Cabriolet(string& brand, string& model, unsigned yearOfProduction, string& transmissionType, string& wheelDriveType,
-			  string& engineType, double engineVolume, string& bodyColor, string& interiorColor, string& interiorMaterial, double mealeage,
-			  double price, bool reserveStatus, string& reserverUsername);
-	Cabriolet(Car& car);
+	Cabriolet(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
+			  const string& engineType, double engineVolume, const string& bodyColor, const string& interiorColor, const string& interiorMaterial, double mileage,
+			  double price, bool reserveStatus, const string& reserverUsername);
+	explicit Cabriolet(Car& car);
 
 	~Cabriolet();
 };

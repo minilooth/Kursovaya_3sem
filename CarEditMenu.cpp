@@ -73,8 +73,8 @@ ConsoleMenu* CarEditMenu::getNextMenu()
 		CarHandler::editInteriorMaterial();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_MEALEAGE :
-		CarHandler::editMealeage();
+	case CarEditMenuAction::EDIT_MILEAGE :
+		CarHandler::editMileage();
 		newMenu = this;
 		break;
 	case CarEditMenuAction::EDIT_PRICE :
@@ -159,7 +159,7 @@ unsigned CarEditMenu::selectMode()
 void CarEditMenu::showTitle()
 {
 	cout << title_;
-	if (title_ != "")
+	if (!title_.empty())
 	{
 		cout << endl;
 	}
