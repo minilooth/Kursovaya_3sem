@@ -1,19 +1,21 @@
 #include "AccountShowMenu.h"
 
-unsigned AccountShowMenu::choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
+using namespace menu;
+
+unsigned AccountShowMenu::choice_ = Action::SHOW_OR_HIDE_PASSWORD;
 unsigned AccountShowMenu::currentPage_ = 1;
 unsigned AccountShowMenu::maxPages_ = 1;
 
 AccountShowMenu::AccountShowMenu()
 {
 	title_ = "Все аккаунты:";
-	items_ = { AccountHandler::getShowPasswordStatus() ? "Скрыть пароль." : "Показать пароль." , "Назад." };
+	items_ = { account::AccountHandler::getShowPasswordStatus() ? "Скрыть пароль." : "Показать пароль." , "Назад." };
 	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC или \"Назад\" чтобы вернуться назад.";
 	pageSize_ = 10;
 
-	maxPages_ = AccountHandler::countAccounts() / pageSize_;
+	maxPages_ = account::AccountHandler::countAccounts() / pageSize_;
 
-	if (AccountHandler::countAccounts() % pageSize_ != 0)
+	if (account::AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
@@ -26,27 +28,27 @@ AccountShowMenu::AccountShowMenu(const string& title, const vector<string>& item
 	tooltip_ = tooltip;
 	pageSize_ = pageSize;
 
-	maxPages_ = AccountHandler::countAccounts() / pageSize_;
+	maxPages_ = account::AccountHandler::countAccounts() / pageSize_;
 
-	if (AccountHandler::countAccounts() % pageSize_ != 0)
+	if (account::AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
 }
 
-ConsoleMenu* AccountShowMenu::getNextMenu()
+ConsoleMenu* menu::AccountShowMenu::getNextMenu()
 {
 	ConsoleMenu* newMenu = nullptr;
 
 	switch (selectMode())
 	{
-	case AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD :
-		AccountHandler::invertShowPasswordStatus();
+	case Action::SHOW_OR_HIDE_PASSWORD :
+		account::AccountHandler::invertShowPasswordStatus();
 		newMenu = new AccountShowMenu();
 		break;
-	case AccountShowMenuAction::BACK :
+	case Action::BACK :
 		this->resetChoice();
-		AccountHandler::resetShowPasswordStatus();
+		account::AccountHandler::resetShowPasswordStatus();
 		resetChoice();
 		resetCurrentPage();
 		resetMaxPages();
@@ -98,7 +100,7 @@ unsigned AccountShowMenu::selectMode()
 
 		showCurrentPageNumber();
 
-		AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
+		account::AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
 
 		cout << endl;
 		showItems();
@@ -111,7 +113,7 @@ unsigned AccountShowMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < AccountShowMenuAction::BACK)
+			if (choice_ < Action::BACK)
 			{
 				choice_ = items_.size();
 			}
@@ -123,7 +125,7 @@ unsigned AccountShowMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
+				choice_ = Action::SHOW_OR_HIDE_PASSWORD;
 			}
 			else
 			{
@@ -139,7 +141,7 @@ unsigned AccountShowMenu::selectMode()
 		case VK_RETURN:
 			return choice_;
 		case VK_ESCAPE:
-			return AccountShowMenuAction::BACK;
+			return Action::BACK;
 		default:
 			break;
 		}
@@ -180,7 +182,7 @@ void AccountShowMenu::showItems()
 
 void AccountShowMenu::resetChoice()
 {
-	choice_ = AccountShowMenuAction::SHOW_OR_HIDE_PASSWORD;
+	choice_ = Action::SHOW_OR_HIDE_PASSWORD;
 }
 
 AccountShowMenu::~AccountShowMenu() = default;

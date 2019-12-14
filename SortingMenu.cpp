@@ -1,6 +1,8 @@
 #include "SortingMenu.h"
 
-unsigned SortingMenu::choice_ = SortingMenuAction::SORT_BY_YEAR_OF_PRODUCTION;
+using namespace menu;
+
+unsigned SortingMenu::choice_ = Action::SORT_BY_YEAR_OF_PRODUCTION;
 
 SortingMenu::SortingMenu()
 {
@@ -16,7 +18,7 @@ SortingMenu::SortingMenu(const string& title, const vector<string>& items)
 
 void SortingMenu::resetChoice()
 {
-	choice_ = SortingMenuAction::SORT_BY_YEAR_OF_PRODUCTION;
+	choice_ = Action::SORT_BY_YEAR_OF_PRODUCTION;
 }
 
 ConsoleMenu* SortingMenu::getNextMenu()
@@ -25,19 +27,19 @@ ConsoleMenu* SortingMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case SortingMenuAction::SORT_BY_YEAR_OF_PRODUCTION :
-		CarHandler::sortByYearOfProduction();
+	case Action::SORT_BY_YEAR_OF_PRODUCTION :
+		car::CarHandler::sortByYearOfProduction();
 		newMenu = this;
 		break;
-	case SortingMenuAction::SORT_BY_ENGINE_VOLUME :
-		CarHandler::sortByEngineVolume();
+	case Action::SORT_BY_ENGINE_VOLUME :
+		car::CarHandler::sortByEngineVolume();
 		newMenu = this;
 		break;
-	case SortingMenuAction::SORT_BY_PRICE :
-		CarHandler::sortByPrice();
+	case Action::SORT_BY_PRICE :
+		car::CarHandler::sortByPrice();
 		newMenu = this;
 		break;
-	case SortingMenuAction::BACK :
+	case Action::BACK :
 		this->resetChoice();
 		newMenu = new SearchingSortingAndFilteringMenu();
 		break;
@@ -64,7 +66,7 @@ unsigned SortingMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < SortingMenuAction::SORT_BY_ENGINE_VOLUME)
+			if (choice_ < Action::SORT_BY_ENGINE_VOLUME)
 			{
 				choice_ = items_.size();
 			}
@@ -76,7 +78,7 @@ unsigned SortingMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = SortingMenuAction::SORT_BY_YEAR_OF_PRODUCTION;
+				choice_ = Action::SORT_BY_YEAR_OF_PRODUCTION;
 			}
 			else
 			{
@@ -84,21 +86,14 @@ unsigned SortingMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE:
-			return SortingMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN:
 			return choice_;
 		default:
 			break;
 		}
 
-		if (!title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 

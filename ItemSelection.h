@@ -2,37 +2,30 @@
 #define ITEMSELECTION_H
 
 
-#include "CarHandler.h"
-#include "Car.h"
-#include "AccountHandler.h"
-#include "Account.h"
+#include "HorizontalShow.h"
+
 
 using namespace std;
 
+template<typename T> class HorizontalShow;
+
 template<typename T>
-class ItemSelection
+class ItemSelection : virtual public HorizontalShow<T>
 {
-protected:
-	string title_;
-	string tooltip_;
-	vector<T> items_;
-	unsigned maxPages_;
-	unsigned currentPage_;
 	unsigned choice_;
-	unsigned pageSize_;
 public:
 	ItemSelection();
 	ItemSelection(const string& title, const vector<T>& items);
 	ItemSelection(const char* title, const vector<T>& items);
-	void nextPage();
-	void previousPage();
-	unsigned selectMode();
-	void showCurrentPageNumber();
-	void showTooltip();
-	void showTitle();
-	virtual void showItems();
-	~ItemSelection();
+
+	virtual void nextPage() ;
+	virtual void previousPage() ;
+	unsigned selectMode() ;
+	virtual void showItems() ;
+	
+	virtual ~ItemSelection();
 };
+
 
 template<typename T>
 ItemSelection<T>::ItemSelection() = default;
@@ -40,73 +33,67 @@ ItemSelection<T>::ItemSelection() = default;
 template<typename T>
 ItemSelection<T>::ItemSelection(const string& title, const vector<T>& items)
 {
-	title_ = title;
-	items_ = items;
-	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
-	pageSize_ = 10;
+	this->title_ = title;
+	this->items_ = items;
+	this->tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
+	this->pageSize_ = 10;
 
-	maxPages_ = items_.size() / pageSize_;
+	this->maxPages_ = this->items_.size() / this->pageSize_;
 
-	if (items_.size() % pageSize_ != 0)
+	if (this->items_.size() % this->pageSize_ != 0)
 	{
-		maxPages_++;
+		this->maxPages_++;
 	}
 
-	currentPage_ = 1;
+	this->currentPage_ = 1;
 
-	choice_ = 1;
+	this->choice_ = 1;
 }
 
 template<typename T>
 ItemSelection<T>::ItemSelection(const char* title, const vector<T>& items)
 {
-	title_ = title;
-	items_ = items;
-	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
-	pageSize_ = 10;
+	this->title_ = title;
+	this->items_ = items;
+	this->tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC чтобы вернутся назад.";
+	this->pageSize_ = 10;
 
-	maxPages_ = items_.size() / pageSize_;
+	this->maxPages_ = this->items_.size() / this->pageSize_;
 
-	if (items_.size() % pageSize_ != 0)
+	if (this->items_.size() % this->pageSize_ != 0)
 	{
-		maxPages_++;
+		this->maxPages_++;
 	}
 
-	currentPage_ = 1;
+	this->currentPage_ = 1;
 
-	choice_ = 1;
+	this->choice_ = 1;
 }
 
 template<typename T>
 void ItemSelection<T>::nextPage()
 {
-	if (currentPage_ == maxPages_)
+	if (this->currentPage_ == this->maxPages_)
 	{
 		return;
 	}
 
-	currentPage_++;
+	this->currentPage_++;
 
-	choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
+	this->choice_ = (this->pageSize_ * (this->currentPage_ - 1)) + 1;
 }
 
 template<typename T>
 void ItemSelection<T>::previousPage()
 {
-	if (currentPage_ == 1)
+	if (this->currentPage_ == 1)
 	{
 		return;
 	}
 
-	currentPage_--;
+	this->currentPage_--;
 
-	choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
-}
-
-template<typename T>
-void ItemSelection<T>::showCurrentPageNumber()
-{
-	cout << "Страница " + to_string(currentPage_) + " из " + to_string(maxPages_) << endl;
+	this->choice_ = (this->pageSize_ * (this->currentPage_ - 1)) + 1;
 }
 
 template<typename T>
@@ -117,72 +104,71 @@ unsigned ItemSelection<T>::selectMode()
 	{
 		system("cls");
 
-		showTitle();
+		this->showTitle();
 
 		cout << endl;
 
-		showCurrentPageNumber();
+		this->showCurrentPageNumber();
 
-		showItems();
+		this->showItems();
 
 		cout << endl;
 
-		showTooltip();
+		this->showTooltip();
 
 		VP_GetCh(key);
 
-	
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ > (pageSize_ * (currentPage_ - 1)) + 1)
+			if (this->choice_ > (this->pageSize_ * (this->currentPage_ - 1)) + 1)
 			{
-				choice_--;
+				this->choice_--;
 			}
 			else
 			{
-				if (currentPage_ < maxPages_)
+				if (this->currentPage_ < this->maxPages_)
 				{
-					choice_ = (pageSize_ * currentPage_);
+					this->choice_ = (this->pageSize_ * this->currentPage_);
 				}
 				else
 				{
-					choice_ = items_.size();
+					this->choice_ = this->items_.size();
 				}
 			}
 			break;
 		case VK_DOWN:
-			if (currentPage_ < maxPages_)
+			if (this->currentPage_ < this->maxPages_)
 			{
-				if (choice_ > (pageSize_ * currentPage_) - 1)
+				if (this->choice_ > (this->pageSize_ * this->currentPage_) - 1)
 				{
-					choice_ = (pageSize_ * (currentPage_ - 1)) + 1;
+					this->choice_ = (this->pageSize_ * (this->currentPage_ - 1)) + 1;
 				}
 				else
 				{
-					choice_++;
+					this->choice_++;
 				}
 			}
 			else
 			{
-				if (choice_ > items_.size() - 1)
+				if (this->choice_ > this->items_.size() - 1)
 				{
-					choice_ = (pageSize_ * (currentPage_ - 1)) + 1 ;
+					this->choice_ = (this->pageSize_ * (this->currentPage_ - 1)) + 1 ;
 				}
 				else
 				{
-					choice_++;
+					this->choice_++;
 				}
 			}
 			break;
 		case VK_RIGHT :
-			nextPage();
+			this->nextPage();
 			break;
 		case VK_LEFT :
-			previousPage();
+			this->previousPage();
 			break;
 		case VK_RETURN:
-			return choice_;
+			return this->choice_;
 		case VK_ESCAPE :
 			return 0;
 		default:
@@ -192,52 +178,40 @@ unsigned ItemSelection<T>::selectMode()
 }
 
 template<typename T>
-void ItemSelection<T>::showTitle()
-{
-	cout << title_ << endl;
-}
-
-template<typename T>
-void ItemSelection<T>::showTooltip()
-{
-	cout << tooltip_ << endl;
-}
-
-template<typename T>
 void ItemSelection<T>::showItems()
 {
-	if (typeid(T) == typeid(Account))
+	if (typeid(T) == typeid(account::Account))
 	{
-		AccountPrinter::showHeader();
+		account::AccountPrinter::showHeader();
 
-		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
+		for (unsigned i = (10 * (this->currentPage_ - 1)); i < (10 * this->currentPage_) && i < this->items_.size(); i++)
 		{
-			if (choice_ == i + 1)
+			if (this->choice_ == i + 1)
 			{
 				setTextColor(Color::WHITE);
 			}
-			choice_ == i + 1 ? cout << items_.at(i) << "<--" << endl : cout << items_.at(i) << endl;
+			this->choice_ == i + 1 ? cout << this->items_.at(i) << "<--" << endl : cout << this->items_.at(i) << endl;
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(AccountPrinter::getSolidLineLength());
+		drawSolidLine(account::AccountPrinter::getSolidLineLength());
 	}
 
-	if (typeid(T) == typeid(Car))
+	if (typeid(T) == typeid(car::Car))
 	{
-		CarPrinter::showHeader();
+		car::CarPrinter::showHeader();
 
-		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
+		for (unsigned i = (10 * (this->currentPage_ - 1)); i < (10 * this->currentPage_) && i < this->items_.size(); i++)
 		{
-			if (choice_ == i + 1)
+			if (this->choice_ == i + 1)
 			{
 				setTextColor(Color::WHITE);
 			}
-			choice_ == i + 1 ? cout << items_.at(i) << "<--" << endl : cout << items_.at(i) << endl;
+			this->choice_ == i + 1 ? cout << this->items_.at(i) << "<--" << endl : cout << this->items_.at(i) << endl;
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(CarPrinter::getSolidLineLength());
+		drawSolidLine(car::CarPrinter::getSolidLineLength());
 	}
 }
 

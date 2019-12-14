@@ -11,20 +11,24 @@ enum AccountType
 	USER
 };
 
-
-class AccountTypeMenu : virtual public ConsoleMenu
+namespace menu
 {
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	AccountTypeMenu();
-	AccountTypeMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~AccountTypeMenu();
-};
+
+	class AccountTypeMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+		AccountTypeMenu();
+		AccountTypeMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~AccountTypeMenu();
+	};
+
+}
 
 
 #endif // ACCOUNTTYPEMENU_H

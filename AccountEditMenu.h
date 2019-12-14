@@ -5,31 +5,46 @@
 #include "AdminMenu.h"
 #include "AccountHandler.h"
 
-namespace AccountEditMenuAction
+namespace menu
 {
-	enum
-	{
-		EDIT_USERNAME = 1,
-		EDIT_PASSWORD,
-		EDIT_ADMIN_ACCESS,
-		EDIT_BAN_STATUS,
-		BACK
-	};
-}
 
-class AccountEditMenu : virtual public ConsoleMenu
-{
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	AccountEditMenu();
-	AccountEditMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~AccountEditMenu();
-};
+	/*namespace AccountEditMenuAction
+	{
+		enum
+		{
+			EDIT_USERNAME = 1,
+			EDIT_PASSWORD,
+			EDIT_ADMIN_ACCESS,
+			EDIT_BAN_STATUS,
+			BACK
+		};
+	}*/
+
+	class AccountEditMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+
+		enum Action
+		{
+			EDIT_USERNAME = 1,
+			EDIT_PASSWORD,
+			EDIT_ADMIN_ACCESS,
+			EDIT_BAN_STATUS,
+			BACK
+		};
+
+		AccountEditMenu();
+		AccountEditMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~AccountEditMenu();
+	};
+
+}
 
 
 #endif //ACCOUNTEDITMENU_H

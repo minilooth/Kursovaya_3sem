@@ -1,6 +1,8 @@
 #include "TypeOfSortingMenu.h"
 
-unsigned TypeOfSortingMenu::choice_ = TypeOfSortingMenuAction::ASCENDING;
+using namespace menu;
+
+unsigned TypeOfSortingMenu::choice_ = Action::ASCENDING;
 
 TypeOfSortingMenu::TypeOfSortingMenu()
 {
@@ -16,7 +18,7 @@ TypeOfSortingMenu::TypeOfSortingMenu(const string& title, const vector<string>& 
 
 void TypeOfSortingMenu::resetChoice()
 {
-	choice_ = TypeOfSortingMenuAction::ASCENDING;
+	choice_ = Action::ASCENDING;
 }
 
 ConsoleMenu* TypeOfSortingMenu::getNextMenu()
@@ -40,7 +42,7 @@ unsigned TypeOfSortingMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < TypeOfSortingMenuAction::DESCENDING)
+			if (choice_ < Action::DESCENDING)
 			{
 				choice_ = items_.size();
 			}
@@ -52,7 +54,7 @@ unsigned TypeOfSortingMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = TypeOfSortingMenuAction::ASCENDING;
+				choice_ = Action::ASCENDING;
 			}
 			else
 			{
@@ -60,21 +62,14 @@ unsigned TypeOfSortingMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE:
-			return TypeOfSortingMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN:
 			return choice_;
 		default:
 			break;
 		}
 
-		if (!title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 

@@ -1,5 +1,7 @@
 #include "StatisticsHandler.h"
 
+using namespace account;
+
 vector<AccountStatistics> StatisticsHandler::statistics_;
 
 StatisticsHandler::StatisticsHandler()
@@ -145,7 +147,7 @@ AccountStatistics* StatisticsHandler::getAccountStatistics(unsigned index)
 	return &(statistics_.at(index));
 }
 
-AccountStatistics* StatisticsHandler::getAccountStatistics(const string& username)
+AccountStatistics* StatisticsHandler::getAccountStatistics(string username)
 {
 	for (unsigned i = 0; i < statistics_.size(); i++)
 	{

@@ -1,13 +1,13 @@
 #include "CarFiltering.h"
 
-bool CarFiltering::bodyTypeFilterStatus_ = false;
-string CarFiltering::bodyTypeFilter_;
-bool CarFiltering::wheelDriveTypeFilterStatus_ = false;
-string CarFiltering::wheelDriveTypeFilter_;
-bool CarFiltering::transmissionTypeFilterStatus_ = false;
-string CarFiltering::transmissionTypeFilter_;
+bool car::CarFiltering::bodyTypeFilterStatus_ = false;
+string car::CarFiltering::bodyTypeFilter_;
+bool car::CarFiltering::wheelDriveTypeFilterStatus_ = false;
+string car::CarFiltering::wheelDriveTypeFilter_;
+bool car::CarFiltering::transmissionTypeFilterStatus_ = false;
+string car::CarFiltering::transmissionTypeFilter_;
 
-CarFiltering::CarFiltering()
+car::CarFiltering::CarFiltering()
 {
 	bodyTypeFilterStatus_ = false;
 	wheelDriveTypeFilterStatus_ = false;
@@ -17,70 +17,70 @@ CarFiltering::CarFiltering()
 	transmissionTypeFilter_ = "";
 }
 
-void CarFiltering::setBodyTypeFilter(const string& bodyType)
+void car::CarFiltering::setBodyTypeFilter(const string& bodyType)
 {
 	bodyTypeFilter_ = bodyType;
 	bodyTypeFilterStatus_ = true;
 }
 
-void CarFiltering::setWheelDriveTypeFilter(const string& wheelDriveType)
+void car::CarFiltering::setWheelDriveTypeFilter(const string& wheelDriveType)
 {
 	wheelDriveTypeFilter_ = wheelDriveType;
 	wheelDriveTypeFilterStatus_ = true;
 }
 
-void CarFiltering::setTransmissionTypeFilter(const string& transmissionType)
+void car::CarFiltering::setTransmissionTypeFilter(const string& transmissionType)
 {
 	transmissionTypeFilter_ = transmissionType;
 	transmissionTypeFilterStatus_ = true;
 }
 
-bool CarFiltering::getBodyTypeFilterStatus()
+bool car::CarFiltering::getBodyTypeFilterStatus()
 {
 	return bodyTypeFilterStatus_;
 }
 
-bool CarFiltering::getWheelDriveTypeFilterStatus()
+bool car::CarFiltering::getWheelDriveTypeFilterStatus()
 {
 	return wheelDriveTypeFilterStatus_;
 }
 
-bool CarFiltering::getTransmissionTypeFilterStatus()
+bool car::CarFiltering::getTransmissionTypeFilterStatus()
 {
 	return transmissionTypeFilterStatus_;
 }
 
-string CarFiltering::getBodyTypeFilter()
+string car::CarFiltering::getBodyTypeFilter()
 {
 	return bodyTypeFilter_;
 }
 
-string CarFiltering::getWheelDriveTypeFilter()
+string car::CarFiltering::getWheelDriveTypeFilter()
 {
 	return wheelDriveTypeFilter_;
 }
 
-string CarFiltering::getTransmissionTypeFilter()
+string car::CarFiltering::getTransmissionTypeFilter()
 {
 	return transmissionTypeFilter_;
 }
 
-void CarFiltering::resetBodyTypeFilter()
+void car::CarFiltering::resetBodyTypeFilter()
 {
 	bodyTypeFilterStatus_ = false;
 	bodyTypeFilter_ = "";
 }
 
-void CarFiltering::resetWheelDriveTypeFilter()
+void car::CarFiltering::resetWheelDriveTypeFilter()
 {
 	wheelDriveTypeFilterStatus_ = false;
 	wheelDriveTypeFilter_ = "";
 }
 
-void CarFiltering::resetTransmissionTypeFilter()
+void car::CarFiltering::resetTransmissionTypeFilter()
 {
 	transmissionTypeFilterStatus_ = false;
 	transmissionTypeFilter_ = "";
 }
 
-CarFiltering::~CarFiltering() = default;
+car::CarFiltering::~CarFiltering() = default;

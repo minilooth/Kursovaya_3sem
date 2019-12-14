@@ -1,6 +1,8 @@
 #include "AccountManagementMenu.h"
 
-unsigned AccountManagementMenu::choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
+using namespace menu;
+
+unsigned AccountManagementMenu::choice_ = Action::SHOW_ACCOUNTS;
 
 AccountManagementMenu::AccountManagementMenu()
 {
@@ -16,7 +18,7 @@ AccountManagementMenu::AccountManagementMenu(const string& title, const vector<s
 
 void AccountManagementMenu::resetChoice()
 {
-	choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
+	choice_ = Action::SHOW_ACCOUNTS;
 }
 
 ConsoleMenu* AccountManagementMenu::getNextMenu()
@@ -25,23 +27,23 @@ ConsoleMenu* AccountManagementMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case AccountManagementMenuAction::SHOW_ACCOUNTS:
+	case Action::SHOW_ACCOUNTS:
 		newMenu = new AccountShowMenu();
 		break;
-	case AccountManagementMenuAction::ADD_ACCOUNT:
-		AccountHandler::addAccount();
+	case Action::ADD_ACCOUNT:
+		account::AccountHandler::addAccount();
 		newMenu = this;
 		break;
-	case AccountManagementMenuAction::DELETE_ACCOUNT:
-		AccountHandler::deleteAccount();
+	case Action::DELETE_ACCOUNT:
+		account::AccountHandler::deleteAccount();
 		newMenu = this;
 		break;
-	case AccountManagementMenuAction::EDIT_ACCOUNT:
-		AccountHandler::editAccount();
+	case Action::EDIT_ACCOUNT:
+		account::AccountHandler::editAccount();
+		account::AccountHandler::resetAccountToEdit();
 		newMenu = this;
-		AccountHandler::resetAccountToEdit();
 		break;
-	case AccountManagementMenuAction::BACK:
+	case Action::BACK:
 		this->resetChoice();
 		newMenu = new AdminMenu();
 		break;
@@ -69,7 +71,7 @@ unsigned AccountManagementMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP :
-			if (choice_ < AccountManagementMenuAction::ADD_ACCOUNT)
+			if (choice_ < Action::ADD_ACCOUNT)
 			{
 				choice_ = items_.size();
 			}
@@ -81,7 +83,7 @@ unsigned AccountManagementMenu::selectMode()
 		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountManagementMenuAction::SHOW_ACCOUNTS;
+				choice_ = Action::SHOW_ACCOUNTS;
 			}
 			else
 			{
@@ -89,7 +91,7 @@ unsigned AccountManagementMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE :
-			return AccountManagementMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN :
 			return choice_;
 		default:

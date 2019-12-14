@@ -2,8 +2,6 @@
 #define CARHANDLER_H
 
 
-#define _CRT_SECURE_NO_WARNINGS
-
 #include "BodyTypeMenu.h"
 #include "WheelDriveTypeMenu.h"
 #include "EngineTypeMenu.h"
@@ -31,114 +29,122 @@
 
 #include "StatisticsHandler.h"
 
+
 using namespace std;
 
-const unsigned brandMaxInputLength = 10;
-const unsigned modelMaxInputLength = 10;
-const unsigned yearOfProductionMaxInputLength = 4;
-const unsigned engineVolumeMaxInputLength = 3;
-const unsigned bodyColorMaxInputLength = 10;
-const unsigned interiorColorMaxInputLength = 10;
-const unsigned interiorMaterialMaxInputLength = 10;
-const unsigned mileageMaxInputLength = 6;
-const unsigned priceMaxInputLength = 6;
 
-class CarHandler
+namespace car
 {
-	static vector<Car> cars_;
-	static Car* carToEdit_;
 
-	// Files
-	static void rewriteCarsFile();
-	static string createReport(Car& car);
+	const unsigned BRAND_MAX_INPUT_LENGTH = 12;
+	const unsigned MODEL_MAX_INPUT_LENGTH = 12;
+	const unsigned YEAR_OF_PRODUCTION_MAX_INPUT_LENGTH = 4;
+	const unsigned ENGINE_VOLUME_MAX_INPUT_LENGTH = 3;
+	const unsigned BODY_COLOR_MAX_INPUT_LENGTH = 12;
+	const unsigned INTERIOR_COLOR_MAX_INPUT_LENGTH = 12;
+	const unsigned INTERIOR_MATERIAL_MAX_INPUT_LENGTH = 12;
+	const unsigned MILEAGE_MAX_INPUT_LENGTH = 6;
+	const unsigned PRICE_MAX_INPUT_LENGTH = 6;
 
-	// Equal
-	inline static bool isBodyTypesNotEqual(Car& car);
-	inline static bool isWheelDriveTypesNotEqual(Car& car);
-	inline static bool isTransmissionTypesNotEqual(Car& car);
+	class CarHandler
+	{
+		static vector<Car> cars_;
+		static Car* carToEdit_;
 
-	// Compare
-	inline static bool compareYearsOfProductionsAscending(Car& firstCar, Car& secondCar);
-	inline static bool compareYearsOfProductionsDescending(Car& firstCar, Car& secondCar);
-	inline static bool compareEngineVolumesAscending(Car& firstCar, Car& secondCar);
-	inline static bool compareEngineVolumesDescending(Car& firstCar, Car& secondCar);
-	inline static bool comparePricesAscending(Car& firstCar, Car& secondCar);
-	inline static bool comparePricesDescending(Car& firstCar, Car& secondCar);
-public:
-	//Constructors
-	CarHandler();
-	explicit CarHandler(const string& fileName);
+		// Files
+		static void rewriteCarsFile();
+		static string createReport(Car& car);
 
-	// Reset
-	static void resetCarToEdit();
-	static void resetReservedCarsByUsername(string username);
+		// Equal
+		inline static bool isBodyTypesNotEqual(Car& car);
+		inline static bool isWheelDriveTypesNotEqual(Car& car);
+		inline static bool isTransmissionTypesNotEqual(Car& car);
 
-	// Set
-	static void setFilterByBodyType();
-	static void setFilterByWheelDriveType();
-	static void setFilterByTransmissionType();
+		// Compare
+		inline static bool compareYearsOfProductionsAscending(Car& firstCar, Car& secondCar);
+		inline static bool compareYearsOfProductionsDescending(Car& firstCar, Car& secondCar);
+		inline static bool compareEngineVolumesAscending(Car& firstCar, Car& secondCar);
+		inline static bool compareEngineVolumesDescending(Car& firstCar, Car& secondCar);
+		inline static bool comparePricesAscending(Car& firstCar, Car& secondCar);
+		inline static bool comparePricesDescending(Car& firstCar, Car& secondCar);
+	public:
+		//Constructors
+		CarHandler();
+		explicit CarHandler(const string& fileName);
 
-	// Gets
-	static unsigned getCarIndex(Car* car);
-	inline static Car* getCar(unsigned index);
-	static vector<Car> getCars();
-	static pair<vector<Car*>, vector<Car>> getNotReservedNewCars();
-	static pair<vector<Car*>, vector<Car>> getNotReservedUsedCars();
-	static pair<vector<Car*>, vector<Car>> getReservedCars();
-	static vector<Car> getReservedCarsByUsername(string username);
-	static vector<Car> getUsedCars();
-	static vector<Car> getNewCars();
-	static vector<Car> getFilteredCars();
-	static vector<Car> getCarsByBrand(const string& brand);
-	static vector<Car> getCarsByModel(const string& model);
-	static vector<Car> getCarsByYearOfProduction(unsigned yearOfProduction);
-	static vector<Car> getCarsByEngineType(const string& engineType);
+		// Reset
+		static void resetCarToEdit();
+		static void resetReservedCarsByUsername(const string& username);
 
-	// Search
-	static void searchByBrand();
-	static void searchByModel();
-	static void searchByYearOfProduction();
-	static void searchByEngineType();
+		// Set
+		static void setFilterByBodyType();
+		static void setFilterByWheelDriveType();
+		static void setFilterByTransmissionType();
 
-	// Sorting
-	static void sortByYearOfProduction();
-	static void sortByEngineVolume();
-	static void sortByPrice();
+		// Gets
+		static unsigned getCarIndex(Car* car);
+		inline static Car* getCar(unsigned index);
+		static vector<Car> getCars();
+		static vector<Car> getCars(unsigned from, unsigned to);
+		static pair<vector<Car*>, vector<Car>> getNotReservedNewCars();
+		static pair<vector<Car*>, vector<Car>> getNotReservedUsedCars();
+		static pair<vector<Car*>, vector<Car>> getReservedCars();
+		static vector<Car> getReservedCarsByUsername(const string& username);
+		static vector<Car> getUsedCars();
+		static vector<Car> getNewCars();
+		static vector<Car> getFilteredCars();
+		static vector<Car> getCarsByBrand(const string& brand);
+		static vector<Car> getCarsByModel(const string& model);
+		static vector<Car> getCarsByYearOfProduction(unsigned yearOfProduction);
+		static vector<Car> getCarsByEngineType(const string& engineType);
 
-	// Edit
-	static void editBrand();
-	static void editModel();
-	static void editYearOfProduction();
-	static void editBodyType();
-	static void editTransmissionType();
-	static void editWheelDriveType();
-	static void editEngineType();
-	static void editEngineVolume();
-	static void editBodyColor();
-	static void editInteriorColor();
-	static void editInteriorMaterial();
-	static void editMileage();
-	static void editPrice();
-	static void editReserveStatus();
-	static void editReserverUsername();
-	static void editReservedCarsReserverUsername(string oldUsername, string newUsername);
+		// Search
+		static void searchByBrand();
+		static void searchByModel();
+		static void searchByYearOfProduction();
+		static void searchByEngineType();
 
-	// Functional
-	static void sellCar();
-	static void showCars();
-	static void showAccountReservedCars();
-	static void showNewCars();
-	static void showUsedCars();
-	static void showEditCar();
-	static void showFilteredCars();
-	static void addCar();
-	static void deleteCar();
-	static void editCar();
-	static void reserveNewCar();
-	static void reserveUsedCar();
+		// Sorting
+		static void sortByYearOfProduction();
+		static void sortByEngineVolume();
+		static void sortByPrice();
 
-	~CarHandler();
-};
+		// Edit
+		static void editBrand();
+		static void editModel();
+		static void editYearOfProduction();
+		static void editBodyType();
+		static void editTransmissionType();
+		static void editWheelDriveType();
+		static void editEngineType();
+		static void editEngineVolume();
+		static void editBodyColor();
+		static void editInteriorColor();
+		static void editInteriorMaterial();
+		static void editMileage();
+		static void editPrice();
+		static void editReserveStatus();
+		static void editReserverUsername();
+		static void editReservedCarsReserverUsername(const string& oldUsername, const string& newUsername);
+
+		// Functional
+		static void sellCar();
+		static void showCars();
+		static void showAccountReservedCars();
+		static void showNewCars();
+		static void showUsedCars();
+		static void showEditCar();
+		static void showFilteredCars();
+		static void addCar();
+		static void deleteCar();
+		static void editCar();
+		static void reserveNewCar();
+		static void reserveUsedCar();
+
+		~CarHandler();
+	};
+
+}
 
 
 #endif // CARHANDLER_H

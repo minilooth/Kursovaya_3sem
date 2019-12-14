@@ -19,19 +19,23 @@ enum BodyType
 	TWO_DOOR_COUPE
 };
 
-class BodyTypeMenu : virtual public ConsoleMenu
+namespace menu
 {
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	BodyTypeMenu();
-	BodyTypeMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~BodyTypeMenu();
-};
 
+	class BodyTypeMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+		BodyTypeMenu();
+		BodyTypeMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~BodyTypeMenu();
+	};
+
+}
 
 #endif // BODYTYPEMENU_H

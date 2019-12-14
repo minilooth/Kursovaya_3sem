@@ -1,5 +1,7 @@
 #include "StationWagon.h"
 
+using namespace car;
+
 StationWagon::StationWagon()
 {
 	brand_ = "";

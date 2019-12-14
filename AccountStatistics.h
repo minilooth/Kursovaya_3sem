@@ -4,30 +4,35 @@
 
 #include "Includes.h"
 
-class AccountStatistics
+
+namespace account
 {
-	string username_;
-	unsigned totalCarsPurchased_;
-	double largestCheck_;
-	double averageCheck_;
-	double totalPurchases_;
-public:
-	AccountStatistics();
-	explicit AccountStatistics(const string& username);
-	AccountStatistics(const string& username, unsigned totalCarsPurchased, double largestCheck, double averageCheck, double totalPurchases);
 
-	void setUsername(const string& username);
+	class AccountStatistics
+	{
+		string username_;
+		unsigned totalCarsPurchased_;
+		double largestCheck_;
+		double averageCheck_;
+		double totalPurchases_;
+	public:
+		AccountStatistics();
+		explicit AccountStatistics(const string& username);
+		AccountStatistics(const string& username, unsigned totalCarsPurchased, double largestCheck, double averageCheck, double totalPurchases);
 
-	void addPurchaseAmount(double purchaseAmount);
+		void setUsername(const string& username);
 
-	string getUsername() const;
-	unsigned getTotalCarsPurchased() const;
-	double getLargestCheck() const;
-	double getAverageCheck() const;
-	double getTotalPurchases() const;
+		void addPurchaseAmount(double purchaseAmount);
 
-	~AccountStatistics();
-};
+		string getUsername() const;
+		unsigned getTotalCarsPurchased() const;
+		double getLargestCheck() const;
+		double getAverageCheck() const;
+		double getTotalPurchases() const;
 
+		~AccountStatistics();
+	};
+
+}
 
 #endif // ACCOUNTSTATISTICS_H

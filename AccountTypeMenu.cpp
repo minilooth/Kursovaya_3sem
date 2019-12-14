@@ -1,5 +1,7 @@
 #include "AccountTypeMenu.h"
 
+using namespace menu;
+
 unsigned AccountTypeMenu::choice_ = AccountType::ADMIN;
 
 AccountTypeMenu::AccountTypeMenu()

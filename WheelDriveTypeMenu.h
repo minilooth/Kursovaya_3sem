@@ -11,19 +11,23 @@ enum WheelDriveType
 	AWD
 };
 
-class WheelDriveTypeMenu : virtual public ConsoleMenu
+namespace menu
 {
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	WheelDriveTypeMenu();
-	WheelDriveTypeMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~WheelDriveTypeMenu();
-};
 
+	class WheelDriveTypeMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+		WheelDriveTypeMenu();
+		WheelDriveTypeMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~WheelDriveTypeMenu();
+	};
+
+}
 
 #endif // WHEELDRIVETYPEMENU_H

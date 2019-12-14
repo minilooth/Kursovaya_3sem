@@ -290,5 +290,11 @@
     <ClInclude Include="TypeOfSortingMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="HorizontalShow.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

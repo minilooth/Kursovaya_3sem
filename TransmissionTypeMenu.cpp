@@ -1,5 +1,7 @@
 #include "TransmissionTypeMenu.h"
 
+using namespace menu;
+
 unsigned TransmissionTypeMenu::choice_ = TransmissionType::MANUAL;
 
 TransmissionTypeMenu::TransmissionTypeMenu()
@@ -66,14 +68,7 @@ unsigned TransmissionTypeMenu::selectMode()
 			break;
 		}
 
-		if (!title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 

@@ -1,5 +1,7 @@
 #include "BodyTypeMenu.h"
 
+using namespace menu;
+
 unsigned BodyTypeMenu::choice_ = BodyType::CROSSOVER;
 
 BodyTypeMenu::BodyTypeMenu()
@@ -77,21 +79,14 @@ unsigned BodyTypeMenu::selectMode()
 			break;
 		}
 
-		if (title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 
 void BodyTypeMenu::showTitle()
 {
 	cout << title_;
-	if (title_ .empty())
+	if (!title_ .empty())
 	{
 		cout << endl;
 	}

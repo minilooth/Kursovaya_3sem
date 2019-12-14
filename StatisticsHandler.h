@@ -4,32 +4,38 @@
 
 #include "AccountStatistics.h"
 
-class StatisticsHandler
+
+namespace account
 {
-	static vector<AccountStatistics> statistics_;
-public:
-	StatisticsHandler();
-	StatisticsHandler(const string& filename);
 
-	static void rewriteStatisticsFile();
+	class StatisticsHandler
+	{
+		static vector<AccountStatistics> statistics_;
+	public:
+		StatisticsHandler();
+		StatisticsHandler(const string& filename);
 
-	static bool checkForStatistics(const string& username);
+		static void rewriteStatisticsFile();
 
-	static void createStatistics(const string& username);
-	static void deleteStatistics(const string& username);
+		static bool checkForStatistics(const string& username);
 
-	static unsigned getStatisticsIndex(const string& username);
-	static AccountStatistics* getAccountStatistics(unsigned index);
-	static AccountStatistics* getAccountStatistics(const string& username);
+		static void createStatistics(const string& username);
+		static void deleteStatistics(const string& username);
 
-	static string getMostBuyedCarsUsername();
-	static unsigned getSoldCarsQuantity();
-	static double getAccountsAverageCheck();
-	static double getAccountsLargestCheck();
-	static double getAccountsTotalPurchaseAmount();
+		static unsigned getStatisticsIndex(const string& username);
+		static AccountStatistics* getAccountStatistics(unsigned index);
+		static AccountStatistics* getAccountStatistics(string username);
 
-	~StatisticsHandler();
-};
+		static string getMostBuyedCarsUsername();
+		static unsigned getSoldCarsQuantity();
+		static double getAccountsAverageCheck();
+		static double getAccountsLargestCheck();
+		static double getAccountsTotalPurchaseAmount();
+
+		~StatisticsHandler();
+	};
+
+}
 
 
 #endif // STATISTICSHANDLER_H

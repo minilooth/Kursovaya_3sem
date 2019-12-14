@@ -1,5 +1,7 @@
 #include "Admin.h"
 
+using namespace account;
+
 Admin::Admin()
 {
 	username_ = "";

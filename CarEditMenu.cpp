@@ -1,6 +1,8 @@
 #include "CarEditMenu.h"
 
-unsigned CarEditMenu::choice_ = CarEditMenuAction::EDIT_BRAND;
+using namespace menu;
+
+unsigned CarEditMenu::choice_ = Action::EDIT_BRAND;
 
 CarEditMenu::CarEditMenu()
 {
@@ -20,7 +22,7 @@ CarEditMenu::CarEditMenu(const string& title, const vector<string>& items)
 
 void CarEditMenu::resetChoice()
 {
-	choice_ = CarEditMenuAction::EDIT_BRAND;
+	choice_ = Action::EDIT_BRAND;
 }
 
 ConsoleMenu* CarEditMenu::getNextMenu()
@@ -29,67 +31,67 @@ ConsoleMenu* CarEditMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case CarEditMenuAction::EDIT_BRAND :
-		CarHandler::editBrand();
+	case Action::EDIT_BRAND :
+		car::CarHandler::editBrand();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_MODEL :
-		CarHandler::editModel();
+	case Action::EDIT_MODEL :
+		car::CarHandler::editModel();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_YEAR_OF_PRODUCTION :
-		CarHandler::editYearOfProduction();
+	case Action::EDIT_YEAR_OF_PRODUCTION :
+		car::CarHandler::editYearOfProduction();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_BODY_TYPE :
-		CarHandler::editBodyType();
+	case Action::EDIT_BODY_TYPE :
+		car::CarHandler::editBodyType();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_TRANSMISSION_TYPE :
-		CarHandler::editTransmissionType();
+	case Action::EDIT_TRANSMISSION_TYPE :
+		car::CarHandler::editTransmissionType();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_WHEEL_DRIVE_TYPE :
-		CarHandler::editWheelDriveType();
+	case Action::EDIT_WHEEL_DRIVE_TYPE :
+		car::CarHandler::editWheelDriveType();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_ENGINE_TYPE :
-		CarHandler::editEngineType();
+	case Action::EDIT_ENGINE_TYPE :
+		car::CarHandler::editEngineType();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_ENGINE_VOLUME :
-		CarHandler::editEngineVolume();
+	case Action::EDIT_ENGINE_VOLUME :
+		car::CarHandler::editEngineVolume();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_BODY_COLOR :
-		CarHandler::editBodyColor();
+	case Action::EDIT_BODY_COLOR :
+		car::CarHandler::editBodyColor();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_INTERIOR_COLOR :
-		CarHandler::editInteriorColor();
+	case Action::EDIT_INTERIOR_COLOR :
+		car::CarHandler::editInteriorColor();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_INTERIOR_MATERIAL :
-		CarHandler::editInteriorMaterial();
+	case Action::EDIT_INTERIOR_MATERIAL :
+		car::CarHandler::editInteriorMaterial();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_MILEAGE :
-		CarHandler::editMileage();
+	case Action::EDIT_MILEAGE :
+		car::CarHandler::editMileage();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_PRICE :
-		CarHandler::editPrice();
+	case Action::EDIT_PRICE :
+		car::CarHandler::editPrice();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_RESERVE_STATUS :
-		CarHandler::editReserveStatus();
+	case Action::EDIT_RESERVE_STATUS :
+		car::CarHandler::editReserveStatus();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::EDIT_RESERVER_USERNAME :
-		CarHandler::editReserverUsername();
+	case Action::EDIT_RESERVER_USERNAME :
+		car::CarHandler::editReserverUsername();
 		newMenu = this;
 		break;
-	case CarEditMenuAction::BACK:
+	case Action::BACK:
 		this->resetChoice();
 		break;
 	default:
@@ -105,7 +107,7 @@ unsigned CarEditMenu::selectMode()
 
 	system("cls");
 
-	CarHandler::showEditCar();
+	car::CarHandler::showEditCar();
 
 	while (true)
 	{
@@ -118,7 +120,7 @@ unsigned CarEditMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP :
-			if (choice_ < CarEditMenuAction::EDIT_MODEL)
+			if (choice_ < Action::EDIT_MODEL)
 			{
 				choice_ = items_.size();
 			}
@@ -130,7 +132,7 @@ unsigned CarEditMenu::selectMode()
 		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = CarEditMenuAction::EDIT_MODEL;
+				choice_ = Action::EDIT_MODEL;
 			}
 			else
 			{
@@ -138,7 +140,7 @@ unsigned CarEditMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE :
-			return CarEditMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN :
 			return choice_;
 		default:

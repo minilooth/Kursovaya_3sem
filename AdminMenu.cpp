@@ -1,6 +1,8 @@
 #include "AdminMenu.h"
 
-unsigned AdminMenu::choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
+using namespace menu;
+
+unsigned AdminMenu::choice_ = Action::ACCOUNT_MANAGEMENT;
 
 AdminMenu::AdminMenu()
 {
@@ -16,7 +18,7 @@ AdminMenu::AdminMenu(const string& title, const vector<string>& items)
 
 void AdminMenu::resetChoice()
 {
-    choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
+    choice_ = Action::ACCOUNT_MANAGEMENT;
 }
 
 ConsoleMenu* AdminMenu::getNextMenu()
@@ -25,40 +27,40 @@ ConsoleMenu* AdminMenu::getNextMenu()
 
     switch (selectMode())
     {
-		case AdminMenuAction::ACCOUNT_MANAGEMENT :
+		case Action::ACCOUNT_MANAGEMENT :
             newMenu = new AccountManagementMenu();
             break;
-		case AdminMenuAction::ADD_CAR :
-			CarHandler::addCar();
+		case Action::ADD_CAR :
+			car::CarHandler::addCar();
 			newMenu = this;
 			break;
-		case AdminMenuAction::SHOW_CARS :
-			CarHandler::showCars();
+		case Action::SHOW_CARS :
+			car::CarHandler::showCars();
 			newMenu = this;
 			break;
-		case AdminMenuAction::DELETE_CAR :
-			CarHandler::deleteCar();
+		case Action::DELETE_CAR :
+			car::CarHandler::deleteCar();
 			newMenu = this;
 			break;
-		case AdminMenuAction::EDIT_CAR :
-			CarHandler::editCar();
-			CarHandler::resetCarToEdit();
+		case Action::EDIT_CAR :
+			car::CarHandler::editCar();
+			car::CarHandler::resetCarToEdit();
 			newMenu = this;
 			break;
-		case AdminMenuAction::SELL_CAR :
-			CarHandler::sellCar();
+		case Action::SELL_CAR :
+			car::CarHandler::sellCar();
 			newMenu = this;
 			break;
-		case AdminMenuAction::SHOW_STATISTICS :
-			AccountHandler::showTotalStatistics();
+		case Action::SHOW_STATISTICS :
+			account::AccountHandler::showTotalStatistics();
 			newMenu = this;
 			break;
-		case AdminMenuAction::SEARCHING_SORTING_AND_FILTRATION :
+		case Action::SEARCHING_SORTING_AND_FILTRATION :
 			newMenu = new SearchingSortingAndFilteringMenu();
 			break;
-		case AdminMenuAction::BACK :
+		case Action::BACK :
             this->resetChoice();
-			AccountHandler::resetCurrentAccount();
+			account::AccountHandler::resetCurrentAccount();
             newMenu = new LoginMenu();
             break;
         default:
@@ -84,7 +86,7 @@ unsigned AdminMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP :
-				if (choice_ < AdminMenuAction::ADD_CAR)
+				if (choice_ < Action::ADD_CAR)
 				{
 					choice_ = items_.size();
 				}
@@ -96,7 +98,7 @@ unsigned AdminMenu::selectMode()
             case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = AdminMenuAction::ACCOUNT_MANAGEMENT;
+					choice_ = Action::ACCOUNT_MANAGEMENT;
 				}
 				else
 				{
@@ -104,7 +106,7 @@ unsigned AdminMenu::selectMode()
 				}
                 break;
 			case VK_ESCAPE :
-				return AdminMenuAction::BACK;
+				return Action::BACK;
             case VK_RETURN :
                 return choice_;
             default:

@@ -84,6 +84,7 @@
     <ClInclude Include="FiveSeatMinivan.h" />
     <ClInclude Include="FourDoorCoupe.h" />
     <ClInclude Include="Functions.h" />
+    <ClInclude Include="HorizontalShow.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="ItemSelection.h" />
     <ClInclude Include="LoginMenu.h" />
@@ -106,6 +107,9 @@
     <ClInclude Include="UserMenu.h" />
     <ClInclude Include="AccountStatistics.h" />
     <ClInclude Include="WheelDriveTypeMenu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

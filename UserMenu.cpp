@@ -1,6 +1,8 @@
 #include "UserMenu.h"
 
-unsigned UserMenu::choice_ = UserMenuAction::SHOW_ALL_CARS;
+using namespace menu;
+
+unsigned UserMenu::choice_ = Action::SHOW_ALL_CARS;
 
 UserMenu::UserMenu()
 {
@@ -16,7 +18,7 @@ UserMenu::UserMenu(const string& title, const vector<string>& items)
 
 void UserMenu::resetChoice()
 {
-    choice_ = UserMenuAction::SHOW_ALL_CARS;
+    choice_ = Action::SHOW_ALL_CARS;
 }
 
 ConsoleMenu* UserMenu::getNextMenu()
@@ -25,32 +27,32 @@ ConsoleMenu* UserMenu::getNextMenu()
 
     switch (selectMode())
     {
-	case UserMenuAction::SHOW_ALL_CARS :
-		CarHandler::showCars();
+	case Action::SHOW_ALL_CARS :
+		car::CarHandler::showCars();
 		newMenu = this;
 		break;
-	case UserMenuAction::RESERVE_NEW_CAR :
-		CarHandler::reserveNewCar();
+	case Action::RESERVE_NEW_CAR :
+		car::CarHandler::reserveNewCar();
 	    newMenu = this;
 		break;
-	case UserMenuAction::RESERVE_USED_CAR :
-		CarHandler::reserveUsedCar();
+	case Action::RESERVE_USED_CAR :
+		car::CarHandler::reserveUsedCar();
         newMenu = this;
 		break;
-	case UserMenuAction::SHOW_ACCOUNT_RESERVED_CARS :
-		CarHandler::showAccountReservedCars();
+	case Action::SHOW_ACCOUNT_RESERVED_CARS :
+		car::CarHandler::showAccountReservedCars();
 		newMenu = this;
 		break;
-	case UserMenuAction::SHOW_ACCOUNT_STATISTICS :
-		AccountHandler::showCurrentAccountStatistics();
+	case Action::SHOW_ACCOUNT_STATISTICS :
+		account::AccountHandler::showCurrentAccountStatistics();
 		newMenu = this;
 		break;
-	case UserMenuAction::SEARCHING_SORTING_AND_FILTRATION :
+	case Action::SEARCHING_SORTING_AND_FILTRATION :
 		newMenu = new SearchingSortingAndFilteringMenu();
 		break;
-	case UserMenuAction::BACK :
+	case Action::BACK :
 		this->resetChoice();
-		AccountHandler::resetCurrentAccount();
+		account::AccountHandler::resetCurrentAccount();
 		newMenu = new LoginMenu();
 		break;
     default:
@@ -76,7 +78,7 @@ unsigned UserMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP :
-				if (choice_ < UserMenuAction::RESERVE_NEW_CAR)
+				if (choice_ < Action::RESERVE_NEW_CAR)
 				{
 					choice_ = items_.size();
 				}
@@ -88,7 +90,7 @@ unsigned UserMenu::selectMode()
             case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = UserMenuAction::SHOW_ALL_CARS;
+					choice_ = Action::SHOW_ALL_CARS;
 				}
 				else
 				{
@@ -96,21 +98,14 @@ unsigned UserMenu::selectMode()
 				}
                 break;
 			case VK_ESCAPE :
-				return UserMenuAction::BACK;
+				return Action::BACK;
             case VK_RETURN :
                 return choice_;
             default:
                 break;
         }
 
-		if (!title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
     }
 }
 

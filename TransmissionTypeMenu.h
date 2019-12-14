@@ -10,19 +10,24 @@ enum TransmissionType
 	AUTOMATIC
 };
 
-class TransmissionTypeMenu : virtual public ConsoleMenu
+namespace menu
 {
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	TransmissionTypeMenu();
-	TransmissionTypeMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~TransmissionTypeMenu();
-};
+
+	class TransmissionTypeMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+		TransmissionTypeMenu();
+		TransmissionTypeMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~TransmissionTypeMenu();
+	};
+
+}
 
 
 #endif // TRANSMISSIONTYPEMENU_H

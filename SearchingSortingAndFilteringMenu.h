@@ -9,30 +9,43 @@
 #include "FilteringMenu.h"
 
 
-namespace SearchingSortingAndFilteringMenuAction
+namespace menu
 {
-	enum
+
+	/*namespace SearchingSortingAndFilteringMenuAction
 	{
-		SEARCHING = 1,
-		SORTING,
-		FILTERING,
-		BACK
+		enum
+		{
+			SEARCHING = 1,
+			SORTING,
+			FILTERING,
+			BACK
+		};
+	}*/
+
+	class SearchingSortingAndFilteringMenu : virtual public ConsoleMenu
+	{
+		ConsoleMenu* getNextMenu() override;
+		static unsigned choice_;
+	public:
+
+		enum Action
+		{
+			SEARCHING = 1,
+			SORTING,
+			FILTERING,
+			BACK
+		};
+
+		SearchingSortingAndFilteringMenu();
+		SearchingSortingAndFilteringMenu(const string& title, const vector<string>& items);
+		unsigned selectMode() override;
+		void resetChoice() override;
+		void showTitle() override;
+		void showItems() override;
+		~SearchingSortingAndFilteringMenu();
 	};
+
 }
-
-class SearchingSortingAndFilteringMenu : virtual public ConsoleMenu
-{
-	ConsoleMenu* getNextMenu() override;
-	static unsigned choice_;
-public:
-	SearchingSortingAndFilteringMenu();
-	SearchingSortingAndFilteringMenu(const string& title, const vector<string>& items);
-	unsigned selectMode() override;
-	void resetChoice() override;
-	void showTitle() override;
-	void showItems() override;
-	~SearchingSortingAndFilteringMenu();
-};
-
 
 #endif // SEARCHINGSORTINGANDFILTERINGMENU_H

@@ -1,6 +1,8 @@
 #include "LoginMenu.h"
 
-unsigned LoginMenu::choice_ = LoginMenuAction::BY_USER;
+using namespace menu;
+
+unsigned LoginMenu::choice_ = Action::BY_USER;
 
 LoginMenu::LoginMenu()
 {
@@ -16,7 +18,7 @@ LoginMenu::LoginMenu(const string& title, const vector<string>& items)
 
 void LoginMenu::resetChoice()
 {
-    choice_ = LoginMenuAction::BY_USER;
+    choice_ = Action::BY_USER;
 }
 
 ConsoleMenu* LoginMenu::getNextMenu()
@@ -25,9 +27,9 @@ ConsoleMenu* LoginMenu::getNextMenu()
 
     switch (selectMode())
     {
-		case LoginMenuAction::BY_USER :
-			AccountHandler::setAdminAccessStatus(false);
-			if (AccountHandler::auth())
+		case Action::BY_USER :
+			account::AccountHandler::setAdminAccessStatus(false);
+			if (account::AccountHandler::auth())
 			{
 				newMenu = new UserMenu();
 			}
@@ -36,9 +38,9 @@ ConsoleMenu* LoginMenu::getNextMenu()
 				newMenu = this;
 			}
             break;
-		case LoginMenuAction::BY_ADMIN :
-			AccountHandler::setAdminAccessStatus(true);
-            if(AccountHandler::auth())
+		case Action::BY_ADMIN :
+			account::AccountHandler::setAdminAccessStatus(true);
+            if(account::AccountHandler::auth())
             {
                 newMenu = new AdminMenu();
             }
@@ -47,11 +49,11 @@ ConsoleMenu* LoginMenu::getNextMenu()
 				newMenu = this;
 			}
             break;
-		case LoginMenuAction::REGISTRATION :
-			AccountHandler::registration();
+		case Action::REGISTRATION :
+			account::AccountHandler::registration();
 			newMenu = this;
 			break;
-		case LoginMenuAction::QUIT :
+		case Action::QUIT :
             break;
         default:
             break;
@@ -75,7 +77,7 @@ unsigned LoginMenu::selectMode()
         switch (key.wVirtualKeyCode)
         {
             case VK_UP :
-				if (choice_ < LoginMenuAction::BY_ADMIN)
+				if (choice_ < Action::BY_ADMIN)
 				{
 					choice_ = items_.size();
 				}
@@ -87,7 +89,7 @@ unsigned LoginMenu::selectMode()
             case VK_DOWN :
 				if (choice_ > items_.size() - 1)
 				{
-					choice_ = LoginMenuAction::BY_USER;
+					choice_ = Action::BY_USER;
 				}
 				else
 				{

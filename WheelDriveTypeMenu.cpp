@@ -1,10 +1,12 @@
 #include "WheelDriveTypeMenu.h"
 
+using namespace menu;
+
 unsigned WheelDriveTypeMenu::choice_ = WheelDriveType::FWD;
 
 WheelDriveTypeMenu::WheelDriveTypeMenu()
 {
-	title_ = "Привод: ";
+	title_ = "Тип привода: ";
 	items_ = { "Передний", "Задний", "Полный" };
 }
 
@@ -31,7 +33,6 @@ unsigned WheelDriveTypeMenu::selectMode()
 	while (true)
 	{
 		showTitle();
-
 		showItems();
 
 		VP_GetCh(key);
@@ -66,15 +67,7 @@ unsigned WheelDriveTypeMenu::selectMode()
 			break;
 		}
 
-		if (title_ != "")
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
-
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 

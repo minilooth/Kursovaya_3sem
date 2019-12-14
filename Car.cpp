@@ -1,5 +1,7 @@
 #include "CarHandler.h"
 
+using namespace car;
+
 Car::Car()
 {
 	brand_ = "";
@@ -183,7 +185,7 @@ string Car::getReserverUsername() const
 	return reserverUsername_;
 }
 
-ostream& operator<<(ostream& out, const Car& car)
+ostream& car::operator<<(ostream& out, const Car& car)
 {
 	out << "|" << left << setw(CarPrinter::getBrandLabelLength()) << car.brand_
 		<< "|" << left << setw(CarPrinter::getModelLabelLength()) << car.model_
@@ -193,27 +195,26 @@ ostream& operator<<(ostream& out, const Car& car)
 		<< "|" << left << setw(CarPrinter::getWheelDriveTypeLabelLength()) << car.wheelDriveType_
 		<< "|" << left << setw(CarPrinter::getEngineTypeLabelLength()) << car.engineType_
 
-		<< "|" << left << setw(calculateDoubleLength(car.engineVolume_, CarPrinter::getSignsAfterDotValue() + 1)) 
-		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.engineVolume_ << left 
+		<< "|" << left << setw(calculateDoubleLength(car.engineVolume_, CarPrinter::getSignsAfterDotValue() + 1))
+		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.engineVolume_ << left
 		<< setw((CarPrinter::getEngineVolumeLabelLength() - 1) - calculateDoubleLength(car.engineVolume_, CarPrinter::getSignsAfterDotValue())) << "л"
 
 		<< "|" << left << setw(CarPrinter::getBodyColorLabelLength()) << car.bodyColor_
 		<< "|" << left << setw(CarPrinter::getInteriorColorLabelLength()) << car.interiorColor_
 		<< "|" << left << setw(CarPrinter::getInteriorMaterialLabelLength()) << car.interiorMaterial_
 
-		<< "|" << left << setw(static_cast<unsigned>(1) + static_cast<unsigned>(calculateDoubleLength(car.mileage_, CarPrinter::getSignsAfterDotValue())))
+		<< "|" << left << setw(1 + calculateDoubleLength(car.mileage_, CarPrinter::getSignsAfterDotValue()))
 		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.mileage_ << left
 		<< setw((CarPrinter::getMileageLabelLength() - 1) - calculateDoubleLength(car.mileage_, CarPrinter::getSignsAfterDotValue())) << "км"
 
-		<< "|" << left << setw(static_cast<unsigned>(1) + static_cast<unsigned>(calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue())))
+		<< "|" << left << setw(1 + calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue()))
 		<< setprecision(CarPrinter::getSignsAfterDotValue()) << fixed << car.price_ << left
 		<< setw((CarPrinter::getPriceLabelLength() - 1) - calculateDoubleLength(car.price_, CarPrinter::getSignsAfterDotValue())) << "$"
 
 		<< "|" << left << setw(CarPrinter::getReserveStatusLabelLength()) << (car.reserveStatus_ ? ("Зарезервирован " + car.reserverUsername_) : "Не зарезервирован")
 		<< "|";
 
-
 	return out;
 }
 
-Car::~Car() = default;
+car::Car::~Car() = default;

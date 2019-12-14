@@ -1,6 +1,8 @@
 #include "SearchingMenu.h"
 
-unsigned SearchingMenu::choice_ = SearchingMenuAction::SEARCH_BY_BRAND;
+using namespace menu;
+
+unsigned SearchingMenu::choice_ = Action::SEARCH_BY_BRAND;
 
 SearchingMenu::SearchingMenu()
 {
@@ -16,7 +18,7 @@ SearchingMenu::SearchingMenu(const string& title, const vector<string>& items)
 
 void SearchingMenu::resetChoice()
 {
-	choice_ = SearchingMenuAction::SEARCH_BY_BRAND;
+	choice_ = Action::SEARCH_BY_BRAND;
 }
 
 ConsoleMenu* SearchingMenu::getNextMenu()
@@ -25,23 +27,23 @@ ConsoleMenu* SearchingMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case SearchingMenuAction::SEARCH_BY_BRAND :
-		CarHandler::searchByBrand();
+	case Action::SEARCH_BY_BRAND :
+		car::CarHandler::searchByBrand();
 		newMenu = this;
 		break;
-	case SearchingMenuAction::SEARCH_BY_MODEL :
-		CarHandler::searchByModel();
+	case Action::SEARCH_BY_MODEL :
+		car::CarHandler::searchByModel();
 		newMenu = this;
 		break;
-	case SearchingMenuAction::SEARCH_BY_YEAR_OF_PRODUCTION :
-		CarHandler::searchByYearOfProduction();
+	case Action::SEARCH_BY_YEAR_OF_PRODUCTION :
+		car::CarHandler::searchByYearOfProduction();
 		newMenu = this;
 		break;
-	case SearchingMenuAction::SEARCH_BY_ENGINE_TYPE :
-		CarHandler::searchByEngineType();
+	case Action::SEARCH_BY_ENGINE_TYPE :
+		car::CarHandler::searchByEngineType();
 		newMenu = this;
 		break;
-	case SearchingMenuAction::BACK :
+	case Action::BACK :
 		this->resetChoice();
 		newMenu = new SearchingSortingAndFilteringMenu();
 		break;
@@ -68,7 +70,7 @@ unsigned SearchingMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < SearchingMenuAction::SEARCH_BY_MODEL)
+			if (choice_ < Action::SEARCH_BY_MODEL)
 			{
 				choice_ = items_.size();
 			}
@@ -80,7 +82,7 @@ unsigned SearchingMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = SearchingMenuAction::SEARCH_BY_BRAND;
+				choice_ = Action::SEARCH_BY_BRAND;
 			}
 			else
 			{
@@ -88,28 +90,21 @@ unsigned SearchingMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE:
-			return SearchingMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN:
 			return choice_;
 		default:
 			break;
 		}
 
-		if (title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 
 void SearchingMenu::showTitle()
 {
 	cout << title_;
-	if (title_.empty())
+	if (!title_.empty())
 	{
 		cout << endl;
 	}

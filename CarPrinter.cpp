@@ -1,5 +1,7 @@
 #include "CarPrinter.h"
 
+using namespace car;
+
 unsigned CarPrinter::signsAfterDot_					 = 1;
 unsigned CarPrinter::brandLabelLength_				 = 0;
 unsigned CarPrinter::modelLabelLength_				 = 0;

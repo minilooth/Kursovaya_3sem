@@ -11,10 +11,10 @@ int main()
 
     system("color 0B");
 	
-	StatisticsHandler* statisticsHandler = new StatisticsHandler();
-	CarHandler* carHandler = new CarHandler();
-    AccountHandler *accountHandler = new AccountHandler();
-    ConsoleMenu *currentMenu = new LoginMenu();
+	account::StatisticsHandler* statisticsHandler = new account::StatisticsHandler();
+	car::CarHandler* carHandler = new car::CarHandler();
+    account::AccountHandler *accountHandler = new account::AccountHandler();
+    menu::ConsoleMenu *currentMenu = new menu::LoginMenu();
 
 	showConsoleCursor(false);
 

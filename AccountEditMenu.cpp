@@ -1,6 +1,8 @@
 #include "AccountEditMenu.h"
 
-unsigned AccountEditMenu::choice_ = AccountEditMenuAction::EDIT_USERNAME;
+using namespace menu;
+
+unsigned AccountEditMenu::choice_ = Action::EDIT_USERNAME;
 
 AccountEditMenu::AccountEditMenu()
 {
@@ -16,7 +18,7 @@ AccountEditMenu::AccountEditMenu(const string& title, const vector<string>& item
 
 void AccountEditMenu::resetChoice()
 {
-	choice_ = AccountEditMenuAction::EDIT_USERNAME;
+	choice_ = Action::EDIT_USERNAME;
 }
 
 ConsoleMenu* AccountEditMenu::getNextMenu()
@@ -25,23 +27,23 @@ ConsoleMenu* AccountEditMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case AccountEditMenuAction::EDIT_USERNAME :
-		AccountHandler::editUsername();
+	case Action::EDIT_USERNAME :
+		account::AccountHandler::editUsername();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::EDIT_PASSWORD :
-		AccountHandler::editPassword();
+	case Action::EDIT_PASSWORD :
+		account::AccountHandler::editPassword();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::EDIT_ADMIN_ACCESS :
-		AccountHandler::editAdminAccess();
+	case Action::EDIT_ADMIN_ACCESS :
+		account::AccountHandler::editAdminAccess();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::EDIT_BAN_STATUS :
-		AccountHandler::editBanStatus();
+	case Action::EDIT_BAN_STATUS :
+		account::AccountHandler::editBanStatus();
 		newMenu = this;
 		break;
-	case AccountEditMenuAction::BACK :
+	case Action::BACK :
 		this->resetChoice();
 		break;
 	default:
@@ -57,7 +59,7 @@ unsigned AccountEditMenu::selectMode()
 
 	system("cls");
 
-	AccountHandler::showEditAccount();
+	account::AccountHandler::showEditAccount();
 	
 	cout << endl;
 
@@ -71,7 +73,7 @@ unsigned AccountEditMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP :
-			if (choice_ < AccountEditMenuAction::EDIT_PASSWORD)
+			if (choice_ < Action::EDIT_PASSWORD)
 			{
 				choice_ = items_.size();
 			}
@@ -83,7 +85,7 @@ unsigned AccountEditMenu::selectMode()
 		case VK_DOWN :
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = AccountEditMenuAction::EDIT_USERNAME;
+				choice_ = Action::EDIT_USERNAME;
 			}
 			else
 			{
@@ -91,7 +93,7 @@ unsigned AccountEditMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE :
-			return AccountEditMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN :
 			return choice_;
 		default:

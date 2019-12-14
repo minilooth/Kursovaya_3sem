@@ -1,13 +1,15 @@
 #include "FilteringMenu.h"
 
-unsigned FilteringMenu::choice_ = FilteringMenuAction::SET_FILTER_BY_BODY_TYPE;
+using namespace menu;
+
+unsigned FilteringMenu::choice_ = Action::SET_FILTER_BY_BODY_TYPE;
 
 FilteringMenu::FilteringMenu()
 {
 	title_ = "Фильтрация:";
-	items_ = { (CarFiltering::getBodyTypeFilterStatus() == true ? "Удалить фильтр по типу кузова." : "Установить фильтр по типу кузова."),
-			   (CarFiltering::getWheelDriveTypeFilterStatus() == true ? "Удалить фильтр по типу привода." : "Установить фильтр по типу привода."), 
-			   (CarFiltering::getTransmissionTypeFilterStatus() == true ? "Удалить фильтр по типу КПП." : "Установить фильтр по типу КПП."), "Показать отфильтрованные автомобили.","Назад." };
+	items_ = { (car::CarFiltering::getBodyTypeFilterStatus() == true ? "Удалить фильтр по типу кузова." : "Установить фильтр по типу кузова."),
+			   (car::CarFiltering::getWheelDriveTypeFilterStatus() == true ? "Удалить фильтр по типу привода." : "Установить фильтр по типу привода."), 
+			   (car::CarFiltering::getTransmissionTypeFilterStatus() == true ? "Удалить фильтр по типу КПП." : "Установить фильтр по типу КПП."), "Показать отфильтрованные автомобили.","Назад." };
 }
 
 FilteringMenu::FilteringMenu(const string& title, const vector<string>& items)
@@ -18,7 +20,7 @@ FilteringMenu::FilteringMenu(const string& title, const vector<string>& items)
 
 void FilteringMenu::resetChoice()
 {
-	choice_ = FilteringMenuAction::SET_FILTER_BY_BODY_TYPE;
+	choice_ = Action::SET_FILTER_BY_BODY_TYPE;
 }
 
 ConsoleMenu* FilteringMenu::getNextMenu()
@@ -27,26 +29,26 @@ ConsoleMenu* FilteringMenu::getNextMenu()
 
 	switch (selectMode())
 	{
-	case FilteringMenuAction::SET_FILTER_BY_BODY_TYPE :
-		CarHandler::setFilterByBodyType();
+	case Action::SET_FILTER_BY_BODY_TYPE :
+		car::CarHandler::setFilterByBodyType();
 		newMenu = new FilteringMenu();
 		break;
-	case FilteringMenuAction::SET_FILTER_BY_WHEEL_DRIVE_TYPE :
-		CarHandler::setFilterByWheelDriveType();
+	case Action::SET_FILTER_BY_WHEEL_DRIVE_TYPE :
+		car::CarHandler::setFilterByWheelDriveType();
 		newMenu = new FilteringMenu();
 		break;
-	case FilteringMenuAction::SET_FILTER_BY_TRANSMISSION_TYPE :
-		CarHandler::setFilterByTransmissionType();
+	case Action::SET_FILTER_BY_TRANSMISSION_TYPE :
+		car::CarHandler::setFilterByTransmissionType();
 		newMenu = new FilteringMenu();
 		break;
-	case FilteringMenuAction::SHOW_FILTERED_CARS :
-		CarHandler::showFilteredCars();
+	case Action::SHOW_FILTERED_CARS :
+		car::CarHandler::showFilteredCars();
 		newMenu = this;
 		break;
-	case FilteringMenuAction::BACK :
-		CarFiltering::resetBodyTypeFilter();
-		CarFiltering::resetTransmissionTypeFilter();
-		CarFiltering::resetWheelDriveTypeFilter();
+	case Action::BACK :
+		car::CarFiltering::resetBodyTypeFilter();
+		car::CarFiltering::resetTransmissionTypeFilter();
+		car::CarFiltering::resetWheelDriveTypeFilter();
 		this->resetChoice();
 		newMenu = new SearchingSortingAndFilteringMenu();
 		break;
@@ -73,7 +75,7 @@ unsigned FilteringMenu::selectMode()
 		switch (key.wVirtualKeyCode)
 		{
 		case VK_UP:
-			if (choice_ < FilteringMenuAction::SET_FILTER_BY_WHEEL_DRIVE_TYPE)
+			if (choice_ < Action::SET_FILTER_BY_WHEEL_DRIVE_TYPE)
 			{
 				choice_ = items_.size();
 			}
@@ -85,7 +87,7 @@ unsigned FilteringMenu::selectMode()
 		case VK_DOWN:
 			if (choice_ > items_.size() - 1)
 			{
-				choice_ = FilteringMenuAction::SET_FILTER_BY_BODY_TYPE;
+				choice_ = Action::SET_FILTER_BY_BODY_TYPE;
 			}
 			else
 			{
@@ -93,28 +95,21 @@ unsigned FilteringMenu::selectMode()
 			}
 			break;
 		case VK_ESCAPE:
-			return FilteringMenuAction::BACK;
+			return Action::BACK;
 		case VK_RETURN:
 			return choice_;
 		default:
 			break;
 		}
 
-		if (title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 
 void FilteringMenu::showTitle()
 {
 	cout << title_;
-	if (title_.empty())
+	if (!title_.empty())
 	{
 		cout << endl;
 	}

@@ -5,35 +5,41 @@
 #include "Includes.h"
 #include "AccountHandler.h"
 
-class AccountPrinter
+
+namespace account
 {
-	static unsigned usernameLabelLength_;
-	static unsigned passwordLabelLength_;
-	static unsigned adminAccessLabelLength_;
-	static unsigned banStatusLabelLength_;
 
-	static unsigned solidLineLength_;
+	class AccountPrinter
+	{
+		static unsigned usernameLabelLength_;
+		static unsigned passwordLabelLength_;
+		static unsigned adminAccessLabelLength_;
+		static unsigned banStatusLabelLength_;
 
-	static unsigned calculateUsernameMaxLength();
-	static unsigned calculatePasswordMaxLength();
+		static unsigned solidLineLength_;
 
-	static void refresh();
+		static unsigned calculateUsernameMaxLength();
+		static unsigned calculatePasswordMaxLength();
 
-	AccountPrinter();
-public:
-	static unsigned getUsernameLabelLength();
-	static unsigned getPasswordLabelLength();
-	static unsigned getAdminAccessLabelLength();
-	static unsigned getBanStatusLabelLength();
+		static void refresh();
 
-	static unsigned getSolidLineLength();
+		AccountPrinter();
+	public:
+		static unsigned getUsernameLabelLength();
+		static unsigned getPasswordLabelLength();
+		static unsigned getAdminAccessLabelLength();
+		static unsigned getBanStatusLabelLength();
 
-	static void showHeader();
+		static unsigned getSolidLineLength();
 
-	static void showAccounts(const vector<Account>& accounts);
+		static void showHeader();
 
-	~AccountPrinter();
-};
+		static void showAccounts(const vector<Account>& accounts);
+
+		~AccountPrinter();
+	};
+
+}
 
 
 #endif // ACCOUNTPRINTER_H

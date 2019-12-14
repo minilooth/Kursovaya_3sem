@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="account::Account">
+    <Position X="6.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAEAAAAAAQACAAAKAAEQAAEAAAAAACAAAgAAAMA=</HashCode>
+      <FileName>Account.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::Admin">
+    <Position X="8.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Admin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::User">
+    <Position X="5.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::AccountHandler">
+    <Position X="11.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAIaQCCQEBgAKAAYAAAACMAIBQAKKjVAUQhBJAACA=</HashCode>
+      <FileName>AccountHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::AccountStatistics">
+    <Position X="17.75" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAABAEQABAAAAAoBAAIAAEQAAAAAAAAAIAAAAAEAAE=</HashCode>
+      <FileName>AccountStatistics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::StatisticsHandler">
+    <Position X="21.25" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAKAAAAgAAABgAAAAAAQBAAAAwAgAIADAAAAAA=</HashCode>
+      <FileName>StatisticsHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account::AccountPrinter">
+    <Position X="26" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAACAAAAAAAAAIGkAAFAAgAAIBgAAAEAAIAAQA=</HashCode>
+      <FileName>AccountPrinter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::Car">
+    <Position X="38.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EkEJBIgEoAYQBAQhSAKqBRCAAQEYAAACLgAAAAAoCBI=</HashCode>
+      <FileName>Car.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::Cabriolet">
+    <Position X="35.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cabriolet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::Crossover">
+    <Position X="38.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Crossover.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::FiveDoorHatchback">
+    <Position X="42" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FiveDoorHatchback.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::FiveSeatMinivan">
+    <Position X="42.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FiveSeatMinivan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::FourDoorCoupe">
+    <Position X="35.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>FourDoorCoupe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::LongWheelbaseSedan">
+    <Position X="42" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>LongWheelbaseSedan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::Sedan">
+    <Position X="35.5" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Sedan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::SevenSeatMinivan">
+    <Position X="42.25" Y="10" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SevenSeatMinivan.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::StationWagon">
+    <Position X="35.5" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StationWagon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::ThreeDoorHatchback">
+    <Position X="42" Y="12" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAA=</HashCode>
+      <FileName>ThreeDoorHatchback.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::TwoDoorCoupe">
+    <Position X="35.5" Y="12" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TwoDoorCoupe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::CarHandler">
+    <Position X="52.25" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>SAIkjCIIAwQFgmcJESoBQkECCDUQAAAQoACRDYxEUAg=</HashCode>
+      <FileName>CarHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::CarPrinter">
+    <Position X="58.75" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABgRAEAAAgEVASgBQGqAAAVCACgAGtBCICBkBIgAwgg=</HashCode>
+      <FileName>CarPrinter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="car::CarFiltering">
+    <Position X="65.5" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIIAAACAAACAAoAAACAAAgggBBAAAAEAACAEAEw=</HashCode>
+      <FileName>CarFiltering.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::ConsoleMenu">
+    <Position X="80.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAQAAAgIAAAMgCAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConsoleMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::AccountEditMenu">
+    <Position X="77" Y="2" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::AccountEditMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>AccountEditMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIACAAAAgIAAAIAAAAAAAgAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AccountEditMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::AccountManagementMenu">
+    <Position X="92.5" Y="7.75" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::AccountManagementMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>AccountManagementMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIAAAAAAAAEEAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>AccountManagementMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::AccountShowMenu">
+    <Position X="90.25" Y="8" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::AccountShowMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>AccountShowMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAJAAIAAIAAAgIIQAYAEAAAABAAECAAAAAAAAgAAAJE=</HashCode>
+      <FileName>AccountShowMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::AccountTypeMenu">
+    <Position X="88.75" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAIAAAAAAgIAAAIAAAAAAAAAEAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>AccountTypeMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::AdminMenu">
+    <Position X="87.75" Y="9" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::AdminMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>AdminMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIAAAAAAAAAEAEAAAAAIAAAAAAA=</HashCode>
+      <FileName>AdminMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::BodyTypeMenu">
+    <Position X="85.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABQAIAAAAAAgKAAAIAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BodyTypeMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::CarEditMenu">
+    <Position X="71.75" Y="4.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::CarEditMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>CarEditMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAICAAAAAgIAAAIAAAAAAAAAEAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>CarEditMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::EngineTypeMenu">
+    <Position X="76.5" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAMAAAAAAgIAAAIAAAAAAAAAEAAAAAABAAAAAAAA=</HashCode>
+      <FileName>EngineTypeMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::FilteringMenu">
+    <Position X="92.25" Y="2" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::FilteringMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>FilteringMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAEAAAAgIEAAIAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FilteringMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::LoginMenu">
+    <Position X="77.25" Y="12.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::LoginMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>LoginMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIAAAAACAAAEAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>LoginMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::SearchingMenu">
+    <Position X="74.25" Y="2" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::SearchingMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>SearchingMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CABAAIAAAAAAgIAAAIAAAAAAAAAEAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>SearchingMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::SearchingSortingAndFilteringMenu">
+    <Position X="73.5" Y="12" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::SearchingSortingAndFilteringMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>SearchingSortingAndFilteringMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIwAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SearchingSortingAndFilteringMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::SortingMenu">
+    <Position X="86.25" Y="2.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::SortingMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>SortingMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAwIAAAIAAAAAAAAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>SortingMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::TransmissionTypeMenu">
+    <Position X="79.75" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAIIAAAAAAgIAAAIAAAAAAAAAEAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>TransmissionTypeMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::TypeOfSortingMenu">
+    <Position X="83" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::TypeOfSortingMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>TypeOfSortingMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIAAAAAAAAAEAAAAAABAACAAAAA=</HashCode>
+      <FileName>TypeOfSortingMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::UserMenu">
+    <Position X="82.75" Y="10.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="menu::UserMenu::Action">
+        <TypeIdentifier>
+          <NewMemberFileName>UserMenu.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgIAAAIAAAABAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="menu::WheelDriveTypeMenu">
+    <Position X="79.75" Y="12" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAgMAAAIAAAAABAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WheelDriveTypeMenu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HorizontalShow&lt;T&gt;">
+    <Position X="104.5" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAYAAAgAAABQgAAAAABAAECIAAAAAAAgAAAJA=</HashCode>
+      <FileName>HorizontalShow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemSelection&lt;T&gt;">
+    <Position X="109" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAAgIAgAAAAAAAAAAAABAAAAAAAAAAAAIA=</HashCode>
+      <FileName>ItemSelection.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

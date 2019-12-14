@@ -1,5 +1,7 @@
 #include "AccountHandler.h"
 
+using namespace account;
+
 // Static initialization
 vector<Account> AccountHandler::accounts_;
 bool AccountHandler::showPasswordStatus_ = false;
@@ -17,8 +19,6 @@ AccountHandler::AccountHandler()
 	bool adminAccess;
 	bool banStatus;
 
-	Account* account = nullptr;
-
 	ifstream accountsFile;
 
 	accountsFile.open(R"(accounts.txt)");
@@ -32,29 +32,26 @@ AccountHandler::AccountHandler()
 				auto data = stringSplitter(token);
 
 				username = data.at(0);
-				password = data.at(1);
+				password = decryptPassword(data.at(1));
 				adminAccess = data.at(2) == "1" ? true : false;
 				banStatus = data.at(3) == "1" ? true : false;
 
 				if (adminAccess == true)
 				{
-					account = new Admin(username, password, banStatus);
+					accounts_.push_back(Admin(username, password, banStatus));
 				}
 				else
 				{
-					account = new User(username, password, banStatus);
+					accounts_.push_back(User(username, password, banStatus));
 				}
 
-				if (StatisticsHandler::checkForStatistics(account->getUsername()) == false)
+				if (StatisticsHandler::checkForStatistics(username) == false)
 				{
-					StatisticsHandler::createStatistics(account->getUsername());
+					StatisticsHandler::createStatistics(username);
 				}
-
-				accounts_.push_back((*account));
 			}
 		}
 		accountsFile.close();
-		delete account;
 	}
 }
 
@@ -66,8 +63,6 @@ AccountHandler::AccountHandler(const string& fileName)
 	string password;
 	bool adminAccess;
 	bool banStatus;
-
-	Account* account = nullptr;
 
 	ifstream accountsFile;
 
@@ -82,29 +77,28 @@ AccountHandler::AccountHandler(const string& fileName)
 				auto data = stringSplitter(token);
 
 				username = data.at(0);
-				password = data.at(1);
+				password = decryptPassword(data.at(1));
 				adminAccess = data.at(2) == "1" ? true : false;
 				banStatus = data.at(3) == "1" ? true : false;
 
+				decryptPassword(password);
+
 				if (adminAccess == true)
 				{
-					account = new Admin(username, password, banStatus);
+					accounts_.push_back(Admin(username, password, banStatus));
 				}
 				else
 				{
-					account = new User(username, password, banStatus);
+					accounts_.push_back(User(username, password, banStatus));
 				}
 
-				if (StatisticsHandler::checkForStatistics(account->getUsername()) == false)
+				if (StatisticsHandler::checkForStatistics(username) == false)
 				{
-					StatisticsHandler::createStatistics(account->getUsername());
+					StatisticsHandler::createStatistics(username);
 				}
-
-				accounts_.push_back((*account));
 			}
 		}
 		accountsFile.close();
-		delete account;
 	}
 }
 
@@ -115,13 +109,12 @@ void AccountHandler::rewriteAccountsFile()
 	accountsFile.open(R"(accounts.txt)", ios::trunc);
 	if (accountsFile.is_open())
 	{
-		for (unsigned i = 0; i < accounts_.size(); i++)
+		for (auto& i : accounts_)
 		{
-			accountsFile << accounts_.at(i).getUsername() << ";"
-						 << accounts_.at(i).getPassword() << ";"
-						 << accounts_.at(i).getAdminAccess() << ";"
-						 << accounts_.at(i).getBanStatus()
-						 << endl;
+			accountsFile << i.getUsername() << ";"
+						 << encryptPassword(i.getPassword()) << ";"
+						 << i.getAdminAccess() << ";"
+						 << i.getBanStatus() << endl;
 		}
 		accountsFile.close();
 	}
@@ -131,16 +124,35 @@ void AccountHandler::rewriteAccountsFile()
 	}
 }
 
+// Encrypting
+string AccountHandler::decryptPassword(string password)
+{
+	for (auto& i : password)
+	{
+		i = i - 1;
+	}
+	return password;
+}
+
+string AccountHandler::encryptPassword(string password)
+{
+	for (auto& i : password)
+	{
+		i = i + 1;
+	}
+	return password;
+}
+
 // Find
 bool AccountHandler::findUser(const string& username)
 {
-    for (unsigned i = 0; i < accounts_.size(); i++)
-    {
-        if (accounts_.at(i).getUsername() == username)
-        {
-            return true;
-        }
-    }
+	for (auto& i : accounts_)
+	{
+		if (i.getUsername() == username)
+		{
+			return true;
+		}
+	}
     return false;
 }
 
@@ -163,11 +175,11 @@ vector<Account> AccountHandler::getAccounts(unsigned from, unsigned to)
 vector<Account> AccountHandler::getUsers()
 {
 	vector<Account> users;
-	for (unsigned i = 0; i < accounts_.size(); i++)
+	for (auto i : accounts_)
 	{
-		if (accounts_.at(i).getAdminAccess() == false)
+		if (i.getAdminAccess() == false)
 		{
-			users.push_back(accounts_.at(i));
+			users.push_back(i);
 		}
 	}
 	return users;
@@ -180,15 +192,14 @@ Account* AccountHandler::getCurrentAccount()
 
 Account* AccountHandler::getAccount(const string& username)
 {
-    Account* account = nullptr;
-    for (unsigned i = 0; i < accounts_.size(); i++)
-    {
-        if (accounts_.at(i).getUsername() == username)
-        {
-            account = &(accounts_.at(i));
-        }
-    }
-    return account;
+	for (auto& i : accounts_)
+	{
+		if (i.getUsername() == username)
+		{
+			return &i;
+		}
+	}
+	return nullptr;
 }
 
 Account* AccountHandler::getAccount(unsigned index)
@@ -243,9 +254,9 @@ unsigned AccountHandler::countAccounts()
 unsigned AccountHandler::countAdmins()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < accounts_.size(); i++)
+	for (auto& i : accounts_)
 	{
-		if (accounts_.at(i).getAdminAccess())
+		if (i.getAdminAccess() == true)
 		{
 			counter++;
 		}
@@ -256,9 +267,9 @@ unsigned AccountHandler::countAdmins()
 unsigned AccountHandler::countNotBannedAdmins()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < accounts_.size(); i++)
+	for (auto& i : accounts_)
 	{
-		if (accounts_.at(i).getAdminAccess() == true && accounts_.at(i).getBanStatus() == false)
+		if (i.getAdminAccess() == true && i.getBanStatus() == false)
 		{
 			counter++;
 		}
@@ -269,9 +280,9 @@ unsigned AccountHandler::countNotBannedAdmins()
 unsigned AccountHandler::countBannedAdmins()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < accounts_.size(); i++)
+	for (auto& i : accounts_)
 	{
-		if (accounts_.at(i).getAdminAccess() == true && accounts_.at(i).getBanStatus() == true)
+		if (i.getAdminAccess() == true && i.getBanStatus() == true)
 		{
 			counter++;
 		}
@@ -282,9 +293,9 @@ unsigned AccountHandler::countBannedAdmins()
 unsigned AccountHandler::countUsers()
 {
 	unsigned counter = 0;
-	for (unsigned i = 0; i < accounts_.size(); i++)
+	for (auto& i : accounts_)
 	{
-		if (!(accounts_.at(i).getAdminAccess()))
+		if (i.getAdminAccess() == false)
 		{
 			counter++;
 		}
@@ -341,7 +352,7 @@ void AccountHandler::editUsername()
 		showEditAccount();
 
 		cout << endl << "Введите новое имя аккаунта: ";
-		if (limitedInput(username, usernameLengthInputLimit) == false)
+		if (limitedInput(username, USERNAME_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
@@ -352,14 +363,14 @@ void AccountHandler::editUsername()
 		}
 		if (username.length() < 3)
 		{
-			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
+			throw exception("Имя аккаунта должно состоять как минимум из трех символов!");
 		}
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
 			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
-		CarHandler::editReservedCarsReserverUsername(accountToEdit_->getUsername(), username);
+		car::CarHandler::editReservedCarsReserverUsername(accountToEdit_->getUsername(), username);
 
 		StatisticsHandler::getAccountStatistics(accountToEdit_->getUsername())->setUsername(username);
 		StatisticsHandler::rewriteStatisticsFile();
@@ -407,14 +418,14 @@ void AccountHandler::editPassword()
 		showEditAccount();
 
 		cout << endl << "Введите новый пароль аккаунта: ";
-		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
+		if (maskedPasswordInput(password, PASSWORD_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
 
 		if (password.length() < 3)
 		{
-			throw exception("Пароль аккаунта должен быть как минимум три символа в длину!");
+			throw exception("Пароль аккаунта должен состоять как минимум из трех символов!");
 		}
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
@@ -470,7 +481,7 @@ void AccountHandler::editAdminAccess()
 	
 		if (accountToEdit_->getAdminAccess() == true)
 		{
-			CarHandler::resetReservedCarsByUsername(accountToEdit_->getUsername());
+			car::CarHandler::resetReservedCarsByUsername(accountToEdit_->getUsername());
 			accountToEdit_ = new User(*accountToEdit_);
 		}
 		else
@@ -569,7 +580,7 @@ bool AccountHandler::auth()
 	try
 	{
 		cout << "Имя пользователя: ";
-		if (limitedInput(username, usernameLengthInputLimit) == false)
+		if (limitedInput(username, USERNAME_LENGTH_INPUT_LIMIT) == false)
 		{
 			return false;
 		}
@@ -599,7 +610,7 @@ bool AccountHandler::auth()
 		try
 		{
 			cout << "Пароль: ";
-			if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
+			if (maskedPasswordInput(password, PASSWORD_LENGTH_INPUT_LIMIT) == false)
 			{
 				return false;
 			}
@@ -687,7 +698,7 @@ void AccountHandler::registration()
 	try
 	{
 		cout << "Введите имя аккаунта: ";
-		if (limitedInput(username, usernameLengthInputLimit) == false)
+		if (limitedInput(username, USERNAME_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
@@ -696,28 +707,24 @@ void AccountHandler::registration()
 		{
 			throw exception("Такой аккаунт уже существует!");
 		}
-
 		if (username.length() < 3)
 		{
-			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
+			throw exception("Имя аккаунта должно состоять как минимум из трех символов!");
 		}
-
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
 			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
 		cout << "Введите пароль: ";
-		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
+		if (maskedPasswordInput(password, PASSWORD_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
-
 		if (password.length() < 3)
 		{
-			throw exception("Пароль аккаунта должен быть как минимум три символа в длину!");
+			throw exception("Пароль аккаунта должен состоять как минимум из трех символов!");
 		}
-
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
 			throw exception("Пароль аккаунта должен состоять только из букв и цифр!");
@@ -749,19 +756,12 @@ void AccountHandler::showAccounts()
 {
 	try
 	{
-		if (accounts_.size() == 0)
+		if (accounts_.empty())
 		{
 			throw exception("Список аккаунтов пуст!");
 		}
 
-		AccountPrinter::showHeader();
-
-		for (unsigned i = 0; i < accounts_.size(); i++)
-		{
-			cout << accounts_.at(i) << endl;
-		}
-
-		drawSolidLine(AccountPrinter::getSolidLineLength());
+		AccountPrinter::showAccounts(accounts_);
 	}
 	catch (exception & ex)
 	{
@@ -830,7 +830,7 @@ void AccountHandler::addAccount()
 
 	Account* account = nullptr;
 
-	ConsoleMenu* consoleMenu = new AccountTypeMenu();
+	menu::ConsoleMenu* consoleMenu = new menu::AccountTypeMenu();
 
 	switch (consoleMenu->selectMode())
 	{
@@ -852,7 +852,7 @@ void AccountHandler::addAccount()
 	try
 	{
 		cout << "Имя аккаунта: ";
-		if (limitedInput(username, usernameLengthInputLimit) == false)
+		if (limitedInput(username, USERNAME_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
@@ -861,12 +861,10 @@ void AccountHandler::addAccount()
 		{
 			throw exception("Такой аккаунт уже существует!");
 		}
-
 		if (username.length() < 3)
 		{
-			throw exception("Имя аккаунта должно быть как минимум три символа в длину!");
+			throw exception("Имя аккаунта должно состоять как минимум из трех символов!");
 		}
-
 		if (username.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
 			throw exception("Имя аккаунта должно состоять только из цифр и букв латинского алфавита!");
@@ -875,16 +873,15 @@ void AccountHandler::addAccount()
 		account->setUsername(username);
 
 		cout << "Пароль: ";
-		if (maskedPasswordInput(password, passwordLengthInputLimit) == false)
+		if (maskedPasswordInput(password, PASSWORD_LENGTH_INPUT_LIMIT) == false)
 		{
 			return;
 		}
 
 		if (password.length() < 3)
 		{
-			throw exception("Пароль аккаунта должен быть как мининмум три символа в длину!");
+			throw exception("Пароль аккаунта должен состоять как минимум из трех символов!");
 		}
-
 		if (password.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") != string::npos)
 		{
 			throw exception("Пароль аккаунта должен состоять только из букв и цирф!");
@@ -941,7 +938,7 @@ void AccountHandler::deleteAccount()
 			throw exception("Список аккаунтов пуст!");
 		}
 
-		itemSelection = new ItemSelection<Account>("Выберете удаляемый аккаунт: ", accounts_);
+		itemSelection = new ItemSelection<Account>("Выберите удаляемый аккаунт: ", accounts_);
 
 		index = itemSelection->selectMode();
 
@@ -956,7 +953,7 @@ void AccountHandler::deleteAccount()
 			throw exception("Невозможно удалить последнего администратора!");
 		}
 
-		CarHandler::resetReservedCarsByUsername(getAccount(index - 1)->getUsername());
+		car::CarHandler::resetReservedCarsByUsername(getAccount(index - 1)->getUsername());
 
 		StatisticsHandler::deleteStatistics(getAccount(index - 1)->getUsername());
 
@@ -991,9 +988,9 @@ void AccountHandler::editAccount()
 {
 	ItemSelection<Account>* itemSelection = nullptr;
 
-	unsigned index;
+	unsigned index = 0;
 
-	ConsoleMenu* menu = nullptr;
+	menu::ConsoleMenu* menu = nullptr;
 
 	try
 	{
@@ -1002,7 +999,7 @@ void AccountHandler::editAccount()
 			throw exception("Список аккаунтов пуст!");
 		}
 
-		itemSelection = new ItemSelection<Account>("Выберете аккаунт для редактирования: ", accounts_);
+		itemSelection = new ItemSelection<Account>("Выберите аккаунт для редактирования: ", accounts_);
 
 		index = itemSelection->selectMode();
 
@@ -1013,7 +1010,7 @@ void AccountHandler::editAccount()
 
 		accountToEdit_ = getAccount(index - 1);
 
-		menu = new AccountEditMenu();
+		menu = new menu::AccountEditMenu();
 
 		while (menu)
 		{

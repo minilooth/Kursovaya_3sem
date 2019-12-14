@@ -1,5 +1,7 @@
 #include "FiveDoorHatchback.h"
 
+using namespace car;
+
 FiveDoorHatchback::FiveDoorHatchback()
 {
 	brand_ = "";

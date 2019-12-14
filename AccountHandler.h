@@ -3,6 +3,7 @@
 
 
 #include "ItemSelection.h"
+
 #include "AccountEditMenu.h"
 #include "AccountTypeMenu.h"
 
@@ -16,78 +17,86 @@
 
 using namespace std;
 
-const unsigned passwordLengthInputLimit = 20;
-const unsigned usernameLengthInputLimit = 20;
-
-class AccountHandler
+namespace account
 {
-public:
-	// Constructors
-    AccountHandler();
-	explicit AccountHandler(const string& fileName);
+	const unsigned PASSWORD_LENGTH_INPUT_LIMIT = 20;
+	const unsigned USERNAME_LENGTH_INPUT_LIMIT = 20;
 
-	// Find
-	static bool findUser(const string& username);
+	class AccountHandler
+	{
+	public:
+		// Constructors
+		AccountHandler();
+		explicit AccountHandler(const string& fileName);
 
-	// Gets
-    static Account* getAccount(const string& username);
-	static Account* getAccount(unsigned index);
-	static Account* getCurrentAccount();
-	static vector<Account> getAccounts();
-	static vector<Account> getAccounts(unsigned from, unsigned to);
-	static vector<Account> getUsers();
-	static unsigned getAccountIndex(const string& username);
-	static unsigned getAccountIndex(const Account& account);
-	static bool getShowPasswordStatus();
-	static bool getAdminAccessStatus();
+		// Find
+		static bool findUser(const string& username);
 
-	// Count
-	static unsigned countAccounts();
-	static unsigned countAdmins();
-	static unsigned countNotBannedAdmins();
-	static unsigned countBannedAdmins();
-	static unsigned countUsers();
+		// Gets
+		static Account* getAccount(const string& username);
+		static Account* getAccount(unsigned index);
+		static Account* getCurrentAccount();
+		static vector<Account> getAccounts();
+		static vector<Account> getAccounts(unsigned from, unsigned to);
+		static vector<Account> getUsers();
+		static unsigned getAccountIndex(const string& username);
+		static unsigned getAccountIndex(const Account& account);
+		static bool getShowPasswordStatus();
+		static bool getAdminAccessStatus();
 
-	// Sets
-	static void setAdminAccessStatus(bool adminAccessStatus);
-	static void setShowPasswordStatus(bool showPasswordStatus);
+		// Count
+		static unsigned countAccounts();
+		static unsigned countAdmins();
+		static unsigned countNotBannedAdmins();
+		static unsigned countBannedAdmins();
+		static unsigned countUsers();
 
-	// Change
-	static void invertShowPasswordStatus();
-	static void resetShowPasswordStatus();
-	static void resetAccountToEdit();
-	static void resetCurrentAccount();
+		// Sets
+		static void setAdminAccessStatus(bool adminAccessStatus);
+		static void setShowPasswordStatus(bool showPasswordStatus);
 
-	// Edit
-	static void editUsername();
-	static void editPassword();
-	static void editAdminAccess();
-	static void editBanStatus();
+		// Change
+		static void invertShowPasswordStatus();
+		static void resetShowPasswordStatus();
+		static void resetAccountToEdit();
+		static void resetCurrentAccount();
 
-	// Functional
-	static bool auth();
-	static void registration();
-    static void showAccounts();
-	static void showAccounts(unsigned from, unsigned to);
-	static void showEditAccount();
-    static void addAccount();
-	static void deleteAccount();
-	static void editAccount();
-	static void showCurrentAccountStatistics();
-	static void showTotalStatistics();
+		// Edit
+		static void editUsername();
+		static void editPassword();
+		static void editAdminAccess();
+		static void editBanStatus();
 
-	// Destructors
-    ~AccountHandler();
-private:
-	static vector<Account> accounts_;
-	static bool showPasswordStatus_;
-	static bool adminAccessStatus_;
-	static Account* accountToEdit_;
-	static Account* currentAccount_;
+		// Functional
+		static bool auth();
+		static void registration();
+		static void showAccounts();
+		static void showAccounts(unsigned from, unsigned to);
+		static void showEditAccount();
+		static void addAccount();
+		static void deleteAccount();
+		static void editAccount();
+		static void showCurrentAccountStatistics();
+		static void showTotalStatistics();
 
-	// Files
-	static void rewriteAccountsFile();
-};
+		// Destructors
+		~AccountHandler();
+	private:
+		static vector<Account> accounts_;
+		static bool showPasswordStatus_;
+		static bool adminAccessStatus_;
+		static Account* accountToEdit_;
+		static Account* currentAccount_;
+
+		// Files
+		static void rewriteAccountsFile();
+
+		// Encrypting
+		static string decryptPassword(string password);
+		static string encryptPassword(string password);
+	};
+
+}
 
 
 #endif //ACCOUNTHANDLER_H

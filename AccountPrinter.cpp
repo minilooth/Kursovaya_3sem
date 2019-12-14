@@ -1,5 +1,7 @@
 #include "AccountPrinter.h"
 
+using namespace account;
+
 unsigned AccountPrinter::usernameLabelLength_ = 0;
 unsigned AccountPrinter::passwordLabelLength_ = 0;
 unsigned AccountPrinter::adminAccessLabelLength_ = 0;
@@ -96,9 +98,9 @@ void AccountPrinter::showHeader()
 void AccountPrinter::showAccounts(const vector<Account>& accounts)
 {
 	showHeader();
-	for(unsigned i = 0; i < accounts.size(); i++)
+	for(auto& i : accounts)
 	{
-		cout << accounts.at(i) << endl;
+		cout << i << endl;
 	}
 	drawSolidLine(solidLineLength_);
 }

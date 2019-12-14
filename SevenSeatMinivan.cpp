@@ -1,5 +1,7 @@
 #include "SevenSeatMinivan.h"
 
+using namespace car;
+
 SevenSeatMinivan::SevenSeatMinivan()
 {
 	brand_ = "";

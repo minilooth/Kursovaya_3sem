@@ -1,5 +1,7 @@
 #include "EngineTypeMenu.h"
 
+using namespace menu;
+
 unsigned EngineTypeMenu::choice_ = EngineType::PETROL;
 
 EngineTypeMenu::EngineTypeMenu()
@@ -31,7 +33,6 @@ unsigned EngineTypeMenu::selectMode()
 	while (true)
 	{
 		showTitle();
-
 		showItems();
 
 		VP_GetCh(key);
@@ -66,21 +67,14 @@ unsigned EngineTypeMenu::selectMode()
 			break;
 		}
 
-		if (title_.empty())
-		{
-			clearNLines(items_.size() + 1);
-		}
-		else
-		{
-			clearNLines(items_.size());
-		}
+		title_.empty() ? clearNLines(items_.size()) : clearNLines(items_.size() + 1);
 	}
 }
 
 void EngineTypeMenu::showTitle()
 {
 	cout << title_;
-	if (title_.empty())
+	if (!title_.empty())
 	{
 		cout << endl;
 	}

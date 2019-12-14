@@ -1,5 +1,7 @@
 #include "AccountStatistics.h"
 
+using namespace account;
+
 AccountStatistics::AccountStatistics()
 {
 	username_ = "";
