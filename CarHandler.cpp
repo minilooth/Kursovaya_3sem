@@ -292,7 +292,7 @@ string CarHandler::createReport(Car& car)
 			   << "Цвет кузова:" << setw(71) << right << car.getBodyColor() << endl
 			   << "Цвет салона:" << setw(71) << right << car.getInteriorColor() << endl
 			   << "Материал салона:" << setw(67) << right << car.getInteriorMaterial() << endl
-			   << "Пробег:" << setw(73) << right << car.getMileage() << " km" << endl
+			   << "Пробег:" << setw(73) << right << car.getMileage() << " км" << endl
 			   << "-----------------------------------------------------------------------------------" << endl
 			   << "Покупатель:" << setw(72) << right << car.getReserverUsername() << endl
 			   << "Цена:" << setw(77) << right << car.getPrice() << "$" << endl

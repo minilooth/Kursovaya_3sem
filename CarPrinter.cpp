@@ -51,8 +51,8 @@ void CarPrinter::refresh()
 	mileageLabelLength_				= ((calculateMileageMaxLength() < 6 ? 6 : calculateMileageMaxLength()) + 3);
 	priceLabelLength_				= ((calculatePriceMaxLength() < 4 ? 4 : calculatePriceMaxLength()) + 2);
 	yearOfProductionLabelLength_	= 11;
-	transmissionTypeLabelLength_	= calculateTransmissionTypeMaxLength() < 3 ? 3 : calculateTransmissionTypeMaxLength();
-	wheelDriveTypeLabelLength_		= calculateWheelDriveTypeMaxLength() < 6 ? 6 : calculateWheelDriveTypeMaxLength();
+	transmissionTypeLabelLength_	= calculateTransmissionTypeMaxLength() < 7 ? 7 : calculateTransmissionTypeMaxLength();
+	wheelDriveTypeLabelLength_		= calculateWheelDriveTypeMaxLength() < 11 ? 11 : calculateWheelDriveTypeMaxLength();
 	engineTypeLabelLength_			= calculateEngineTypeMaxLength() < 13 ? 13 : calculateEngineTypeMaxLength();
 	engineVolumeLabelLength_		= 15;
 	reserveStatusLabelLength_		= calculateReservedStatusMaxLength() < 14 ? 14 : calculateReservedStatusMaxLength();
@@ -317,8 +317,8 @@ void CarPrinter::showHeader()
 		 << "|" << makeCenteredString("Модель", modelLabelLength_)
 		 << "|" << makeCenteredString("Год выпуска", yearOfProductionLabelLength_)
 		 << "|" << makeCenteredString("Тип кузова", bodyTypeLabelLength_)
-		 << "|" << makeCenteredString("КПП", transmissionTypeLabelLength_)
-		 << "|" << makeCenteredString("Привод", wheelDriveTypeLabelLength_)
+		 << "|" << makeCenteredString("Тип КПП", transmissionTypeLabelLength_)
+		 << "|" << makeCenteredString("Тип привода", wheelDriveTypeLabelLength_)
 		 << "|" << makeCenteredString("Тип двигателя", engineTypeLabelLength_)
 		 << "|" << makeCenteredString("Объем двигателя", engineVolumeLabelLength_)
 		 << "|" << makeCenteredString("Цвет кузова", bodyColorLabelLength_)
