@@ -1,7 +1,5 @@
 #include "Sedan.h"
 
-using namespace car;
-
 Sedan::Sedan()
 {
 	brand_ = "";

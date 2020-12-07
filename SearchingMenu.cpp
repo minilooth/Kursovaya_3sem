@@ -28,19 +28,19 @@ ConsoleMenu* SearchingMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::SEARCH_BY_BRAND :
-		car::CarHandler::searchByBrand();
+		CarHandler::searchByBrand();
 		newMenu = this;
 		break;
 	case Action::SEARCH_BY_MODEL :
-		car::CarHandler::searchByModel();
+		CarHandler::searchByModel();
 		newMenu = this;
 		break;
 	case Action::SEARCH_BY_YEAR_OF_PRODUCTION :
-		car::CarHandler::searchByYearOfProduction();
+		CarHandler::searchByYearOfProduction();
 		newMenu = this;
 		break;
 	case Action::SEARCH_BY_ENGINE_TYPE :
-		car::CarHandler::searchByEngineType();
+		CarHandler::searchByEngineType();
 		newMenu = this;
 		break;
 	case Action::BACK :

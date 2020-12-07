@@ -1,7 +1,5 @@
 #include "AccountPrinter.h"
 
-using namespace account;
-
 unsigned AccountPrinter::usernameLabelLength_ = 0;
 unsigned AccountPrinter::passwordLabelLength_ = 0;
 unsigned AccountPrinter::adminAccessLabelLength_ = 0;

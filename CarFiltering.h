@@ -4,8 +4,6 @@
 
 #include "CarHandler.h"
 
-namespace car
-{
 
 	class CarFiltering
 	{
@@ -36,7 +34,6 @@ namespace car
 		~CarFiltering();
 	};
 
-}
 
 
 #endif // CARFILTERING_H

@@ -1,13 +1,16 @@
+#pragma once
 #ifndef ACCOUNTPRINTER_H
 #define ACCOUNTPRINTER_H
 
-
+#ifndef INCLUDES_H
 #include "Includes.h"
+#endif
+
+#ifndef ACCOUNTHANDLER_H
 #include "AccountHandler.h"
+#endif
 
 
-namespace account
-{
 
 	class AccountPrinter
 	{
@@ -39,7 +42,5 @@ namespace account
 		~AccountPrinter();
 	};
 
-}
 
-
-#endif // ACCOUNTPRINTER_H
+#endif

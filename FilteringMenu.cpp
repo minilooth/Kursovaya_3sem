@@ -7,9 +7,9 @@ unsigned FilteringMenu::choice_ = Action::SET_FILTER_BY_BODY_TYPE;
 FilteringMenu::FilteringMenu()
 {
 	title_ = "Фильтрация:";
-	items_ = { (car::CarFiltering::getBodyTypeFilterStatus() == true ? "Удалить фильтр по типу кузова." : "Установить фильтр по типу кузова."),
-			   (car::CarFiltering::getWheelDriveTypeFilterStatus() == true ? "Удалить фильтр по типу привода." : "Установить фильтр по типу привода."), 
-			   (car::CarFiltering::getTransmissionTypeFilterStatus() == true ? "Удалить фильтр по типу КПП." : "Установить фильтр по типу КПП."), "Показать отфильтрованные автомобили.","Назад." };
+	items_ = { (CarFiltering::getBodyTypeFilterStatus() == true ? "Удалить фильтр по типу кузова." : "Установить фильтр по типу кузова."),
+			   (CarFiltering::getWheelDriveTypeFilterStatus() == true ? "Удалить фильтр по типу привода." : "Установить фильтр по типу привода."), 
+			   (CarFiltering::getTransmissionTypeFilterStatus() == true ? "Удалить фильтр по типу КПП." : "Установить фильтр по типу КПП."), "Показать отфильтрованные автомобили.","Назад." };
 }
 
 FilteringMenu::FilteringMenu(const string& title, const vector<string>& items)
@@ -30,25 +30,25 @@ ConsoleMenu* FilteringMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::SET_FILTER_BY_BODY_TYPE :
-		car::CarHandler::setFilterByBodyType();
+		CarHandler::setFilterByBodyType();
 		newMenu = new FilteringMenu();
 		break;
 	case Action::SET_FILTER_BY_WHEEL_DRIVE_TYPE :
-		car::CarHandler::setFilterByWheelDriveType();
+		CarHandler::setFilterByWheelDriveType();
 		newMenu = new FilteringMenu();
 		break;
 	case Action::SET_FILTER_BY_TRANSMISSION_TYPE :
-		car::CarHandler::setFilterByTransmissionType();
+		CarHandler::setFilterByTransmissionType();
 		newMenu = new FilteringMenu();
 		break;
 	case Action::SHOW_FILTERED_CARS :
-		car::CarHandler::showFilteredCars();
+		CarHandler::showFilteredCars();
 		newMenu = this;
 		break;
 	case Action::BACK :
-		car::CarFiltering::resetBodyTypeFilter();
-		car::CarFiltering::resetTransmissionTypeFilter();
-		car::CarFiltering::resetWheelDriveTypeFilter();
+		CarFiltering::resetBodyTypeFilter();
+		CarFiltering::resetTransmissionTypeFilter();
+		CarFiltering::resetWheelDriveTypeFilter();
 		this->resetChoice();
 		newMenu = new SearchingSortingAndFilteringMenu();
 		break;

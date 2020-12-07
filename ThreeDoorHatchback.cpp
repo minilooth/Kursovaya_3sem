@@ -1,7 +1,5 @@
 #include "ThreeDoorHatchback.h"
 
-using namespace car;
-
 ThreeDoorHatchback::ThreeDoorHatchback()
 {
 	brand_ = "";

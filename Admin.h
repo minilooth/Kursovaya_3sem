@@ -5,9 +5,6 @@
 #include "AccountHandler.h"
 
 
-namespace account
-{
-
 	class Admin : public Account
 	{
 	public:
@@ -18,7 +15,6 @@ namespace account
 		~Admin();
 	};
 
-}
 
 
 #endif // ADMIN_H

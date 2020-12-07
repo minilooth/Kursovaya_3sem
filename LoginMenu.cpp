@@ -28,8 +28,8 @@ ConsoleMenu* LoginMenu::getNextMenu()
     switch (selectMode())
     {
 		case Action::BY_USER :
-			account::AccountHandler::setAdminAccessStatus(false);
-			if (account::AccountHandler::auth())
+			AccountHandler::setAdminAccessStatus(false);
+			if (AccountHandler::auth())
 			{
 				newMenu = new UserMenu();
 			}
@@ -39,8 +39,8 @@ ConsoleMenu* LoginMenu::getNextMenu()
 			}
             break;
 		case Action::BY_ADMIN :
-			account::AccountHandler::setAdminAccessStatus(true);
-            if(account::AccountHandler::auth())
+			AccountHandler::setAdminAccessStatus(true);
+            if(AccountHandler::auth())
             {
                 newMenu = new AdminMenu();
             }
@@ -50,7 +50,7 @@ ConsoleMenu* LoginMenu::getNextMenu()
 			}
             break;
 		case Action::REGISTRATION :
-			account::AccountHandler::registration();
+			AccountHandler::registration();
 			newMenu = this;
 			break;
 		case Action::QUIT :

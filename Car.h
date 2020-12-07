@@ -6,9 +6,6 @@
 
 using namespace std;
 
-namespace car
-{
-
 	class Car
 	{
 	protected:
@@ -69,7 +66,6 @@ namespace car
 		~Car();
 	};
 
-}
 
 
 #endif // CAR_H

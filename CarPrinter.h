@@ -6,8 +6,6 @@
 #include "CarHandler.h"
 
 
-namespace car
-{
 
 	class CarPrinter
 	{
@@ -75,7 +73,6 @@ namespace car
 		~CarPrinter();
 	};
 
-}
 
 
 #endif // CARPRINTER_H

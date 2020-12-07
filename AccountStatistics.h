@@ -5,9 +5,6 @@
 #include "Includes.h"
 
 
-namespace account
-{
-
 	class AccountStatistics
 	{
 		string username_;
@@ -33,6 +30,5 @@ namespace account
 		~AccountStatistics();
 	};
 
-}
 
 #endif // ACCOUNTSTATISTICS_H

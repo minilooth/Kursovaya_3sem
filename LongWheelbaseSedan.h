@@ -5,9 +5,6 @@
 #include "CarHandler.h"
 
 
-namespace car
-{
-
 	class LongWheelbaseSedan : public Car
 	{
 	public:
@@ -20,7 +17,6 @@ namespace car
 		~LongWheelbaseSedan();
 	};
 
-}
 
 
 #endif // LONGWHEELBASESEDAN_H

@@ -7,6 +7,16 @@
 #include "AccountHandler.h"
 #include "Account.h"
 
+#ifndef ACCOUNTPRINTER_H
+#include "AccountPrinter.h"
+#endif
+
+#ifndef CARPRINTER_H
+#include "CarPrinter.h"
+#endif
+
+class AccountPrinter;
+class CarPrinter;
 
 using namespace std;
 
@@ -159,24 +169,24 @@ void HorizontalShow<T>::showTooltip()
 template<typename T>
 void HorizontalShow<T>::showItems()
 {
-	if (typeid(T) == typeid(account::Account))
+	if (typeid(T) == typeid(Account))
 	{
-		account::AccountPrinter::showHeader();
+		AccountPrinter::showHeader();
 		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
 		{
 			cout << items_.at(i) << endl;
 		}
-		drawSolidLine(account::AccountPrinter::getSolidLineLength());
+		drawSolidLine(AccountPrinter::getSolidLineLength());
 	}
 
-	if (typeid(T) == typeid(car::Car))
+	if (typeid(T) == typeid(Car))
 	{
-		car::CarPrinter::showHeader();
+		CarPrinter::showHeader();
 		for (unsigned i = (10 * (currentPage_ - 1)); i < (10 * currentPage_) && i < items_.size(); i++)
 		{
 			cout << items_.at(i) << endl;
 		}
-		drawSolidLine(car::CarPrinter::getSolidLineLength());
+		drawSolidLine(CarPrinter::getSolidLineLength());
 	}
 }
 
@@ -184,4 +194,4 @@ template<typename T>
 HorizontalShow<T>::~HorizontalShow() = default;
 
 
-#endif // HORIZONTALSHOW_H
+#endif 

@@ -1,7 +1,5 @@
 #include "AccountHandler.h"
 
-using namespace account;
-
 // Static initialization
 vector<Account> AccountHandler::accounts_;
 bool AccountHandler::showPasswordStatus_ = false;
@@ -370,7 +368,7 @@ void AccountHandler::editUsername()
 			throw exception("Имя аккаунта должно состоять только из букв и цифр!");
 		}
 
-		car::CarHandler::editReservedCarsReserverUsername(accountToEdit_->getUsername(), username);
+		CarHandler::editReservedCarsReserverUsername(accountToEdit_->getUsername(), username);
 
 		StatisticsHandler::getAccountStatistics(accountToEdit_->getUsername())->setUsername(username);
 		StatisticsHandler::rewriteStatisticsFile();
@@ -481,7 +479,7 @@ void AccountHandler::editAdminAccess()
 	
 		if (accountToEdit_->getAdminAccess() == true)
 		{
-			car::CarHandler::resetReservedCarsByUsername(accountToEdit_->getUsername());
+			CarHandler::resetReservedCarsByUsername(accountToEdit_->getUsername());
 			accountToEdit_ = new User(*accountToEdit_);
 		}
 		else
@@ -953,7 +951,7 @@ void AccountHandler::deleteAccount()
 			throw exception("Невозможно удалить последнего администратора!");
 		}
 
-		car::CarHandler::resetReservedCarsByUsername(getAccount(index - 1)->getUsername());
+		CarHandler::resetReservedCarsByUsername(getAccount(index - 1)->getUsername());
 
 		StatisticsHandler::deleteStatistics(getAccount(index - 1)->getUsername());
 

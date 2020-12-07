@@ -32,63 +32,63 @@ ConsoleMenu* CarEditMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::EDIT_BRAND :
-		car::CarHandler::editBrand();
+		CarHandler::editBrand();
 		newMenu = this;
 		break;
 	case Action::EDIT_MODEL :
-		car::CarHandler::editModel();
+		CarHandler::editModel();
 		newMenu = this;
 		break;
 	case Action::EDIT_YEAR_OF_PRODUCTION :
-		car::CarHandler::editYearOfProduction();
+		CarHandler::editYearOfProduction();
 		newMenu = this;
 		break;
 	case Action::EDIT_BODY_TYPE :
-		car::CarHandler::editBodyType();
+		CarHandler::editBodyType();
 		newMenu = this;
 		break;
 	case Action::EDIT_TRANSMISSION_TYPE :
-		car::CarHandler::editTransmissionType();
+		CarHandler::editTransmissionType();
 		newMenu = this;
 		break;
 	case Action::EDIT_WHEEL_DRIVE_TYPE :
-		car::CarHandler::editWheelDriveType();
+		CarHandler::editWheelDriveType();
 		newMenu = this;
 		break;
 	case Action::EDIT_ENGINE_TYPE :
-		car::CarHandler::editEngineType();
+		CarHandler::editEngineType();
 		newMenu = this;
 		break;
 	case Action::EDIT_ENGINE_VOLUME :
-		car::CarHandler::editEngineVolume();
+		CarHandler::editEngineVolume();
 		newMenu = this;
 		break;
 	case Action::EDIT_BODY_COLOR :
-		car::CarHandler::editBodyColor();
+		CarHandler::editBodyColor();
 		newMenu = this;
 		break;
 	case Action::EDIT_INTERIOR_COLOR :
-		car::CarHandler::editInteriorColor();
+		CarHandler::editInteriorColor();
 		newMenu = this;
 		break;
 	case Action::EDIT_INTERIOR_MATERIAL :
-		car::CarHandler::editInteriorMaterial();
+		CarHandler::editInteriorMaterial();
 		newMenu = this;
 		break;
 	case Action::EDIT_MILEAGE :
-		car::CarHandler::editMileage();
+		CarHandler::editMileage();
 		newMenu = this;
 		break;
 	case Action::EDIT_PRICE :
-		car::CarHandler::editPrice();
+		CarHandler::editPrice();
 		newMenu = this;
 		break;
 	case Action::EDIT_RESERVE_STATUS :
-		car::CarHandler::editReserveStatus();
+		CarHandler::editReserveStatus();
 		newMenu = this;
 		break;
 	case Action::EDIT_RESERVER_USERNAME :
-		car::CarHandler::editReserverUsername();
+		CarHandler::editReserverUsername();
 		newMenu = this;
 		break;
 	case Action::BACK:
@@ -107,7 +107,7 @@ unsigned CarEditMenu::selectMode()
 
 	system("cls");
 
-	car::CarHandler::showEditCar();
+	CarHandler::showEditCar();
 
 	while (true)
 	{

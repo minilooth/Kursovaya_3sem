@@ -4,6 +4,14 @@
 
 #include "HorizontalShow.h"
 
+#ifndef ACCOUNTPRINTER_H
+#include "AccountPrinter.h"
+#endif
+
+#ifndef CARPRINTER_H
+#include "CarPrinter.h"
+#endif
+
 
 using namespace std;
 
@@ -180,9 +188,9 @@ unsigned ItemSelection<T>::selectMode()
 template<typename T>
 void ItemSelection<T>::showItems()
 {
-	if (typeid(T) == typeid(account::Account))
+	if (typeid(T) == typeid(Account))
 	{
-		account::AccountPrinter::showHeader();
+		AccountPrinter::showHeader();
 
 		for (unsigned i = (10 * (this->currentPage_ - 1)); i < (10 * this->currentPage_) && i < this->items_.size(); i++)
 		{
@@ -194,12 +202,12 @@ void ItemSelection<T>::showItems()
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(account::AccountPrinter::getSolidLineLength());
+		drawSolidLine(AccountPrinter::getSolidLineLength());
 	}
 
-	if (typeid(T) == typeid(car::Car))
+	if (typeid(T) == typeid(Car))
 	{
-		car::CarPrinter::showHeader();
+		CarPrinter::showHeader();
 
 		for (unsigned i = (10 * (this->currentPage_ - 1)); i < (10 * this->currentPage_) && i < this->items_.size(); i++)
 		{
@@ -211,7 +219,7 @@ void ItemSelection<T>::showItems()
 			setTextColor(Color::LIGHT_CYAN);
 		}
 
-		drawSolidLine(car::CarPrinter::getSolidLineLength());
+		drawSolidLine(CarPrinter::getSolidLineLength());
 	}
 }
 
@@ -219,4 +227,4 @@ template<typename T>
 ItemSelection<T>::~ItemSelection() = default;
 
 
-#endif // ITEMSELECTION_H
+#endif

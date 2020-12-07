@@ -1,6 +1,5 @@
 #include "AccountHandler.h"
 
-using namespace account;
 
 Account::Account()
 {
@@ -53,7 +52,7 @@ bool Account::getBanStatus() const
 	return banStatus_;
 }
 
-ostream& account::operator<<(ostream& out, const Account& account)
+ostream& operator<<(ostream& out, const Account& account)
 {
 	out << "| " << setw(AccountPrinter::getUsernameLabelLength()) << left << account.username_
 		<< " | " << setw(AccountPrinter::getPasswordLabelLength()) << left

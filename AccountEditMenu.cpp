@@ -28,19 +28,19 @@ ConsoleMenu* AccountEditMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::EDIT_USERNAME :
-		account::AccountHandler::editUsername();
+		AccountHandler::editUsername();
 		newMenu = this;
 		break;
 	case Action::EDIT_PASSWORD :
-		account::AccountHandler::editPassword();
+		AccountHandler::editPassword();
 		newMenu = this;
 		break;
 	case Action::EDIT_ADMIN_ACCESS :
-		account::AccountHandler::editAdminAccess();
+		AccountHandler::editAdminAccess();
 		newMenu = this;
 		break;
 	case Action::EDIT_BAN_STATUS :
-		account::AccountHandler::editBanStatus();
+		AccountHandler::editBanStatus();
 		newMenu = this;
 		break;
 	case Action::BACK :
@@ -59,7 +59,7 @@ unsigned AccountEditMenu::selectMode()
 
 	system("cls");
 
-	account::AccountHandler::showEditAccount();
+	AccountHandler::showEditAccount();
 	
 	cout << endl;
 

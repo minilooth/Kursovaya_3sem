@@ -1,6 +1,6 @@
 #include "Cabriolet.h"
 
-car::Cabriolet::Cabriolet()
+Cabriolet::Cabriolet()
 {
 	brand_ = "";
 	model_ = "";
@@ -19,7 +19,7 @@ car::Cabriolet::Cabriolet()
 	reserverUsername_ = "";
 }
 
-car::Cabriolet::Cabriolet(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
+Cabriolet::Cabriolet(const string& brand, const string& model, unsigned yearOfProduction, const string& transmissionType, const string& wheelDriveType,
 					 const string& engineType, double engineVolume, const string& bodyColor, const string& interiorColor, const string& interiorMaterial, double mileage,
 					 double price, bool reserveStatus, const string& reserverUsername)
 {
@@ -40,7 +40,7 @@ car::Cabriolet::Cabriolet(const string& brand, const string& model, unsigned yea
 	reserverUsername_ = reserverUsername;
 }
 
-car::Cabriolet::Cabriolet(Car& car)
+Cabriolet::Cabriolet(Car& car)
 {
 	brand_ = car.getBrand();
 	model_ = car.getModel();
@@ -59,4 +59,4 @@ car::Cabriolet::Cabriolet(Car& car)
 	reserverUsername_ = car.getReserverUsername();
 }
 
-car::Cabriolet::~Cabriolet() = default;
+Cabriolet::~Cabriolet() = default;

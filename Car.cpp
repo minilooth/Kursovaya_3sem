@@ -1,6 +1,5 @@
 #include "CarHandler.h"
 
-using namespace car;
 
 Car::Car()
 {
@@ -185,7 +184,7 @@ string Car::getReserverUsername() const
 	return reserverUsername_;
 }
 
-ostream& car::operator<<(ostream& out, const Car& car)
+ostream& operator<<(ostream& out, const Car& car)
 {
 	out << "|" << left << setw(CarPrinter::getBrandLabelLength()) << car.brand_
 		<< "|" << left << setw(CarPrinter::getModelLabelLength()) << car.model_
@@ -217,4 +216,4 @@ ostream& car::operator<<(ostream& out, const Car& car)
 	return out;
 }
 
-car::Car::~Car() = default;
+Car::~Car() = default;

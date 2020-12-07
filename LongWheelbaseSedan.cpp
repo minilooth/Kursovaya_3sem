@@ -1,7 +1,5 @@
 #include "LongWheelbaseSedan.h"
 
-using namespace car;
-
 LongWheelbaseSedan::LongWheelbaseSedan()
 {
 	brand_ = "";

@@ -36,7 +36,7 @@ menu::ConsoleMenu* menu::SearchingSortingAndFilteringMenu::getNextMenu()
 		break;
 	case Action::BACK :
 		this->resetChoice();
-		if (account::AccountHandler::getAdminAccessStatus() == true)
+		if (AccountHandler::getAdminAccessStatus() == true)
 		{
 			newMenu = new AdminMenu();
 		}

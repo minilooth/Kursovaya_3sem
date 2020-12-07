@@ -1,6 +1,5 @@
 #include "CarHandler.h"
 
-using namespace car;
 
 // Static initialization
 vector<Car> CarHandler::cars_;
@@ -1678,7 +1677,7 @@ void CarHandler::editPrice()
 
 void CarHandler::editReserveStatus()
 {
-	ItemSelection<account::Account>* itemSelection = nullptr;
+	ItemSelection<Account>* itemSelection = nullptr;
 
 	unsigned index = 0;
 
@@ -1695,9 +1694,9 @@ void CarHandler::editReserveStatus()
 		}
 		else
 		{
-			auto accounts = account::AccountHandler::getUsers();
+			auto accounts = AccountHandler::getUsers();
 
-			itemSelection = new ItemSelection<account::Account>("Выберите новый резервирующий аккаунт:", accounts);
+			itemSelection = new ItemSelection<Account>("Выберите новый резервирующий аккаунт:", accounts);
 
 			index = itemSelection->selectMode();
 
@@ -1737,7 +1736,7 @@ void CarHandler::editReserveStatus()
 
 void CarHandler::editReserverUsername()
 {
-	ItemSelection<account::Account>* itemSelection = nullptr;
+	ItemSelection<Account>* itemSelection = nullptr;
 
 	unsigned index = 0;
 
@@ -1752,9 +1751,9 @@ void CarHandler::editReserverUsername()
 
 		showEditCar();
 
-		auto accounts = account::AccountHandler::getUsers();
+		auto accounts = AccountHandler::getUsers();
 
-		itemSelection = new ItemSelection<account::Account>("Выберите новый резервирующий аккаунт:", accounts);
+		itemSelection = new ItemSelection<Account>("Выберите новый резервирующий аккаунт:", accounts);
 
 		index = itemSelection->selectMode();
 
@@ -2023,12 +2022,12 @@ void CarHandler::showAccountReservedCars()
 	HorizontalShow<Car>* horizontalShow = nullptr;
 	try
 	{
-		if (account::AccountHandler::getCurrentAccount() == nullptr)
+		if (AccountHandler::getCurrentAccount() == nullptr)
 		{
 			throw exception("Текущий аккаунт не установлен!");
 		}
 
-		auto cars = getReservedCarsByUsername(account::AccountHandler::getCurrentAccount()->getUsername());
+		auto cars = getReservedCarsByUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		if (cars.empty())
 		{
@@ -2174,8 +2173,8 @@ void CarHandler::sellCar()
 		
 		path = createReport(*reservedCars.first.at(index - 1));
 		
-		account::StatisticsHandler::getAccountStatistics(reservedCars.first.at(index - 1)->getReserverUsername())->addPurchaseAmount(reservedCars.first.at(index - 1)->getPrice());
-		account::StatisticsHandler::rewriteStatisticsFile();
+		StatisticsHandler::getAccountStatistics(reservedCars.first.at(index - 1)->getReserverUsername())->addPurchaseAmount(reservedCars.first.at(index - 1)->getPrice());
+		StatisticsHandler::rewriteStatisticsFile();
 
 		cars_.erase(cars_.begin() + index);
 
@@ -2583,7 +2582,7 @@ void CarHandler::reserveNewCar()
 		}
 
 		notReservedNewCars.first.at(index - 1)->setReserveStatus(true);
-		notReservedNewCars.first.at(index - 1)->setReserverUsername(account::AccountHandler::getCurrentAccount()->getUsername());
+		notReservedNewCars.first.at(index - 1)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		rewriteCarsFile();
 
@@ -2635,7 +2634,7 @@ void CarHandler::reserveUsedCar()
 		}
 
 		notReservedUsedCars.first.at(index - 1)->setReserveStatus(true);
-		notReservedUsedCars.first.at(index - 1)->setReserverUsername(account::AccountHandler::getCurrentAccount()->getUsername());
+		notReservedUsedCars.first.at(index - 1)->setReserverUsername(AccountHandler::getCurrentAccount()->getUsername());
 
 		rewriteCarsFile();
 

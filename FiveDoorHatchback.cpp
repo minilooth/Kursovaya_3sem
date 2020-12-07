@@ -1,6 +1,5 @@
 #include "FiveDoorHatchback.h"
 
-using namespace car;
 
 FiveDoorHatchback::FiveDoorHatchback()
 {

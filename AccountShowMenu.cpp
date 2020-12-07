@@ -9,13 +9,13 @@ unsigned AccountShowMenu::maxPages_ = 1;
 AccountShowMenu::AccountShowMenu()
 {
 	title_ = "Все аккаунты:";
-	items_ = { account::AccountHandler::getShowPasswordStatus() ? "Скрыть пароль." : "Показать пароль." , "Назад." };
+	items_ = { AccountHandler::getShowPasswordStatus() ? "Скрыть пароль." : "Показать пароль." , "Назад." };
 	tooltip_ = "Подсказка:\nНажмите -> чтобы перейти на следующую страницу.\nНажмите <- чтобы перейти на предыдущую страницу.\nНажмите ESC или \"Назад\" чтобы вернуться назад.";
 	pageSize_ = 10;
 
-	maxPages_ = account::AccountHandler::countAccounts() / pageSize_;
+	maxPages_ = AccountHandler::countAccounts() / pageSize_;
 
-	if (account::AccountHandler::countAccounts() % pageSize_ != 0)
+	if (AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
@@ -28,9 +28,9 @@ AccountShowMenu::AccountShowMenu(const string& title, const vector<string>& item
 	tooltip_ = tooltip;
 	pageSize_ = pageSize;
 
-	maxPages_ = account::AccountHandler::countAccounts() / pageSize_;
+	maxPages_ = AccountHandler::countAccounts() / pageSize_;
 
-	if (account::AccountHandler::countAccounts() % pageSize_ != 0)
+	if (AccountHandler::countAccounts() % pageSize_ != 0)
 	{
 		maxPages_++;
 	}
@@ -43,12 +43,12 @@ ConsoleMenu* menu::AccountShowMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::SHOW_OR_HIDE_PASSWORD :
-		account::AccountHandler::invertShowPasswordStatus();
+		AccountHandler::invertShowPasswordStatus();
 		newMenu = new AccountShowMenu();
 		break;
 	case Action::BACK :
 		this->resetChoice();
-		account::AccountHandler::resetShowPasswordStatus();
+		AccountHandler::resetShowPasswordStatus();
 		resetChoice();
 		resetCurrentPage();
 		resetMaxPages();
@@ -100,7 +100,7 @@ unsigned AccountShowMenu::selectMode()
 
 		showCurrentPageNumber();
 
-		account::AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
+		AccountHandler::showAccounts((pageSize_ * (currentPage_ - 1)), (pageSize_ * currentPage_));
 
 		cout << endl;
 		showItems();

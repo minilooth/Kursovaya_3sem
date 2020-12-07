@@ -28,15 +28,15 @@ ConsoleMenu* SortingMenu::getNextMenu()
 	switch (selectMode())
 	{
 	case Action::SORT_BY_YEAR_OF_PRODUCTION :
-		car::CarHandler::sortByYearOfProduction();
+		CarHandler::sortByYearOfProduction();
 		newMenu = this;
 		break;
 	case Action::SORT_BY_ENGINE_VOLUME :
-		car::CarHandler::sortByEngineVolume();
+		CarHandler::sortByEngineVolume();
 		newMenu = this;
 		break;
 	case Action::SORT_BY_PRICE :
-		car::CarHandler::sortByPrice();
+		CarHandler::sortByPrice();
 		newMenu = this;
 		break;
 	case Action::BACK :

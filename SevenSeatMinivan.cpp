@@ -1,6 +1,5 @@
 #include "SevenSeatMinivan.h"
 
-using namespace car;
 
 SevenSeatMinivan::SevenSeatMinivan()
 {

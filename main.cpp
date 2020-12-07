@@ -11,9 +11,9 @@ int main()
 
     system("color 0B");
 	
-	account::StatisticsHandler* statisticsHandler = new account::StatisticsHandler();
-	car::CarHandler* carHandler = new car::CarHandler();
-    account::AccountHandler *accountHandler = new account::AccountHandler();
+	StatisticsHandler* statisticsHandler = new StatisticsHandler();
+	CarHandler* carHandler = new CarHandler();
+    AccountHandler *accountHandler = new AccountHandler();
     menu::ConsoleMenu *currentMenu = new menu::LoginMenu();
 
 	showConsoleCursor(false);

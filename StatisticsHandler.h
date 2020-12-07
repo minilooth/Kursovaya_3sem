@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STATISTICSHANDLER_H
 #define STATISTICSHANDLER_H
 
@@ -5,8 +6,6 @@
 #include "AccountStatistics.h"
 
 
-namespace account
-{
 
 	class StatisticsHandler
 	{
@@ -35,7 +34,6 @@ namespace account
 		~StatisticsHandler();
 	};
 
-}
 
 
 #endif // STATISTICSHANDLER_H

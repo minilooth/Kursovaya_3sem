@@ -31,28 +31,28 @@ ConsoleMenu* AdminMenu::getNextMenu()
             newMenu = new AccountManagementMenu();
             break;
 		case Action::ADD_CAR :
-			car::CarHandler::addCar();
+			CarHandler::addCar();
 			newMenu = this;
 			break;
 		case Action::SHOW_CARS :
-			car::CarHandler::showCars();
+			CarHandler::showCars();
 			newMenu = this;
 			break;
 		case Action::DELETE_CAR :
-			car::CarHandler::deleteCar();
+			CarHandler::deleteCar();
 			newMenu = this;
 			break;
 		case Action::EDIT_CAR :
-			car::CarHandler::editCar();
-			car::CarHandler::resetCarToEdit();
+			CarHandler::editCar();
+			CarHandler::resetCarToEdit();
 			newMenu = this;
 			break;
 		case Action::SELL_CAR :
-			car::CarHandler::sellCar();
+			CarHandler::sellCar();
 			newMenu = this;
 			break;
 		case Action::SHOW_STATISTICS :
-			account::AccountHandler::showTotalStatistics();
+			AccountHandler::showTotalStatistics();
 			newMenu = this;
 			break;
 		case Action::SEARCHING_SORTING_AND_FILTRATION :
@@ -60,7 +60,7 @@ ConsoleMenu* AdminMenu::getNextMenu()
 			break;
 		case Action::BACK :
             this->resetChoice();
-			account::AccountHandler::resetCurrentAccount();
+			AccountHandler::resetCurrentAccount();
             newMenu = new LoginMenu();
             break;
         default:

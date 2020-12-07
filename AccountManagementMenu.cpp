@@ -31,16 +31,16 @@ ConsoleMenu* AccountManagementMenu::getNextMenu()
 		newMenu = new AccountShowMenu();
 		break;
 	case Action::ADD_ACCOUNT:
-		account::AccountHandler::addAccount();
+		AccountHandler::addAccount();
 		newMenu = this;
 		break;
 	case Action::DELETE_ACCOUNT:
-		account::AccountHandler::deleteAccount();
+		AccountHandler::deleteAccount();
 		newMenu = this;
 		break;
 	case Action::EDIT_ACCOUNT:
-		account::AccountHandler::editAccount();
-		account::AccountHandler::resetAccountToEdit();
+		AccountHandler::editAccount();
+		AccountHandler::resetAccountToEdit();
 		newMenu = this;
 		break;
 	case Action::BACK:

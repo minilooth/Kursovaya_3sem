@@ -1,7 +1,5 @@
 #include "User.h"
 
-using namespace account;
-
 User::User()
 {
 	username_ = "";

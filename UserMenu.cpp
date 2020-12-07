@@ -28,23 +28,23 @@ ConsoleMenu* UserMenu::getNextMenu()
     switch (selectMode())
     {
 	case Action::SHOW_ALL_CARS :
-		car::CarHandler::showCars();
+		CarHandler::showCars();
 		newMenu = this;
 		break;
 	case Action::RESERVE_NEW_CAR :
-		car::CarHandler::reserveNewCar();
+		CarHandler::reserveNewCar();
 	    newMenu = this;
 		break;
 	case Action::RESERVE_USED_CAR :
-		car::CarHandler::reserveUsedCar();
+		CarHandler::reserveUsedCar();
         newMenu = this;
 		break;
 	case Action::SHOW_ACCOUNT_RESERVED_CARS :
-		car::CarHandler::showAccountReservedCars();
+		CarHandler::showAccountReservedCars();
 		newMenu = this;
 		break;
 	case Action::SHOW_ACCOUNT_STATISTICS :
-		account::AccountHandler::showCurrentAccountStatistics();
+		AccountHandler::showCurrentAccountStatistics();
 		newMenu = this;
 		break;
 	case Action::SEARCHING_SORTING_AND_FILTRATION :
@@ -52,7 +52,7 @@ ConsoleMenu* UserMenu::getNextMenu()
 		break;
 	case Action::BACK :
 		this->resetChoice();
-		account::AccountHandler::resetCurrentAccount();
+		AccountHandler::resetCurrentAccount();
 		newMenu = new LoginMenu();
 		break;
     default:

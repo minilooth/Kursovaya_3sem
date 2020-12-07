@@ -1,6 +1,5 @@
 #include "Crossover.h"
 
-using namespace car;
 
 Crossover::Crossover()
 {

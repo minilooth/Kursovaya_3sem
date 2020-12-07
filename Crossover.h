@@ -5,8 +5,6 @@
 #include "CarHandler.h"
 
 
-namespace car
-{
 
 	class Crossover : public Car
 	{
@@ -20,7 +18,6 @@ namespace car
 		~Crossover();
 	};
 
-}
 
 
 #endif // CROSSOVER_H

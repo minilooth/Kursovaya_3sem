@@ -33,8 +33,6 @@
 using namespace std;
 
 
-namespace car
-{
 
 	const unsigned BRAND_MAX_INPUT_LENGTH = 12;
 	const unsigned MODEL_MAX_INPUT_LENGTH = 12;
@@ -144,7 +142,6 @@ namespace car
 		~CarHandler();
 	};
 
-}
 
 
 #endif // CARHANDLER_H

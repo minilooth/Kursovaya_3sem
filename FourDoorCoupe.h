@@ -5,8 +5,6 @@
 #include "CarHandler.h"
 
 
-namespace car
-{
 
 	class FourDoorCoupe : public Car
 	{
@@ -20,7 +18,6 @@ namespace car
 		~FourDoorCoupe();
 	};
 
-}
 
 
 #endif // FOURDOORCOUPE_H

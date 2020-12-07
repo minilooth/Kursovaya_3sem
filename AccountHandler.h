@@ -17,8 +17,6 @@
 
 using namespace std;
 
-namespace account
-{
 	const unsigned PASSWORD_LENGTH_INPUT_LIMIT = 20;
 	const unsigned USERNAME_LENGTH_INPUT_LIMIT = 20;
 
@@ -96,7 +94,5 @@ namespace account
 		static string encryptPassword(string password);
 	};
 
-}
 
-
-#endif //ACCOUNTHANDLER_H
+#endif

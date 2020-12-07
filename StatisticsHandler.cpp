@@ -1,7 +1,5 @@
 #include "StatisticsHandler.h"
 
-using namespace account;
-
 vector<AccountStatistics> StatisticsHandler::statistics_;
 
 StatisticsHandler::StatisticsHandler()

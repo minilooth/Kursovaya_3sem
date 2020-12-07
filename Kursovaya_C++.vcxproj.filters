@@ -182,9 +182,6 @@
     <ClInclude Include="Includes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ItemSelection.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Account.h">
       <Filter>Файлы заголовков\Accounts</Filter>
     </ClInclude>
@@ -260,9 +257,6 @@
     <ClInclude Include="CarEditMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="AccountPrinter.h">
-      <Filter>Файлы заголовков\Accounts</Filter>
-    </ClInclude>
     <ClInclude Include="AccountStatistics.h">
       <Filter>Файлы заголовков\Accounts</Filter>
     </ClInclude>
@@ -289,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="TypeOfSortingMenu.h">
       <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountPrinter.h">
+      <Filter>Файлы заголовков\Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemSelection.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="HorizontalShow.h">
       <Filter>Файлы заголовков</Filter>

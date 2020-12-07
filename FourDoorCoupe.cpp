@@ -1,7 +1,5 @@
 #include "FourDoorCoupe.h"
 
-using namespace car;
-
 FourDoorCoupe::FourDoorCoupe()
 {
 	brand_ = "";

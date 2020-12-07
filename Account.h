@@ -6,9 +6,6 @@
 
 using namespace std;
 
-namespace account
-{
-
 	class Account
 	{
 	protected:
@@ -34,7 +31,6 @@ namespace account
 		~Account();
 	};
 
-}
 
 
 #endif //ACCOUNT_H
